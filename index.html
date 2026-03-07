@@ -946,9 +946,16 @@ document.getElementById('questionnaireForm').addEventListener('submit', async fu
     if (!ig.startsWith('http')) data.instagram = 'https://instagram.com/' + ig;
   }
   // Normalizar web: agregar https si falta
-  if (data.web && !data.web.startsWith('http')) {
+  if (data.web && data.web.trim() && !data.web.startsWith('http')) {
     data.web = 'https://' + data.web;
   }
+
+  // Limpiar campos vacíos: convertir "" a null para evitar errores de validación en Notion
+  Object.keys(data).forEach(key => {
+    if (typeof data[key] === 'string' && data[key].trim() === '') {
+      data[key] = null;
+    }
+  });
 
   let leadId = null;
   if (WEBHOOK_URL) {
