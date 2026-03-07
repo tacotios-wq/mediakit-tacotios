@@ -701,10 +701,9 @@
             const params = new URLSearchParams(window.location.search);
             appState.leadId = params.get('lead');
 
-            // Check if lead parameter is present
+            // If no lead parameter, generate a temporary one (direct access from Media Kit without webhook response)
             if (!appState.leadId) {
-                showErrorState('Falta el parámetro de identificación. Por favor, accede desde el enlace correcto.');
-                return;
+                appState.leadId = 'direct-' + Date.now();
             }
 
             // Attempt to load availability
