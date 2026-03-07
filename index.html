@@ -963,19 +963,9 @@ document.getElementById('questionnaireForm').addEventListener('submit', async fu
     } catch (err) { console.log('Webhook error:', err); }
   }
 
-  this.style.display = 'none';
-  document.getElementById('successMessage').style.display = 'block';
-
-  // Show booking CTA if we have a lead_id, otherwise show fallback
-  if (leadId) {
-    const bookingUrl = 'https://mediakit-tacotios.vercel.app/opentio.html?lead=' + leadId;
-    document.getElementById('bookingLink').href = bookingUrl;
-    document.getElementById('bookingCta').style.display = 'block';
-  } else {
-    document.getElementById('fallbackCta').style.display = 'block';
-  }
-
-  document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+  // Redirigir directamente a OpenTio para agendar visita
+  const bookingUrl = 'https://mediakit-tacotios.vercel.app/opentio' + (leadId ? '?lead=' + leadId : '');
+  window.location.href = bookingUrl;
 });
 
 // Auto-update month
