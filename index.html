@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media Kit — TACOTIOS</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+/* ===== DESIGN SYSTEM — matches tacotios-landing.vercel.app ===== */
+:root {
+  --bg: #030307;
+  --bg-nav: rgba(13, 10, 11, 0.95);
+  --bg-card: #15151a;
+  --orange: #e99b2a;
+  --orange-cta: #f97316;
+  --orange-cta-hover: #ea6a0e;
+  --orange-soft: rgba(233, 155, 42, 0.15);
+  --orange-border: rgba(233, 155, 42, 0.4);
+  --text: #f3ede8;
+  --text-dim: #9ca3af;
+  --text-muted: #6b7280;
+  --border: #364153;
+  --white: #ffffff;
+  --radius: 8px;
+  --radius-input: 6px;
+  --green: #22c55e;
+  --red: #ef4444;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, "system-ui", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== NAV ===== */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-nav);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.nav-logo {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+/* ===== SECTIONS ===== */
+section {
+  padding: 80px 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* ===== HERO ===== */
+.hero {
+  padding-top: 140px;
+  text-align: center;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.hero-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--orange);
+  border: 1px solid var(--orange-border);
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 32px;
+}
+.hero h1 {
+  font-size: clamp(40px, 7vw, 72px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+.hero .hero-tagline {
+  font-size: 18px;
+  color: var(--text-dim);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ===== STATS BAR ===== */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+  padding: 0 24px;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 16px;
+  text-align: center;
+}
+.stat-number {
+  font-size: clamp(20px, 3.5vw, 24px);
+  font-weight: 700;
+  color: var(--orange);
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+/* ===== SECTION HEADERS ===== */
+.section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.section-header h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.section-header p {
+  font-size: 16px;
+  color: var(--text-dim);
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* ===== PACKAGES ===== */
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.pkg-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.pkg-card.featured {
+  border-color: var(--orange);
+  background: linear-gradient(180deg, rgba(233, 155, 42, 0.08) 0%, var(--bg-card) 40%);
+}
+.pkg-popular {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--orange);
+  color: var(--bg);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 16px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.pkg-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 4px;
+  margin-top: 8px;
+}
+.pkg-ideal {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  font-style: italic;
+}
+.pkg-price {
+  font-size: clamp(28px, 5vw, 36px);
+  font-weight: 700;
+  color: var(--orange);
+  margin-bottom: 2px;
+}
+.pkg-currency {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+.pkg-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 24px;
+}
+.pkg-features {
+  list-style: none;
+  flex: 1;
+}
+.pkg-features li {
+  font-size: 14px;
+  color: var(--text-dim);
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+}
+.pkg-features li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid var(--orange);
+  background: transparent;
+}
+.pkg-features li::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  width: 4px;
+  height: 8px;
+  border-bottom: 1.5px solid var(--orange);
+  border-right: 1.5px solid var(--orange);
+}
+.pkg-result {
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: var(--orange-soft);
+  border-radius: var(--radius);
+  font-size: 13px;
+  color: var(--orange);
+  text-align: center;
+  font-weight: 600;
+}
+.pkg-cta {
+  display: block;
+  width: 100%;
+  margin-top: 24px;
+  padding: 14px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.pkg-card .pkg-cta {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.pkg-card .pkg-cta:hover {
+  border-color: var(--orange-cta);
+  color: var(--orange-cta);
+}
+.pkg-card.featured .pkg-cta {
+  background: var(--orange-cta);
+  border: 1px solid var(--orange-cta);
+  color: var(--white);
+}
+.pkg-card.featured .pkg-cta:hover {
+  background: var(--orange-cta-hover);
+}
+.pkg-note {
+  text-align: center;
+  margin-top: 32px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ===== GUARANTEE ===== */
+.guarantee-box {
+  border: 1px solid var(--orange-border);
+  border-radius: var(--radius);
+  padding: 48px 40px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(233, 155, 42, 0.06) 0%, transparent 60%);
+}
+.guarantee-box h2 {
+  font-size: clamp(24px, 3.5vw, 32px);
+  font-weight: 700;
+  color: var(--orange);
+  margin-bottom: 20px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+.guarantee-box > p {
+  font-size: 16px;
+  color: var(--text-dim);
+  max-width: 560px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+.guarantee-points {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.guarantee-point {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.guarantee-check {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.guarantee-check svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--orange);
+  fill: none;
+  stroke-width: 2.5;
+}
+.guarantee-point-text strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+}
+.guarantee-point-text span {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+/* ===== PROCESS ===== */
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.process-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  text-align: center;
+}
+.process-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid var(--orange);
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--orange);
+  margin-bottom: 20px;
+}
+.process-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.process-card p {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* ===== QUESTIONNAIRE ===== */
+.form-intro {
+  font-size: 15px;
+  color: var(--text-dim);
+  max-width: 640px;
+  margin-bottom: 40px;
+  line-height: 1.7;
+  border-left: 2px solid var(--orange);
+  padding-left: 20px;
+}
+.form-block {
+  margin-bottom: 40px;
+}
+.form-block-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.form-step-indicator {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.form-hint {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-input);
+  background: var(--bg-card);
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text);
+  transition: border-color 0.2s;
+  outline: none;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-muted);
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--orange);
+}
+/* Inline validation */
+.form-group input:not(:placeholder-shown):valid,
+.form-group textarea:not(:placeholder-shown):valid,
+.form-group select:valid:not([value=""]) {
+  border-color: var(--green);
+}
+.form-group input:not(:placeholder-shown):invalid,
+.form-group textarea:not(:placeholder-shown):invalid {
+  border-color: var(--red);
+}
+/* Override validation color on focus */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--orange);
+}
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+.form-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: var(--orange-cta);
+  color: var(--white);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.submit-btn:hover {
+  background: var(--orange-cta-hover);
+}
+
+/* ===== CTA ===== */
+.cta-section {
+  text-align: center;
+  padding: 60px 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.cta-text {
+  font-size: 16px;
+  color: var(--text-dim);
+  margin-bottom: 24px;
+}
+.cta-btn {
+  display: inline-block;
+  padding: 16px 40px;
+  background: #25D366;
+  color: var(--white);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: var(--radius);
+  transition: background 0.2s;
+}
+.cta-btn:hover {
+  background: #1da851;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+footer a { color: var(--orange); text-decoration: none; }
+
+/* ===== SUCCESS MESSAGE ===== */
+.success-message {
+  display: none;
+  text-align: center;
+  padding: 60px 24px;
+  border: 1px solid var(--orange-border);
+  border-radius: var(--radius);
+  background: rgba(233, 155, 42, 0.06);
+}
+.success-message h3 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.success-message p {
+  color: var(--text-dim);
+  font-size: 15px;
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+#bookingCta a:hover {
+  background: var(--orange-cta-hover);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 960px) {
+  .packages-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .packages-grid .pkg-card:last-child {
+    grid-column: 1 / -1;
+    max-width: 340px;
+    justify-self: center;
+  }
+  .process-steps {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .process-steps .process-card:last-child {
+    grid-column: 1 / -1;
+    max-width: 340px;
+    justify-self: center;
+  }
+}
+@media (max-width: 768px) {
+  section { padding: 60px 20px; }
+  .hero { padding-top: 100px; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 0 20px; }
+  .packages-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+  .packages-grid .pkg-card:last-child { max-width: 400px; }
+  .process-steps { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+  .process-steps .process-card:last-child { max-width: 400px; }
+  .form-row { grid-template-columns: 1fr; }
+  .guarantee-points { flex-direction: column; align-items: flex-start; gap: 20px; padding-left: 24px; }
+  .guarantee-box { padding: 32px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://tacotios-landing.vercel.app/" class="nav-logo">TACOTIOS</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Exclusivo para restauranteros</div>
+  <h1>Media Kit</h1>
+  <p class="hero-tagline">Contamos historias que multiplican presupuestos.</p>
+
+  <div class="stats-bar" style="margin-top: 48px;">
+    <div class="stat-card">
+      <div class="stat-number">2M+</div>
+      <div class="stat-label">Seguidores</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">+500</div>
+      <div class="stat-label">Restaurantes</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Satisfacci&oacute;n ROI</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">4 a&ntilde;os</div>
+      <div class="stat-label">De experiencia</div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="paquetes">
+  <div class="section-header">
+    <h2>Elige c&oacute;mo llenar tus mesas</h2>
+    <p>Tres paquetes dise&ntilde;ados para contar la historia de tu restaurante y convertir audiencia en clientes.</p>
+  </div>
+
+  <div class="packages-grid">
+    <!-- MENU DEL DIA -->
+    <div class="pkg-card">
+      <div class="pkg-name">Men&uacute; del D&iacute;a</div>
+      <div class="pkg-ideal">Ideal para tu primer impulso en redes</div>
+      <div class="pkg-price">$25,000</div>
+      <div class="pkg-currency">MXN + IVA</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li>1 Reel producido</li>
+        <li>Solo Instagram</li>
+        <li>Storytelling personalizado</li>
+        <li>Entrega en 3-5 d&iacute;as</li>
+      </ul>
+      <div class="pkg-result">Alcance estimado: 100K-300K personas</div>
+      <a href="#cuestionario" class="pkg-cta">Comenzar</a>
+    </div>
+
+    <!-- MENU ESPECIAL -->
+    <div class="pkg-card featured">
+      <div class="pkg-popular">M&aacute;s popular</div>
+      <div class="pkg-name">Men&uacute; Especial</div>
+      <div class="pkg-ideal">M&aacute;ximo alcance en todas las plataformas</div>
+      <div class="pkg-price">$30,000</div>
+      <div class="pkg-currency">MXN + IVA</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li>1 Reel producido</li>
+        <li>IG + TikTok + FB + YouTube</li>
+        <li>1-3 Historias de Instagram</li>
+        <li>Storytelling personalizado</li>
+        <li>Entrega en 3-5 d&iacute;as</li>
+      </ul>
+      <div class="pkg-result">Alcance estimado: 300K-1M personas</div>
+      <a href="#cuestionario" class="pkg-cta">Comenzar</a>
+    </div>
+
+    <!-- MENU DEGUSTACION -->
+    <div class="pkg-card">
+      <div class="pkg-name">Men&uacute; Degustaci&oacute;n</div>
+      <div class="pkg-ideal">La experiencia completa con seguimiento de resultados</div>
+      <div class="pkg-price">$50,000</div>
+      <div class="pkg-currency">MXN + IVA</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-features">
+        <li>2 Reels producidos</li>
+        <li>IG + TikTok + FB + YouTube</li>
+        <li>3-5 Historias de Instagram</li>
+        <li>1 Carrusel (3+ fotos)</li>
+        <li>Storytelling personalizado</li>
+        <li>Entrega en 5-7 d&iacute;as</li>
+        <li>Seguimiento de impacto a 60 d&iacute;as</li>
+        <li>Sesi&oacute;n de estrategia post-publicaci&oacute;n</li>
+      </ul>
+      <div class="pkg-result">Alcance estimado: 600K-2M personas</div>
+      <a href="#cuestionario" class="pkg-cta">Comenzar</a>
+    </div>
+  </div>
+
+  <p class="pkg-note">Precios vigentes <span id="mesVigente"></span>. Paquetes personalizados disponibles bajo consulta.</p>
+</section>
+
+<!-- GUARANTEE (moved up: right after packages, before process) -->
+<section>
+  <div class="guarantee-box">
+    <h2>O llenas tu restaurante, o no nos pagas.</h2>
+    <p>Conf&iacute;amos tanto en nuestra metodolog&iacute;a que asumimos todo el riesgo. Si despu&eacute;s de nuestra colaboraci&oacute;n no ves un retorno de inversi&oacute;n claro, si tus mesas no est&aacute;n m&aacute;s llenas, te devolvemos el 100% de tu dinero. Sin preguntas. Sin letras peque&ntilde;as.</p>
+    <div class="guarantee-points">
+      <div class="guarantee-point">
+        <div class="guarantee-check">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <div class="guarantee-point-text">
+          <strong>ROI Medible</strong>
+          <span>Resultados claros o devoluci&oacute;n total</span>
+        </div>
+      </div>
+      <div class="guarantee-point">
+        <div class="guarantee-check">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <div class="guarantee-point-text">
+          <strong>Sin Riesgo</strong>
+          <span>Nosotros asumimos el riesgo, no t&uacute;</span>
+        </div>
+      </div>
+      <div class="guarantee-point">
+        <div class="guarantee-check">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <div class="guarantee-point-text">
+          <strong>Transparencia Total</strong>
+          <span>M&eacute;tricas claras, sin tecnicismos</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section>
+  <div class="section-header">
+    <h2>C&oacute;mo trabajamos</h2>
+    <p>De la primera conversaci&oacute;n al video publicado.</p>
+  </div>
+
+  <div class="process-steps">
+    <div class="process-card">
+      <div class="process-num">1</div>
+      <h3>An&aacute;lisis estrat&eacute;gico</h3>
+      <p>Entendemos tu negocio, ticket promedio y cliente ideal. Liz, la asistente de Aniol, te contacta para resolver dudas y coordinar todo.</p>
+    </div>
+    <div class="process-card">
+      <div class="process-num">2</div>
+      <h3>Creaci&oacute;n de la historia</h3>
+      <p>Con tu cuestionario dise&ntilde;amos una narrativa que genera conexi&oacute;n emocional. Aniol visita, prueba y filma.</p>
+    </div>
+    <div class="process-card">
+      <div class="process-num">3</div>
+      <h3>Ejecuci&oacute;n y resultados</h3>
+      <p>Grabamos, editamos y publicamos con garant&iacute;a de ROI. A los 60 d&iacute;as revisamos el impacto real.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUESTIONNAIRE -->
+<section id="cuestionario">
+  <div class="section-header">
+    <h2 style="text-transform: uppercase;">Cu&eacute;ntanos tu historia</h2>
+    <p>Cuestionario pre-visita para crear el mejor contenido posible.</p>
+  </div>
+
+  <div class="form-intro">
+    Para garantizar el mejor resultado y que tu inversi&oacute;n se traduzca en clientes reales, necesitamos conocer a fondo tu restaurante. Responder estas preguntas m&iacute;nimo 48 horas antes de la visita es indispensable para planear el storytelling y maximizar el impacto.
+  </div>
+
+  <form id="questionnaireForm">
+    <!-- DATOS BASICOS -->
+    <div class="form-block">
+      <div class="form-block-title">
+        Datos del restaurante
+        <span class="form-step-indicator">Paso 1 de 4</span>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre del restaurante *</label>
+          <input type="text" name="restaurante" placeholder="Ej: Voraz, Siembra..." required>
+        </div>
+        <div class="form-group">
+          <label>Chef / Fundador *</label>
+          <input type="text" name="chef" placeholder="&iquest;C&oacute;mo te llamas?" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Email de contacto *</label>
+          <input type="email" name="email" placeholder="tu@restaurante.co" required>
+        </div>
+        <div class="form-group">
+          <label>WhatsApp *</label>
+          <input type="tel" name="telefono" placeholder="+52 33 1234 5678" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Direcci&oacute;n completa *</label>
+        <input type="text" name="direccion" placeholder="Calle, colonia, ciudad" required>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Instagram *</label>
+          <input type="text" name="instagram" placeholder="@turestaurante" required>
+        </div>
+        <div class="form-group">
+          <label>P&aacute;gina web</label>
+          <input type="url" name="web" placeholder="https://">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Paquete de inter&eacute;s</label>
+        <select name="paquete">
+          <option value="⏳ Por Definir">Selecciona un paquete</option>
+          <option value="🥘 Menú del Día ($25k)">Men&uacute; del D&iacute;a — $25,000 MXN</option>
+          <option value="⭐ Menú Especial ($30k)">Men&uacute; Especial — $30,000 MXN</option>
+          <option value="👨‍🍳 Menú Degustación ($50k)">Men&uacute; Degustaci&oacute;n — $50,000 MXN</option>
+          <option value="🎨 Custom">Paquete personalizado</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- LA HISTORIA -->
+    <div class="form-block">
+      <div class="form-block-title">
+        La Historia
+        <span class="form-step-indicator">Paso 2 de 4</span>
+      </div>
+      <div class="form-group">
+        <label>1. &iquest;C&oacute;mo y por qu&eacute; naci&oacute; el restaurante? *</label>
+        <div class="form-hint">A&ntilde;o de apertura, motivaci&oacute;n, inspiraci&oacute;n, filosof&iacute;a y ambici&oacute;n.</div>
+        <textarea name="q1_origen" placeholder=" " required></textarea>
+      </div>
+      <div class="form-group">
+        <label>2. Historia personal del fundador *</label>
+        <div class="form-hint">Desaf&iacute;os superados, momentos de orgullo, por qu&eacute; elegiste este camino. Lo que conecta con la gente.</div>
+        <textarea name="q2_historia_personal" placeholder=" " required></textarea>
+      </div>
+      <div class="form-group">
+        <label>3. &iquest;Qu&eacute; mensaje quieren comunicar con este video? *</label>
+        <div class="form-hint">Qu&eacute; quieren que la audiencia sienta o sepa. Valores, propuesta &uacute;nica, lo que los diferencia.</div>
+        <textarea name="q3_mensaje" placeholder=" " required></textarea>
+      </div>
+    </div>
+
+    <!-- LA COMIDA -->
+    <div class="form-block">
+      <div class="form-block-title">
+        La Comida
+        <span class="form-step-indicator">Paso 3 de 4</span>
+      </div>
+      <div class="form-group">
+        <label>4. &iquest;Cu&aacute;les son los 4-6 platillos que deben aparecer en el video? *</label>
+        <div class="form-hint">Nombre, por qu&eacute; es especial, ingredientes o t&eacute;cnicas &uacute;nicas.</div>
+        <textarea name="q4_platillos" placeholder=" " required></textarea>
+      </div>
+      <div class="form-group">
+        <label>5. &iquest;Hay alg&uacute;n proceso de cocina espectacular que podamos filmar?</label>
+        <div class="form-hint">Fuego, humo, cortes, montaje, t&eacute;cnicas &uacute;nicas. Si no est&aacute;n seguros: &quot;Aniol lo decidir&aacute; en la visita&quot;.</div>
+        <textarea name="q5_proceso_visual" placeholder=" "></textarea>
+      </div>
+    </div>
+
+    <!-- LOGISTICA -->
+    <div class="form-block">
+      <div class="form-block-title">
+        Log&iacute;stica
+        <span class="form-step-indicator">Paso 4 de 4</span>
+      </div>
+      <div class="form-group">
+        <label>6. Persona de contacto el d&iacute;a de la visita *</label>
+        <div class="form-hint">Nombre completo + tel&eacute;fono celular.</div>
+        <input type="text" name="q6_contacto" required>
+      </div>
+      <div class="form-group">
+        <label>7. &iquest;Qu&eacute; esperan de esta colaboraci&oacute;n? *</label>
+        <div class="form-hint">M&aacute;s reservas, posicionamiento de marca, lanzamiento de platillo, nueva sucursal.</div>
+        <textarea name="q7_expectativa" placeholder=" " required></textarea>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn">Enviar cuestionario</button>
+  </form>
+
+  <div class="success-message" id="successMessage">
+    <h3>Recibido.</h3>
+    <p>Gracias por tomarte el tiempo de contarnos tu historia. Aniol va a preparar un storytelling a la medida de tu restaurante.</p>
+    <div id="bookingCta" style="margin-top: 32px; display: none;">
+      <p style="color: var(--orange); font-weight: 600; font-size: 16px; margin-bottom: 16px;">Siguiente paso: agenda tu visita</p>
+      <a id="bookingLink" href="#" target="_blank" style="display: inline-block; background: var(--orange-cta); color: var(--white); padding: 14px 32px; border-radius: var(--radius); font-weight: 600; font-size: 15px; text-decoration: none; transition: background 0.2s;">Agendar visita &rarr;</a>
+      <p style="color: var(--text-muted); font-size: 13px; margin-top: 12px;">Elige la fecha y hora que mejor te funcione para la visita de Aniol.</p>
+    </div>
+    <div id="fallbackCta" style="margin-top: 32px; display: none;">
+      <p style="color: var(--text-dim); font-size: 14px;">Liz te contactar&aacute; por WhatsApp para coordinar los detalles y agendar la visita.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <a href="https://wa.me/523311842537?text=Hola%20Liz!%20Vi%20el%20Media%20Kit%20y%20me%20interesa%20una%20colaboraci%C3%B3n%20con%20%40tacotios" class="cta-btn" target="_blank">Escribir por WhatsApp</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 TACOTIOS. Todos los derechos reservados.</p>
+  <p style="margin-top: 8px;">
+    <a href="https://instagram.com/tacotios" target="_blank">Instagram</a> &middot;
+    <a href="https://tiktok.com/@tacotios" target="_blank">TikTok</a> &middot;
+    <a href="https://youtube.com/@tacotios" target="_blank">YouTube</a>
+  </p>
+</footer>
+
+<script>
+const WEBHOOK_URL = 'https://hook.us1.make.com/cf532iqrbw81m4xsu07rpajhx0hhr38q';
+
+document.getElementById('questionnaireForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData.entries());
+
+  // Normalizar instagram: @handle → URL completa
+  if (data.instagram) {
+    let ig = data.instagram.trim().replace(/^@/, '');
+    if (!ig.startsWith('http')) data.instagram = 'https://instagram.com/' + ig;
+  }
+  // Normalizar web: agregar https si falta
+  if (data.web && !data.web.startsWith('http')) {
+    data.web = 'https://' + data.web;
+  }
+
+  let leadId = null;
+  if (WEBHOOK_URL) {
+    try {
+      const resp = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...data, submitted_at: new Date().toISOString(), source: 'mediakit-tacotios' })
+      });
+      const result = await resp.json().catch(() => null);
+      if (result && result.lead_id) leadId = result.lead_id;
+    } catch (err) { console.log('Webhook error:', err); }
+  }
+
+  this.style.display = 'none';
+  document.getElementById('successMessage').style.display = 'block';
+
+  // Show booking CTA if we have a lead_id, otherwise show fallback
+  if (leadId) {
+    const bookingUrl = 'https://mediakit-tacotios.vercel.app/opentio.html?lead=' + leadId;
+    document.getElementById('bookingLink').href = bookingUrl;
+    document.getElementById('bookingCta').style.display = 'block';
+  } else {
+    document.getElementById('fallbackCta').style.display = 'block';
+  }
+
+  document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+});
+
+// Auto-update month
+const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const now = new Date();
+document.getElementById('mesVigente').textContent = meses[now.getMonth()] + ' ' + now.getFullYear();
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenTio - Sistema de Reservas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #030307;
+            --bg-card: #15151a;
+            --border-color: #364153;
+            --text-primary: #f3ede8;
+            --text-secondary: #a0a0a0;
+            --cta-orange: #f97316;
+            --accent-orange: #e99b2a;
+            --success-green: #10b981;
+            --error-red: #ef4444;
+            --warning-yellow: #f59e0b;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Layout */
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 20px;
+        }
+
+        nav a {
+            color: var(--cta-orange);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: opacity 0.2s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Content Area */
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* States */
+        .state {
+            display: none;
+        }
+
+        .state.active {
+            display: block;
+        }
+
+        /* Loading State */
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            gap: 16px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--cta-orange);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* Error State */
+        .error-container {
+            background-color: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--error-red);
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .error-container h2 {
+            color: var(--error-red);
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .error-container p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        /* Restaurant Info */
+        .restaurant-info {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        .restaurant-info h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .restaurant-info .chef {
+            color: var(--accent-orange);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .restaurant-info .address {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .restaurant-info .address::before {
+            content: "📍";
+            flex-shrink: 0;
+        }
+
+        /* Calendar Section */
+        .calendar-section {
+            margin-bottom: 32px;
+        }
+
+        .week-group {
+            margin-bottom: 32px;
+        }
+
+        .week-label {
+            font-size: 14px;
+            color: var(--accent-orange);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .slots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .slots-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .slot-card {
+            background-color: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .slot-card:hover {
+            border-color: var(--cta-orange);
+            transform: translateY(-2px);
+        }
+
+        .slot-card.selected {
+            border-color: var(--cta-orange);
+            background-color: rgba(249, 115, 22, 0.05);
+        }
+
+        .slot-meal-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .slot-meal-type {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .slot-day {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .slot-time {
+            font-size: 16px;
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+
+        /* Confirmation Section */
+        .confirmation-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 24px;
+            margin-top: 24px;
+        }
+
+        .confirmation-box h3 {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .confirmation-details {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .confirmation-details .icon {
+            font-size: 32px;
+            flex-shrink: 0;
+        }
+
+        .confirmation-details .info {
+            flex: 1;
+        }
+
+        .confirmation-details .date {
+            font-size: 18px;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .confirmation-details .time {
+            font-size: 14px;
+            color: var(--accent-orange);
+        }
+
+        /* Success State */
+        .success-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .success-icon {
+            font-size: 60px;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .success-container h2 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .success-container p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .success-details {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 24px 0;
+            text-align: left;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .detail-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-label {
+            color: var(--text-secondary);
+        }
+
+        .detail-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Buttons */
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background-color: var(--cta-orange);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-orange);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-primary);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        @media (max-width: 600px) {
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        /* Warning Banner */
+        .warning-banner {
+            background-color: rgba(245, 158, 11, 0.1);
+            border: 1px solid var(--warning-yellow);
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 24px;
+            font-size: 13px;
+            color: var(--warning-yellow);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+            padding: 32px 20px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            margin-bottom: 24px;
+        }
+
+        .footer-section h3 {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--cta-orange);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--border-color);
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.2s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--cta-orange);
+            color: #000;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: 24px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .cta-container {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .cta-container p {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #20ba5a;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            main {
+                padding: 16px;
+            }
+
+            .restaurant-info {
+                padding: 20px;
+            }
+
+            .restaurant-info h1 {
+                font-size: 24px;
+            }
+
+            footer {
+                padding: 24px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <a href="https://tacotios-landing.vercel.app">OpenTio</a>
+        </nav>
+
+        <!-- Main Content -->
+        <main>
+            <div class="content">
+
+                <!-- Loading State -->
+                <div id="loadingState" class="state active">
+                    <div class="loading-container">
+                        <div class="spinner"></div>
+                        <p class="loading-text">Cargando disponibilidad...</p>
+                    </div>
+                </div>
+
+                <!-- Error State -->
+                <div id="errorState" class="state">
+                    <div class="error-container">
+                        <h2>Oops, algo salió mal</h2>
+                        <p id="errorMessage">No pudimos cargar la disponibilidad. Por favor, intenta de nuevo.</p>
+                        <button class="btn-primary" onclick="retryLoad()">Reintentar</button>
+                    </div>
+                </div>
+
+                <!-- Calendar State -->
+                <div id="calendarState" class="state">
+                    <!-- Restaurant Info -->
+                    <div class="restaurant-info">
+                        <h1 id="restaurantName">Restaurante</h1>
+                        <div class="chef" id="chefName">Chef</div>
+                        <div class="address" id="restaurantAddress">Dirección</div>
+                    </div>
+
+                    <!-- Calendar Grid -->
+                    <div class="calendar-section" id="calendarContainer">
+                        <!-- Populated by JavaScript -->
+                    </div>
+
+                    <!-- Confirmation Box -->
+                    <div id="confirmationBox" class="confirmation-box" style="display: none;">
+                        <h3>Tu selección</h3>
+                        <div class="confirmation-details">
+                            <div class="icon" id="confirmIcon">🍽️</div>
+                            <div class="info">
+                                <div class="date" id="confirmDate">Selecciona una fecha</div>
+                                <div class="time" id="confirmTime"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="button-group" id="actionButtons">
+                        <button class="btn-primary" id="confirmBtn" onclick="confirmBooking()" style="display: none;">Agendar visita</button>
+                        <button class="btn-secondary" onclick="cancelSelection()">Limpiar selección</button>
+                    </div>
+                </div>
+
+                <!-- Confirming State -->
+                <div id="confirmingState" class="state">
+                    <div class="loading-container">
+                        <div class="spinner"></div>
+                        <p class="loading-text">Agendando tu visita...</p>
+                    </div>
+                </div>
+
+                <!-- Success State -->
+                <div id="successState" class="state">
+                    <div class="success-container">
+                        <span class="success-icon">✨</span>
+                        <h2>¡Reserva confirmada!</h2>
+                        <p>Tu visita ha sido agendada exitosamente.</p>
+
+                        <div class="success-details">
+                            <div class="detail-row">
+                                <span class="detail-label">Restaurante</span>
+                                <span class="detail-value" id="successRestaurant">—</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Chef</span>
+                                <span class="detail-value" id="successChef">—</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Fecha</span>
+                                <span class="detail-value" id="successDate">—</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Horario</span>
+                                <span class="detail-value" id="successTime">—</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Tipo</span>
+                                <span class="detail-value" id="successMealType">—</span>
+                            </div>
+                        </div>
+
+                        <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 24px;">
+                            Liz se pondrá en contacto contigo para confirmar los detalles y responder cualquier pregunta.
+                        </p>
+
+                        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                            <a href="https://wa.me/5215512345678?text=Confirmé mi reserva en OpenTio" class="whatsapp-btn">
+                                📱 Contactar a Liz
+                            </a>
+                            <a href="https://clubdeltaco.mx" class="btn-secondary" target="_blank" style="text-decoration: none; display: inline-block; text-align: center;">🌮 Únete al Club del Taco</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sígueme</h3>
+                    <div class="social-links">
+                        <a href="https://instagram.com/tacotios" title="Instagram">📷</a>
+                        <a href="https://tiktok.com/@tacotios" title="TikTok">🎵</a>
+                        <a href="https://youtube.com/@tacotios" title="YouTube">▶️</a>
+                        <a href="https://wa.me/5215512345678" title="WhatsApp">💬</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Enlaces</h3>
+                    <div class="footer-links">
+                        <a href="https://tacotios-landing.vercel.app">Inicio</a>
+                        <a href="https://tacotios-landing.vercel.app/media-kit">Media Kit</a>
+                        <a href="https://tacotios-landing.vercel.app/contacto">Contacto</a>
+                    </div>
+                </div>
+
+                <div class="footer-section cta-container">
+                    <p>¿Preguntas sobre tu reserva?</p>
+                    <a href="https://wa.me/5215512345678?text=Tengo una pregunta sobre OpenTio" class="whatsapp-btn">
+                        📱 Contáctanos
+                    </a>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>&copy; 2026 @tacotios. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        // Configuration
+        const WEBHOOK_URL = 'https://hook.us1.make.com/p2k176p09jsfufw98nul8wxwtlap7ryd';
+        const MEXICO_CITY_TZ = 'America/Mexico_City';
+
+        // State management
+        let appState = {
+            leadId: null,
+            restaurantData: null,
+            availableSlots: [],
+            selectedSlot: null
+        };
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', init);
+
+        async function init() {
+            // Extract lead parameter from URL
+            const params = new URLSearchParams(window.location.search);
+            appState.leadId = params.get('lead');
+
+            // Check if lead parameter is present
+            if (!appState.leadId) {
+                showErrorState('Falta el parámetro de identificación. Por favor, accede desde el enlace correcto.');
+                return;
+            }
+
+            // Attempt to load availability
+            await loadAvailability();
+        }
+
+        async function loadAvailability() {
+            showLoadingState();
+
+            try {
+                // Fetch restaurant info from Notion via webhook
+                if (WEBHOOK_URL) {
+                    try {
+                        const response = await fetch(WEBHOOK_URL, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                action: 'get_info',
+                                lead_id: appState.leadId
+                            })
+                        });
+
+                        if (response.ok) {
+                            const data = await response.json();
+                            if (data.restaurant) {
+                                appState.restaurantData = {
+                                    name: data.restaurant,
+                                    chef: data.chef || '',
+                                    address: data.address || ''
+                                };
+                            }
+                        }
+                    } catch (e) {
+                        console.warn('Could not fetch restaurant info, using defaults');
+                    }
+                }
+
+                // Default restaurant data if not fetched
+                if (!appState.restaurantData) {
+                    appState.restaurantData = {
+                        name: 'Tu restaurante',
+                        chef: '',
+                        address: 'Ciudad de México'
+                    };
+                }
+
+                // Always generate slots client-side
+                appState.availableSlots = generateSlots();
+
+                showCalendarState();
+            } catch (error) {
+                console.error('Error loading availability:', error);
+                showErrorState('No pudimos cargar la disponibilidad en este momento. Por favor, intenta más tarde.');
+            }
+        }
+
+        function generateSlots() {
+            const slots = [];
+            const today = new Date();
+            const mexico = new Intl.DateTimeFormat('es-MX', { timeZone: MEXICO_CITY_TZ });
+
+            // Start from next Monday
+            const startDate = new Date(today);
+            const daysUntilMonday = (8 - today.getDay()) % 7 || 7;
+            startDate.setDate(today.getDate() + daysUntilMonday);
+
+            // Generate slots for 3 weeks
+            for (let weekOffset = 0; weekOffset < 3; weekOffset++) {
+                const weekStart = new Date(startDate);
+                weekStart.setDate(startDate.getDate() + weekOffset * 7);
+
+                // Define meal slots for each day of week (0=Sun, 1=Mon, etc.)
+                const mealsByDay = {
+                    0: ['cena'],                     // Domingo: cena (20:00, 21:00)
+                    1: [],                           // Lunes: cerrado
+                    2: ['desayuno', 'cena'],         // Martes: desayuno (10:00), cena (20:00, 21:00)
+                    3: ['comida', 'cena'],           // Miércoles: comida (14:00, 15:00), cena (20:00, 21:00)
+                    4: ['desayuno', 'comida', 'cena'], // Jueves: desayuno (10:00), comida (14:00, 15:00), cena (20:00, 21:00)
+                    5: ['comida'],                   // Viernes: comida (14:00, 15:00)
+                    6: []                            // Sábado: cerrado
+                };
+
+                // Generate slots for this week
+                for (let dayOffset = 0; dayOffset < 7; dayOffset++) {
+                    const slotDate = new Date(weekStart);
+                    slotDate.setDate(weekStart.getDate() + dayOffset);
+
+                    // Skip if in the past
+                    if (slotDate < today) continue;
+
+                    const dayOfWeek = slotDate.getDay();
+                    const meals = mealsByDay[dayOfWeek] || [];
+
+                    meals.forEach(mealType => {
+                        let times = [];
+                        if (mealType === 'desayuno') {
+                            times = ['10:00'];
+                        } else if (mealType === 'comida') {
+                            times = ['14:00', '15:00'];
+                        } else if (mealType === 'cena') {
+                            times = ['20:00', '21:00'];
+                        }
+
+                        times.forEach(time => {
+                            const [hours, minutes] = time.split(':');
+                            const timestamp = new Date(slotDate);
+                            timestamp.setHours(parseInt(hours), parseInt(minutes), 0, 0);
+
+                            slots.push({
+                                date: timestamp.toISOString().split('T')[0],
+                                day_name: getSpanishDayName(timestamp),
+                                meal_type: mealType,
+                                time: time,
+                                timestamp: timestamp.toISOString()
+                            });
+                        });
+                    });
+                }
+            }
+
+            return slots;
+        }
+
+        function getSpanishDayName(date) {
+            const days = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+            return days[date.getDay()];
+        }
+
+        function getSpanishMonthName(date) {
+            const months = [
+                'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+                'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+            ];
+            return months[date.getMonth()];
+        }
+
+        function formatDateSpanish(dateString) {
+            const date = new Date(dateString + 'T00:00:00');
+            return `${date.getDate()} de ${getSpanishMonthName(date)}, ${date.getFullYear()}`;
+        }
+
+        function formatWeekLabel(dateString) {
+            const date = new Date(dateString + 'T00:00:00');
+            const weekStart = new Date(date);
+            weekStart.setDate(date.getDate() - date.getDay() + 1); // Monday of this week
+            const weekEnd = new Date(weekStart);
+            weekEnd.setDate(weekStart.getDate() + 6); // Sunday of this week
+
+            return `Semana del ${weekStart.getDate()} al ${weekEnd.getDate()} de ${getSpanishMonthName(weekStart)}`;
+        }
+
+        function getMealIcon(mealType) {
+            const icons = {
+                'desayuno': '🌅',
+                'comida': '🍽️',
+                'cena': '🌙'
+            };
+            return icons[mealType] || '🍽️';
+        }
+
+        function getMealLabel(mealType) {
+            const labels = {
+                'desayuno': 'Desayuno',
+                'comida': 'Comida',
+                'cena': 'Cena'
+            };
+            return labels[mealType] || mealType;
+        }
+
+        function renderCalendar() {
+            // Group slots by week
+            const slotsByWeek = {};
+            appState.availableSlots.forEach(slot => {
+                const weekLabel = formatWeekLabel(slot.date);
+                if (!slotsByWeek[weekLabel]) {
+                    slotsByWeek[weekLabel] = [];
+                }
+                slotsByWeek[weekLabel].push(slot);
+            });
+
+            // Render calendar container
+            const calendarContainer = document.getElementById('calendarContainer');
+            calendarContainer.innerHTML = '';
+
+            Object.entries(slotsByWeek).forEach(([weekLabel, slots]) => {
+                const weekGroup = document.createElement('div');
+                weekGroup.className = 'week-group';
+
+                const weekLabelEl = document.createElement('div');
+                weekLabelEl.className = 'week-label';
+                weekLabelEl.textContent = weekLabel;
+                weekGroup.appendChild(weekLabelEl);
+
+                const slotsGrid = document.createElement('div');
+                slotsGrid.className = 'slots-grid';
+
+                slots.forEach(slot => {
+                    const slotCard = document.createElement('div');
+                    slotCard.className = 'slot-card';
+                    slotCard.id = `slot-${slot.timestamp}`;
+
+                    slotCard.innerHTML = `
+                        <span class="slot-meal-icon">${getMealIcon(slot.meal_type)}</span>
+                        <div class="slot-meal-type">${getMealLabel(slot.meal_type)}</div>
+                        <div class="slot-day">${slot.day_name.charAt(0).toUpperCase() + slot.day_name.slice(1)}, ${formatDateSpanish(slot.date).split(',')[0]}</div>
+                        <div class="slot-time">${slot.time}</div>
+                    `;
+
+                    slotCard.addEventListener('click', () => selectSlot(slot));
+                    slotsGrid.appendChild(slotCard);
+                });
+
+                weekGroup.appendChild(slotsGrid);
+                calendarContainer.appendChild(weekGroup);
+            });
+        }
+
+        function selectSlot(slot) {
+            // Deselect previous
+            if (appState.selectedSlot) {
+                const prevCard = document.getElementById(`slot-${appState.selectedSlot.timestamp}`);
+                if (prevCard) {
+                    prevCard.classList.remove('selected');
+                }
+            }
+
+            // Select new
+            appState.selectedSlot = slot;
+            const slotCard = document.getElementById(`slot-${slot.timestamp}`);
+            if (slotCard) {
+                slotCard.classList.add('selected');
+            }
+
+            // Show confirmation box and button
+            updateConfirmationBox();
+            document.getElementById('confirmationBox').style.display = 'block';
+            document.getElementById('confirmBtn').style.display = 'block';
+        }
+
+        function cancelSelection() {
+            if (appState.selectedSlot) {
+                const slotCard = document.getElementById(`slot-${appState.selectedSlot.timestamp}`);
+                if (slotCard) {
+                    slotCard.classList.remove('selected');
+                }
+            }
+            appState.selectedSlot = null;
+            document.getElementById('confirmationBox').style.display = 'none';
+            document.getElementById('confirmBtn').style.display = 'none';
+        }
+
+        function updateConfirmationBox() {
+            const slot = appState.selectedSlot;
+            if (!slot) return;
+
+            document.getElementById('confirmIcon').textContent = getMealIcon(slot.meal_type);
+            document.getElementById('confirmDate').textContent = formatDateSpanish(slot.date);
+            document.getElementById('confirmTime').textContent = `${slot.time} - ${getMealLabel(slot.meal_type)}`;
+        }
+
+        async function confirmBooking() {
+            if (!appState.selectedSlot) return;
+
+            showConfirmingState();
+
+            try {
+                await bookViaWebhook();
+            } catch (error) {
+                console.error('Error confirming booking:', error);
+                showErrorState('No pudimos confirmar tu reserva. Por favor, intenta de nuevo o contacta a Liz.');
+            }
+        }
+
+        async function bookViaWebhook() {
+            if (!WEBHOOK_URL) {
+                throw new Error('Webhook URL not configured');
+            }
+
+            const slot = appState.selectedSlot;
+            const response = await fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    action: 'book_slot',
+                    lead_id: appState.leadId,
+                    slot_date: slot.date,
+                    slot_time: slot.time,
+                    slot_timestamp: slot.timestamp,
+                    meal_type: slot.meal_type,
+                    restaurant_name: appState.restaurantData.name,
+                    restaurant_address: appState.restaurantData.address
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`Webhook returned status ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (!data.success) {
+                throw new Error(data.message || 'Error al agendar');
+            }
+
+            showSuccessState();
+        }
+
+        function showSuccessState() {
+            const slot = appState.selectedSlot;
+
+            document.getElementById('successRestaurant').textContent = appState.restaurantData.name;
+            document.getElementById('successChef').textContent = appState.restaurantData.chef || '—';
+            document.getElementById('successDate').textContent = formatDateSpanish(slot.date);
+            document.getElementById('successTime').textContent = `${slot.time} - ${parseInt(slot.time) + 2}:00`;
+            document.getElementById('successMealType').textContent = getMealLabel(slot.meal_type);
+
+            switchState('successState');
+        }
+
+        function showErrorState(message = null) {
+            if (message) {
+                document.getElementById('errorMessage').textContent = message;
+            }
+            switchState('errorState');
+        }
+
+        function showLoadingState() {
+            switchState('loadingState');
+        }
+
+        function showCalendarState() {
+            document.getElementById('restaurantName').textContent = appState.restaurantData.name;
+            document.getElementById('chefName').textContent = appState.restaurantData.chef;
+            document.getElementById('restaurantAddress').textContent = appState.restaurantData.address;
+
+            renderCalendar();
+            switchState('calendarState');
+        }
+
+        function showConfirmingState() {
+            switchState('confirmingState');
+        }
+
+        function switchState(newState) {
+            // Hide all states
+            document.querySelectorAll('.state').forEach(state => {
+                state.classList.remove('active');
+            });
+
+            // Show new state
+            document.getElementById(newState).classList.add('active');
+        }
+
+        function retryLoad() {
+            init();
+        }
+    </script>
+</body>
+</html>
