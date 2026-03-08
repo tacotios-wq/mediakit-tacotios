@@ -162,11 +162,11 @@
   }
   .guion-toggle.open .arrow { transform: rotate(180deg); }
   .guion-body {
-    max-height: 0; overflow: hidden; transition: max-height 0.6s ease;
+    display: none;
     background: var(--card); border: 1px solid var(--border); border-top: none;
     border-radius: 0 0 16px 16px; margin-top: -1px;
   }
-  .guion-body.open { max-height: 15000px; }
+  .guion-body.open { display: block; }
   .guion-inner { padding: 2rem; }
   .guion-ep-title {
     font-size: 1.3rem; font-weight: 800; color: var(--amber);
