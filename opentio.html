@@ -696,14 +696,29 @@
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', init);
 
-        async function init() {
-            // Extract lead parameter from URL
-            const params = new URLSearchParams(window.location.search);
-            appState.leadId = params.get('lead');
+        // Helper: check if a string looks like a valid Notion UUID
+        function isValidUUID(str) {
+            if (!str) return false;
+            // Notion UUIDs: 32 hex chars with or without dashes
+            return /^[0-9a-f]{8}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{12}$/i.test(str);
+        }
 
-            // If no lead parameter, generate a temporary one (direct access from Media Kit without webhook response)
-            if (!appState.leadId) {
-                appState.leadId = 'direct-' + Date.now();
+        async function init() {
+            // Extract parameters from URL
+            const params = new URLSearchParams(window.location.search);
+            appState.leadId = params.get('lead') || null;
+            appState.hasValidLead = isValidUUID(appState.leadId);
+
+            // Read restaurant data from URL params (passed from Media Kit form)
+            const urlRestaurant = params.get('restaurant');
+            const urlAddress = params.get('address');
+            const urlChef = params.get('chef');
+            if (urlRestaurant) {
+                appState.restaurantData = {
+                    name: urlRestaurant,
+                    chef: urlChef || '',
+                    address: urlAddress || 'Ciudad de México'
+                };
             }
 
             // Attempt to load availability
@@ -714,32 +729,8 @@
             showLoadingState();
 
             try {
-                // Fetch restaurant info from Notion via webhook
-                if (WEBHOOK_URL) {
-                    try {
-                        const response = await fetch(WEBHOOK_URL, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                action: 'get_info',
-                                lead_id: appState.leadId
-                            })
-                        });
-
-                        if (response.ok) {
-                            const data = await response.json();
-                            if (data.restaurant) {
-                                appState.restaurantData = {
-                                    name: data.restaurant,
-                                    chef: data.chef || '',
-                                    address: data.address || ''
-                                };
-                            }
-                        }
-                    } catch (e) {
-                        console.warn('Could not fetch restaurant info, using defaults');
-                    }
-                }
+                // Restaurant data is now passed via URL params from the Media Kit form
+                // No need to call the webhook for get_info (saves Make.com credits and avoids errors)
 
                 // Default restaurant data if not fetched
                 if (!appState.restaurantData) {
@@ -978,8 +969,12 @@
         }
 
         async function bookViaWebhook() {
-            if (!WEBHOOK_URL) {
-                throw new Error('Webhook URL not configured');
+            if (!WEBHOOK_URL || !appState.hasValidLead) {
+                // Without a valid Notion lead, skip webhook and show success directly
+                // (direct access without going through Media Kit form)
+                console.warn('No valid lead_id — skipping webhook, booking simulated');
+                showSuccessState();
+                return;
             }
 
             const slot = appState.selectedSlot;

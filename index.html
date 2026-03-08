@@ -957,6 +957,16 @@ document.getElementById('questionnaireForm').addEventListener('submit', async fu
     }
   });
 
+  // Construir fragmentos JSON para campos URL (compatibilidad Make.com)
+  // Make.com JSON string mode no puede añadir comillas condicionalmente,
+  // así que enviamos el fragmento "url":"valor" o "url":null ya armado
+  data.instagram_json = (data.instagram && typeof data.instagram === 'string')
+    ? '"url":"' + data.instagram + '"'
+    : '"url":null';
+  data.web_json = (data.web && typeof data.web === 'string')
+    ? '"url":"' + data.web + '"'
+    : '"url":null';
+
   let leadId = null;
   if (WEBHOOK_URL) {
     try {
@@ -971,7 +981,13 @@ document.getElementById('questionnaireForm').addEventListener('submit', async fu
   }
 
   // Redirigir directamente a OpenTio para agendar visita
-  const bookingUrl = 'https://mediakit-tacotios.vercel.app/opentio' + (leadId ? '?lead=' + leadId : '');
+  // Pasar datos del restaurante por URL params para que OpenTio no necesite consultarlos
+  const params = new URLSearchParams();
+  if (leadId) params.set('lead', leadId);
+  if (data.restaurante) params.set('restaurant', data.restaurante);
+  if (data.direccion) params.set('address', data.direccion);
+  if (data.chef) params.set('chef', data.chef);
+  const bookingUrl = 'https://mediakit-tacotios.vercel.app/opentio' + (params.toString() ? '?' + params.toString() : '');
   window.location.href = bookingUrl;
 });
 
