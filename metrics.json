@@ -1,0 +1,60 @@
+{
+  "updated_at": "2026-03-08",
+  "period": "1 feb - 2 mar 2026",
+  "totals": {
+    "followers": 1346133,
+    "reach_30d": 5884211,
+    "interactions_30d": 174391,
+    "saves_30d": 161640,
+    "shares_30d": 233528,
+    "likes_30d": 857851
+  },
+  "instagram": {
+    "followers": 675126,
+    "growth_pct": 4.7,
+    "growth_net": 30052,
+    "reach_30d": 5884211,
+    "reach_growth_pct": 9.6,
+    "reach_non_followers_pct": 94.8,
+    "likes_30d": 857851,
+    "comments_30d": 9382,
+    "saves_30d": 161640,
+    "shares_30d": 233528,
+    "interactions_30d": 174391,
+    "accounts_interacted": 92128,
+    "reels_reach": 4800000,
+    "stories_reach": 124000,
+    "top_reels": [98364, 85078, 70951, 58023]
+  },
+  "tiktok": {
+    "followers": 585807,
+    "growth_net": 12000,
+    "growth_pct": 42.7,
+    "viewers_30d": 2900000,
+    "new_viewers": 797000,
+    "views_30d": 2700000,
+    "views_growth_pct": 161.4,
+    "profile_views_30d": 13000,
+    "likes_30d": 90000,
+    "comments_30d": 688,
+    "shares_30d": 14000
+  },
+  "youtube": {
+    "subscribers": 85200,
+    "subscribers_growth_30d": 386,
+    "views_30d": 230200,
+    "interested_views_30d": 122800,
+    "likes_30d": 10800,
+    "views_lifetime": 50200000,
+    "interested_views_lifetime": 41700000,
+    "likes_lifetime": 2200000,
+    "subscribers_gained_lifetime": 84300
+  },
+  "demographics": {
+    "gender": { "male": 61, "female": 38, "other": 1 },
+    "age": { "13-17": 1.8, "18-24": 6.6, "25-34": 31.5, "35-44": 33.4, "45-54": 17.3, "55-64": 6.6, "65+": 2.8 },
+    "countries": { "mexico": 61.6, "spain": 7.8, "usa": 6.2, "argentina": 4.0 },
+    "cities": { "cdmx": 15.1, "zapopan": 4.8, "guadalajara": 4.3, "puebla": 1.4, "tlaquepaque": 1.1 },
+    "tiktok_countries": { "mexico": 93.9, "usa": 2.7, "australia": 0.7, "guatemala": 0.4, "spain": 0.3 }
+  }
+}
