@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TACOTIOS - Creador de Contenido Gastronómico | @tacotios</title>
+  <meta name="description" content="TACOTIOS - Español de nacimiento, mexicano por devoción. 1.3M+ seguidores compartiendo historias auténticas de gastronomía mexicana.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #030307;
+      --bg-nav: rgba(13, 10, 11, 0.95);
+      --bg-card: #15151a;
+      --orange: #e99b2a;
+      --orange-cta: #f97316;
+      --orange-cta-hover: #ea6a0e;
+      --orange-soft: rgba(233, 155, 42, 0.15);
+      --orange-border: rgba(233, 155, 42, 0.4);
+      --text: #f3ede8;
+      --text-dim: #9ca3af;
+      --text-muted: #6b7280;
+      --border: #364153;
+      --white: #ffffff;
+      --radius: 8px;
+      --green: #22c55e;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--bg-nav);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-cta) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--orange);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(233, 155, 42, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      top: 10%;
+      right: -200px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(249, 115, 22, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      bottom: 10%;
+      left: -150px;
+      animation: float 8s ease-in-out infinite 1s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(30px); }
+    }
+
+    .hero-content {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      font-weight: 900;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-cta) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -2px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--text-dim);
+      margin-bottom: 3rem;
+    }
+
+    .hero-stat {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .hero-stat span {
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-cta) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-cta) 100%);
+      color: var(--bg);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--orange-cta) 0%, var(--orange-cta-hover) 100%);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--orange);
+      border: 2px solid var(--orange);
+    }
+
+    .btn-secondary:hover {
+      background: var(--orange-soft);
+      border-color: var(--orange-cta);
+    }
+
+    /* Sections */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 2rem;
+      color: var(--text);
+    }
+
+    /* Historia Section */
+    .historia {
+      background: linear-gradient(135deg, rgba(233, 155, 42, 0.05) 0%, rgba(249, 115, 22, 0.05) 100%);
+      border-radius: 16px;
+      padding: 4rem;
+    }
+
+    .historia-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .historia-text p {
+      font-size: 1.1rem;
+      color: var(--text-dim);
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .historia-text p:first-child {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .quote-card {
+      background: var(--bg-card);
+      border: 1px solid var(--orange-border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-top: 2rem;
+      position: relative;
+      border-top: 4px solid var(--orange);
+    }
+
+    .quote-text {
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--orange);
+      font-weight: 500;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .timeline-dot {
+      width: 12px;
+      height: 12px;
+      background: var(--orange);
+      border-radius: 50%;
+      margin-top: 0.25rem;
+      flex-shrink: 0;
+    }
+
+    .timeline-item h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-item p {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+    }
+
+    /* Métricas Section */
+    .metricas {
+      background: transparent;
+    }
+
+    .metricas-badge {
+      display: inline-block;
+      background: var(--orange-soft);
+      border: 1px solid var(--orange-border);
+      color: var(--orange);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .metric-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      border-top: 4px solid var(--orange);
+      transition: all 0.3s ease;
+    }
+
+    .metric-card:hover {
+      border-color: var(--orange-border);
+      transform: translateY(-4px);
+    }
+
+    .metric-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--orange);
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-label {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    /* Audiencia Section */
+    .audiencia {
+      background: transparent;
+    }
+
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .chart-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      border-top: 4px solid var(--orange);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .chart-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .chart-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    svg {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .geo-list {
+      width: 100%;
+    }
+
+    .geo-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .geo-item:last-child {
+      border-bottom: none;
+    }
+
+    .geo-name {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .geo-pct {
+      color: var(--orange);
+      font-weight: 700;
+    }
+
+    /* Plataformas Section */
+    .plataformas {
+      background: transparent;
+    }
+
+    .platforms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .platform-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      border-top: 4px solid var(--orange);
+      transition: all 0.3s ease;
+    }
+
+    .platform-card:hover {
+      border-color: var(--orange-border);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(233, 155, 42, 0.1);
+    }
+
+    .platform-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .platform-icon {
+      font-size: 2rem;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .platform-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .platform-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .platform-stat {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .platform-stat-label {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .platform-stat-value {
+      color: var(--orange);
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .growth-indicator {
+      color: var(--green);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* Contenido Section */
+    .contenido {
+      background: transparent;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .content-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: flex-end;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .content-card:hover {
+      border-color: var(--orange-border);
+      transform: translateY(-4px);
+    }
+
+    .content-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(233, 155, 42, 0.2) 0%, rgba(249, 115, 22, 0.2) 100%);
+      z-index: 1;
+    }
+
+    .content-card-overlay {
+      position: relative;
+      z-index: 2;
+      padding: 2rem;
+      width: 100%;
+    }
+
+    .content-card-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .content-card-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .content-description {
+      margin-top: 2rem;
+      padding: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--orange-border);
+      border-radius: 16px;
+      color: var(--text-dim);
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* Colaboraciones Section */
+    .colaboraciones {
+      background: linear-gradient(135deg, rgba(233, 155, 42, 0.05) 0%, rgba(249, 115, 22, 0.05) 100%);
+      border-radius: 16px;
+      padding: 4rem;
+    }
+
+    .collab-description {
+      font-size: 1.1rem;
+      color: var(--text-dim);
+      margin-bottom: 3rem;
+      max-width: 700px;
+    }
+
+    .collab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .collab-card {
+      background: var(--bg-card);
+      border: 2px dashed var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 150px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: radial-gradient(circle at center, rgba(233, 155, 42, 0.15) 0%, transparent 80%);
+      border-radius: 16px;
+      padding: 6rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .cta-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .cta-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-dim);
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--orange);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      color: var(--orange-cta);
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-up {
+      animation: fadeUp 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      nav {
+        padding: 1rem;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+        font-size: 0.85rem;
+      }
+
+      .hero {
+        padding: 6rem 1.5rem 3rem;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+
+      .historia-content {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .charts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        padding: 0.75rem;
+      }
+
+      .nav-logo {
+        font-size: 1rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      section {
+        padding: 4rem 1.5rem;
+      }
+
+      .hero {
+        padding: 5rem 1rem 2rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+
+      .hero-ctas {
+        gap: 1rem;
+        flex-direction: column;
+      }
+
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-title {
+        font-size: 1.8rem;
+      }
+
+      .historia {
+        padding: 2rem;
+      }
+
+      .colaboraciones {
+        padding: 2rem;
+      }
+
+      .cta-section {
+        padding: 3rem 1rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="nav-logo">TACOTIOS</div>
+      <ul class="nav-links">
+        <li><a href="#historia">Historia</a></li>
+        <li><a href="#metricas">Métricas</a></li>
+        <li><a href="#audiencia">Audiencia</a></li>
+        <li><a href="#plataformas">Plataformas</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>TACOTIOS</h1>
+      <p class="hero-subtitle">Español de nacimiento. Mexicano por devoción.</p>
+      <div class="hero-stat"><span id="hero-counter">1.3M+</span> Seguidores en todas las plataformas</div>
+      <div class="hero-ctas">
+        <a href="#metricas" class="btn btn-primary">Ver métricas ↓</a>
+        <a href="https://instagram.com/tacotios" target="_blank" class="btn btn-secondary">Instagram</a>
+        <a href="https://tiktok.com/@tacotios" target="_blank" class="btn btn-secondary">TikTok</a>
+        <a href="https://youtube.com/@tacotios" target="_blank" class="btn btn-secondary">YouTube</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Historia Section -->
+  <section id="historia" class="historia">
+    <div class="section-label">Quién es Tacotios</div>
+    <h2 class="section-title">Una curiosidad que se convirtió en comunidad</h2>
+
+    <div class="historia-content">
+      <div class="historia-text">
+        <p>Un español llega a México sin saber que cambiaría su vida para siempre. Lo que comenzó como un viaje de descubrimiento culinario se transformó en una obsesión: no solo probar los sabores, sino entender las historias detrás de cada platillo. Cada taquería, cada cocinera, cada receta heredada de generación en generación.</p>
+
+        <p>Lo que empezó como un diario personal en redes sociales rápidamente se convirtió en un movimiento. Hoy, 1.3 millones de personas descubren la gastronomía mexicana a través de sus ojos. Su autenticidad, su carisma magnético y su curiosidad insaciable crearon una conexión única con la audiencia.</p>
+
+        <p>Cada video es un puente entre culturas. La autenticidad española encuentra su hogar en la pasión mexicana. La audiencia no solo mira, no solo escucha: sienten, anhelan, visitan. Eso es TACOTIOS. Eso es contar historias que importan.</p>
+
+        <div class="quote-card">
+          <p class="quote-text">"No hago reviews. Cuento historias que hacen que la gente quiera ir."</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <h4>El Comienzo</h4>
+            <p>Primeros pasos en redes sociales compartiendo descubrimientos gastronómicos únicos</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <h4>La Explosión</h4>
+            <p>Crecimiento viral, llegada a cientos de miles de seguidores, colaboraciones con marcas líderes</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <h4>El Ecosistema</h4>
+            <p>Presencia multiplataforma: Instagram, TikTok y YouTube con audiencias multimillonarias</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <h4>Hoy</h4>
+            <p>1.3M+ seguidores, influencia gastronómica a nivel continental, partner estratégico de marcas premium</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Métricas Section -->
+  <section id="metricas" class="metricas">
+    <div class="section-label">Datos Reales</div>
+    <h2 class="section-title">Números que hablan solos</h2>
+    <div class="metricas-badge">Actualizado: <span id="metrics-date">2026-03-08</span></div>
+
+    <div class="metrics-grid">
+      <div class="metric-card fade-up">
+        <div class="metric-value"><span class="counter" data-target="1346133" data-format="short">0</span></div>
+        <div class="metric-label">Seguidores Totales</div>
+      </div>
+      <div class="metric-card fade-up" style="animation-delay: 0.2s;">
+        <div class="metric-value"><span class="counter" data-target="5884211" data-format="short">0</span></div>
+        <div class="metric-label">Cuentas Alcanzadas/mes</div>
+      </div>
+      <div class="metric-card fade-up" style="animation-delay: 0.4s;">
+        <div class="metric-value"><span class="counter" data-target="857851" data-format="short">0</span></div>
+        <div class="metric-label">Likes/mes</div>
+      </div>
+      <div class="metric-card fade-up" style="animation-delay: 0.6s;">
+        <div class="metric-value"><span class="counter" data-target="233528" data-format="short">0</span></div>
+        <div class="metric-label">Veces compartido/mes</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Audiencia Section -->
+  <section id="audiencia" class="audiencia">
+    <div class="section-label">Tu Público Objetivo</div>
+    <h2 class="section-title">¿A quién llegas con Tacotíos?</h2>
+
+    <div class="charts-grid">
+      <div class="chart-card fade-up">
+        <div class="chart-title">Género</div>
+        <div class="chart-container">
+          <svg viewBox="0 0 200 200" width="200" height="200" id="gender-chart"></svg>
+        </div>
+      </div>
+
+      <div class="chart-card fade-up" style="animation-delay: 0.2s;">
+        <div class="chart-title">Edad</div>
+        <div class="chart-container">
+          <svg viewBox="0 0 400 250" width="400" height="250" id="age-chart"></svg>
+        </div>
+      </div>
+
+      <div class="chart-card fade-up" style="animation-delay: 0.4s;">
+        <div class="chart-title">Geografía</div>
+        <div class="geo-list" id="geo-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plataformas Section -->
+  <section id="plataformas" class="plataformas">
+    <div class="section-label">Presencia Multiplataforma</div>
+    <h2 class="section-title">Un ecosistema, tres plataformas</h2>
+
+    <div class="platforms-grid">
+      <div class="platform-card fade-up">
+        <div class="platform-header">
+          <div class="platform-icon">📷</div>
+          <div class="platform-name">Instagram</div>
+        </div>
+        <div class="platform-stats">
+          <div class="platform-stat">
+            <span class="platform-stat-label">Seguidores</span>
+            <span class="platform-stat-value"><span class="counter" data-target="675126" data-format="short">0</span></span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Crecimiento</span>
+            <span class="growth-indicator">↑ <span id="ig-growth">4.7</span>%</span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Alcance/mes</span>
+            <span class="platform-stat-value"><span class="counter" data-target="5884211" data-format="short">0</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="platform-card fade-up" style="animation-delay: 0.2s;">
+        <div class="platform-header">
+          <div class="platform-icon">🎵</div>
+          <div class="platform-name">TikTok</div>
+        </div>
+        <div class="platform-stats">
+          <div class="platform-stat">
+            <span class="platform-stat-label">Seguidores</span>
+            <span class="platform-stat-value"><span class="counter" data-target="585807" data-format="short">0</span></span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Crecimiento</span>
+            <span class="growth-indicator">↑ <span id="tt-growth">42.7</span>%</span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Espectadores/mes</span>
+            <span class="platform-stat-value"><span class="counter" data-target="2900000" data-format="short">0</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="platform-card fade-up" style="animation-delay: 0.4s;">
+        <div class="platform-header">
+          <div class="platform-icon">▶</div>
+          <div class="platform-name">YouTube</div>
+        </div>
+        <div class="platform-stats">
+          <div class="platform-stat">
+            <span class="platform-stat-label">Suscriptores</span>
+            <span class="platform-stat-value"><span class="counter" data-target="85200" data-format="short">0</span></span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Vistas Totales</span>
+            <span class="platform-stat-value"><span class="counter" data-target="50200000" data-format="short">0</span></span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Vistas/mes</span>
+            <span class="platform-stat-value"><span class="counter" data-target="230200" data-format="short">0</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenido Section -->
+  <section id="contenido" class="contenido">
+    <div class="section-label">Lo Que Creamos</div>
+    <h2 class="section-title">Storytelling que genera resultados</h2>
+
+    <div class="content-grid">
+      <div class="content-card fade-up">
+        <div class="content-card-overlay">
+          <div class="content-card-label">Top Performance</div>
+          <div class="content-card-value">98.3K</div>
+        </div>
+      </div>
+      <div class="content-card fade-up" style="animation-delay: 0.2s;">
+        <div class="content-card-overlay">
+          <div class="content-card-label">Top Performance</div>
+          <div class="content-card-value">85.1K</div>
+        </div>
+      </div>
+      <div class="content-card fade-up" style="animation-delay: 0.4s;">
+        <div class="content-card-overlay">
+          <div class="content-card-label">Top Performance</div>
+          <div class="content-card-value">71.0K</div>
+        </div>
+      </div>
+      <div class="content-card fade-up" style="animation-delay: 0.6s;">
+        <div class="content-card-overlay">
+          <div class="content-card-label">Top Performance</div>
+          <div class="content-card-value">58.0K</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-description">
+      <strong>Cada pieza es una mini-película gastronómica.</strong> Narrativa cinematográfica que convierte viewers en fans. Nuestro contenido no entretiene: convierte, motiva, inspira acciones. Desde reels que rompen récords hasta documentales de historias de vida, cada frame cuenta una verdad que resuena con la audiencia.
+    </div>
+  </section>
+
+  <!-- Colaboraciones Section -->
+  <section id="colaboraciones" class="colaboraciones">
+    <div class="section-label">Marcas</div>
+    <h2 class="section-title">Creemos algo juntos</h2>
+
+    <p class="collab-description">
+      Tacotíos ha colaborado con restaurantes y marcas que comparten su pasión por la autenticidad gastronómica. Cada campaña se diseña como una historia única, donde el producto no es solo presentado, sino integrado en narrativas que resuenan con millones de personas.
+    </p>
+
+    <div class="collab-grid">
+      <div class="collab-card">Colaboración estratégica</div>
+      <div class="collab-card">Contenido auténtico</div>
+      <div class="collab-card">Alcance masivo</div>
+      <div class="collab-card">ROI demostrado</div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="contacto" class="cta-section">
+    <h2 class="cta-title">¿Listo para crear algo juntos?</h2>
+    <p class="cta-subtitle">Cada marca tiene una historia. Nosotros sabemos contarla.</p>
+
+    <div class="cta-buttons">
+      <a href="https://wa.me/34606976421" target="_blank" class="btn btn-primary">Agendar reunión</a>
+      <a href="mailto:tacotios@gmail.com" class="btn btn-secondary">Enviar email</a>
+    </div>
+
+    <div class="social-links">
+      <a href="https://instagram.com/tacotios" target="_blank" class="social-link">📷 Instagram</a>
+      <a href="https://tiktok.com/@tacotios" target="_blank" class="social-link">🎵 TikTok</a>
+      <a href="https://youtube.com/@tacotios" target="_blank" class="social-link">▶ YouTube</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 TACOTIOS. Español de nacimiento. Mexicano por devoción.</p>
+  </footer>
+
+  <script>
+    // Fetch metrics from JSON
+    const metricsData = {
+      updated_at: "2026-03-08",
+      totals: { followers: 1346133, reach_30d: 5884211, interactions_30d: 174391, saves_30d: 161640, shares_30d: 233528, likes_30d: 857851 },
+      instagram: { followers: 675126, growth_pct: 4.7, reach_30d: 5884211, likes_30d: 857851, comments_30d: 9382, saves_30d: 161640, shares_30d: 233528 },
+      tiktok: { followers: 585807, growth_pct: 42.7, viewers_30d: 2900000, views_30d: 2700000, views_growth_pct: 161.4 },
+      youtube: { subscribers: 85200, views_lifetime: 50200000, likes_lifetime: 2200000, views_30d: 230200 },
+      demographics: {
+        gender: { male: 61, female: 38 },
+        age: { "18-24": 6.6, "25-34": 31.5, "35-44": 33.4, "45-54": 17.3, "55-64": 6.6, "65+": 2.8 },
+        countries: { mexico: 61.6, spain: 7.8, usa: 6.2, argentina: 4.0 },
+        cities: { cdmx: 15.1, zapopan: 4.8, guadalajara: 4.3, puebla: 1.4 }
+      }
+    };
+
+    // Load metrics from JSON file or use fallback
+    fetch('metrics.json')
+      .then(response => response.json())
+      .then(data => {
+        Object.assign(metricsData, data);
+        populateMetrics();
+      })
+      .catch(() => {
+        console.log('Using fallback metrics data');
+        populateMetrics();
+      });
+
+    // Populate metrics on the page
+    function populateMetrics() {
+      document.getElementById('metrics-date').textContent = metricsData.updated_at;
+      document.getElementById('ig-growth').textContent = metricsData.instagram.growth_pct;
+      document.getElementById('tt-growth').textContent = metricsData.tiktok.growth_pct;
+      initCharts();
+    }
+
+    // Format number for display (abbreviated: 1.3M, 675K)
+    function formatNumber(num, format = 'short') {
+      if (format === 'short') {
+        if (num >= 1000000) return (num / 1000000).toFixed(1).replace('.0', '') + 'M';
+        if (num >= 1000) return (num / 1000).toFixed(1).replace('.0', '') + 'K';
+      }
+      return num.toString();
+    }
+
+    // Counter animation
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+          entry.target.classList.add('counted');
+          const target = parseInt(entry.target.dataset.target);
+          const format = entry.target.dataset.format || 'default';
+          const duration = 2000;
+          const start = Date.now();
+
+          const countUp = () => {
+            const elapsed = Date.now() - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const easeProgress = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+            const current = Math.floor(target * easeProgress);
+            entry.target.textContent = formatNumber(current, format);
+
+            if (progress < 1) {
+              requestAnimationFrame(countUp);
+            } else {
+              entry.target.textContent = formatNumber(target, format);
+            }
+          };
+
+          countUp();
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+    // Draw gender donut chart
+    function drawGenderChart(data) {
+      const canvas = document.getElementById('gender-chart');
+      const cx = 100, cy = 100, r = 80;
+      const total = data.male + data.female;
+      const maleAngle = (data.male / total) * Math.PI * 2;
+
+      const xEnd1 = cx + r * Math.cos(maleAngle - Math.PI / 2);
+      const yEnd1 = cy + r * Math.sin(maleAngle - Math.PI / 2);
+      const largeArc = maleAngle > Math.PI ? 1 : 0;
+
+      const path1 = `M ${cx} ${cy - r} A ${r} ${r} 0 ${largeArc} 1 ${xEnd1} ${yEnd1}`;
+      const line1 = `${canvas.createElementNS('http://www.w3.org/2000/svg', 'path')}`;
+
+      const svgNS = 'http://www.w3.org/2000/svg';
+
+      // Male segment
+      const path = document.createElementNS(svgNS, 'path');
+      path.setAttribute('d', path1);
+      path.setAttribute('fill', 'rgba(233, 155, 42, 0.8)');
+      path.setAttribute('stroke', 'rgba(233, 155, 42, 1)');
+      path.setAttribute('stroke-width', '2');
+      canvas.appendChild(path);
+
+      // Female segment
+      const path2 = document.createElementNS(svgNS, 'path');
+      path2.setAttribute('d', `M ${xEnd1} ${yEnd1} A ${r} ${r} 0 0 1 ${cx} ${cy - r}`);
+      path2.setAttribute('fill', 'rgba(249, 115, 22, 0.6)');
+      path2.setAttribute('stroke', 'rgba(249, 115, 22, 0.8)');
+      path2.setAttribute('stroke-width', '2');
+      canvas.appendChild(path2);
+
+      // Inner circle (donut hole)
+      const circle = document.createElementNS(svgNS, 'circle');
+      circle.setAttribute('cx', cx);
+      circle.setAttribute('cy', cy);
+      circle.setAttribute('r', 50);
+      circle.setAttribute('fill', 'var(--bg)');
+      canvas.appendChild(circle);
+
+      // Text
+      const text1 = document.createElementNS(svgNS, 'text');
+      text1.setAttribute('x', 100);
+      text1.setAttribute('y', 70);
+      text1.setAttribute('text-anchor', 'middle');
+      text1.setAttribute('font-size', '16');
+      text1.setAttribute('font-weight', '700');
+      text1.setAttribute('fill', '#e99b2a');
+      text1.textContent = `${data.male}%`;
+      canvas.appendChild(text1);
+
+      const text2 = document.createElementNS(svgNS, 'text');
+      text2.setAttribute('x', 100);
+      text2.setAttribute('y', 130);
+      text2.setAttribute('text-anchor', 'middle');
+      text2.setAttribute('font-size', '14');
+      text2.setAttribute('fill', '#f97316');
+      text2.textContent = `${data.female}%`;
+      canvas.appendChild(text2);
+    }
+
+    // Draw age bar chart
+    function drawAgeChart(data) {
+      const canvas = document.getElementById('age-chart');
+      const svgNS = 'http://www.w3.org/2000/svg';
+      const padding = 40;
+      const width = 400;
+      const height = 250;
+      const chartWidth = width - padding * 2;
+      const chartHeight = height - padding * 2;
+
+      const ages = Object.keys(data).map(k => k.replace('-', '–'));
+      const values = Object.values(data);
+      const maxValue = Math.max(...values);
+      const barWidth = chartWidth / (ages.length * 1.5);
+      const spacing = chartWidth / ages.length;
+
+      // Y axis
+      const yAxis = document.createElementNS(svgNS, 'line');
+      yAxis.setAttribute('x1', padding);
+      yAxis.setAttribute('y1', padding);
+      yAxis.setAttribute('x2', padding);
+      yAxis.setAttribute('y2', height - padding);
+      yAxis.setAttribute('stroke', 'rgba(233, 155, 42, 0.3)');
+      yAxis.setAttribute('stroke-width', '1');
+      canvas.appendChild(yAxis);
+
+      // X axis
+      const xAxis = document.createElementNS(svgNS, 'line');
+      xAxis.setAttribute('x1', padding);
+      xAxis.setAttribute('y1', height - padding);
+      xAxis.setAttribute('x2', width - padding);
+      xAxis.setAttribute('y2', height - padding);
+      xAxis.setAttribute('stroke', 'rgba(233, 155, 42, 0.3)');
+      xAxis.setAttribute('stroke-width', '1');
+      canvas.appendChild(xAxis);
+
+      // Bars
+      values.forEach((val, i) => {
+        const barHeight = (val / maxValue) * chartHeight;
+        const x = padding + i * spacing + spacing / 2 - barWidth / 2;
+        const y = height - padding - barHeight;
+
+        const rect = document.createElementNS(svgNS, 'rect');
+        rect.setAttribute('x', x);
+        rect.setAttribute('y', y);
+        rect.setAttribute('width', barWidth);
+        rect.setAttribute('height', barHeight);
+        rect.setAttribute('fill', i === 1 || i === 2 ? 'rgba(233, 155, 42, 0.9)' : 'rgba(233, 155, 42, 0.5)');
+        canvas.appendChild(rect);
+
+        // Label
+        const text = document.createElementNS(svgNS, 'text');
+        text.setAttribute('x', x + barWidth / 2);
+        text.setAttribute('y', height - padding + 20);
+        text.setAttribute('text-anchor', 'middle');
+        text.setAttribute('font-size', '12');
+        text.setAttribute('fill', '#9ca3af');
+        text.textContent = ages[i];
+        canvas.appendChild(text);
+
+        // Value
+        const valText = document.createElementNS(svgNS, 'text');
+        valText.setAttribute('x', x + barWidth / 2);
+        valText.setAttribute('y', y - 5);
+        valText.setAttribute('text-anchor', 'middle');
+        valText.setAttribute('font-size', '11');
+        valText.setAttribute('fill', '#e99b2a');
+        valText.setAttribute('font-weight', '600');
+        valText.textContent = val.toFixed(1) + '%';
+        canvas.appendChild(valText);
+      });
+    }
+
+    // Draw geography list
+    function drawGeoList(data) {
+      const container = document.getElementById('geo-list');
+      const countries = {
+        mexico: '🇲🇽 México',
+        spain: '🇪🇸 España',
+        usa: '🇺🇸 USA',
+        argentina: '🇦🇷 Argentina'
+      };
+
+      Object.keys(data).forEach(key => {
+        const item = document.createElement('div');
+        item.className = 'geo-item';
+        item.innerHTML = `
+          <span class="geo-name">${countries[key] || key}</span>
+          <span class="geo-pct">${data[key]}%</span>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    // Initialize all charts
+    function initCharts() {
+      drawGenderChart(metricsData.demographics.gender);
+      drawAgeChart(metricsData.demographics.age);
+      drawGeoList(metricsData.demographics.countries);
+    }
+
+    // Scroll reveal animations
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-up');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => revealObserver.observe(el));
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && document.querySelector(href)) {
+          e.preventDefault();
+        }
+      });
+    });
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('Tacotios landing page loaded successfully');
+    });
+  </script>
+</body>
+</html>
