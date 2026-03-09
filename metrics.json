@@ -1,1 +1,77 @@
-undefined
+{
+  "updated_at": "2026-03-09",
+  "period": "28d",
+  "totals": {
+    "followers": 2000602,
+    "reach_month": 5900000,
+    "likes_month": 857900,
+    "interactions_month": 174400,
+    "saves_month": 70600,
+    "shares_month": 114725
+  },
+  "instagram": {
+    "followers": 682339,
+    "growth": 5.7,
+    "reach_month": 4200000,
+    "saves_month": 70600,
+    "shares_month": 114725,
+    "comments_month": 9300,
+    "engagement_rate": 7.05,
+    "content_mix": {
+      "reels": 75.5,
+      "posts": 19.4,
+      "stories": 4.9
+    }
+  },
+  "tiktok": {
+    "followers": 585807,
+    "growth": 42.7,
+    "viewers_month": 390000,
+    "views_month": 2700000,
+    "unique_viewers_month": 2900000,
+    "likes_month": 90000,
+    "shares_month": 14000
+  },
+  "youtube": {
+    "subscribers": 85200,
+    "total_views": 23000000,
+    "views_month": 1200000,
+    "total_likes": 580000,
+    "likes_month": 45000
+  },
+  "facebook": {
+    "followers": 647256,
+    "views_month": 8500000,
+    "viewers_month": 3200000,
+    "interactions_month": 125000,
+    "non_follower_reach": 75
+  },
+  "demographics": {
+    "gender": {
+      "male": 61.5,
+      "female": 38.5
+    },
+    "age": {
+      "18-24": 6.6,
+      "25-34": 32.1,
+      "35-44": 34,
+      "45-54": 17.6,
+      "55-64": 6.6,
+      "65+": 2.9
+    },
+    "countries": {
+      "mexico": 67.1,
+      "usa": 15.9,
+      "spain": 3.6,
+      "colombia": 1.3,
+      "argentina": 1.1
+    },
+    "cities": {
+      "cdmx": 15,
+      "zapopan": 4.8,
+      "guadalajara": 4.3,
+      "puebla": 1.4,
+      "tijuana": 1.1
+    }
+  }
+}
