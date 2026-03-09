@@ -1423,16 +1423,14 @@
 
 
 <script>
-// Fix nav scroll (uses body as scroll container)
+// Fix nav scroll - scrollIntoView for maximum compatibility
 document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   a.addEventListener('click', function(e) {
     var id = this.getAttribute('href').slice(1);
     var el = document.getElementById(id);
     if (el) {
       e.preventDefault();
-      var navH = 70;
-      var top = el.offsetTop - navH;
-      window.scrollTo({top: top, behavior: 'smooth'});
+      el.scrollIntoView({behavior: 'smooth', block: 'start'});
       history.pushState(null, null, '#' + id);
     }
   });
@@ -1443,7 +1441,7 @@ window.addEventListener('load', function() {
       var id = window.location.hash.slice(1);
       var el = document.getElementById(id);
       if (el) {
-        window.scrollTo({top: el.offsetTop - 70, behavior: 'smooth'});
+        el.scrollIntoView({behavior: 'smooth', block: 'start'});
       }
     }, 600);
   }
