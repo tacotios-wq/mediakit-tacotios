@@ -798,7 +798,23 @@
         font-size: 1.8rem;
       }
     }
-  </style>
+  
+      .hamburger-btn { display: none; background: none; border: 1px solid rgba(233,155,42,0.3); color: #e99b2a; font-size: 1.5rem; padding: 0.3rem 0.6rem; border-radius: 6px; cursor: pointer; }
+      @media (max-width: 900px) {
+        .hamburger-btn { display: block; }
+        .nav-links { display: none; flex-direction: column; width: 100%; text-align: center; }
+        .nav-links.nav-open { display: flex; }
+      }
+    </style>
+
+    <meta property="og:title" content="TACOTIOS - Media Kit 2025">
+    <meta property="og:description" content="1.3M seguidores. Colaboraciones con marcas premium.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mediakit-tacotios.vercel.app/info">
+    <meta property="og:image" content="https://mediakit-tacotios.vercel.app/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TACOTIOS - Media Kit 2025">
+    <meta name="twitter:description" content="1.3M seguidores. Colaboraciones con marcas premium.">
 </head>
 <body>
   <!-- Navigation -->
@@ -1052,10 +1068,10 @@
     </p>
 
     <div class="collab-grid">
-      <div class="collab-card">Colaboración estratégica</div>
-      <div class="collab-card">Contenido auténtico</div>
-      <div class="collab-card">Alcance masivo</div>
-      <div class="collab-card">ROI demostrado</div>
+      <div class="collab-card">Aeroméxico</div>
+      <div class="collab-card">American Express</div>
+      <div class="collab-card">Restaurantes CDMX</div>
+      <div class="collab-card">Club del Taco</div>
     </div>
   </section>
 
@@ -1159,165 +1175,114 @@
 
     // Draw gender donut chart
     function drawGenderChart(data) {
-      const canvas = document.getElementById('gender-chart');
-      const cx = 100, cy = 100, r = 80;
-      const total = data.male + data.female;
-      const maleAngle = (data.male / total) * Math.PI * 2;
+        const svg = document.getElementById('gender-chart');
+        if (!svg || !data) return;
+        svg.setAttribute('viewBox', '0 0 200 200');
+        svg.innerHTML = '';
+        const ns = 'http://www.w3.org/2000/svg';
+        const cx = 100, cy = 100, r = 80, inner = 50;
+        const entries = Object.entries(data);
+        const colors = ['#e99b2a', '#f97316', '#6b7280'];
+        let startAngle = -90;
+        entries.forEach(function(entry, i) {
+          const key = entry[0], val = entry[1];
+          const angle = (val / 100) * 360;
+          const endAngle = startAngle + angle;
+          const startRad = (startAngle * Math.PI) / 180;
+          const endRad = (endAngle * Math.PI) / 180;
+          const x1 = cx + r * Math.cos(startRad), y1 = cy + r * Math.sin(startRad);
+          const x2 = cx + r * Math.cos(endRad), y2 = cy + r * Math.sin(endRad);
+          const ix1 = cx + inner * Math.cos(endRad), iy1 = cy + inner * Math.sin(endRad);
+          const ix2 = cx + inner * Math.cos(startRad), iy2 = cy + inner * Math.sin(startRad);
+          const large = angle > 180 ? 1 : 0;
+          const d = 'M ' + x1 + ' ' + y1 + ' A ' + r + ' ' + r + ' 0 ' + large + ' 1 ' + x2 + ' ' + y2 + ' L ' + ix1 + ' ' + iy1 + ' A ' + inner + ' ' + inner + ' 0 ' + large + ' 0 ' + ix2 + ' ' + iy2 + ' Z';
+          const path = document.createElementNS(ns, 'path');
+          path.setAttribute('d', d);
+          path.setAttribute('fill', colors[i % colors.length]);
+          path.setAttribute('opacity', '0.9');
+          svg.appendChild(path);
+          startAngle = endAngle;
+        });
+        const legend = svg.parentElement.querySelector('.chart-legend') || document.createElement('div');
+        legend.className = 'chart-legend';
+        legend.style.cssText = 'display:flex;justify-content:center;gap:1.5rem;margin-top:1rem;';
+        legend.innerHTML = entries.map(function(e, i) { return '<span style="color:' + colors[i] + ';font-size:0.85rem;">' + e[0].charAt(0).toUpperCase() + e[0].slice(1) + ' ' + e[1] + '%</span>'; }).join('');
+        if (!svg.parentElement.querySelector('.chart-legend')) svg.parentElement.appendChild(legend);
+      }
 
-      const xEnd1 = cx + r * Math.cos(maleAngle - Math.PI / 2);
-      const yEnd1 = cy + r * Math.sin(maleAngle - Math.PI / 2);
-      const largeArc = maleAngle > Math.PI ? 1 : 0;
+      function drawAgeChart(data) {
+        const svg = document.getElementById('age-chart');
+        if (!svg || !data) return;
+        svg.setAttribute('viewBox', '0 0 400 220');
+        svg.innerHTML = '';
+        const ns = 'http://www.w3.org/2000/svg';
+        const entries = Object.entries(data);
+        const maxVal = Math.max.apply(null, entries.map(function(e) { return e[1]; }));
+        const barW = 40, gap = 12, startX = 30, chartH = 160, baseY = 180;
+        entries.forEach(function(entry, i) {
+          const label = entry[0], val = entry[1];
+          const x = startX + i * (barW + gap);
+          const h = (val / maxVal) * chartH;
+          const rect = document.createElementNS(ns, 'rect');
+          rect.setAttribute('x', x); rect.setAttribute('y', baseY - h);
+          rect.setAttribute('width', barW); rect.setAttribute('height', h);
+          rect.setAttribute('rx', '4'); rect.setAttribute('fill', '#e99b2a');
+          rect.setAttribute('opacity', '0.85');
+          svg.appendChild(rect);
+          const valText = document.createElementNS(ns, 'text');
+          valText.setAttribute('x', x + barW / 2); valText.setAttribute('y', baseY - h - 6);
+          valText.setAttribute('text-anchor', 'middle'); valText.setAttribute('fill', '#e99b2a');
+          valText.setAttribute('font-size', '11'); valText.textContent = val + '%';
+          svg.appendChild(valText);
+          const labelText = document.createElementNS(ns, 'text');
+          labelText.setAttribute('x', x + barW / 2); labelText.setAttribute('y', baseY + 16);
+          labelText.setAttribute('text-anchor', 'middle'); labelText.setAttribute('fill', '#9ca3af');
+          labelText.setAttribute('font-size', '10'); labelText.textContent = label;
+          svg.appendChild(labelText);
+        });
+      }
 
-      const path1 = `M ${cx} ${cy - r} A ${r} ${r} 0 ${largeArc} 1 ${xEnd1} ${yEnd1}`;
-      const line1 = `${canvas.createElementNS('http://www.w3.org/2000/svg', 'path')}`;
+      function drawGeoList(data) {
+        const container = document.getElementById('geo-chart');
+        if (!container || !data) return;
+        const ns = 'http://www.w3.org/2000/svg';
+        if (container.tagName === 'svg' || container.tagName === 'SVG') {
+          container.setAttribute('viewBox', '0 0 400 200');
+          container.innerHTML = '';
+          const entries = Object.entries(data).slice(0, 5);
+          const maxVal = Math.max.apply(null, entries.map(function(e) { return e[1]; }));
+          entries.forEach(function(entry, i) {
+            const label = entry[0], val = entry[1];
+            const y = 15 + i * 38;
+            const barW = (val / maxVal) * 280;
+            const text = document.createElementNS(ns, 'text');
+            text.setAttribute('x', '5'); text.setAttribute('y', y + 4);
+            text.setAttribute('fill', '#f3ede8'); text.setAttribute('font-size', '13');
+            text.textContent = label.charAt(0).toUpperCase() + label.slice(1);
+            container.appendChild(text);
+            const rect = document.createElementNS(ns, 'rect');
+            rect.setAttribute('x', '100'); rect.setAttribute('y', y - 10);
+            rect.setAttribute('width', barW); rect.setAttribute('height', '18');
+            rect.setAttribute('rx', '3'); rect.setAttribute('fill', '#e99b2a');
+            rect.setAttribute('opacity', '0.7');
+            container.appendChild(rect);
+            const valText = document.createElementNS(ns, 'text');
+            valText.setAttribute('x', 100 + barW + 8); valText.setAttribute('y', y + 4);
+            valText.setAttribute('fill', '#e99b2a'); valText.setAttribute('font-size', '12');
+            valText.textContent = val + '%';
+            container.appendChild(valText);
+          });
+        }
+      }
 
-      const svgNS = 'http://www.w3.org/2000/svg';
-
-      // Male segment
-      const path = document.createElementNS(svgNS, 'path');
-      path.setAttribute('d', path1);
-      path.setAttribute('fill', 'rgba(233, 155, 42, 0.8)');
-      path.setAttribute('stroke', 'rgba(233, 155, 42, 1)');
-      path.setAttribute('stroke-width', '2');
-      canvas.appendChild(path);
-
-      // Female segment
-      const path2 = document.createElementNS(svgNS, 'path');
-      path2.setAttribute('d', `M ${xEnd1} ${yEnd1} A ${r} ${r} 0 0 1 ${cx} ${cy - r}`);
-      path2.setAttribute('fill', 'rgba(249, 115, 22, 0.6)');
-      path2.setAttribute('stroke', 'rgba(249, 115, 22, 0.8)');
-      path2.setAttribute('stroke-width', '2');
-      canvas.appendChild(path2);
-
-      // Inner circle (donut hole)
-      const circle = document.createElementNS(svgNS, 'circle');
-      circle.setAttribute('cx', cx);
-      circle.setAttribute('cy', cy);
-      circle.setAttribute('r', 50);
-      circle.setAttribute('fill', 'var(--bg)');
-      canvas.appendChild(circle);
-
-      // Text
-      const text1 = document.createElementNS(svgNS, 'text');
-      text1.setAttribute('x', 100);
-      text1.setAttribute('y', 70);
-      text1.setAttribute('text-anchor', 'middle');
-      text1.setAttribute('font-size', '16');
-      text1.setAttribute('font-weight', '700');
-      text1.setAttribute('fill', '#e99b2a');
-      text1.textContent = `${data.male}%`;
-      canvas.appendChild(text1);
-
-      const text2 = document.createElementNS(svgNS, 'text');
-      text2.setAttribute('x', 100);
-      text2.setAttribute('y', 130);
-      text2.setAttribute('text-anchor', 'middle');
-      text2.setAttribute('font-size', '14');
-      text2.setAttribute('fill', '#f97316');
-      text2.textContent = `${data.female}%`;
-      canvas.appendChild(text2);
-    }
-
-    // Draw age bar chart
-    function drawAgeChart(data) {
-      const canvas = document.getElementById('age-chart');
-      const svgNS = 'http://www.w3.org/2000/svg';
-      const padding = 40;
-      const width = 400;
-      const height = 250;
-      const chartWidth = width - padding * 2;
-      const chartHeight = height - padding * 2;
-
-      const ages = Object.keys(data).map(k => k.replace('-', '–'));
-      const values = Object.values(data);
-      const maxValue = Math.max(...values);
-      const barWidth = chartWidth / (ages.length * 1.5);
-      const spacing = chartWidth / ages.length;
-
-      // Y axis
-      const yAxis = document.createElementNS(svgNS, 'line');
-      yAxis.setAttribute('x1', padding);
-      yAxis.setAttribute('y1', padding);
-      yAxis.setAttribute('x2', padding);
-      yAxis.setAttribute('y2', height - padding);
-      yAxis.setAttribute('stroke', 'rgba(233, 155, 42, 0.3)');
-      yAxis.setAttribute('stroke-width', '1');
-      canvas.appendChild(yAxis);
-
-      // X axis
-      const xAxis = document.createElementNS(svgNS, 'line');
-      xAxis.setAttribute('x1', padding);
-      xAxis.setAttribute('y1', height - padding);
-      xAxis.setAttribute('x2', width - padding);
-      xAxis.setAttribute('y2', height - padding);
-      xAxis.setAttribute('stroke', 'rgba(233, 155, 42, 0.3)');
-      xAxis.setAttribute('stroke-width', '1');
-      canvas.appendChild(xAxis);
-
-      // Bars
-      values.forEach((val, i) => {
-        const barHeight = (val / maxValue) * chartHeight;
-        const x = padding + i * spacing + spacing / 2 - barWidth / 2;
-        const y = height - padding - barHeight;
-
-        const rect = document.createElementNS(svgNS, 'rect');
-        rect.setAttribute('x', x);
-        rect.setAttribute('y', y);
-        rect.setAttribute('width', barWidth);
-        rect.setAttribute('height', barHeight);
-        rect.setAttribute('fill', i === 1 || i === 2 ? 'rgba(233, 155, 42, 0.9)' : 'rgba(233, 155, 42, 0.5)');
-        canvas.appendChild(rect);
-
-        // Label
-        const text = document.createElementNS(svgNS, 'text');
-        text.setAttribute('x', x + barWidth / 2);
-        text.setAttribute('y', height - padding + 20);
-        text.setAttribute('text-anchor', 'middle');
-        text.setAttribute('font-size', '12');
-        text.setAttribute('fill', '#9ca3af');
-        text.textContent = ages[i];
-        canvas.appendChild(text);
-
-        // Value
-        const valText = document.createElementNS(svgNS, 'text');
-        valText.setAttribute('x', x + barWidth / 2);
-        valText.setAttribute('y', y - 5);
-        valText.setAttribute('text-anchor', 'middle');
-        valText.setAttribute('font-size', '11');
-        valText.setAttribute('fill', '#e99b2a');
-        valText.setAttribute('font-weight', '600');
-        valText.textContent = val.toFixed(1) + '%';
-        canvas.appendChild(valText);
-      });
-    }
-
-    // Draw geography list
-    function drawGeoList(data) {
-      const container = document.getElementById('geo-list');
-      const countries = {
-        mexico: '🇲🇽 México',
-        spain: '🇪🇸 España',
-        usa: '🇺🇸 USA',
-        argentina: '🇦🇷 Argentina'
-      };
-
-      Object.keys(data).forEach(key => {
-        const item = document.createElement('div');
-        item.className = 'geo-item';
-        item.innerHTML = `
-          <span class="geo-name">${countries[key] || key}</span>
-          <span class="geo-pct">${data[key]}%</span>
-        `;
-        container.appendChild(item);
-      });
-    }
-
-    // Initialize all charts
-    function initCharts() {
-      drawGenderChart(metricsData.demographics.gender);
-      drawAgeChart(metricsData.demographics.age);
-      drawGeoList(metricsData.demographics.countries);
-    }
+      function initCharts() {
+        if (window._metricsData && window._metricsData.demographics) {
+          var demo = window._metricsData.demographics;
+          if (demo.gender) drawGenderChart(demo.gender);
+          if (demo.age) drawAgeChart(demo.age);
+          if (demo.countries) drawGeoList(demo.countries);
+        }
+      }
 
     // Scroll reveal animations
     const revealObserver = new IntersectionObserver((entries) => {
@@ -1346,5 +1311,25 @@
       console.log('Tacotios landing page loaded successfully');
     });
   </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        var cards = document.querySelectorAll('.platform-card');
+        cards.forEach(function(card) {
+          if (card.textContent.indexOf('YouTube') !== -1) {
+            var nums = card.querySelectorAll('.stat-number, .platform-stat-value');
+            var allZero = true;
+            nums.forEach(function(n) {
+              var t = n.textContent.trim();
+              if (t !== '0' && t !== '0%' && t !== '') allZero = false;
+            });
+            if (allZero) card.style.display = 'none';
+          }
+        });
+        if (typeof initCharts === 'function') initCharts();
+      }, 1500);
+    });
+    </script>
 </body>
 </html>
