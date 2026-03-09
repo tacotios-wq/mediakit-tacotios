@@ -799,9 +799,9 @@
       }
     }
   
-      .hamburger-btn { display: none!important; background: none; border: 1px solid rgba(233,155,42,0.3); color: #e99b2a; font-size: 1.5rem; padding: 0.3rem 0.6rem; border-radius: 6px; cursor: pointer; }
+      .hamburger-btn { display: none; background: none; border: 1px solid rgba(233,155,42,0.3); color: #e99b2a; font-size: 1.5rem; padding: 0.3rem 0.6rem; border-radius: 6px; cursor: pointer; }
       @media (max-width: 900px) {
-        .hamburger-btn { display: block!important; }
+        .hamburger-btn { display: block; }
         .nav-links { display: none; flex-direction: column; width: 100%; text-align: center; }
         .nav-links.nav-open { display: flex; }
       }
@@ -821,7 +821,7 @@
   <nav>
     <div class="nav-container">
       <div class="nav-logo">TACOTIOS</div>
-      <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+      <button class="hamburger-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
       <ul class="nav-links">
         <li><a href="#historia">Historia</a></li>
         <li><a href="#metricas">Métricas</a></li>
