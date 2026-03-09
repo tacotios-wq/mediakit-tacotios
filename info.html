@@ -821,6 +821,7 @@
   <nav>
     <div class="nav-container">
       <div class="nav-logo">TACOTIOS</div>
+      <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
       <ul class="nav-links">
         <li><a href="#historia">Historia</a></li>
         <li><a href="#metricas">Métricas</a></li>
@@ -1243,46 +1244,30 @@
       }
 
       function drawGeoList(data) {
-        const container = document.getElementById('geo-chart');
-        if (!container || !data) return;
-        const ns = 'http://www.w3.org/2000/svg';
-        if (container.tagName === 'svg' || container.tagName === 'SVG') {
-          container.setAttribute('viewBox', '0 0 400 200');
-          container.innerHTML = '';
-          const entries = Object.entries(data).slice(0, 5);
-          const maxVal = Math.max.apply(null, entries.map(function(e) { return e[1]; }));
-          entries.forEach(function(entry, i) {
-            const label = entry[0], val = entry[1];
-            const y = 15 + i * 38;
-            const barW = (val / maxVal) * 280;
-            const text = document.createElementNS(ns, 'text');
-            text.setAttribute('x', '5'); text.setAttribute('y', y + 4);
-            text.setAttribute('fill', '#f3ede8'); text.setAttribute('font-size', '13');
-            text.textContent = label.charAt(0).toUpperCase() + label.slice(1);
-            container.appendChild(text);
-            const rect = document.createElementNS(ns, 'rect');
-            rect.setAttribute('x', '100'); rect.setAttribute('y', y - 10);
-            rect.setAttribute('width', barW); rect.setAttribute('height', '18');
-            rect.setAttribute('rx', '3'); rect.setAttribute('fill', '#e99b2a');
-            rect.setAttribute('opacity', '0.7');
-            container.appendChild(rect);
-            const valText = document.createElementNS(ns, 'text');
-            valText.setAttribute('x', 100 + barW + 8); valText.setAttribute('y', y + 4);
-            valText.setAttribute('fill', '#e99b2a'); valText.setAttribute('font-size', '12');
-            valText.textContent = val + '%';
-            container.appendChild(valText);
-          });
-        }
-      }
+      var container = document.getElementById('geo-list') || document.querySelector('[id*="geo"]');
+      if (!container || !data) return;
+      var entries = Object.entries(data).slice(0, 5);
+      var maxVal = Math.max.apply(null, entries.map(function(e) { return e[1]; }));
+      container.innerHTML = entries.map(function(entry) {
+        var label = entry[0], val = entry[1];
+        var w = (val / maxVal) * 100;
+        return '<div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.6rem;">' +
+          '<span style="color:#f3ede8;font-size:0.85rem;min-width:80px;">' + label.charAt(0).toUpperCase() + label.slice(1) + '</span>' +
+          '<div style="flex:1;background:rgba(233,155,42,0.15);border-radius:4px;height:20px;overflow:hidden;">' +
+          '<div style="width:' + w + '%;height:100%;background:#e99b2a;border-radius:4px;opacity:0.8;"></div></div>' +
+          '<span style="color:#e99b2a;font-size:0.85rem;min-width:40px;text-align:right;">' + val + '%</span></div>';
+      }).join('');
+    }
+
+    
 
       function initCharts() {
-        if (window._metricsData && window._metricsData.demographics) {
-          var demo = window._metricsData.demographics;
-          if (demo.gender) drawGenderChart(demo.gender);
-          if (demo.age) drawAgeChart(demo.age);
-          if (demo.countries) drawGeoList(demo.countries);
-        }
-      }
+      var d = metricsData && metricsData.demographics ? metricsData.demographics : null;
+      if (!d) return;
+      if (d.gender) drawGenderChart(d.gender);
+      if (d.age) drawAgeChart(d.age);
+      if (d.countries) drawGeoList(d.countries);
+    }
 
     // Scroll reveal animations
     const revealObserver = new IntersectionObserver((entries) => {
