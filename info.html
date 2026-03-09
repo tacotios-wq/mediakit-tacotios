@@ -837,12 +837,13 @@
     <div class="hero-content">
       <h1>TACOTIOS</h1>
       <p class="hero-subtitle">Español de nacimiento. Mexicano por devoción.</p>
-      <div class="hero-stat"><span id="hero-counter">1.3M+</span> Seguidores en todas las plataformas</div>
+      <div class="hero-stat"><span id="hero-counter">2M+</span> Seguidores en todas las plataformas</div>
       <div class="hero-ctas">
         <a href="#metricas" class="btn btn-primary">Ver métricas ↓</a>
         <a href="https://instagram.com/tacotios" target="_blank" class="btn btn-secondary">Instagram</a>
         <a href="https://tiktok.com/@tacotios" target="_blank" class="btn btn-secondary">TikTok</a>
         <a href="https://youtube.com/@tacotiosYT" target="_blank" class="btn btn-secondary">YouTube</a>
+              <a href="https://facebook.com/tacotios" target="_blank" class="btn btn-secondary">Facebook</a>
       </div>
           
   </section>
@@ -1420,33 +1421,31 @@
 
     
 
+
 <script>
-// Fix nav scroll
-document.querySelectorAll('a[href^="#"]').forEach(a => {
+// Fix nav scroll (uses body as scroll container)
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   a.addEventListener('click', function(e) {
-    const id = this.getAttribute('href').slice(1);
-    const el = document.getElementById(id);
+    var id = this.getAttribute('href').slice(1);
+    var el = document.getElementById(id);
     if (el) {
       e.preventDefault();
-      const navH = document.querySelector('nav') ? document.querySelector('nav').offsetHeight : 60;
-      const top = el.getBoundingClientRect().top + window.pageYOffset - navH - 20;
-      window.scrollTo({top: top, behavior: 'smooth'});
+      var navH = 70;
+      var top = el.offsetTop - navH;
+      document.body.scrollTo({top: top, behavior: 'smooth'});
       history.pushState(null, null, '#' + id);
     }
   });
 });
-// Handle hash on page load
 window.addEventListener('load', function() {
   if (window.location.hash) {
     setTimeout(function() {
-      const id = window.location.hash.slice(1);
-      const el = document.getElementById(id);
+      var id = window.location.hash.slice(1);
+      var el = document.getElementById(id);
       if (el) {
-        const navH = document.querySelector('nav') ? document.querySelector('nav').offsetHeight : 60;
-        const top = el.getBoundingClientRect().top + window.pageYOffset - navH - 20;
-        window.scrollTo({top: top, behavior: 'smooth'});
+        document.body.scrollTo({top: el.offsetTop - 70, behavior: 'smooth'});
       }
-    }, 500);
+    }, 600);
   }
 });
 </script>
