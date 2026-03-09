@@ -1375,24 +1375,6 @@
     });
   </script>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      setTimeout(function() {
-        var cards = document.querySelectorAll('.platform-card');
-        cards.forEach(function(card) {
-          if (card.textContent.indexOf('YouTube') !== -1) {
-            var nums = card.querySelectorAll('.stat-number, .platform-stat-value');
-            var allZero = true;
-            nums.forEach(function(n) {
-              var t = n.textContent.trim();
-              if (t !== '0' && t !== '0%' && t !== '') allZero = false;
-            });
-            if (allZero) card.style.display = 'none';
-          }
-        });
-        if (typeof initCharts === 'function') initCharts();
-      }, 1500);
-    });
-    </script>
+    
 </body>
 </html>
