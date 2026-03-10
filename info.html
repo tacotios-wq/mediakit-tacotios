@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TACOTIOS - Creador de Contenido Gastronómico | @tacotios</title>
+  <meta name="description" content="TACOTIOS - Español de nacimiento, mexicano por devoción. 2M+ seguidores compartiendo historias auténticas de gastronomía mexicana.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #030307;
+      --bg-nav: rgba(13, 10, 11, 0.95);
+      --bg-card: #15151a;
+      --orange: #e99b2a;
+      --orange-cta: #f97316;
+      --orange-cta-hover: #ea6a0e;
+      --orange-soft: rgba(233, 155, 42, 0.15);
+      --orange-border: rgba(233, 155, 42, 0.4);
+      --text: #f3ede8;
+      --text-dim: #9ca3af;
+      --text-muted: #6b7280;
+      --border: #364153;
+      --white: #ffffff;
+      --radius: 8px;
+      --green: #22c55e;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--bg-nav);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-cta) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--orange);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(233, 155, 42, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      top: 10%;
+      right: -200px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(249, 115, 22, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      bottom: 10%;
+      left: -150px;
+      animation: float 8s ease-in-out infinite 1s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(30px); }
+    }
+
+    .hero-content {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      font-weight: 900;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-cta) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -2px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--text-dim);
+      margin-bottom: 3rem;
+    }
+
+    .hero-stat {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .hero-stat span {
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-cta) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-cta) 100%);
+      color: var(--bg);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--orange-cta) 0%, var(--orange-cta-hover) 100%);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--orange);
+      border: 2px solid var(--orange);
+    }
+
+    .btn-secondary:hover {
+      background: var(--orange-soft);
+      border-color: var(--orange-cta);
+    }
+
+    /* Sections */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 2rem;
+      color: var(--text);
+    }
+
+    /* Historia Section */
+    .historia {
+      background: linear-gradient(135deg, rgba(233, 155, 42, 0.05) 0%, rgba(249, 115, 22, 0.05) 100%);
+      border-radius: 16px;
+      padding: 4rem;
+    }
+
+    .historia-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .historia-text p {
+      font-size: 1.1rem;
+      color: var(--text-dim);
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .historia-text p:first-child {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .quote-card {
+      background: var(--bg-card);
+      border: 1px solid var(--orange-border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-top: 2rem;
+      position: relative;
+      border-top: 4px solid var(--orange);
+    }
+
+    .quote-text {
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--orange);
+      font-weight: 500;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .timeline-dot {
+      width: 12px;
+      height: 12px;
+      background: var(--orange);
+      border-radius: 50%;
+      margin-top: 0.25rem;
+      flex-shrink: 0;
+    }
+
+    .timeline-item h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-item p {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+    }
+
+    /* Métricas Section */
+    .metricas {
+      background: transparent;
+    }
+
+    .metricas-badge {
+      display: inline-block;
+      background: var(--orange-soft);
+      border: 1px solid var(--orange-border);
+      color: var(--orange);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .metric-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      border-top: 4px solid var(--orange);
+      transition: all 0.3s ease;
+    }
+
+    .metric-card:hover {
+      border-color: var(--orange-border);
+      transform: translateY(-4px);
+    }
+
+    .metric-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--orange);
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-label {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    /* Audiencia Section */
+    .audiencia {
+      background: transparent;
+    }
+
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .chart-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      border-top: 4px solid var(--orange);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .chart-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .chart-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    svg {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .geo-list {
+      width: 100%;
+    }
+
+    .geo-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .geo-item:last-child {
+      border-bottom: none;
+    }
+
+    .geo-name {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .geo-pct {
+      color: var(--orange);
+      font-weight: 700;
+    }
+
+    /* Plataformas Section */
+    .plataformas {
+      background: transparent;
+    }
+
+    .platforms-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .platform-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      border-top: 4px solid var(--orange);
+      transition: all 0.3s ease;
+    }
+
+    .platform-card:hover {
+      border-color: var(--orange-border);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(233, 155, 42, 0.1);
+    }
+
+    .platform-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .platform-icon {
+      font-size: 2rem;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .platform-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .platform-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .platform-stat {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .platform-stat-label {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .platform-stat-value {
+      color: var(--orange);
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .growth-indicator {
+      color: var(--green);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* Contenido Section */
+    .contenido {
+      background: transparent;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .content-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: flex-end;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .content-card:hover {
+      border-color: var(--orange-border);
+      transform: translateY(-4px);
+    }
+
+    .content-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(233, 155, 42, 0.2) 0%, rgba(249, 115, 22, 0.2) 100%);
+      z-index: 1;
+    }
+
+    .content-card-overlay {
+      position: relative;
+      z-index: 2;
+      padding: 2rem;
+      width: 100%;
+    }
+
+    .content-card-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .content-card-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .content-description {
+      margin-top: 2rem;
+      padding: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--orange-border);
+      border-radius: 16px;
+      color: var(--text-dim);
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* Colaboraciones Section */
+    .colaboraciones {
+      background: linear-gradient(135deg, rgba(233, 155, 42, 0.05) 0%, rgba(249, 115, 22, 0.05) 100%);
+      border-radius: 16px;
+      padding: 4rem;
+    }
+
+    .collab-description {
+      font-size: 1.1rem;
+      color: var(--text-dim);
+      margin-bottom: 3rem;
+      max-width: 700px;
+    }
+
+    .collab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .collab-card {
+      background: var(--bg-card);
+      border: 2px dashed var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 150px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: radial-gradient(circle at center, rgba(233, 155, 42, 0.15) 0%, transparent 80%);
+      border-radius: 16px;
+      padding: 6rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .cta-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .cta-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-dim);
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--orange);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      color: var(--orange-cta);
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-up {
+      animation: fadeUp 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      nav {
+        padding: 1rem;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+        font-size: 0.85rem;
+      }
+
+      .hero {
+        padding: 6rem 1.5rem 3rem;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+
+      .historia-content {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .charts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        padding: 0.75rem;
+      }
+
+      .nav-logo {
+        font-size: 1rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      section {
+        padding: 4rem 1.5rem;
+      }
+
+      .hero {
+        padding: 5rem 1rem 2rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+
+      .hero-ctas {
+        gap: 1rem;
+        flex-direction: column;
+      }
+
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-title {
+        font-size: 1.8rem;
+      }
+
+      .historia {
+        padding: 2rem;
+      }
+
+      .colaboraciones {
+        padding: 2rem;
+      }
+
+      .cta-section {
+        padding: 3rem 1rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+  
+      .hamburger-btn { display: none; background: none; border: 1px solid rgba(233,155,42,0.3); color: #e99b2a; font-size: 1.5rem; padding: 0.3rem 0.6rem; border-radius: 6px; cursor: pointer; }
+      @media (max-width: 900px) {
+        .hamburger-btn { display: block; }
+        .nav-links { display: none; flex-direction: column; width: 100%; text-align: center; }
+        .nav-links.nav-open { display: flex; }
+      }
+    
+/* Contact Form */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:2rem;text-align:left}.contact-form{display:flex;flex-direction:column;gap:1.2rem}.form-group{display:flex;flex-direction:column;gap:.4rem}.form-group label{font-size:.85rem;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px}.form-group input,.form-group select,.form-group textarea{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:.85rem 1rem;color:var(--text);font-family:'Inter',sans-serif;font-size:.95rem;transition:border-color .3s ease}.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(233,155,42,.15)}.form-group select{cursor:pointer;-webkit-appearance:none;appearance:none;padding-right:2.5rem}.form-group select option{background:var(--bg-card);color:var(--text)}.form-group textarea{resize:vertical;min-height:100px}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.contact-info{display:flex;flex-direction:column;gap:2rem;justify-content:center}.contact-info-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:2rem;border-left:4px solid var(--orange)}.contact-info-card h4{color:var(--orange);font-size:1rem;font-weight:700;margin-bottom:.5rem}.contact-info-card p{color:var(--text-dim);font-size:.95rem;line-height:1.6}.form-success{display:none;text-align:center;padding:3rem 2rem}.form-success.show{display:block}.form-success h3{font-size:1.5rem;color:var(--orange);margin-bottom:1rem}.form-success p{color:var(--text-dim);font-size:1.1rem}.form-error{display:none;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:var(--radius);padding:.75rem 1rem;color:#ef4444;font-size:.9rem;margin-top:.5rem}.form-error.show{display:block}.btn-submit{background:linear-gradient(135deg,var(--orange) 0%,var(--orange-cta) 100%);color:var(--bg);padding:1rem 2rem;border:none;border-radius:var(--radius);font-weight:700;font-size:1rem;cursor:pointer;transition:all .3s ease;font-family:'Inter',sans-serif;width:100%;margin-top:.5rem}.btn-submit:hover{background:linear-gradient(135deg,var(--orange-cta) 0%,var(--orange-cta-hover) 100%);transform:translateY(-2px)}.btn-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}@media(max-width:900px){.contact-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
+    .metric-tooltip-wrap{position:relative;cursor:help;display:inline-block}
+.metric-tooltip-wrap .formula-tooltip{visibility:hidden;opacity:0;position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);background:#0d0d0d;border:1px solid #E99B2A;border-radius:12px;padding:1.2rem;width:360px;z-index:100;font-size:.75rem;line-height:1.7;color:#bbb;transition:opacity .3s;pointer-events:none;box-shadow:0 8px 32px rgba(0,0,0,.7);text-align:left}
+.metric-tooltip-wrap:hover .formula-tooltip{visibility:visible;opacity:1;pointer-events:auto}
+.formula-tooltip .ft-t{color:#E99B2A;font-weight:700;margin-bottom:.5rem;font-size:.82rem}
+.formula-tooltip .ft-f{color:#fff;font-family:'Courier New',monospace;font-size:.73rem;margin:.3rem 0}
+.formula-tooltip .ft-n{color:#999;font-family:'Courier New',monospace;font-size:.68rem}
+.formula-tooltip .ft-s{color:#666;font-size:.6rem;margin-top:.6rem;border-top:1px solid #222;padding-top:.4rem}
+.formula-tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#E99B2A}
+@media(max-width:768px){.formula-tooltip{width:280px!important;font-size:.65rem!important}}
+
+/* ANALYTICS ACCORDION */
+.analytics-accordion{display:flex;flex-direction:column;gap:12px}
+.acc-panel{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color 0.3s}
+.acc-panel:hover{border-color:var(--orange-border)}
+.acc-header{padding:20px 24px;cursor:pointer;display:flex;align-items:center;gap:16px;user-select:none}
+.acc-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.acc-icon.ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+.acc-icon.tt{background:#010101;border:1px solid #333}
+.acc-icon.fb{background:#1877F2}
+.acc-icon.yt{background:#FF0000}
+.acc-meta{flex:1;min-width:0}
+.acc-meta h4{font-size:16px;font-weight:700;color:var(--white);margin:0}
+.acc-meta .acc-summary{font-size:13px;color:var(--text-dim);margin-top:2px}
+.acc-arrow{width:28px;height:28px;border-radius:50%;background:rgba(54,65,83,0.4);display:flex;align-items:center;justify-content:center;transition:transform 0.3s;font-size:11px;color:var(--text-dim);flex-shrink:0}
+.acc-panel.open .acc-arrow{transform:rotate(180deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height 0.5s ease}
+.acc-panel.open .acc-body{max-height:8000px}
+.acc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:4px 24px 24px}
+.acc-card{background:rgba(255,255,255,0.03);border:1px solid rgba(54,65,83,0.5);border-radius:6px;overflow:hidden}
+.acc-card img{width:100%;display:block}
+.acc-card-label{padding:8px 12px;font-size:11px;color:var(--text-muted);text-align:center;border-top:1px solid rgba(54,65,83,0.3);background:rgba(0,0,0,0.2)}
+.analytics-note{text-align:center;margin-top:20px;font-size:12px;color:var(--text-muted)}
+@media(max-width:900px){.acc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.acc-grid{grid-template-columns:1fr 1fr;gap:8px}.acc-card-label{padding:6px 10px;font-size:10px}.acc-header{padding:16px 18px;gap:12px}.acc-meta h4{font-size:14px}.acc-meta .acc-summary{font-size:12px}}
+</style>
+
+    <meta property="og:title" content="TACOTIOS - Media Kit 2026">
+    <meta property="og:description" content="TACOTIOS — 2M+ seguidores. Creador de contenido gastronómico mexicano desde CDMX. Historias auténticas de taquerías, street food y restaurantes. Colaboraciones con marcas premium.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mediakit-tacotios.vercel.app/info">
+    <meta property="og:image" content="https://mediakit-tacotios.vercel.app/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TACOTIOS - Media Kit 2026">
+    <meta name="twitter:description" content="TACOTIOS — 2M+ seguidores. Creador de contenido gastronómico mexicano desde CDMX. Historias auténticas de taquerías, street food y restaurantes. Colaboraciones con marcas premium.">
+    <link rel="canonical" href="https://mediakit-tacotios.vercel.app/info">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta name="twitter:image" content="https://mediakit-tacotios.vercel.app/og-image.jpg">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="nav-logo">TACOTIOS</div>
+      <button class="hamburger-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+      <ul class="nav-links">
+        <li><a href="#historia">Historia</a></li>
+        <li><a href="#metricas">Métricas</a></li>
+        <li><a href="#audiencia">Audiencia</a></li>
+        <li><a href="#plataformas">Plataformas</a></li>
+        <li><a href="#analytics">Analytics</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>TACOTIOS</h1>
+      <p class="hero-subtitle">Español de nacimiento. Mexicano por devoción.</p>
+      <div class="hero-stat"><span id="hero-counter">2M+</span> Seguidores en todas las plataformas</div>
+      <div class="hero-ctas">
+        <a href="#metricas" class="btn btn-primary">Ver métricas ↓</a>
+        <a href="https://instagram.com/tacotios" target="_blank" class="btn btn-secondary">Instagram</a>
+        <a href="https://tiktok.com/@tacotios" target="_blank" class="btn btn-secondary">TikTok</a>
+        <a href="https://youtube.com/@tacotiosYT" target="_blank" class="btn btn-secondary">YouTube</a>
+              <a href="https://facebook.com/tacotios" target="_blank" class="btn btn-secondary">Facebook</a>
+      </div>
+          
+  </section>
+
+  <!-- Historia Section -->
+  <section id="historia" class="historia">
+    <div class="section-label">Quién es Tacotios</div>
+    <h2 class="section-title">Una curiosidad que se convirtió en comunidad</h2>
+
+    <div class="historia-content">
+      <div class="historia-text">
+        <p>Un español llega a México sin saber que cambiaría su vida para siempre. Lo que comenzó como un viaje de descubrimiento culinario se transformó en una obsesión: no solo probar los sabores, sino entender las historias detrás de cada platillo. Cada taquería, cada cocinera, cada receta heredada de generación en generación.</p>
+
+        <p>Lo que empezó como un diario personal en redes sociales rápidamente se convirtió en un movimiento. Hoy, 1.3 millones de personas descubren la gastronomía mexicana a través de sus ojos. Su autenticidad, su carisma magnético y su curiosidad insaciable crearon una conexión única con la audiencia.</p>
+
+        <p>Cada video es un puente entre culturas. La autenticidad española encuentra su hogar en la pasión mexicana. La audiencia no solo mira, no solo escucha: sienten, anhelan, visitan. Eso es TACOTIOS. Eso es contar historias que importan.</p>
+
+        <div class="quote-card">
+          <p class="quote-text">"No hago reviews. Cuento historias que hacen que la gente quiera ir."</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <h4>El Comienzo</h4>
+            <p>Primeros pasos en redes sociales compartiendo descubrimientos gastronómicos únicos</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <h4>La Explosión</h4>
+            <p>Crecimiento viral, llegada a cientos de miles de seguidores, colaboraciones con marcas líderes</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <h4>El Ecosistema</h4>
+            <p>Presencia multiplataforma: Instagram, TikTok y YouTube con audiencias multimillonarias</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <h4>Hoy</h4>
+            <p>2M+ seguidores, influencia gastronómica a nivel continental, partner estratégico de marcas premium</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Métricas Section -->
+  <section id="metricas" class="metricas">
+    <div class="section-label">Datos Reales</div>
+    <h2 class="section-title">Números que hablan solos</h2>
+    <div class="metricas-badge">Actualizado: <span id="metrics-date">2026-03-08</span></div>
+
+    <div class="metrics-grid">
+      <div class="metric-card fade-up">
+        <div class="metric-value"><span class="counter" data-target="2000602" data-format="short">0</span></div>
+        <div class="metric-label">Seguidores Totales</div>
+      </div>
+      <div class="metric-card fade-up" style="animation-delay: 0.2s;">
+        <div class="metric-value"><span class="counter" data-target="5884211" data-format="short">0</span></div>
+        <div class="metric-label">Cuentas Alcanzadas/mes</div>
+        <div style="font-size:0.75rem;color:#e99b2a;margin-top:0.3rem;">94.8% no seguidores</div>
+      </div>
+      <div class="metric-card fade-up" style="animation-delay: 0.4s;">
+        <div class="metric-value"><span class="counter" data-target="857851" data-format="short">0</span></div>
+        <div class="metric-label">Likes/mes</div>
+      </div>
+      <div class="metric-card fade-up" style="animation-delay: 0.3s;">
+        <div class="metric-value"><span class="counter" data-target="174391" data-format="short">0</span></div>
+        <div class="metric-label">Interacciones/mes</div>
+      </div>
+      <div class="metric-card fade-up" style="animation-delay: 0.4s;">
+        <div class="metric-value"><span class="counter" data-target="70600" data-format="short">0</span></div>
+        <div class="metric-label">Saves/mes</div>
+      </div>
+      <div class="metric-card fade-up" style="animation-delay: 0.5s;">
+        <div class="metric-value"><span class="counter" data-target="114725" data-format="short">0</span></div>
+        <div class="metric-label">Shares/mes</div>
+      </div>
+    <div class="metric-card fade-up" style="border-color: var(--orange);">
+      <div class="metric-number" style="color: var(--orange); font-size: 2.5rem;"><span class="metric-tooltip-wrap">7.05%<div class="formula-tooltip"><div class="ft-t">¿Cómo se calcula?</div><div class="ft-f">ER = (Likes + Comments + Saves + Shares) ÷ Views × 100</div><div class="ft-n">(857,851 + 9,382 + 161,640 + 233,528) ÷ 17,908,524</div><div class="ft-f">= 1,262,401 ÷ 17,908,524 × 100 = 7.05%</div><div class="ft-s">Datos: Instagram 30 días (9 feb – 8 mar 2026) · Fuente: Meta Business Suite</div></div></span></div>
+      <div class="metric-label">Engagement Rate (IG)</div>
+      <div style="color: var(--orange); font-size: 0.85rem; margin-top: 0.25rem;">Top 1% creadores food · ⓘ Hover para ver fórmula</div>
+    </div>
+            <div class="metric-card fade-up">
+                <div style="color: var(--orange); font-size: 2.5rem;"><span class="metric-tooltip-wrap">1.30%<div class="formula-tooltip"><div class="ft-t">¿Cómo se calcula?</div><div class="ft-f">Share Rate = Shares ÷ Views × 100</div><div class="ft-n">233,528 shares ÷ 17,908,524 views</div><div class="ft-f">= 233,528 ÷ 17,908,524 × 100 = 1.30%</div><div class="ft-s">3x por encima del benchmark (0.4%) · Instagram 30 días</div></div></span></div>
+                <div class="metric-label">Share Rate (IG)</div>
+                <div style="color: var(--orange); font-size: 0.8rem;">Señal #1 del algoritmo · ⓘ</div>
+            </div>
+            <div class="metric-card fade-up">
+                <div style="color: var(--orange); font-size: 2.5rem;"><span class="metric-tooltip-wrap">0.90%<div class="formula-tooltip"><div class="ft-t">¿Cómo se calcula?</div><div class="ft-f">Save Rate = Saves ÷ Views × 100</div><div class="ft-n">161,640 saves ÷ 17,908,524 views</div><div class="ft-f">= 161,640 ÷ 17,908,524 × 100 = 0.90%</div><div class="ft-s">Señal #3 del algoritmo Instagram 2026 · Instagram 30 días</div></div></span></div>
+                <div class="metric-label">Save Rate (IG)</div>
+                <div style="color: var(--orange); font-size: 0.8rem;">Contenido que la gente guarda · ⓘ</div>
+            </div>
+            <div class="metric-card fade-up">
+                <div style="color: var(--orange); font-size: 2.5rem;"><span class="metric-tooltip-wrap">82.4%<div class="formula-tooltip"><div class="ft-t">¿Cómo se calcula?</div><div class="ft-f">Non-follower Reach = No-seg views ÷ Total views × 100</div><div class="ft-n">14,752,218 no-seguidores ÷ 17,908,524 total</div><div class="ft-f">= 14,752,218 ÷ 17,908,524 × 100 = 82.4%</div><div class="ft-s">Tu producto llega a audiencia nueva · Instagram 30 días</div></div></span></div>
+                <div class="metric-label">Non-follower Reach</div>
+                <div style="color: var(--orange); font-size: 0.8rem;">Discovery orgánico · ⓘ</div>
+            </div>
+    </div>
+  </section>
+
+  <!-- Audiencia Section -->
+  <section id="audiencia" class="audiencia">
+    <div class="section-label">Tu Público Objetivo</div>
+    <h2 class="section-title">¿A quién llegas con Tacotíos?</h2>
+
+    <div class="charts-grid">
+      <div class="chart-card fade-up">
+        <div class="chart-title">Género</div>
+        <div class="chart-container">
+          <svg viewBox="0 0 200 200" width="200" height="200" id="gender-chart"></svg>
+        </div>
+      </div>
+
+      <div class="chart-card fade-up" style="animation-delay: 0.2s;">
+        <div class="chart-title">Edad</div>
+        <div class="chart-container">
+          <svg viewBox="0 0 400 250" width="400" height="250" id="age-chart"></svg>
+        </div>
+      </div>
+
+      <div class="chart-card fade-up" style="animation-delay: 0.4s;">
+        <div class="chart-title">Geografía</div>
+        <div class="geo-list" id="geo-list"></div>
+      </div>
+    </div>
+      <div class="chart-card fade-up" style="animation-delay: 0.6s;">
+        <div class="chart-title">Ciudades Top (Instagram)</div>
+        <div class="geo-list" id="cities-list"></div>
+      </div>
+  </section>
+
+  <!-- Plataformas Section -->
+  <section id="plataformas" class="plataformas">
+    <div class="section-label">Presencia Multiplataforma</div>
+    <h2 class="section-title">Un ecosistema, cuatro plataformas</h2>
+
+    <div class="platforms-grid">
+      <div class="platform-card fade-up">
+        <div class="platform-header">
+          <div class="platform-icon">📷</div>
+          <div class="platform-name">Instagram</div>
+        </div>
+        <div class="platform-stats">
+          <div class="platform-stat">
+            <span class="platform-stat-label">Seguidores</span>
+            <span class="platform-stat-value"><span class="counter" data-target="682339" data-format="short">0</span></span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Crecimiento</span>
+            <span class="growth-indicator">↑ <span id="ig-growth">5.7</span>%</span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Alcance/mes</span>
+            <span class="platform-stat-value"><span class="counter" data-target="5884211" data-format="short">0</span></span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Saves/mes</span>
+            <span class="platform-stat-value">161K</span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Shares/mes</span>
+            <span class="platform-stat-value">233K</span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Comentarios/mes</span>
+            <span class="platform-stat-value">9.3K</span>
+          </div>
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem;">
+            <span style="background:rgba(233,155,42,0.15);color:#e99b2a;padding:0.25rem 0.6rem;border-radius:12px;font-size:0.75rem;font-weight:600;">Reels 75.5%</span>
+            <span style="background:rgba(233,155,42,0.1);color:#9ca3af;padding:0.25rem 0.6rem;border-radius:12px;font-size:0.75rem;">Posts 19.4%</span>
+            <span style="background:rgba(233,155,42,0.1);color:#9ca3af;padding:0.25rem 0.6rem;border-radius:12px;font-size:0.75rem;">Stories 4.9%</span>
+          </div>
+        </div>
+        <div class="platform-stat" style="border-top: 2px solid var(--orange); padding-top: 0.75rem; margin-top: 0.5rem;">
+          <span class="platform-stat-label" style="font-weight: 700; color: var(--orange);">Engagement Rate</span>
+          <span class="platform-stat-value" style="color: var(--orange); font-size: 1.4rem;">7.05%</span>
+        </div>
+      </div>
+
+      <div class="platform-card fade-up" style="animation-delay: 0.2s;">
+        <div class="platform-header">
+          <div class="platform-icon">🎵</div>
+          <div class="platform-name">TikTok</div>
+        </div>
+        <div class="platform-stats">
+          <div class="platform-stat">
+            <span class="platform-stat-label">Seguidores</span>
+            <span class="platform-stat-value"><span class="counter" data-target="585807" data-format="short">0</span></span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Crecimiento</span>
+            <span class="growth-indicator">↑ <span id="tt-growth">42.7</span>%</span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Espectadores/mes</span>
+            <span class="platform-stat-value"><span class="counter" data-target="2900000" data-format="short">0</span></span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Views/mes</span>
+            <span class="platform-stat-value">2.7M</span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Viewers/mes</span>
+            <span class="platform-stat-value">2.9M</span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Likes/mes</span>
+            <span class="platform-stat-value">90K</span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Shares/mes</span>
+            <span class="platform-stat-value">14K</span>
+          </div>
+          <div style="margin-top:0.5rem;">
+            <span style="background:rgba(34,197,94,0.15);color:#22c55e;padding:0.25rem 0.6rem;border-radius:12px;font-size:0.75rem;font-weight:600;">+161.4% views</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="platform-card fade-up" style="animation-delay: 0.4s;">
+        <div class="platform-header">
+          <div class="platform-icon">▶</div>
+          <div class="platform-name">YouTube</div>
+        </div>
+        <div class="platform-stats">
+          <div class="platform-stat">
+            <span class="platform-stat-label">Suscriptores</span>
+            <span class="platform-stat-value"><span class="counter" data-target="85200" data-format="short">0</span></span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Vistas Totales</span>
+            <span class="platform-stat-value"><span class="counter" data-target="50200000" data-format="short">0</span></span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Vistas/mes</span>
+            <span class="platform-stat-value"><span class="counter" data-target="230200" data-format="short">0</span></span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Likes totales</span>
+            <span class="platform-stat-value"><span class="counter" data-target="2200000" data-format="short">0</span></span>
+          </div>
+          <div class="platform-stat">
+            <span class="platform-stat-label">Likes/mes (Shorts)</span>
+            <span class="platform-stat-value"><span class="counter" data-target="10800" data-format="short">0</span></span>
+          </div>
+        </div>
+      </div>
+    
+
+    <!-- Facebook Platform Card -->
+    <div class="platform-card fade-up" style="animation-delay: 0.6s;">
+      <div class="platform-header">
+        <div class="platform-icon">f</div>
+        <div class="platform-name">Facebook</div>
+      </div>
+      <div class="platform-stats">
+        <div class="platform-stat">
+          <span class="platform-stat-label">Seguidores</span>
+          <span class="platform-stat-value"><span class="counter" data-target="647256" data-format="short">0</span></span>
+        </div>
+        <div class="platform-stat">
+          <span class="platform-stat-label">Visualizaciones/mes</span>
+          <span class="platform-stat-value"><span class="counter" data-target="9000000" data-format="short">0</span></span>
+        </div>
+        <div class="platform-stat">
+          <span class="platform-stat-label">Espectadores/mes</span>
+          <span class="platform-stat-value"><span class="counter" data-target="4462474" data-format="short">0</span></span>
+        </div>
+        <div class="platform-stat">
+          <span class="platform-stat-label">Interacción/mes</span>
+          <span class="platform-stat-value"><span class="counter" data-target="609027" data-format="short">0</span></span>
+        </div>
+        <div class="platform-stat">
+          <span class="platform-stat-label">Alcance no seguidores</span>
+          <span class="platform-stat-value" style="color: var(--orange);">75%</span>
+        </div>
+      </div>
+      <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem;">
+        <span class="content-pill" style="background:var(--orange);color:#000;">+41% views</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Contenido Section -->
+  <section id="contenido" class="contenido">
+    <div class="section-label">Lo Que Creamos</div>
+    <h2 class="section-title">Storytelling que genera resultados</h2>
+
+    <div class="content-grid">
+      <div class="content-card fade-up">
+        <div class="content-card-overlay">
+          <div class="content-card-label">Top Performance</div>
+          <div class="content-card-value">98.3K</div>
+        </div>
+      </div>
+      <div class="content-card fade-up" style="animation-delay: 0.2s;">
+        <div class="content-card-overlay">
+          <div class="content-card-label">Top Performance</div>
+          <div class="content-card-value">85.1K</div>
+        </div>
+      </div>
+      <div class="content-card fade-up" style="animation-delay: 0.4s;">
+        <div class="content-card-overlay">
+          <div class="content-card-label">Top Performance</div>
+          <div class="content-card-value">71.0K</div>
+        </div>
+      </div>
+      <div class="content-card fade-up" style="animation-delay: 0.6s;">
+        <div class="content-card-overlay">
+          <div class="content-card-label">Top Performance</div>
+          <div class="content-card-value">58.0K</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-description">
+      <strong>Cada pieza es una mini-película gastronómica.</strong> Narrativa cinematográfica que convierte viewers en fans. Nuestro contenido no entretiene: convierte, motiva, inspira acciones. Desde reels que rompen récords hasta documentales de historias de vida, cada frame cuenta una verdad que resuena con la audiencia.
+    </div>
+  </section>
+
+  <!-- Colaboraciones Section -->
+  <section id="colaboraciones" class="colaboraciones">
+    <div class="section-label">Marcas</div>
+    <h2 class="section-title">Creemos algo juntos</h2>
+
+    <p class="collab-description">
+      Tacotíos ha colaborado con restaurantes y marcas que comparten su pasión por la autenticidad gastronómica. Cada campaña se diseña como una historia única, donde el producto no es solo presentado, sino integrado en narrativas que resuenan con millones de personas.
+    </p>
+
+    <div class="collab-grid">
+      <div class="collab-card">Aeroméxico</div>
+      <div class="collab-card">American Express</div>
+      <div class="collab-card">Restaurantes CDMX</div>
+      <div class="collab-card">Club del Taco</div>
+    </div>
+  </section>
+
+<!-- ANALYTICS SCREENSHOTS -->
+<section id="analytics" style="padding:80px 24px 60px;max-width:960px;margin:0 auto">
+  <div style="text-align:center;margin-bottom:40px">
+    <div class="section-badge" style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--orange);border:1px solid var(--orange-border);padding:5px 14px;border-radius:100px;margin-bottom:16px">Verificaci&#243;n</div>
+    <h2 style="font-size:clamp(28px,4vw,40px);font-weight:700;color:var(--white);margin-bottom:8px;letter-spacing:-0.01em">Analytics en tiempo real</h2>
+    <p style="font-size:14px;color:var(--text-dim)">Datos verificables de cada plataforma &#183; Marzo 2026</p>
+  </div>
+  <div class="analytics-accordion">
+    <div class="acc-panel open"><div class="acc-header" onclick="this.parentElement.classList.toggle('open')"><div class="acc-icon ig"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div><div class="acc-meta"><h4>Instagram</h4><div class="acc-summary">683K seguidores &#183; 18.8M views/mes &#183; 1.65M interacciones</div></div><div class="acc-arrow">&#9660;</div></div><div class="acc-body"><div class="acc-grid"><div class="acc-card"><img src="screenshots/ig-panel.jpg" alt="Panel profesional"><div class="acc-card-label">Panel profesional</div></div><div class="acc-card"><img src="screenshots/ig-visualizaciones.jpg" alt="Visualizaciones"><div class="acc-card-label">Visualizaciones 6.2M</div></div><div class="acc-card"><img src="screenshots/ig-interacciones.jpg" alt="Interacciones"><div class="acc-card-label">Interacciones 1.65M</div></div><div class="acc-card"><img src="screenshots/ig-engagement.jpg" alt="Engagement"><div class="acc-card-label">937K likes &#183; 244K shared</div></div><div class="acc-card"><img src="screenshots/ig-seguidores.jpg" alt="Seguidores"><div class="acc-card-label">Seguidores 683K</div></div><div class="acc-card"><img src="screenshots/ig-edad-sexo.jpg" alt="Edad y sexo"><div class="acc-card-label">Edad y sexo</div></div><div class="acc-card"><img src="screenshots/ig-paises.jpg" alt="Paises"><div class="acc-card-label">Mexico 65.9%</div></div></div></div></div>
+    <div class="acc-panel"><div class="acc-header" onclick="this.parentElement.classList.toggle('open')"><div class="acc-icon tt"><svg width="16" height="18" viewBox="0 0 16 18" fill="white"><path d="M8.02 0h3.12c.18 1.61.82 2.86 1.81 3.74.99.88 2.25 1.37 3.05 1.5v3.04c-1.14-.04-2.25-.35-3.21-.87-.55-.3-1.04-.67-1.46-1.08v5.63c0 1.33-.37 2.58-1.07 3.62-.94 1.4-2.48 2.39-4.26 2.42-1.1.02-2.13-.29-3-.85-1.38-.89-2.33-2.42-2.48-4.18-.02-.23-.02-.46-.01-.69.12-1.61.88-3.01 2.03-3.93.88-.71 1.97-1.14 3.15-1.17v3.1c-.47.1-.9.31-1.25.62-.52.46-.84 1.11-.86 1.83-.03.98.55 1.83 1.39 2.2.33.15.7.23 1.08.22.96-.03 1.77-.63 2.1-1.47.1-.26.15-.55.15-.85V0h-.18z"/></svg></div><div class="acc-meta"><h4>TikTok</h4><div class="acc-summary">598K seguidores &#183; 9.1M views (+122.9%) &#183; 109M espectadores</div></div><div class="acc-arrow">&#9660;</div></div><div class="acc-body"><div class="acc-grid"><div class="acc-card"><img src="screenshots/tt-metricas.png" alt="Metricas"><div class="acc-card-label">9.1M views &#183; 523K likes</div></div><div class="acc-card"><img src="screenshots/tt-trafico.png" alt="Trafico"><div class="acc-card-label">88.2% Para ti (FYP)</div></div><div class="acc-card"><img src="screenshots/tt-espectadores.png" alt="Espectadores"><div class="acc-card-label">109M espectadores</div></div><div class="acc-card"><img src="screenshots/tt-ubicaciones.png" alt="Ubicaciones"><div class="acc-card-label">Mexico 87.4%</div></div><div class="acc-card"><img src="screenshots/tt-seguidores.png" alt="Seguidores"><div class="acc-card-label">598K &#183; +166.7%</div></div><div class="acc-card"><img src="screenshots/tt-edad.png" alt="Edad"><div class="acc-card-label">25-34: 38.2%</div></div></div></div></div>
+    <div class="acc-panel"><div class="acc-header" onclick="this.parentElement.classList.toggle('open')"><div class="acc-icon fb"><svg width="10" height="18" viewBox="0 0 10 20" fill="white"><path d="M6.82 20v-9.08h3.05l.46-3.54H6.82V5.11c0-1.03.28-1.73 1.76-1.73h1.88V.14C10.17.1 9.06 0 7.76 0 5.05 0 3.19 1.65 3.19 4.7v2.62H.14v3.54h3.05V20h3.63z"/></svg></div><div class="acc-meta"><h4>Facebook</h4><div class="acc-summary">650K seguidores &#183; 9.8M views (+60%) &#183; 681K interacciones</div></div><div class="acc-arrow">&#9660;</div></div><div class="acc-body"><div class="acc-grid"><div class="acc-card"><img src="screenshots/fb-visualizaciones.png" alt="Visualizaciones"><div class="acc-card-label">9.8M views +60%</div></div><div class="acc-card"><img src="screenshots/fb-interacciones.png" alt="Interacciones"><div class="acc-card-label">681K interacciones +80%</div></div><div class="acc-card"><img src="screenshots/fb-seguidores.png" alt="Seguidores"><div class="acc-card-label">650K &#183; +19% (90d)</div></div><div class="acc-card"><img src="screenshots/fb-demografica.png" alt="Demografia"><div class="acc-card-label">67% masc &#183; CDMX 45.1%</div></div></div></div></div>
+    <div class="acc-panel"><div class="acc-header" onclick="this.parentElement.classList.toggle('open')"><div class="acc-icon yt"><svg width="18" height="13" viewBox="0 0 24 17" fill="white"><path d="M23.5 2.5s-.2-1.7-.9-2.4C21.7-.7 20.7-.7 20.2-.8 16.9-1 12-1 12-1S7.1-1 3.8-.8c-.5.1-1.5.1-2.4.9C.7.8.5 2.5.5 2.5S.3 4.5.3 6.5v1.8c0 2 .2 4 .2 4s.2 1.7.9 2.4c.9.9 2 .9 2.5 1 1.8.2 7.1.2 7.1.2s4.9 0 8.2-.2c.5-.1 1.5-.1 2.4-.9.7-.7.9-2.4.9-2.4s.2-2 .2-4V6.5c0-2-.2-4-.2-4zM9.5 11.3V3.4l6.5 4-6.5 3.9z"/></svg></div><div class="acc-meta"><h4>YouTube</h4><div class="acc-summary">85.4K subs &#183; 266K views/mes &#183; 80.5K audiencia</div></div><div class="acc-arrow">&#9660;</div></div><div class="acc-body"><div class="acc-grid"><div class="acc-card"><img src="screenshots/yt-shorts.png" alt="Shorts"><div class="acc-card-label">266K views &#183; 67.4% ret.</div></div><div class="acc-card"><img src="screenshots/yt-publico.png" alt="Publico"><div class="acc-card-label">25-34: 34% &#183; Cel 81.7%</div></div><div class="acc-card"><img src="screenshots/yt-geo.png" alt="Geografia"><div class="acc-card-label">Mexico 62.1% &#183; 79.7% masc</div></div><div class="acc-card"><img src="screenshots/yt-canal.jpg" alt="Canal"><div class="acc-card-label">85.4K subs &#183; 402 videos</div></div></div></div></div>
+  </div>
+  <p class="analytics-note">Capturas verificables bajo solicitud &#183; Datos en tiempo real &#183; Marzo 2026</p>
+</section>
+
+
+  <!-- CTA Section -->
+  <section id="contacto" class="cta-section" style="text-align:left;"><div style="text-align:center;"><h2 class="cta-title">¿Listo para crear algo juntos?</h2><p class="cta-subtitle">Cada marca tiene una historia. Nosotros sabemos contarla.</p></div><div class="contact-grid"><div><form id="contactForm" class="contact-form"><div class="form-row"><div class="form-group"><label for="contactName">Nombre *</label><input type="text" id="contactName" name="contactName" required placeholder="Tu nombre"></div><div class="form-group"><label for="brandName">Marca *</label><input type="text" id="brandName" name="brandName" required placeholder="Nombre de tu marca"></div></div><div class="form-row"><div class="form-group"><label for="email">Email *</label><input type="email" id="email" name="email" required placeholder="correo@marca.com"></div><div class="form-group"><label for="phone">WhatsApp</label><input type="tel" id="phone" name="phone" placeholder="+52 55 1234 5678"></div></div><div class="form-row"><div class="form-group"><label for="tipo">Tipo *</label><select id="tipo" name="tipo" required><option value="" disabled selected>Selecciona</option><option value="Restaurante">Restaurante</option><option value="Marca Comercial">Marca Comercial</option><option value="Viaje">Viaje / Destino</option><option value="Evento">Evento</option><option value="Otro">Otro</option></select></div><div class="form-group"><label for="presupuesto">Presupuesto</label><select id="presupuesto" name="presupuesto"><option value="" disabled selected>Selecciona</option><option value="<25k">Hasta $25,000 MXN</option><option value="25k-50k">$25,000 - $50,000</option><option value="50k-100k">$50,000 - $100,000</option><option value="100k+">+$100,000 MXN</option><option value="A definir">Prefiero discutirlo</option></select></div></div><div class="form-group"><label for="mensaje">Tu proyecto *</label><textarea id="mensaje" name="mensaje" required placeholder="Que tienes en mente?"></textarea></div><button type="submit" class="btn-submit" id="submitBtn">Enviar propuesta</button><div class="form-error" id="formError">Error al enviar. Intenta de nuevo o escribenos a tacotios@gmail.com</div></form><div class="form-success" id="formSuccess"><h3>Recibido!</h3><p>Te contactaremos en menos de 48h.</p></div></div><div class="contact-info"><div class="contact-info-card"><h4>Respuesta en 48h</h4><p>Revisamos cada propuesta personalmente.</p></div><div class="contact-info-card"><h4>Datos reales</h4><p>Metricas transparentes en este Media Kit.</p></div><div class="contact-info-card"><h4>Storytelling autentico</h4><p>Historias que conectan con 2M+ personas.</p></div><div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;"><a href="https://wa.me/34606976421" target="_blank" class="btn btn-secondary" style="flex:1;text-align:center;min-width:140px;">WhatsApp</a><a href="mailto:tacotios@gmail.com" class="btn btn-secondary" style="flex:1;text-align:center;min-width:140px;">Email</a></div></div></div><div class="social-links" style="text-align:center;margin-top:3rem;"><a href="https://instagram.com/tacotios" target="_blank" class="social-link">Instagram</a> <a href="https://tiktok.com/@tacotios" target="_blank" class="social-link">TikTok</a> <a href="https://youtube.com/@tacotiosYT" target="_blank" class="social-link">YouTube</a> <a href="https://www.facebook.com/profile.php?id=100089082132815" target="_blank" class="social-link">Facebook</a></div></section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 TACOTIOS. Español de nacimiento. Mexicano por devoción.</p>
+  </footer>
+
+  <script>
+    // Fetch metrics from JSON
+    const metricsData = {
+      updated_at: "2026-03-08",
+      totals: { followers: 1346133, reach_30d: 5884211, interactions_30d: 174391, saves_30d: 161640, shares_30d: 233528, likes_30d: 857851 },
+      instagram: { followers: 675126, growth_pct: 4.7, reach_30d: 5884211, likes_30d: 857851, comments_30d: 9382, saves_30d: 161640, shares_30d: 233528 },
+      tiktok: { followers: 585807, growth_pct: 42.7, viewers_30d: 2900000, views_30d: 2700000, views_growth_pct: 161.4 },
+      youtube: { subscribers: 85200, views_lifetime: 50200000, likes_lifetime: 2200000, views_30d: 230200 },
+      demographics: {
+        gender: { male: 61.5, female: 38.5 },
+        age: { "18-24": 6.6, "25-34": 32.1, "35-44": 34.0, "45-54": 17.6, "55-64": 6.6, "65+": 2.9 },
+        countries: { mexico: 67.1, usa: 15.9, spain: 3.6, colombia: 1.3, argentina: 1.1 },
+        cities: { cdmx: 15.0, zapopan: 4.8, guadalajara: 4.3, puebla: 1.4, tijuana: 1.1 },
+        cities: { cdmx: 15.0, zapopan: 4.8, guadalajara: 4.3, puebla: 1.4, tijuana: 1.1 }
+      }
+    };
+
+    // Load metrics from JSON file or use fallback
+    fetch('metrics.json')
+      .then(response => response.json())
+      .then(data => {
+        Object.assign(metricsData, data);
+        populateMetrics();
+      })
+      .catch(() => {
+        console.log('Using fallback metrics data');
+        populateMetrics();
+      });
+
+    // Populate metrics on the page
+    function populateMetrics() {
+      document.getElementById('metrics-date').textContent = metricsData.updated_at;
+      document.getElementById('ig-growth').textContent = metricsData.instagram.growth_pct;
+      document.getElementById('tt-growth').textContent = metricsData.tiktok.growth_pct;
+      initCharts();
+    }
+
+    // Format number for display (abbreviated: 1.3M, 675K)
+    function formatNumber(num, format = 'short') {
+      if (format === 'short') {
+        if (num >= 1000000) return (num / 1000000).toFixed(1).replace('.0', '') + 'M';
+        if (num >= 1000) return (num / 1000).toFixed(1).replace('.0', '') + 'K';
+      }
+      return num.toString();
+    }
+
+    // Counter animation
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+          entry.target.classList.add('counted');
+          const target = parseInt(entry.target.dataset.target);
+          const format = entry.target.dataset.format || 'default';
+          const duration = 2000;
+          const start = Date.now();
+
+          const countUp = () => {
+            const elapsed = Date.now() - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const easeProgress = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+            const current = Math.floor(target * easeProgress);
+            entry.target.textContent = formatNumber(current, format);
+
+            if (progress < 1) {
+              requestAnimationFrame(countUp);
+            } else {
+              entry.target.textContent = formatNumber(target, format);
+            }
+          };
+
+          countUp();
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+    // Draw gender donut chart
+    function drawGenderChart(data) {
+        const svg = document.getElementById('gender-chart');
+        if (!svg || !data) return;
+        svg.setAttribute('viewBox', '0 0 200 200');
+        svg.innerHTML = '';
+        const ns = 'http://www.w3.org/2000/svg';
+        const cx = 100, cy = 100, r = 80, inner = 50;
+        const entries = Object.entries(data);
+        const colors = ['#e99b2a', '#f97316', '#6b7280'];
+        let startAngle = -90;
+        entries.forEach(function(entry, i) {
+          const key = entry[0], val = entry[1];
+          const angle = (val / 100) * 360;
+          const endAngle = startAngle + angle;
+          const startRad = (startAngle * Math.PI) / 180;
+          const endRad = (endAngle * Math.PI) / 180;
+          const x1 = cx + r * Math.cos(startRad), y1 = cy + r * Math.sin(startRad);
+          const x2 = cx + r * Math.cos(endRad), y2 = cy + r * Math.sin(endRad);
+          const ix1 = cx + inner * Math.cos(endRad), iy1 = cy + inner * Math.sin(endRad);
+          const ix2 = cx + inner * Math.cos(startRad), iy2 = cy + inner * Math.sin(startRad);
+          const large = angle > 180 ? 1 : 0;
+          const d = 'M ' + x1 + ' ' + y1 + ' A ' + r + ' ' + r + ' 0 ' + large + ' 1 ' + x2 + ' ' + y2 + ' L ' + ix1 + ' ' + iy1 + ' A ' + inner + ' ' + inner + ' 0 ' + large + ' 0 ' + ix2 + ' ' + iy2 + ' Z';
+          const path = document.createElementNS(ns, 'path');
+          path.setAttribute('d', d);
+          path.setAttribute('fill', colors[i % colors.length]);
+          path.setAttribute('opacity', '0.9');
+          svg.appendChild(path);
+          startAngle = endAngle;
+        });
+        const legend = svg.parentElement.querySelector('.chart-legend') || document.createElement('div');
+        legend.className = 'chart-legend';
+        legend.style.cssText = 'display:flex;justify-content:center;gap:1.5rem;margin-top:1rem;';
+        legend.innerHTML = entries.map(function(e, i) { return '<span style="color:' + colors[i] + ';font-size:0.85rem;">' + e[0].charAt(0).toUpperCase() + e[0].slice(1) + ' ' + e[1] + '%</span>'; }).join('');
+        if (!svg.parentElement.querySelector('.chart-legend')) svg.parentElement.appendChild(legend);
+      }
+
+      function drawAgeChart(data) {
+        const svg = document.getElementById('age-chart');
+        if (!svg || !data) return;
+        svg.setAttribute('viewBox', '0 0 400 220');
+        svg.innerHTML = '';
+        const ns = 'http://www.w3.org/2000/svg';
+        const entries = Object.entries(data);
+        const maxVal = Math.max.apply(null, entries.map(function(e) { return e[1]; }));
+        const barW = 40, gap = 12, startX = 30, chartH = 160, baseY = 180;
+        entries.forEach(function(entry, i) {
+          const label = entry[0], val = entry[1];
+          const x = startX + i * (barW + gap);
+          const h = (val / maxVal) * chartH;
+          const rect = document.createElementNS(ns, 'rect');
+          rect.setAttribute('x', x); rect.setAttribute('y', baseY - h);
+          rect.setAttribute('width', barW); rect.setAttribute('height', h);
+          rect.setAttribute('rx', '4'); rect.setAttribute('fill', '#e99b2a');
+          rect.setAttribute('opacity', '0.85');
+          svg.appendChild(rect);
+          const valText = document.createElementNS(ns, 'text');
+          valText.setAttribute('x', x + barW / 2); valText.setAttribute('y', baseY - h - 6);
+          valText.setAttribute('text-anchor', 'middle'); valText.setAttribute('fill', '#e99b2a');
+          valText.setAttribute('font-size', '11'); valText.textContent = val + '%';
+          svg.appendChild(valText);
+          const labelText = document.createElementNS(ns, 'text');
+          labelText.setAttribute('x', x + barW / 2); labelText.setAttribute('y', baseY + 16);
+          labelText.setAttribute('text-anchor', 'middle'); labelText.setAttribute('fill', '#9ca3af');
+          labelText.setAttribute('font-size', '10'); labelText.textContent = label;
+          svg.appendChild(labelText);
+        });
+      }
+
+      function drawGeoList(data) {
+      var container = document.getElementById('geo-list') || document.querySelector('[id*="geo"]');
+      if (!container || !data) return;
+      var entries = Object.entries(data).slice(0, 5);
+      var maxVal = Math.max.apply(null, entries.map(function(e) { return e[1]; }));
+      container.innerHTML = entries.map(function(entry) {
+        var label = entry[0], val = entry[1];
+        var w = (val / maxVal) * 100;
+        return '<div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.6rem;">' +
+          '<span style="color:#f3ede8;font-size:0.85rem;min-width:80px;">' + label.charAt(0).toUpperCase() + label.slice(1) + '</span>' +
+          '<div style="flex:1;background:rgba(233,155,42,0.15);border-radius:4px;height:20px;overflow:hidden;">' +
+          '<div style="width:' + w + '%;height:100%;background:#e99b2a;border-radius:4px;opacity:0.8;"></div></div>' +
+          '<span style="color:#e99b2a;font-size:0.85rem;min-width:40px;text-align:right;">' + val + '%</span></div>';
+      }).join('');
+    }
+
+    
+
+      function drawCitiesList(data) {
+      var container = document.getElementById("cities-list");
+      if (!container || !data) return;
+      var entries = Object.entries(data).slice(0, 5);
+      var maxVal = Math.max.apply(null, entries.map(function(e) { return e[1]; }));
+      var cityNames = { cdmx: "CDMX", zapopan: "Zapopan", guadalajara: "Guadalajara", puebla: "Puebla", tlaquepaque: "Tlaquepaque" };
+      container.innerHTML = entries.map(function(entry) {
+        var label = entry[0], val = entry[1];
+        var w = (val / maxVal) * 100;
+        var name = cityNames[label] || label.charAt(0).toUpperCase() + label.slice(1);
+        return '<div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.6rem;">' +
+          '<span style="color:#f3ede8;font-size:0.85rem;min-width:90px;">' + name + '</span>' +
+          '<div style="flex:1;background:rgba(249,115,22,0.15);border-radius:4px;height:20px;overflow:hidden;">' +
+          '<div style="width:' + w + '%;height:100%;background:#f97316;border-radius:4px;opacity:0.8;"></div></div>' +
+          '<span style="color:#f97316;font-size:0.85rem;min-width:40px;text-align:right;">' + val + '%</span></div>';
+      }).join("");
+    }
+
+    function initCharts() {
+      var d = metricsData && metricsData.demographics ? metricsData.demographics : null;
+      if (!d) return;
+      if (d.gender) drawGenderChart(d.gender);
+      if (d.age) drawAgeChart(d.age);
+      if (d.countries) drawGeoList(d.countries);
+      if (d.cities) drawCitiesList(d.cities);
+    }
+
+    // Scroll reveal animations
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-up');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => revealObserver.observe(el));
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && document.querySelector(href)) {
+          e.preventDefault();
+        }
+      });
+    });
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('Tacotios landing page loaded successfully');
+    });
+  </script>
+
+    
+
+
+<script>
+// Fix nav scroll - scrollIntoView for maximum compatibility
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var id = this.getAttribute('href').slice(1);
+    var el = document.getElementById(id);
+    if (el) {
+      e.preventDefault();
+      el.scrollIntoView({behavior: 'smooth', block: 'start'});
+      history.pushState(null, null, '#' + id);
+    }
+  });
+});
+window.addEventListener('load', function() {
+  if (window.location.hash) {
+    setTimeout(function() {
+      var id = window.location.hash.slice(1);
+      var el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({behavior: 'smooth', block: 'start'});
+      }
+    }, 600);
+  }
+});
+</script>
+<script>
+document.getElementById("contactForm").addEventListener("submit",async function(e){e.preventDefault();const b=document.getElementById("submitBtn"),f=this,er=document.getElementById("formError"),ok=document.getElementById("formSuccess");b.disabled=true;b.textContent="Enviando...";er.classList.remove("show");const d={contactName:f.contactName.value.trim(),brandName:f.brandName.value.trim(),email:f.email.value.trim(),phone:f.phone.value.trim()||"N/A",tipo:f.tipo.value,presupuesto:f.presupuesto.value||"N/A",mensaje:f.mensaje.value.trim(),source:"MediaKit Form",timestamp:new Date().toISOString(),pageUrl:location.href};try{const r=await fetch("https://hook.us1.make.com/cf532iqrbw81m4xsu07rpajhx0hhr",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)});if(r.ok){f.style.display="none";ok.classList.add("show")}else throw 1}catch(x){er.classList.add("show");b.disabled=false;b.textContent="Enviar propuesta"}});
+</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytics — TACOTIOS</title>
+<style>
+:root{--bg:#030307;--bg-card:#15151a;--orange:#e99b2a;--orange-cta:#f97316;--orange-soft:rgba(233,155,42,0.15);--orange-border:rgba(233,155,42,0.4);--text:#f3ede8;--text-dim:#9ca3af;--text-muted:#6b7280;--border:#364153;--white:#fff;--radius:8px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,system-ui,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;padding:40px 24px}
+.container{max-width:960px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:40px}
+.section-badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--orange);border:1px solid var(--orange-border);padding:5px 14px;border-radius:100px;margin-bottom:16px}
+.section-title{font-size:clamp(28px,4vw,40px);font-weight:700;color:var(--white);margin-bottom:8px;letter-spacing:-0.01em}
+.section-sub{font-size:14px;color:var(--text-dim)}
+
+/* ACCORDION */
+.analytics-accordion{display:flex;flex-direction:column;gap:12px}
+.acc-panel{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color 0.3s}
+.acc-panel:hover{border-color:var(--orange-border)}
+.acc-header{padding:20px 24px;cursor:pointer;display:flex;align-items:center;gap:16px;user-select:none}
+.acc-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.acc-icon.ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+.acc-icon.tt{background:#010101;border:1px solid #333}
+.acc-icon.fb{background:#1877F2}
+.acc-icon.yt{background:#FF0000}
+.acc-meta{flex:1;min-width:0}
+.acc-meta h4{font-size:16px;font-weight:700;color:var(--white);margin:0}
+.acc-meta .acc-summary{font-size:13px;color:var(--text-dim);margin-top:2px}
+.acc-arrow{width:28px;height:28px;border-radius:50%;background:rgba(54,65,83,0.4);display:flex;align-items:center;justify-content:center;transition:transform 0.3s;font-size:11px;color:var(--text-dim);flex-shrink:0}
+.acc-panel.open .acc-arrow{transform:rotate(180deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height 0.5s ease}
+.acc-panel.open .acc-body{max-height:8000px}
+.acc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:4px 24px 24px}
+.acc-card{background:rgba(255,255,255,0.03);border:1px solid rgba(54,65,83,0.5);border-radius:6px;overflow:hidden}
+.acc-card img{width:100%;display:block}
+.acc-card-label{padding:8px 12px;font-size:11px;color:var(--text-muted);text-align:center;border-top:1px solid rgba(54,65,83,0.3);background:rgba(0,0,0,0.2)}
+.note{text-align:center;margin-top:20px;font-size:12px;color:var(--text-muted)}
+
+@media(max-width:900px){.acc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){
+  .acc-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .acc-card-label{padding:6px 10px;font-size:10px}
+  .acc-header{padding:16px 18px;gap:12px}
+  .acc-meta h4{font-size:14px}
+  .acc-meta .acc-summary{font-size:12px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="section-header">
+    <div class="section-badge">Verificacion</div>
+    <div class="section-title">Analytics en tiempo real</div>
+    <div class="section-sub">Datos verificables de cada plataforma · Marzo 2026</div>
+  </div>
+
+  <div class="analytics-accordion">
+
+    <!-- INSTAGRAM -->
+    <div class="acc-panel open">
+      <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="acc-icon ig"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+        <div class="acc-meta">
+          <h4>Instagram</h4>
+          <div class="acc-summary">683K seguidores · 18.8M views/mes · 1.65M interacciones</div>
+        </div>
+        <div class="acc-arrow">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-grid">
+          <div class="acc-card"><img src="screenshots/ig-panel.jpg" alt="Panel profesional"><div class="acc-card-label">Panel profesional</div></div>
+          <div class="acc-card"><img src="screenshots/ig-visualizaciones.jpg" alt="Visualizaciones"><div class="acc-card-label">Visualizaciones 6.2M</div></div>
+          <div class="acc-card"><img src="screenshots/ig-interacciones.jpg" alt="Interacciones"><div class="acc-card-label">Interacciones 1.65M</div></div>
+          <div class="acc-card"><img src="screenshots/ig-engagement.jpg" alt="Engagement"><div class="acc-card-label">937K likes · 244K shared</div></div>
+          <div class="acc-card"><img src="screenshots/ig-seguidores.jpg" alt="Seguidores"><div class="acc-card-label">Seguidores 683K</div></div>
+          <div class="acc-card"><img src="screenshots/ig-edad-sexo.jpg" alt="Edad y sexo"><div class="acc-card-label">Edad y sexo</div></div>
+          <div class="acc-card"><img src="screenshots/ig-paises.jpg" alt="Paises"><div class="acc-card-label">Mexico 65.9%</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIKTOK -->
+    <div class="acc-panel">
+      <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="acc-icon tt"><svg width="16" height="18" viewBox="0 0 16 18" fill="white"><path d="M8.02 0h3.12c.18 1.61.82 2.86 1.81 3.74.99.88 2.25 1.37 3.05 1.5v3.04c-1.14-.04-2.25-.35-3.21-.87-.55-.3-1.04-.67-1.46-1.08v5.63c0 1.33-.37 2.58-1.07 3.62-.94 1.4-2.48 2.39-4.26 2.42-1.1.02-2.13-.29-3-.85-1.38-.89-2.33-2.42-2.48-4.18-.02-.23-.02-.46-.01-.69.12-1.61.88-3.01 2.03-3.93.88-.71 1.97-1.14 3.15-1.17v3.1c-.47.1-.9.31-1.25.62-.52.46-.84 1.11-.86 1.83-.03.98.55 1.83 1.39 2.2.33.15.7.23 1.08.22.96-.03 1.77-.63 2.1-1.47.1-.26.15-.55.15-.85V0h-.18z"/></svg></div>
+        <div class="acc-meta">
+          <h4>TikTok</h4>
+          <div class="acc-summary">598K seguidores · 9.1M views (+122.9%) · 109M espectadores/año</div>
+        </div>
+        <div class="acc-arrow">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-grid">
+          <div class="acc-card"><img src="screenshots/tt-metricas.png" alt="Metricas"><div class="acc-card-label">9.1M views · 523K likes</div></div>
+          <div class="acc-card"><img src="screenshots/tt-trafico.png" alt="Trafico"><div class="acc-card-label">88.2% Para ti (FYP)</div></div>
+          <div class="acc-card"><img src="screenshots/tt-espectadores.png" alt="Espectadores"><div class="acc-card-label">109M espectadores/año</div></div>
+          <div class="acc-card"><img src="screenshots/tt-ubicaciones.png" alt="Ubicaciones"><div class="acc-card-label">Mexico 87.4%</div></div>
+          <div class="acc-card"><img src="screenshots/tt-seguidores.png" alt="Seguidores"><div class="acc-card-label">598K · +166.7%</div></div>
+          <div class="acc-card"><img src="screenshots/tt-edad.png" alt="Edad"><div class="acc-card-label">25-34: 38.2%</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FACEBOOK -->
+    <div class="acc-panel">
+      <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="acc-icon fb"><svg width="10" height="18" viewBox="0 0 10 20" fill="white"><path d="M6.82 20v-9.08h3.05l.46-3.54H6.82V5.11c0-1.03.28-1.73 1.76-1.73h1.88V.14C10.17.1 9.06 0 7.76 0 5.05 0 3.19 1.65 3.19 4.7v2.62H.14v3.54h3.05V20h3.63z"/></svg></div>
+        <div class="acc-meta">
+          <h4>Facebook</h4>
+          <div class="acc-summary">650K seguidores · 9.8M views (+60%) · 681K interacciones (+80%)</div>
+        </div>
+        <div class="acc-arrow">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-grid">
+          <div class="acc-card"><img src="screenshots/fb-visualizaciones.png" alt="Visualizaciones"><div class="acc-card-label">9.8M views +60%</div></div>
+          <div class="acc-card"><img src="screenshots/fb-interacciones.png" alt="Interacciones"><div class="acc-card-label">681K interacciones +80%</div></div>
+          <div class="acc-card"><img src="screenshots/fb-seguidores.png" alt="Seguidores"><div class="acc-card-label">650K · +19% (90d)</div></div>
+          <div class="acc-card"><img src="screenshots/fb-demografica.png" alt="Demografia"><div class="acc-card-label">67% masc · CDMX 45.1%</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- YOUTUBE -->
+    <div class="acc-panel">
+      <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="acc-icon yt"><svg width="18" height="13" viewBox="0 0 24 17" fill="white"><path d="M23.5 2.5s-.2-1.7-.9-2.4C21.7-.7 20.7-.7 20.2-.8 16.9-1 12-1 12-1S7.1-1 3.8-.8c-.5.1-1.5.1-2.4.9C.7.8.5 2.5.5 2.5S.3 4.5.3 6.5v1.8c0 2 .2 4 .2 4s.2 1.7.9 2.4c.9.9 2 .9 2.5 1 1.8.2 7.1.2 7.1.2s4.9 0 8.2-.2c.5-.1 1.5-.1 2.4-.9.7-.7.9-2.4.9-2.4s.2-2 .2-4V6.5c0-2-.2-4-.2-4zM9.5 11.3V3.4l6.5 4-6.5 3.9z"/></svg></div>
+        <div class="acc-meta">
+          <h4>YouTube</h4>
+          <div class="acc-summary">85.4K subs · 266K views/mes · 80.5K audiencia mensual</div>
+        </div>
+        <div class="acc-arrow">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-grid">
+          <div class="acc-card"><img src="screenshots/yt-shorts.png" alt="Shorts"><div class="acc-card-label">266K views · 67.4% ret.</div></div>
+          <div class="acc-card"><img src="screenshots/yt-publico.png" alt="Publico"><div class="acc-card-label">25-34: 34% · Cel 81.7%</div></div>
+          <div class="acc-card"><img src="screenshots/yt-geo.png" alt="Geografia"><div class="acc-card-label">Mexico 62.1% · 79.7% masc</div></div>
+          <div class="acc-card"><img src="screenshots/yt-canal.jpg" alt="Canal"><div class="acc-card-label">85.4K subs · 402 videos</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="note">Capturas verificables bajo solicitud · Datos en tiempo real · Marzo 2026</p>
+</div>
+</body>
+</html>
