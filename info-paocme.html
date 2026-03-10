@@ -965,11 +965,13 @@
       var svg = document.getElementById('age-chart');
       if (!svg || !data) return;
       var entries = Object.entries(data);
-      var totalW = Math.max(entries.length * 52 + 30, 400);
+      var barW=40, gap=12, chartH=160, baseY=180;
+      var barsW = entries.length * barW + (entries.length - 1) * gap;
+      var totalW = Math.max(barsW + 60, 400);
+      var startX = (totalW - barsW) / 2;
       svg.setAttribute('viewBox', '0 0 '+totalW+' 220'); svg.innerHTML = '';
       var ns = 'http://www.w3.org/2000/svg';
       var maxVal = Math.max.apply(null, entries.map(function(e){return e[1]}));
-      var barW=40, gap=12, startX=30, chartH=160, baseY=180;
       entries.forEach(function(entry, i) {
         var label=entry[0], val=entry[1], x=startX+i*(barW+gap), h=(val/maxVal)*chartH;
         var rect = document.createElementNS(ns, 'rect');
