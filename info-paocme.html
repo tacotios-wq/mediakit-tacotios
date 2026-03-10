@@ -169,6 +169,7 @@
     .metric-card {
       background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
       padding: 1.2rem; border-top: 3px solid var(--olive); transition: all 0.3s ease;
+      min-height: 130px;
     }
     .metric-value { font-size: 1.8rem; font-weight: 800; color: var(--olive); margin-bottom: 0.3rem; }
     .metric-label { font-size: 0.78rem; color: var(--text-dim); font-weight: 500; }
@@ -179,8 +180,8 @@
       transition: opacity 0.15s ease-out, transform 0.2s ease-out;
     }
     .card-back {
-      position:absolute; inset:0; padding:0.55rem 0.65rem; opacity:0; transform:translateY(4px);
-      display:flex; flex-direction:column; justify-content:center; gap:3px;
+      position:absolute; inset:0; padding:0.75rem 0.85rem; opacity:0; transform:translateY(4px);
+      display:flex; flex-direction:column; justify-content:center; gap:5px;
       background:var(--bg-card); z-index:2; border-top:2px solid var(--olive);
       visibility:hidden; pointer-events:none;
       transition: opacity 0.25s ease-in 0.08s, transform 0.25s ease-in 0.08s, visibility 0s linear 0.08s;
@@ -200,25 +201,25 @@
       padding:2px 0; border-bottom:1px solid rgba(54,65,83,0.2);
     }
     .card-back-row:last-child { border-bottom:none; }
-    .card-back-platform { font-size:0.6rem; color:var(--text-dim); font-weight:500; }
-    .card-back-val { font-size:0.65rem; color:var(--olive); font-weight:700; }
+    .card-back-platform { font-size:0.72rem; color:var(--text-dim); font-weight:500; }
+    .card-back-val { font-size:0.78rem; color:var(--olive); font-weight:700; }
     .card-back-note {
-      font-size:0.52rem; color:var(--text-muted); margin-top:2px;
-      border-top:1px solid rgba(54,65,83,0.25); padding-top:2px; line-height:1.3;
+      font-size:0.6rem; color:var(--text-muted); margin-top:2px;
+      border-top:1px solid rgba(54,65,83,0.25); padding-top:3px; line-height:1.3;
     }
-    .card-back-formula { font-size:0.55rem; color:var(--text-dim); line-height:1.4; }
+    .card-back-formula { font-size:0.65rem; color:var(--text-dim); line-height:1.4; }
     .card-back-formula span { color:#fff; font-weight:600; }
     .card-back-highlight {
-      font-size:0.7rem; color:var(--olive); font-weight:700; text-align:center; margin-bottom:1px;
+      font-size:0.85rem; color:var(--olive); font-weight:700; text-align:center; margin-bottom:2px;
     }
     @media(max-width:600px){
-      .card-back { padding:0.45rem 0.55rem; }
-      .card-back-row { padding:1px 0; }
-      .card-back-platform { font-size:0.55rem; }
-      .card-back-val { font-size:0.6rem; }
-      .card-back-note { font-size:0.48rem; }
-      .card-back-formula { font-size:0.5rem; }
-      .card-back-highlight { font-size:0.62rem; }
+      .card-back { padding:0.6rem 0.7rem; }
+      .card-back-row { padding:2px 0; }
+      .card-back-platform { font-size:0.65rem; }
+      .card-back-val { font-size:0.7rem; }
+      .card-back-note { font-size:0.55rem; }
+      .card-back-formula { font-size:0.58rem; }
+      .card-back-highlight { font-size:0.75rem; }
     }
 
     /* Glow blur hover effect for cards */
