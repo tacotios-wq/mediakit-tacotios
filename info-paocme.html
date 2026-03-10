@@ -682,16 +682,6 @@
         <div class="geo-list" id="geo-list"></div>
       </div>
     </div>
-    <div class="chart-card fade-up" style="animation-delay: 0.6s;">
-      <div class="chart-title">Ciudades Top</div>
-      <div class="platform-tabs" data-chart="cities">
-        <button class="platform-tab active" data-platform="instagram">IG</button>
-        <button class="platform-tab" data-platform="tiktok">TT</button>
-        <button class="platform-tab" data-platform="facebook">FB</button>
-        <button class="platform-tab" data-platform="youtube">YT</button>
-      </div>
-      <div class="geo-list" id="cities-list"></div>
-    </div>
   </section>
 
   <!-- PLATAFORMAS SECTION (Accordion) -->
@@ -1021,8 +1011,6 @@
       if (g.gender) drawGenderChart(g.gender, true);
       if (g.age) drawAgeChart(g.age);
       if (g.countries) drawGeoList(g.countries, 'geo-list');
-      var cities = (d.instagram && d.instagram.cities) || g.cities;
-      if (cities) drawGeoList(cities, 'cities-list');
     }
 
     // ===== PLATFORM TAB SWITCHING (event delegation) =====
@@ -1046,9 +1034,6 @@
       } else if (chart === 'geo') {
         data = getDemoData(platform, 'countries');
         if (data) drawGeoList(data, 'geo-list');
-      } else if (chart === 'cities') {
-        data = getDemoData(platform, 'cities');
-        if (data) drawGeoList(data, 'cities-list');
       }
     });
 
