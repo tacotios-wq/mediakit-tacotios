@@ -1,0 +1,20 @@
+{
+  "rewrites": [
+    {
+      "source": "/info",
+      "destination": "/info.html"
+    },
+    {
+      "source": "/info-paocme",
+      "destination": "/info-paocme.html"
+    },
+    {
+      "source": "/analytics",
+      "destination": "/analytics.html"
+    },
+    {
+      "source": "/pitch-amex",
+      "destination": "/pitch-amex.html"
+    }
+  ]
+}
