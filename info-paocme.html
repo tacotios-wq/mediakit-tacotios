@@ -93,8 +93,9 @@
 
     .nav-links {
       display: flex;
-      gap: 2.5rem;
+      gap: 2.2rem;
       list-style: none;
+      align-items: center;
     }
 
     .nav-links a {
@@ -103,37 +104,151 @@
       font-size: 0.95rem;
       font-weight: 500;
       transition: color 0.3s ease;
+      position: relative;
+      padding-bottom: 0.15rem;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -0.2rem;
+      width: 100%;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--olive-light);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
     }
 
     .nav-links a:hover {
-      color: var(--olive);
+      color: var(--olive-light);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
     }
 
     .hamburger-btn {
       display: none;
-      background: none;
-      border: 1px solid rgba(184, 163, 59, 0.3);
-      color: var(--olive);
-      font-size: 1.5rem;
-      padding: 0.3rem 0.6rem;
-      border-radius: 6px;
+      align-items: center;
+      gap: 0.55rem;
+      background: linear-gradient(180deg, rgba(33, 10, 11, 0.98), rgba(18, 6, 7, 0.98));
+      border: 1px solid var(--olive-border);
+      color: var(--white);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.5rem 0.75rem;
+      border-radius: 999px;
       cursor: pointer;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .hamburger-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(201, 42, 42, 0.9);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.45);
+    }
+
+    .hamburger-lines {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 4px;
+      line-height: 0;
+    }
+
+    .hamburger-line {
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--olive-light);
+      transition: transform 0.25s ease, opacity 0.2s ease;
+    }
+
+    .hamburger-label {
+      color: var(--text-dim);
+      font-size: 0.72rem;
+      letter-spacing: 0.11em;
+    }
+
+    .hamburger-btn.is-open .hamburger-line:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .hamburger-btn.is-open .hamburger-line:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0.2);
+    }
+
+    .hamburger-btn.is-open .hamburger-line:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
     }
 
     @media (max-width: 900px) {
+      .nav-container {
+        position: relative;
+      }
+
       .hamburger-btn {
-        display: block;
+        display: inline-flex;
       }
 
       .nav-links {
-        display: none;
+        position: absolute;
+        right: 0;
+        top: calc(100% + 0.7rem);
+        width: min(340px, calc(100vw - 2rem));
+        padding: 0.75rem;
+        border-radius: 14px;
+        border: 1px solid var(--olive-border);
+        background: linear-gradient(150deg, rgba(21, 21, 26, 0.98) 0%, rgba(45, 8, 10, 0.96) 100%);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        display: flex;
         flex-direction: column;
-        width: 100%;
-        text-align: center;
+        gap: 0.35rem;
+        text-align: left;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-10px) scale(0.98);
+        transform-origin: top right;
+        transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .nav-links::before {
+        content: '';
+        position: absolute;
+        left: 14px;
+        right: 14px;
+        top: 0;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0));
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 0.62rem 0.8rem;
+        border-radius: 8px;
+        font-size: 0.93rem;
+        line-height: 1.3;
+      }
+
+      .nav-links a::after {
+        display: none;
+      }
+
+      .nav-links a:hover {
+        color: var(--white);
+        background: rgba(201, 42, 42, 0.16);
       }
 
       .nav-links.nav-open {
-        display: flex;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0) scale(1);
       }
     }
 
@@ -1224,11 +1339,6 @@
         padding: 1rem;
       }
 
-      .nav-links {
-        gap: 1.5rem;
-        font-size: 0.85rem;
-      }
-
       .hero-cover {
         padding: 6rem 1.5rem 3rem;
       }
@@ -1280,6 +1390,15 @@
       }
 
       .nav-links {
+        width: min(320px, calc(100vw - 1.5rem));
+        top: calc(100% + 0.55rem);
+      }
+
+      .hamburger-btn {
+        padding: 0.45rem 0.65rem;
+      }
+
+      .hamburger-label {
         display: none;
       }
 
@@ -1329,9 +1448,16 @@
   <nav>
     <div class="nav-container">
       <div class="nav-logo">PAOCME</div>
-      <button class="hamburger-btn" onclick="document.querySelector('.nav-links').classList.toggle('nav-open')"
-        aria-label="Menu">&#9776;</button>
-      <ul class="nav-links">
+      <button class="hamburger-btn" type="button" aria-label="Abrir menu" aria-controls="nav-links"
+        aria-expanded="false">
+        <span class="hamburger-lines" aria-hidden="true">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </span>
+        <span class="hamburger-label">Men&#250;</span>
+      </button>
+      <ul class="nav-links" id="nav-links">
         <li><a href="#video">Video</a></li>
         <li><a href="#bio">Quién es</a></li>
         <li><a href="#metricas">Métricas</a></li>
@@ -2108,6 +2234,47 @@
     fetch('metrics.json').then(r => r.json()).then(d => { Object.assign(metricsData, d); populateMetrics() }).catch(() => { populateMetrics() });
 
     var currentPlatform = { gender: 'global', age: 'global', geo: 'global', cities: 'instagram' };
+    var navMenu = document.getElementById('nav-links');
+    var navToggle = document.querySelector('.hamburger-btn');
+    var navShell = document.querySelector('.nav-container');
+
+    function setNavOpen(open) {
+      if (!navMenu || !navToggle) return;
+      navMenu.classList.toggle('nav-open', open);
+      navToggle.classList.toggle('is-open', open);
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', open ? 'Cerrar menu' : 'Abrir menu');
+    }
+
+    if (navMenu && navToggle && navShell) {
+      navToggle.addEventListener('click', function () {
+        setNavOpen(!navMenu.classList.contains('nav-open'));
+      });
+
+      navMenu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          setNavOpen(false);
+        });
+      });
+
+      document.addEventListener('click', function (event) {
+        if (window.innerWidth <= 900 && navMenu.classList.contains('nav-open') && !navShell.contains(event.target)) {
+          setNavOpen(false);
+        }
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+          setNavOpen(false);
+        }
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 900) {
+          setNavOpen(false);
+        }
+      });
+    }
 
     function populateMetrics() {
       document.getElementById('metrics-date').textContent = metricsData.updated_at;
