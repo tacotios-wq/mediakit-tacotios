@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PAOCME | Aniol Guell @tacotios - Media Kit</title>
+  <meta name="description" content="PAOCME by Paola Calderón — Media Kit de Aniol Guell @tacotios. 2M+ seguidores. Creador de contenido gastronómico mexicano.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #030307;
+      --bg-nav: rgba(13, 10, 11, 0.95);
+      --bg-card: #15151a;
+      --olive: #B8A33B;
+      --olive-cta: #C9B344;
+      --olive-cta-hover: #A8922F;
+      --olive-soft: rgba(184, 163, 59, 0.15);
+      --olive-border: rgba(184, 163, 59, 0.4);
+      --olive-cover: #B8A33B;
+      --text: #f3ede8;
+      --text-dim: #9ca3af;
+      --text-muted: #6b7280;
+      --border: #364153;
+      --white: #ffffff;
+      --radius: 8px;
+      --green: #22c55e;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: var(--bg-nav); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border); padding: 1rem 2rem;
+    }
+    .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .nav-logo {
+      font-size: 1.25rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--olive) 0%, var(--olive-cta) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      letter-spacing: 3px;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.3s ease; }
+    .nav-links a:hover { color: var(--olive); }
+    .hamburger-btn { display: none; background: none; border: 1px solid rgba(184,163,59,0.3); color: var(--olive); font-size: 1.5rem; padding: 0.3rem 0.6rem; border-radius: 6px; cursor: pointer; }
+    @media (max-width: 900px) {
+      .hamburger-btn { display: block; }
+      .nav-links { display: none; flex-direction: column; width: 100%; text-align: center; }
+      .nav-links.nav-open { display: flex; }
+    }
+
+    /* Hero / Cover Section — PAOCME style */
+    .hero-cover {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 8rem 2rem 4rem; position: relative; overflow: hidden;
+      background: var(--olive-cover); color: #000;
+    }
+    .hero-cover::before {
+      content: ''; position: absolute; left: 40px; top: 10%; bottom: 10%;
+      width: 2px; background: #000;
+    }
+    .hero-side-text {
+      position: absolute; writing-mode: vertical-rl; text-orientation: mixed;
+      font-size: 0.85rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #000;
+    }
+    .hero-side-left-top { left: 16px; top: 12%; }
+    .hero-side-left-bottom { left: 16px; bottom: 12%; }
+    .hero-side-right { right: 16px; top: 12%; }
+    .hero-cover-content { text-align: center; position: relative; z-index: 2; max-width: 800px; }
+    .paocme-logo {
+      font-size: clamp(4rem, 10vw, 7rem); font-weight: 300; letter-spacing: 12px;
+      color: #000; margin-bottom: 0.5rem; line-height: 1;
+    }
+    .paocme-sub { font-size: 1.1rem; font-weight: 400; letter-spacing: 8px; text-transform: uppercase; color: #000; margin-bottom: 3rem; }
+    .hero-talent-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: rgba(0,0,0,0.6); margin-bottom: 0.5rem; }
+    .hero-talent-name {
+      font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; color: #000; letter-spacing: -1px; margin-bottom: 0.25rem;
+    }
+    .hero-talent-handle { font-size: 1.1rem; color: rgba(0,0,0,0.7); margin-bottom: 3rem; }
+    .hero-talent-handle a { color: #000; text-decoration: underline; }
+    .hero-cover .btn-dark {
+      padding: 1rem 2.5rem; border-radius: var(--radius); font-weight: 600; font-size: 1rem;
+      border: 2px solid #000; cursor: pointer; transition: all 0.3s ease;
+      text-decoration: none; display: inline-block; background: #000; color: var(--olive-cover);
+    }
+    .hero-cover .btn-dark:hover { background: rgba(0,0,0,0.8); transform: translateY(-2px); }
+
+    /* Flower decoration */
+    .flower-deco {
+      position: absolute; bottom: 40px; right: 40px; width: 120px; height: 120px; opacity: 0.8;
+    }
+
+    /* Video Section */
+    .video-section {
+      padding: 6rem 2rem; max-width: 500px; margin: 0 auto; text-align: center;
+    }
+    .video-wrapper {
+      position: relative; width: 100%; aspect-ratio: 9/16; max-height: 80vh;
+      border-radius: 16px; overflow: hidden; border: 2px solid var(--olive-border);
+      box-shadow: 0 20px 60px rgba(184, 163, 59, 0.15);
+      margin: 0 auto;
+    }
+    .video-wrapper iframe {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+    }
+    .video-label {
+      font-size: 0.85rem; font-weight: 600; color: var(--olive); text-transform: uppercase;
+      letter-spacing: 2px; margin-bottom: 1rem;
+    }
+
+    /* Sections */
+    section { padding: 6rem 2rem; max-width: 1400px; margin: 0 auto; }
+    .section-label { font-size: 0.9rem; font-weight: 700; color: var(--olive); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; }
+    .section-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 2rem; color: var(--text); }
+
+    /* Bio / Quien Soy */
+    .bio-section {
+      background: linear-gradient(135deg, rgba(184, 163, 59, 0.05) 0%, rgba(184, 163, 59, 0.02) 100%);
+      border-radius: 16px; padding: 4rem;
+    }
+    .bio-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .bio-text p { font-size: 1.1rem; color: var(--text-dim); margin-bottom: 1.5rem; line-height: 1.8; }
+    .bio-text p:first-child { color: var(--text); font-weight: 500; }
+    .bio-text strong { color: var(--text); }
+    .bio-badge {
+      display: inline-block; background: var(--olive-soft); border: 1px solid var(--olive-border);
+      color: var(--olive); padding: 0.4rem 1rem; border-radius: var(--radius);
+      font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem;
+    }
+    .bio-stats-sidebar { display: flex; flex-direction: column; gap: 2rem; }
+    .bio-stat-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 2rem; text-align: center; border-top: 4px solid var(--olive); transition: all 0.3s ease;
+    }
+    /* hover handled by glow effect */
+    .bio-stat-value { font-size: 2.5rem; font-weight: 800; color: var(--olive); margin-bottom: 0.25rem; }
+    .bio-stat-label { font-size: 0.9rem; color: var(--text-dim); font-weight: 500; }
+    .bio-geo { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
+    .bio-geo-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 0.6rem 1rem; font-size: 0.85rem; color: var(--text-dim); }
+    .bio-geo-item span { color: var(--olive); font-weight: 700; margin-left: 0.3rem; }
+    .bio-demo { display: flex; gap: 2rem; margin-top: 1rem; }
+    .bio-demo-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; color: var(--text-dim); }
+    .bio-demo-item strong { color: var(--olive); font-weight: 700; }
+
+    /* Metricas Section */
+    .metricas-badge {
+      display: inline-block; background: var(--olive-soft); border: 1px solid var(--olive-border);
+      color: var(--olive); padding: 0.5rem 1rem; border-radius: var(--radius);
+      font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem;
+    }
+    .metrics-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.2rem; margin-top: 3rem; }
+    .metric-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 1.2rem; border-top: 3px solid var(--olive); transition: all 0.3s ease;
+    }
+    .metric-value { font-size: 1.8rem; font-weight: 800; color: var(--olive); margin-bottom: 0.3rem; }
+    .metric-label { font-size: 0.78rem; color: var(--text-dim); font-weight: 500; }
+
+    /* Card front/back flip system */
+    .metric-card, .bio-stat-card { overflow:hidden; }
+    .card-front, .card-back {
+      transition: opacity 0.35s cubic-bezier(0.25,1,0.5,1), transform 0.35s cubic-bezier(0.25,1,0.5,1);
+    }
+    .card-back {
+      position:absolute; inset:0; padding:1.2rem; opacity:0; transform:translateY(6px);
+      display:flex; flex-direction:column; justify-content:center; gap:5px;
+      background:var(--bg-card); z-index:2; border-top:3px solid var(--olive);
+      visibility:hidden; pointer-events:none;
+    }
+    .bio-stat-card .card-back { border-top:4px solid var(--olive); padding:1.5rem; }
+    .metric-card:hover .card-front, .bio-stat-card:hover .card-front {
+      opacity:0; transform:translateY(-6px);
+    }
+    .metric-card:hover .card-back, .bio-stat-card:hover .card-back {
+      opacity:1; transform:translateY(0);
+      visibility:visible; pointer-events:auto;
+    }
+    /* Back content styling */
+    .card-back-row {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:3px 0; border-bottom:1px solid rgba(54,65,83,0.3);
+    }
+    .card-back-row:last-child { border-bottom:none; }
+    .card-back-platform { font-size:0.7rem; color:var(--text-dim); font-weight:500; }
+    .card-back-val { font-size:0.75rem; color:var(--olive); font-weight:700; }
+    .card-back-note {
+      font-size:0.6rem; color:var(--text-muted); margin-top:4px;
+      border-top:1px solid rgba(54,65,83,0.4); padding-top:4px;
+    }
+    .card-back-formula { font-size:0.65rem; color:var(--text-dim); line-height:1.5; }
+    .card-back-formula span { color:#fff; font-weight:600; }
+    .card-back-highlight {
+      font-size:0.85rem; color:var(--olive); font-weight:700; text-align:center; margin-bottom:2px;
+    }
+    @media(max-width:600px){
+      .card-back { padding:0.8rem; }
+      .card-back-row { padding:2px 0; }
+      .card-back-platform { font-size:0.62rem; }
+      .card-back-val { font-size:0.65rem; }
+    }
+
+    /* Glow blur hover effect for cards */
+    .metric-card, .bio-stat-card, .chart-card, .acc-panel {
+      position:relative;
+      transition: transform 0.35s cubic-bezier(0.25,1,0.5,1), border-color 0.35s ease;
+    }
+    .metric-card::before, .bio-stat-card::before, .chart-card::before {
+      content:'';position:absolute;inset:-1px;border-radius:inherit;
+      opacity:0;z-index:-1;
+      background:radial-gradient(ellipse at center, rgba(184,163,59,0.25) 0%, transparent 70%);
+      filter:blur(18px);
+      transition:opacity 0.4s ease;
+      pointer-events:none;
+    }
+    .metric-card:hover::before, .bio-stat-card:hover::before, .chart-card:hover::before {
+      opacity:1;
+    }
+    .metric-card:hover, .bio-stat-card:hover, .chart-card:hover {
+      border-color:var(--olive-border);transform:translateY(-4px);
+    }
+
+    /* Audiencia */
+    .charts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+    .chart-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 2rem; border-top: 4px solid var(--olive); display: flex; flex-direction: column; align-items: center;
+    }
+    .chart-title { font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 1.5rem; text-align: center; }
+    .chart-container { width: 100%; display: flex; justify-content: center; }
+    svg { max-width: 100%; height: auto; }
+
+    /* ANALYTICS & PLATFORMS ACCORDION */
+    .analytics-accordion{display:flex;flex-direction:column;gap:12px}
+    .acc-panel{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color 0.3s}
+    .acc-panel:hover{border-color:var(--olive-border)}
+    .acc-header{padding:20px 24px;cursor:pointer;display:flex;align-items:center;gap:16px;user-select:none}
+    .acc-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .acc-icon.ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+    .acc-icon.tt{background:#010101;border:1px solid #333}
+    .acc-icon.fb{background:#1877F2}
+    .acc-icon.yt{background:#FF0000}
+    .acc-meta{flex:1;min-width:0}
+    .acc-meta h4{font-size:16px;font-weight:700;color:var(--white);margin:0}
+    .acc-meta .acc-summary{font-size:13px;color:var(--text-dim);margin-top:2px}
+    .acc-arrow{width:28px;height:28px;border-radius:50%;background:rgba(54,65,83,0.4);display:flex;align-items:center;justify-content:center;transition:transform 0.3s;font-size:11px;color:var(--text-dim);flex-shrink:0}
+    .acc-panel.open .acc-arrow{transform:rotate(180deg)}
+    .acc-body{max-height:0;overflow:hidden;transition:max-height 0.5s ease}
+    .acc-panel.open .acc-body{max-height:8000px}
+    .acc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:4px 24px 24px}
+    .acc-card{background:rgba(255,255,255,0.03);border:1px solid rgba(54,65,83,0.5);border-radius:6px;overflow:hidden}
+    .acc-card img{width:100%;display:block}
+    .acc-card-label{padding:8px 12px;font-size:11px;color:var(--text-muted);text-align:center;border-top:1px solid rgba(54,65,83,0.3);background:rgba(0,0,0,0.2)}
+    .analytics-note{text-align:center;margin-top:20px;font-size:12px;color:var(--text-muted)}
+    /* IG analytics: constrain tall phone screenshots */
+    .ig-analytics-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:4px 24px 24px; }
+    .ig-analytics-grid .acc-card img {
+      width:100%; display:block; max-height:400px;
+      object-fit:cover; object-position:top; border-radius:4px;
+    }
+    .ig-analytics-grid .acc-card.landscape img {
+      max-height:none; object-fit:contain;
+    }
+    /* Row spanning for the 3 landscape cards */
+    .ig-analytics-grid .ig-row-landscape {
+      grid-column: 1 / -1;
+      display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;
+    }
+    .ig-analytics-grid .ig-row-landscape .acc-card img {
+      max-height:none; object-fit:contain;
+    }
+    @media(max-width:600px){
+      .ig-analytics-grid { grid-template-columns:1fr; }
+      .ig-analytics-grid .acc-card img { max-height:320px; }
+      .ig-analytics-grid .ig-row-landscape { grid-template-columns:1fr; }
+    }
+
+    /* Smaller screenshots for FB & TT */
+    .acc-panel-fb .acc-body > div, .acc-panel-tt .acc-grid { max-width:720px; margin:0 auto; }
+    .acc-panel-fb .acc-card img, .acc-panel-tt .acc-card img { border-radius:4px; }
+    @media(max-width:600px){ .acc-panel-fb .acc-body > div, .acc-panel-tt .acc-grid { max-width:100%; } }
+    @media(max-width:900px){.acc-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:500px){.acc-grid{grid-template-columns:1fr 1fr;gap:8px}.acc-card-label{padding:6px 10px;font-size:10px}.acc-header{padding:16px 18px;gap:12px}.acc-meta h4{font-size:14px}.acc-meta .acc-summary{font-size:12px}}
+
+    /* Platform Tabs */
+    .platform-tabs{display:flex;gap:6px;justify-content:center;margin-bottom:1rem}
+    .platform-tab{padding:4px 12px;border-radius:20px;font-size:0.7rem;font-weight:600;background:rgba(54,65,83,0.3);color:var(--text-dim);border:1px solid transparent;cursor:pointer;transition:all 0.3s;font-family:inherit}
+    .platform-tab.active{background:var(--olive-soft);color:var(--olive);border-color:var(--olive-border)}
+    .platform-tab:hover{border-color:var(--olive-border)}
+
+    /* Contact / CTA */
+    .cta-section {
+      background: var(--olive-cover); border-radius: 16px; padding: 6rem 2rem; text-align: center;
+      position: relative; color: #000;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; left: 40px; top: 10%; bottom: 10%; width: 2px; background: #000;
+    }
+    .cta-paocme-logo { font-size: clamp(3rem, 8vw, 5rem); font-weight: 300; letter-spacing: 10px; color: #000; margin-bottom: 1.5rem; }
+    .cta-contact-name { font-size: 1.25rem; font-weight: 500; color: #000; margin-bottom: 0.5rem; }
+    .cta-contact-btn { display: inline-flex; align-items: center; gap: 10px; padding: 0.85rem 2rem; border-radius: 50px; font-size: 1.05rem; font-weight: 600; text-decoration: none; transition: all 0.3s ease; margin-bottom: 0.75rem; }
+    .cta-whatsapp { background: rgba(0,0,0,0.15); color: #000; border: 2px solid rgba(0,0,0,0.3); }
+    .cta-whatsapp:hover { background: #25D366; color: #fff; border-color: #25D366; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,211,102,0.3); }
+    .cta-mailto { background: rgba(0,0,0,0.15); color: #000; border: 2px solid rgba(0,0,0,0.3); }
+    .cta-mailto:hover { background: #000; color: var(--olive); border-color: #000; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+    .cta-services { display: flex; gap: 4rem; justify-content: center; margin-top: 2rem; font-size: 0.85rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: rgba(0,0,0,0.6); }
+    .cta-side-text { position: absolute; writing-mode: vertical-rl; font-size: 0.85rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #000; }
+    .cta-side-left { left: 16px; top: 12%; }
+    .cta-side-right { right: 16px; top: 12%; }
+    .cta-side-left-bottom { left: 16px; bottom: 12%; }
+
+    /* Buttons */
+    .btn { padding: 1rem 2rem; border-radius: var(--radius); font-weight: 600; font-size: 1rem; border: none; cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-block; }
+    .btn-primary { background: linear-gradient(135deg, var(--olive) 0%, var(--olive-cta) 100%); color: var(--bg); }
+    .btn-primary:hover { background: linear-gradient(135deg, var(--olive-cta) 0%, var(--olive-cta-hover) 100%); transform: translateY(-2px); }
+    .btn-secondary { background: transparent; color: var(--olive); border: 2px solid var(--olive); }
+    .btn-secondary:hover { background: var(--olive-soft); border-color: var(--olive-cta); }
+
+    /* Footer */
+    footer { padding: 3rem 2rem; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.95rem; }
+
+    /* Animations */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-up { animation: fadeUp 0.8s ease forwards; opacity: 0; }
+
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      nav { padding: 1rem; }
+      .nav-links { gap: 1.5rem; font-size: 0.85rem; }
+      .hero-cover { padding: 6rem 1.5rem 3rem; }
+      .bio-content { grid-template-columns: 1fr; }
+      .metrics-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+      .charts-grid { grid-template-columns: 1fr; }
+      /* platforms-grid removed — now using accordion */
+      .cta-services { gap: 2rem; flex-wrap: wrap; }
+      .btn { width: 100%; }
+      .hero-side-text { display: none; }
+      .cta-side-text { display: none; }
+      .hero-cover::before, .cta-section::before { display: none; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0.75rem; }
+      .nav-logo { font-size: 1rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .hero-cover { padding: 5rem 1rem 2rem; }
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+      .bio-section { padding: 2rem; }
+      .bio-geo { flex-direction: column; }
+      .cta-section { padding: 3rem 1rem; }
+      .section-title { font-size: 1.8rem; }
+    }
+  </style>
+
+  <meta property="og:title" content="PAOCME | Aniol Guell @tacotios - Media Kit">
+  <meta property="og:description" content="PAOCME by Paola Calderón — Media Kit de Aniol Guell @tacotios. 2M+ seguidores. Creador de contenido gastronómico mexicano.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mediakit-tacotios.vercel.app/info-paocme">
+  <link rel="canonical" href="https://mediakit-tacotios.vercel.app/info-paocme">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/png" href="/favicon.png">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="nav-logo">PAOCME</div>
+      <button class="hamburger-btn" onclick="document.querySelector('.nav-links').classList.toggle('nav-open')" aria-label="Menu">&#9776;</button>
+      <ul class="nav-links">
+        <li><a href="#video">Video</a></li>
+        <li><a href="#bio">Quién es</a></li>
+        <li><a href="#metricas">Métricas</a></li>
+        <li><a href="#audiencia">Audiencia</a></li>
+        <li><a href="#plataformas">Plataformas</a></li>
+        <li><a href="#analytics">Analytics</a></li>
+        <li><a href="#cta">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO COVER — PAOCME Style (matching PDF page 1) -->
+  <section class="hero-cover">
+    <div class="hero-side-text hero-side-left-top">ANIOL GUELL</div>
+    <div class="hero-side-text hero-side-left-bottom">MEDIA KIT</div>
+    <div class="hero-side-text hero-side-right">@PAOC.ME</div>
+    <div class="hero-cover-content">
+      <div class="hero-talent-label">Talento representado</div>
+      <div class="hero-talent-name">TACOTIOS</div>
+      <div class="hero-talent-handle"><a href="https://instagram.com/tacotios" target="_blank">@tacotios</a></div>
+      <div class="paocme-logo">PAOCME</div>
+      <div class="paocme-sub">BY PAOLA CALDER&#211;N</div>
+      <a href="#metricas" class="btn-dark">Ver m&#233;tricas &#8595;</a>
+    </div>
+    <!-- Flower decoration (SVG) -->
+    <svg class="flower-deco" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="30" cy="50" r="12" stroke="#000" stroke-width="2" fill="none"/>
+      <circle cx="30" cy="50" r="3" fill="#000"/>
+      <circle cx="60" cy="35" r="10" stroke="#000" stroke-width="2" fill="none"/>
+      <circle cx="60" cy="35" r="3" fill="#000"/>
+      <circle cx="85" cy="45" r="14" stroke="#000" stroke-width="2" fill="none"/>
+      <circle cx="85" cy="45" r="4" fill="#000"/>
+      <path d="M30 62 L30 110" stroke="#000" stroke-width="2"/>
+      <path d="M60 45 L55 110" stroke="#000" stroke-width="2"/>
+      <path d="M85 59 L80 110" stroke="#000" stroke-width="2"/>
+      <path d="M35 75 C45 70 50 75 48 85" stroke="#000" stroke-width="1.5" fill="none"/>
+      <path d="M75 75 C65 72 62 78 65 88" stroke="#000" stroke-width="1.5" fill="none"/>
+    </svg>
+  </section>
+
+  <!-- VIDEO SECTION -->
+  <section id="video" class="video-section">
+    <div class="video-label">Conoce a Aniol</div>
+    <div class="video-wrapper">
+      <iframe src="https://drive.google.com/file/d/1uI0GPAKezLE2xlZW8JVDyeM8CSTB3s3Y/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- BIO SECTION (from PDF page 2) -->
+  <section id="bio" class="bio-section">
+    <div class="section-label">Creador de Contenido Gastronómico</div>
+    <h2 class="section-title">ANIOL GUELL <span style="color:var(--olive);">@tacotios</span></h2>
+    <div class="bio-content">
+      <div class="bio-text">
+        <p>Con una personalidad magnética y una curiosidad insaciable, es <strong>español de nacimiento y mexicano por devoción.</strong></p>
+        <p>A través de su contenido, <strong>explora la gastronomía mexicana</strong> con autenticidad y entusiasmo, descubriendo cada día un nuevo restaurante o joya de comida callejera.</p>
+        <p>Su carisma natural y pasión genuina por los sabores, historias y tradiciones detrás de cada platillo lo han convertido en un creador que <strong>conecta con su audiencia desde el antojo,</strong> la emoción <strong>y el descubrimiento constante.</strong></p>
+
+        <div style="margin-top:2rem;">
+          <div class="bio-geo">
+            <div class="bio-geo-item">México<span>67.8%</span></div>
+            <div class="bio-geo-item">USA<span>16.0%</span></div>
+            <div class="bio-geo-item">España<span>3.6%</span></div>
+            <div class="bio-geo-item">Colombia<span>1.3%</span></div>
+            <div class="bio-geo-item">Argentina<span>1.1%</span></div>
+          </div>
+          <div class="bio-demo" style="margin-top:1.5rem;">
+            <div class="bio-demo-item">&#9792; Femenino <strong>38.4%</strong></div>
+            <div class="bio-demo-item">&#9794; Masculino <strong>61.6%</strong></div>
+            <div class="bio-demo-item">Edad: <strong>25-44 años</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bio-stats-sidebar">
+        <div class="bio-stat-card">
+          <div class="card-front">
+            <div class="bio-stat-value">2M+</div>
+            <div class="bio-stat-label">Seguidores totales en todas las plataformas</div>
+          </div>
+          <div class="card-back">
+            <div class="card-back-row"><span class="card-back-platform">Instagram</span><span class="card-back-val">683,322</span></div>
+            <div class="card-back-row"><span class="card-back-platform">Facebook</span><span class="card-back-val">650,922</span></div>
+            <div class="card-back-row"><span class="card-back-platform">TikTok</span><span class="card-back-val">598,577</span></div>
+            <div class="card-back-row"><span class="card-back-platform">YouTube</span><span class="card-back-val">85,400</span></div>
+            <div class="card-back-note">Total verificado: 2,018,221 &#183; 9 marzo 2026</div>
+          </div>
+        </div>
+        <div class="bio-stat-card">
+          <div class="card-front">
+            <div class="bio-stat-value" style="font-size:2rem;">7.2%</div>
+            <div class="bio-stat-label">Engagement Rate (Instagram)</div>
+            <div style="color: var(--olive); font-size: 0.8rem; margin-top: 0.25rem;">Top 1% creadores food &#183; 11x benchmark</div>
+          </div>
+          <div class="card-back">
+            <div class="card-back-formula"><span>(L+C+S+Sh) &#247; Followers &#247; Posts</span></div>
+            <div class="card-back-row"><span class="card-back-platform">Interacciones</span><span class="card-back-val">1,360,582</span></div>
+            <div class="card-back-row"><span class="card-back-platform">Followers</span><span class="card-back-val">683,322</span></div>
+            <div class="card-back-row"><span class="card-back-platform">Posts (30d)</span><span class="card-back-val">28</span></div>
+            <div class="card-back-row"><span class="card-back-platform">Benchmark food</span><span class="card-back-val">0.63%</span></div>
+            <div class="card-back-note">IG 30d (7 feb &#8211; 8 mar 2026) &#183; 11x benchmark</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICAS SECTION -->
+  <section id="metricas">
+    <div class="section-label">Datos Reales</div>
+    <h2 class="section-title">Métricas</h2>
+    <div class="metricas-badge">Actualizado: <span id="metrics-date">2026-03-08</span></div>
+
+    <div class="metrics-grid">
+      <!-- 1. Seguidores Totales -->
+      <div class="metric-card fade-up">
+        <div class="card-front">
+          <div class="metric-value"><span class="counter" data-target="2018221" data-format="short">0</span></div>
+          <div class="metric-label">Seguidores Totales</div>
+        </div>
+        <div class="card-back">
+          <div class="card-back-row"><span class="card-back-platform">Instagram</span><span class="card-back-val">683K</span></div>
+          <div class="card-back-row"><span class="card-back-platform">Facebook</span><span class="card-back-val">651K</span></div>
+          <div class="card-back-row"><span class="card-back-platform">TikTok</span><span class="card-back-val">599K</span></div>
+          <div class="card-back-row"><span class="card-back-platform">YouTube</span><span class="card-back-val">85.4K</span></div>
+        </div>
+      </div>
+      <!-- 2. Cuentas Alcanzadas -->
+      <div class="metric-card fade-up" style="animation-delay: 0.2s;">
+        <div class="card-front">
+          <div class="metric-value"><span class="counter" data-target="14777045" data-format="short">0</span></div>
+          <div class="metric-label">Cuentas Alcanzadas/mes</div>
+          <div style="font-size:0.7rem;color:var(--olive);margin-top:0.2rem;">94.8% no seguidores</div>
+        </div>
+        <div class="card-back">
+          <div class="card-back-row"><span class="card-back-platform">Instagram</span><span class="card-back-val">6.2M</span></div>
+          <div class="card-back-row"><span class="card-back-platform">Facebook</span><span class="card-back-val">4.8M</span></div>
+          <div class="card-back-row"><span class="card-back-platform">TikTok</span><span class="card-back-val">3.5M</span></div>
+          <div class="card-back-row"><span class="card-back-platform">YouTube</span><span class="card-back-val">267K</span></div>
+          <div class="card-back-note">94.8% audiencia nueva (IG)</div>
+        </div>
+      </div>
+      <!-- 3. Likes -->
+      <div class="metric-card fade-up" style="animation-delay: 0.4s;">
+        <div class="card-front">
+          <div class="metric-value"><span class="counter" data-target="1864000" data-format="short">0</span></div>
+          <div class="metric-label">Likes/mes</div>
+        </div>
+        <div class="card-back">
+          <div class="card-back-row"><span class="card-back-platform">Instagram</span><span class="card-back-val">938K</span></div>
+          <div class="card-back-row"><span class="card-back-platform">TikTok</span><span class="card-back-val">523K</span></div>
+          <div class="card-back-row"><span class="card-back-platform">Facebook</span><span class="card-back-val">403K</span></div>
+        </div>
+      </div>
+      <!-- 4. Interacciones -->
+      <div class="metric-card fade-up" style="animation-delay: 0.3s;">
+        <div class="card-front">
+          <div class="metric-value"><span class="counter" data-target="2947000" data-format="short">0</span></div>
+          <div class="metric-label">Interacciones/mes</div>
+        </div>
+        <div class="card-back">
+          <div class="card-back-row"><span class="card-back-platform">Instagram</span><span class="card-back-val">1.65M</span></div>
+          <div class="card-back-row"><span class="card-back-platform">Facebook</span><span class="card-back-val">681K</span></div>
+          <div class="card-back-row"><span class="card-back-platform">TikTok</span><span class="card-back-val">~614K</span></div>
+          <div class="card-back-note">Likes + saves + shares + comments</div>
+        </div>
+      </div>
+      <!-- 5. Saves -->
+      <div class="metric-card fade-up" style="animation-delay: 0.4s;">
+        <div class="card-front">
+          <div class="metric-value"><span class="counter" data-target="166821" data-format="short">0</span></div>
+          <div class="metric-label">Saves/mes</div>
+        </div>
+        <div class="card-back">
+          <div class="card-back-highlight">167K saves</div>
+          <div class="card-back-formula">Exclusivo Instagram</div>
+          <div class="card-back-note">Se&#241;al #3 del algoritmo</div>
+        </div>
+      </div>
+      <!-- 6. Shares -->
+      <div class="metric-card fade-up" style="animation-delay: 0.5s;">
+        <div class="card-front">
+          <div class="metric-value"><span class="counter" data-target="349883" data-format="short">0</span></div>
+          <div class="metric-label">Shares/mes</div>
+        </div>
+        <div class="card-back">
+          <div class="card-back-row"><span class="card-back-platform">Instagram</span><span class="card-back-val">245K</span></div>
+          <div class="card-back-row"><span class="card-back-platform">TikTok</span><span class="card-back-val">85K</span></div>
+          <div class="card-back-row"><span class="card-back-platform">Facebook</span><span class="card-back-val">20K</span></div>
+          <div class="card-back-note">Se&#241;al #1 del algoritmo</div>
+        </div>
+      </div>
+      <!-- 7. Engagement Rate -->
+      <div class="metric-card fade-up" style="border-color: var(--olive);">
+        <div class="card-front">
+          <div class="metric-value">7.2%</div>
+          <div class="metric-label">Engagement Rate (IG)</div>
+          <div style="color:var(--olive);font-size:0.7rem;margin-top:0.2rem;">11x benchmark</div>
+        </div>
+        <div class="card-back">
+          <div class="card-back-formula"><span>(L+C+S+Sh) &#247; Followers &#247; Posts</span></div>
+          <div class="card-back-row"><span class="card-back-platform">Benchmark food</span><span class="card-back-val">0.63%</span></div>
+          <div class="card-back-row"><span class="card-back-platform">Tacot&#237;os</span><span class="card-back-val" style="font-size:0.9rem;">7.12%</span></div>
+          <div class="card-back-note">Top 1% creadores food</div>
+        </div>
+      </div>
+      <!-- 8. Share Rate -->
+      <div class="metric-card fade-up">
+        <div class="card-front">
+          <div class="metric-value">14.8%</div>
+          <div class="metric-label">Share Rate (IG)</div>
+          <div style="color:var(--olive);font-size:0.7rem;">Se&#241;al #1 algoritmo</div>
+        </div>
+        <div class="card-back">
+          <div class="card-back-formula"><span>Shares &#247; Interacciones</span></div>
+          <div class="card-back-row"><span class="card-back-platform">245K shares</span><span class="card-back-val">&#247; 1.65M</span></div>
+          <div class="card-back-note">245K personas lo recomiendan</div>
+        </div>
+      </div>
+      <!-- 9. Save Rate -->
+      <div class="metric-card fade-up">
+        <div class="card-front">
+          <div class="metric-value">10.1%</div>
+          <div class="metric-label">Save Rate (IG)</div>
+          <div style="color:var(--olive);font-size:0.7rem;">Contenido guardado</div>
+        </div>
+        <div class="card-back">
+          <div class="card-back-formula"><span>Saves &#247; Interacciones</span></div>
+          <div class="card-back-row"><span class="card-back-platform">167K saves</span><span class="card-back-val">&#247; 1.65M</span></div>
+          <div class="card-back-note">La gente guarda para ir</div>
+        </div>
+      </div>
+      <!-- 10. Non-follower Reach -->
+      <div class="metric-card fade-up">
+        <div class="card-front">
+          <div class="metric-value">94.8%</div>
+          <div class="metric-label">Non-follower Reach</div>
+          <div style="color:var(--olive);font-size:0.7rem;">Discovery org&#225;nico</div>
+        </div>
+        <div class="card-back">
+          <div class="card-back-formula"><span>No-seguidores &#247; Alcance total</span></div>
+          <div class="card-back-row"><span class="card-back-platform">5.9M no-seg.</span><span class="card-back-val">&#247; 6.2M total</span></div>
+          <div class="card-back-note">Tu marca llega a gente que a&#250;n no te sigue · IG 30d</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIENCIA SECTION -->
+  <section id="audiencia">
+    <div class="section-label">Target</div>
+    <h2 class="section-title">¿A quién llegas con Tacotíos?</h2>
+
+    <div class="charts-grid">
+      <div class="chart-card fade-up">
+        <div class="chart-title">Género</div>
+        <div class="platform-tabs" data-chart="gender">
+          <button class="platform-tab active" data-platform="global">Global</button>
+          <button class="platform-tab" data-platform="instagram">IG</button>
+          <button class="platform-tab" data-platform="tiktok">TT</button>
+          <button class="platform-tab" data-platform="facebook">FB</button>
+          <button class="platform-tab" data-platform="youtube">YT</button>
+        </div>
+        <div class="chart-container">
+          <svg viewBox="0 0 200 200" width="200" height="200" id="gender-chart"></svg>
+        </div>
+      </div>
+      <div class="chart-card fade-up" style="animation-delay: 0.2s;">
+        <div class="chart-title">Edad</div>
+        <div class="platform-tabs" data-chart="age">
+          <button class="platform-tab active" data-platform="global">Global</button>
+          <button class="platform-tab" data-platform="instagram">IG</button>
+          <button class="platform-tab" data-platform="tiktok">TT</button>
+          <button class="platform-tab" data-platform="facebook">FB</button>
+          <button class="platform-tab" data-platform="youtube">YT</button>
+        </div>
+        <div class="chart-container">
+          <svg viewBox="0 0 400 250" width="400" height="250" id="age-chart"></svg>
+        </div>
+      </div>
+      <div class="chart-card fade-up" style="animation-delay: 0.4s;">
+        <div class="chart-title">Geografía</div>
+        <div class="platform-tabs" data-chart="geo">
+          <button class="platform-tab active" data-platform="global">Global</button>
+          <button class="platform-tab" data-platform="instagram">IG</button>
+          <button class="platform-tab" data-platform="tiktok">TT</button>
+          <button class="platform-tab" data-platform="facebook">FB</button>
+          <button class="platform-tab" data-platform="youtube">YT</button>
+        </div>
+        <div class="geo-list" id="geo-list"></div>
+      </div>
+    </div>
+    <div class="chart-card fade-up" style="animation-delay: 0.6s;">
+      <div class="chart-title">Ciudades Top</div>
+      <div class="platform-tabs" data-chart="cities">
+        <button class="platform-tab active" data-platform="instagram">IG</button>
+        <button class="platform-tab" data-platform="tiktok">TT</button>
+        <button class="platform-tab" data-platform="facebook">FB</button>
+        <button class="platform-tab" data-platform="youtube">YT</button>
+      </div>
+      <div class="geo-list" id="cities-list"></div>
+    </div>
+  </section>
+
+  <!-- PLATAFORMAS SECTION (Accordion) -->
+  <section id="plataformas" style="padding:80px 24px 60px;max-width:960px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:40px">
+      <div class="section-label">Resumen</div>
+    </div>
+    <div class="analytics-accordion">
+      <!-- Instagram -->
+      <div class="acc-panel"><div class="acc-header" onclick="this.parentElement.classList.toggle('open')"><div class="acc-icon ig"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div><div class="acc-meta"><h4>Instagram</h4><div class="acc-summary">683K seguidores &#183; ER 7.2% &#183; 6.2M alcance/mes</div></div><div class="acc-arrow">&#9660;</div></div><div class="acc-body"><div style="padding:4px 24px 24px;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Seguidores</span><span style="color:var(--olive);font-weight:700">683K</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Crecimiento</span><span style="color:var(--green);font-weight:600">&#8593; <span id="ig-growth">5.7</span>%</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Alcance/mes</span><span style="color:var(--olive);font-weight:700">6.2M</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Likes/mes</span><span style="color:var(--olive);font-weight:700">938K</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Saves/mes</span><span style="color:var(--olive);font-weight:700">167K</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Shares/mes</span><span style="color:var(--olive);font-weight:700">245K</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Comentarios/mes</span><span style="color:var(--olive);font-weight:700">10.9K</span></div>
+        <div style="display:flex;justify-content:space-between;padding:12px 0;border-top:2px solid var(--olive)"><span style="color:var(--olive);font-weight:700">Engagement Rate</span><span style="color:var(--olive);font-weight:800;font-size:1.2rem">7.2%</span></div>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap"><span style="background:var(--olive-soft);color:var(--olive);padding:0.25rem 0.6rem;border-radius:12px;font-size:0.75rem;font-weight:600;">94.8% no seguidores</span><span style="background:var(--olive-soft);color:var(--olive);padding:0.25rem 0.6rem;border-radius:12px;font-size:0.75rem;">Reels 75.5%</span></div>
+      </div></div></div>
+      <!-- TikTok -->
+      <div class="acc-panel"><div class="acc-header" onclick="this.parentElement.classList.toggle('open')"><div class="acc-icon tt"><svg width="16" height="18" viewBox="0 0 16 18" fill="white"><path d="M8.02 0h3.12c.18 1.61.82 2.86 1.81 3.74.99.88 2.25 1.37 3.05 1.5v3.04c-1.14-.04-2.25-.35-3.21-.87-.55-.3-1.04-.67-1.46-1.08v5.63c0 1.33-.37 2.58-1.07 3.62-.94 1.4-2.48 2.39-4.26 2.42-1.1.02-2.13-.29-3-.85-1.38-.89-2.33-2.42-2.48-4.18-.02-.23-.02-.46-.01-.69.12-1.61.88-3.01 2.03-3.93.88-.71 1.97-1.14 3.15-1.17v3.1c-.47.1-.9.31-1.25.62-.52.46-.84 1.11-.86 1.83-.03.98.55 1.83 1.39 2.2.33.15.7.23 1.08.22.96-.03 1.77-.63 2.1-1.47.1-.26.15-.55.15-.85V0h-.18z"/></svg></div><div class="acc-meta"><h4>TikTok</h4><div class="acc-summary">598K seguidores &#183; 9.1M views (+122.9%) &#183; 3.5M espectadores/mes</div></div><div class="acc-arrow">&#9660;</div></div><div class="acc-body"><div style="padding:4px 24px 24px;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Seguidores</span><span style="color:var(--olive);font-weight:700">598K</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Crecimiento</span><span style="color:var(--green);font-weight:600">&#8593; <span id="tt-growth">166.7</span>%</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Espectadores/mes</span><span style="color:var(--olive);font-weight:700">3.5M</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Views/mes</span><span style="color:var(--olive);font-weight:700">9.1M</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Likes/mes</span><span style="color:var(--olive);font-weight:700">523K</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Shares/mes</span><span style="color:var(--olive);font-weight:700">85K</span></div>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:4px"><span style="background:rgba(34,197,94,0.15);color:#22c55e;padding:0.25rem 0.6rem;border-radius:12px;font-size:0.75rem;font-weight:600;">+122.9% views</span><span style="background:rgba(34,197,94,0.15);color:#22c55e;padding:0.25rem 0.6rem;border-radius:12px;font-size:0.75rem;font-weight:600;">+166.7% seguidores</span></div>
+      </div></div></div>
+      <!-- Facebook -->
+      <div class="acc-panel"><div class="acc-header" onclick="this.parentElement.classList.toggle('open')"><div class="acc-icon fb"><svg width="10" height="18" viewBox="0 0 10 20" fill="white"><path d="M6.82 20v-9.08h3.05l.46-3.54H6.82V5.11c0-1.03.28-1.73 1.76-1.73h1.88V.14C10.17.1 9.06 0 7.76 0 5.05 0 3.19 1.65 3.19 4.7v2.62H.14v3.54h3.05V20h3.63z"/></svg></div><div class="acc-meta"><h4>Facebook</h4><div class="acc-summary">650K seguidores &#183; 9.8M views/mes (+60%) &#183; 681K interacciones/mes</div></div><div class="acc-arrow">&#9660;</div></div><div class="acc-body"><div style="padding:4px 24px 24px;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Seguidores</span><span style="color:var(--olive);font-weight:700">650K</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Visualizaciones/mes</span><span style="color:var(--olive);font-weight:700">9.8M</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Espectadores/mes</span><span style="color:var(--olive);font-weight:700">4.8M</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Interacciones/mes</span><span style="color:var(--olive);font-weight:700">681K</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Alcance no seguidores</span><span style="color:var(--olive);font-weight:700">75%</span></div>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:4px"><span style="background:var(--olive);color:#000;padding:0.25rem 0.6rem;border-radius:12px;font-size:0.75rem;font-weight:600;">+60% views</span><span style="background:var(--olive);color:#000;padding:0.25rem 0.6rem;border-radius:12px;font-size:0.75rem;font-weight:600;">+80% interacciones</span></div>
+      </div></div></div>
+      <!-- YouTube -->
+      <div class="acc-panel"><div class="acc-header" onclick="this.parentElement.classList.toggle('open')"><div class="acc-icon yt"><svg width="18" height="13" viewBox="0 0 24 17" fill="white"><path d="M23.5 2.5s-.2-1.7-.9-2.4C21.7-.7 20.7-.7 20.2-.8 16.9-1 12-1 12-1S7.1-1 3.8-.8c-.5.1-1.5.1-2.4.9C.7.8.5 2.5.5 2.5S.3 4.5.3 6.5v1.8c0 2 .2 4 .2 4s.2 1.7.9 2.4c.9.9 2 .9 2.5 1 1.8.2 7.1.2 7.1.2s4.9 0 8.2-.2c.5-.1 1.5-.1 2.4-.9.7-.7.9-2.4.9-2.4s.2-2 .2-4V6.5c0-2-.2-4-.2-4zM9.5 11.3V3.4l6.5 4-6.5 3.9z"/></svg></div><div class="acc-meta"><h4>YouTube</h4><div class="acc-summary">85.4K subs &#183; 50.2M views acumulados &#183; 267K views/mes</div></div><div class="acc-arrow">&#9660;</div></div><div class="acc-body"><div style="padding:4px 24px 24px;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Suscriptores</span><span style="color:var(--olive);font-weight:700">85.4K</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Vistas totales</span><span style="color:var(--olive);font-weight:700">50.2M</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Vistas/mes</span><span style="color:var(--olive);font-weight:700">267K</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Likes totales</span><span style="color:var(--olive);font-weight:700">2.2M</span></div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span style="color:var(--text-dim)">Retención Shorts</span><span style="color:var(--olive);font-weight:700">67.4%</span></div>
+      </div></div></div>
+    </div>
+  </section>
+
+  <!-- ANALYTICS SCREENSHOTS -->
+  <section id="analytics" style="padding:80px 24px 60px;max-width:960px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:40px">
+      <div style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--olive);border:1px solid var(--olive-border);padding:5px 14px;border-radius:100px;margin-bottom:16px">Verificaci&#243;n</div>
+      <h2 style="font-size:clamp(28px,4vw,40px);font-weight:700;color:var(--white);margin-bottom:8px;letter-spacing:-0.01em">Analytics en tiempo real</h2>
+      <p style="font-size:14px;color:var(--text-dim)">Datos verificables de cada plataforma &#183; Marzo 2026</p>
+    </div>
+    <div class="analytics-accordion">
+      <div class="acc-panel"><div class="acc-header" onclick="this.parentElement.classList.toggle('open')"><div class="acc-icon ig"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div><div class="acc-meta"><h4>Instagram</h4><div class="acc-summary">683K seguidores &#183; 18.8M views/mes &#183; 1.65M interacciones</div></div><div class="acc-arrow">&#9660;</div></div><div class="acc-body">
+<div class="ig-analytics-grid">
+  <!-- Portrait screenshots: cropped to show top data -->
+  <div class="acc-card"><img src="screenshots/ig-visualizaciones.jpg" alt="Cuentas alcanzadas"><div class="acc-card-label">Cuentas alcanzadas 6.2M &#183; 94.8% no seguidores</div></div>
+  <div class="acc-card"><img src="screenshots/ig-interacciones.jpg" alt="Interacciones"><div class="acc-card-label">Interacciones 1.65M</div></div>
+  <div class="acc-card"><img src="screenshots/ig-seguidores.jpg" alt="Seguidores"><div class="acc-card-label">Seguidores 683K</div></div>
+  <div class="acc-card"><img src="screenshots/ig-edad-sexo.jpg" alt="Edad y sexo"><div class="acc-card-label">Edad y sexo</div></div>
+  <!-- Landscape screenshots: full display, 3 across -->
+  <div class="ig-row-landscape">
+    <div class="acc-card landscape"><img src="screenshots/ig-paises.jpg" alt="Países"><div class="acc-card-label">México 67.8%</div></div>
+    <div class="acc-card landscape"><img src="screenshots/ig-panel.jpg" alt="Visualizaciones totales"><div class="acc-card-label">Visualizaciones totales</div></div>
+    <div class="acc-card landscape"><img src="screenshots/ig-engagement.jpg" alt="Interacciones totales"><div class="acc-card-label">Interacciones totales</div></div>
+  </div>
+</div>
+</div></div>
+      <div class="acc-panel acc-panel-tt"><div class="acc-header" onclick="this.parentElement.classList.toggle('open')"><div class="acc-icon tt"><svg width="16" height="18" viewBox="0 0 16 18" fill="white"><path d="M8.02 0h3.12c.18 1.61.82 2.86 1.81 3.74.99.88 2.25 1.37 3.05 1.5v3.04c-1.14-.04-2.25-.35-3.21-.87-.55-.3-1.04-.67-1.46-1.08v5.63c0 1.33-.37 2.58-1.07 3.62-.94 1.4-2.48 2.39-4.26 2.42-1.1.02-2.13-.29-3-.85-1.38-.89-2.33-2.42-2.48-4.18-.02-.23-.02-.46-.01-.69.12-1.61.88-3.01 2.03-3.93.88-.71 1.97-1.14 3.15-1.17v3.1c-.47.1-.9.31-1.25.62-.52.46-.84 1.11-.86 1.83-.03.98.55 1.83 1.39 2.2.33.15.7.23 1.08.22.96-.03 1.77-.63 2.1-1.47.1-.26.15-.55.15-.85V0h-.18z"/></svg></div><div class="acc-meta"><h4>TikTok</h4><div class="acc-summary">598K seguidores &#183; 9.1M views (+122.9%) &#183; 109M espectadores</div></div><div class="acc-arrow">&#9660;</div></div><div class="acc-body"><div class="acc-grid"><div class="acc-card"><img src="screenshots/tt-metricas.png" alt="Metricas"><div class="acc-card-label">9.1M views &#183; 523K likes</div></div><div class="acc-card"><img src="screenshots/tt-trafico.png" alt="Trafico"><div class="acc-card-label">88.2% Para ti (FYP)</div></div><div class="acc-card"><img src="screenshots/tt-espectadores.png" alt="Espectadores"><div class="acc-card-label">109M espectadores</div></div><div class="acc-card"><img src="screenshots/tt-ubicaciones.png" alt="Ubicaciones"><div class="acc-card-label">Mexico 87.4%</div></div><div class="acc-card"><img src="screenshots/tt-seguidores.png" alt="Seguidores"><div class="acc-card-label">598K &#183; +166.7%</div></div><div class="acc-card"><img src="screenshots/tt-edad.png" alt="Edad"><div class="acc-card-label">25-34: 38.2%</div></div></div></div></div>
+      <div class="acc-panel acc-panel-fb"><div class="acc-header" onclick="this.parentElement.classList.toggle('open')"><div class="acc-icon fb"><svg width="10" height="18" viewBox="0 0 10 20" fill="white"><path d="M6.82 20v-9.08h3.05l.46-3.54H6.82V5.11c0-1.03.28-1.73 1.76-1.73h1.88V.14C10.17.1 9.06 0 7.76 0 5.05 0 3.19 1.65 3.19 4.7v2.62H.14v3.54h3.05V20h3.63z"/></svg></div><div class="acc-meta"><h4>Facebook</h4><div class="acc-summary">650K seguidores &#183; 9.8M views/mes (+60%) &#183; 681K interacciones/mes</div></div><div class="acc-arrow">&#9660;</div></div><div class="acc-body"><div style="display:flex;flex-direction:column;gap:10px;padding:4px 24px 24px;">
+<!-- Row 1: 2 cols — Views + Interacciones (ratio idéntico 2.17) -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+  <div class="acc-card"><img src="screenshots/fb-visualizaciones.png" alt="Visualizaciones"><div class="acc-card-label">9.8M views +60%</div></div>
+  <div class="acc-card"><img src="screenshots/fb-interacciones.png" alt="Interacciones"><div class="acc-card-label">681K interacciones +80%</div></div>
+</div>
+<!-- Row 2: 2 cols — Seguidores + Demográfica (ratio idéntico 2.17) -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+  <div class="acc-card"><img src="screenshots/fb-seguidores.png" alt="Seguidores"><div class="acc-card-label">650K &#183; +19% (90d)</div></div>
+  <div class="acc-card"><img src="screenshots/fb-demografica.png" alt="Demografia"><div class="acc-card-label">67% masc &#183; CDMX 45.1%</div></div>
+</div>
+</div></div></div>
+      <div class="acc-panel"><div class="acc-header" onclick="this.parentElement.classList.toggle('open')"><div class="acc-icon yt"><svg width="18" height="13" viewBox="0 0 24 17" fill="white"><path d="M23.5 2.5s-.2-1.7-.9-2.4C21.7-.7 20.7-.7 20.2-.8 16.9-1 12-1 12-1S7.1-1 3.8-.8c-.5.1-1.5.1-2.4.9C.7.8.5 2.5.5 2.5S.3 4.5.3 6.5v1.8c0 2 .2 4 .2 4s.2 1.7.9 2.4c.9.9 2 .9 2.5 1 1.8.2 7.1.2 7.1.2s4.9 0 8.2-.2c.5-.1 1.5-.1 2.4-.9.7-.7.9-2.4.9-2.4s.2-2 .2-4V6.5c0-2-.2-4-.2-4zM9.5 11.3V3.4l6.5 4-6.5 3.9z"/></svg></div><div class="acc-meta"><h4>YouTube</h4><div class="acc-summary">85.4K subs &#183; 266K views/mes &#183; 80.5K audiencia</div></div><div class="acc-arrow">&#9660;</div></div><div class="acc-body"><div style="display:flex;flex-direction:column;gap:10px;padding:4px 24px 24px;">
+<!-- Row 1: 2 cols — Shorts 28d + Shorts total (ambas landscape, métricas + gráfico) -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+  <div class="acc-card"><img src="screenshots/yt-shorts-28d.png" alt="Shorts 28 dias"><div class="acc-card-label">230K views &#183; 10.8K likes (28d)</div></div>
+  <div class="acc-card"><img src="screenshots/yt-shorts-total.png" alt="Shorts total"><div class="acc-card-label">50.2M views &#183; 84.3K subs (total)</div></div>
+</div>
+<!-- Row 2: 2 cols — Edad simple + Geografía (ambas tall) -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+  <div class="acc-card"><img src="screenshots/yt-edad-genero.png" alt="Edad y genero"><div class="acc-card-label">66.6% masc &#183; 25-34: 25.7%</div></div>
+  <div class="acc-card"><img src="screenshots/yt-geo-paises.png" alt="Geografia"><div class="acc-card-label">México 61.5% &#183; USA 19.3% &#183; España 4.8%</div></div>
+</div>
+<!-- Row 3: full width — Informe avanzado edad y género -->
+<div style="display:grid;grid-template-columns:1fr;gap:10px;">
+  <div class="acc-card"><img src="screenshots/yt-edad-avanzado.png" alt="Publico avanzado"><div class="acc-card-label">Público por edad y género &#183; Modo avanzado</div></div>
+</div>
+</div></div></div>
+    </div>
+    <p class="analytics-note">Capturas verificables bajo solicitud &#183; Datos en tiempo real &#183; Marzo 2026</p>
+  </section>
+
+  <!-- Contact form removed per client request -->
+
+  <!-- CTA FOOTER — PAOCME Style (matching PDF page 12) -->
+  <section id="cta" class="cta-section">
+    <div class="cta-side-text cta-side-left">ANIOL GUELL</div>
+    <div class="cta-side-text cta-side-right">@PAOC.ME</div>
+    <div class="cta-side-text cta-side-left-bottom" style="bottom:12%;">MEDIA KIT</div>
+    <div class="cta-paocme-logo">PAOCME</div>
+    <div class="cta-contact-name">Paola Calderón</div>
+    <a href="https://wa.me/5214423433477" target="_blank" class="cta-contact-btn cta-whatsapp">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      +52 1 442 343 3477
+    </a>
+    <a href="mailto:paocme@gmail.com" class="cta-contact-btn cta-mailto">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      paocme@gmail.com
+    </a>
+    <div class="cta-services">
+      <span>PR</span>
+      <span>COMMS</span>
+      <span>TALENT AGENT</span>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 PAOCME by Paola Calderón. Talento representado: @tacotios</p>
+  </footer>
+
+  <script>
+    // ===== VERIFIED METRICS DATA (9 marzo 2026) =====
+    const metricsData = {
+      updated_at: "2026-03-09",
+      totals: { followers: 2018221, reach_30d: 14510421, interactions_30d: 2947000, saves_30d: 166821, shares_30d: 349883, likes_30d: 1864000 },
+      instagram: { followers: 683322, growth_pct: 5.0, reach_30d: 6201184, likes_30d: 937997, comments_30d: 10881, saves_30d: 166821, shares_30d: 244883 },
+      tiktok: { followers: 598577, growth_pct: 166.7, viewers_30d: 3500000, views_30d: 9100000, views_growth_pct: 122.9, likes_30d: 523000, comments_30d: 5633, shares_30d: 85000 },
+      facebook: { followers: 650922, growth_pct: 5.0, views_30d: 9800000, interactions_30d: 681481, reactions_30d: 403000, shares_30d: 20000, comments_30d: 7300 },
+      youtube: { subscribers: 85400, views_lifetime: 50200000, likes_lifetime: 2200000, views_30d: 266624 },
+      demographics: {
+        global: {
+          gender: { male: 64.8, female: 35.2 },
+          age: { "18-24": 8.4, "25-34": 35.0, "35-44": 31.8, "45-54": 15.9, "55+": 8.9 },
+          countries: { mexico: 74.8, usa: 12.0, spain: 1.6, colombia: 1.3, argentina: 1.0 },
+          cities: { cdmx: 15.1, zapopan: 4.8, guadalajara: 4.3, puebla: 1.4, tijuana: 1.1 }
+        },
+        instagram: {
+          gender: { male: 61.6, female: 38.4 },
+          age: { "18-24": 8.3, "25-34": 31.5, "35-44": 33.4, "45-54": 17.3, "55+": 9.5 },
+          countries: { mexico: 67.8, usa: 16.0, spain: 3.6, colombia: 1.3, argentina: 1.1 },
+          cities: { cdmx: 15.1, zapopan: 4.8, guadalajara: 4.3, puebla: 1.4, tijuana: 1.1 }
+        },
+        tiktok: {
+          gender: { male: 66, female: 34 },
+          age: { "18-24": 13, "25-34": 38.2, "35-44": 30.1, "45-54": 13.7, "55+": 5.0 },
+          countries: { mexico: 74.6, usa: 7.1, spain: 1.2, argentina: 0.8, guatemala: 0.7 }
+        },
+        facebook: {
+          gender: { male: 67, female: 33 },
+          age: { "18-24": 5.0, "25-34": 35.7, "35-44": 31.7, "45-54": 16.1, "55+": 11.5 },
+          countries: { mexico: 82.4, usa: 12.4, colombia: 1.4 },
+          cities: { cdmx: 45.1, guadalajara: 18.3, zapopan: 9.2 }
+        },
+        youtube: {
+          gender: { male: 66.6, female: 33.2 },
+          age: { "18-24": 15.8, "25-34": 25.7, "35-44": 21.5, "45-54": 18.2, "55+": 18.8 },
+          countries: { mexico: 61.5, usa: 19.3, spain: 4.8, argentina: 2.4, colombia: 1.9 }
+        }
+      }
+    };
+
+    // Try fetching live metrics
+    fetch('metrics.json').then(r=>r.json()).then(d=>{Object.assign(metricsData,d);populateMetrics()}).catch(()=>{populateMetrics()});
+
+    var currentPlatform = { gender:'global', age:'global', geo:'global', cities:'instagram' };
+
+    function populateMetrics() {
+      document.getElementById('metrics-date').textContent = metricsData.updated_at;
+      var igG = document.getElementById('ig-growth'); if(igG) igG.textContent = metricsData.instagram.growth_pct;
+      var ttG = document.getElementById('tt-growth'); if(ttG) ttG.textContent = metricsData.tiktok.growth_pct;
+      initCharts();
+    }
+
+    function formatNumber(num, format) {
+      if (format === 'short') {
+        if (num >= 1000000) return (num / 1000000).toFixed(1).replace('.0', '') + 'M';
+        if (num >= 1000) return (num / 1000).toFixed(1).replace('.0', '') + 'K';
+      }
+      return num.toString();
+    }
+
+    // Counter animation
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+          entry.target.classList.add('counted');
+          const target = parseInt(entry.target.dataset.target);
+          const format = entry.target.dataset.format || 'default';
+          const duration = 2000, start = Date.now();
+          const countUp = () => {
+            const elapsed = Date.now() - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 3);
+            entry.target.textContent = formatNumber(Math.floor(target * ease), format);
+            if (progress < 1) requestAnimationFrame(countUp);
+            else entry.target.textContent = formatNumber(target, format);
+          };
+          countUp();
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+    // ===== CHARTS =====
+    function getDemoData(platform, type) {
+      var d = metricsData.demographics;
+      var src = d[platform] || d.global;
+      if (type === 'gender') return src.gender;
+      if (type === 'age') return src.age;
+      if (type === 'countries') return src.countries;
+      if (type === 'cities') return src.cities || null;
+      return null;
+    }
+
+    function drawGenderChart(data, animate) {
+      var svg = document.getElementById('gender-chart');
+      if (!svg || !data) return;
+      svg.setAttribute('viewBox', '0 0 200 200'); svg.innerHTML = '';
+      var ns = 'http://www.w3.org/2000/svg';
+      var cx=100, cy=100, r=80, inner=50;
+      var entries = Object.entries(data);
+      var colors = ['#B8A33B', '#E879A0'];
+      var labels = {male:'Hombres', female:'Mujeres'};
+      var startAngle = -90;
+      var targetAngles = [];
+      entries.forEach(function(entry, i) {
+        targetAngles.push((entry[1]/100)*360);
+      });
+      function drawFrame(progress) {
+        svg.innerHTML = '';
+        var sa = -90;
+        entries.forEach(function(entry, i) {
+          var val = entry[1], angle = targetAngles[i] * progress, endAngle = sa + angle;
+          if (angle < 0.5) { sa = endAngle; return; }
+          var sR = (sa*Math.PI)/180, eR = (endAngle*Math.PI)/180;
+          var x1=cx+r*Math.cos(sR), y1=cy+r*Math.sin(sR);
+          var x2=cx+r*Math.cos(eR), y2=cy+r*Math.sin(eR);
+          var ix1=cx+inner*Math.cos(eR), iy1=cy+inner*Math.sin(eR);
+          var ix2=cx+inner*Math.cos(sR), iy2=cy+inner*Math.sin(sR);
+          var large = angle > 180 ? 1 : 0;
+          var d = 'M '+x1+' '+y1+' A '+r+' '+r+' 0 '+large+' 1 '+x2+' '+y2+' L '+ix1+' '+iy1+' A '+inner+' '+inner+' 0 '+large+' 0 '+ix2+' '+iy2+' Z';
+          var path = document.createElementNS(ns, 'path');
+          path.setAttribute('d', d); path.setAttribute('fill', colors[i%colors.length]); path.setAttribute('opacity', '0.9');
+          svg.appendChild(path);
+          sa = endAngle;
+        });
+      }
+      if (animate) {
+        var start = Date.now(), dur = 1200;
+        (function anim() {
+          var p = Math.min((Date.now()-start)/dur, 1);
+          var ease = 1-Math.pow(1-p,3);
+          drawFrame(ease);
+          if (p < 1) requestAnimationFrame(anim);
+        })();
+      } else {
+        drawFrame(1);
+      }
+      var legend = svg.parentElement.querySelector('.chart-legend') || document.createElement('div');
+      legend.className = 'chart-legend';
+      legend.style.cssText = 'display:flex;justify-content:center;gap:1.5rem;margin-top:1rem;';
+      legend.innerHTML = entries.map(function(e,i){return '<span style="color:'+colors[i]+';font-size:0.85rem;font-weight:600;">'+(labels[e[0]]||e[0])+' '+e[1]+'%</span>';}).join('');
+      if (!svg.parentElement.querySelector('.chart-legend')) svg.parentElement.appendChild(legend);
+    }
+
+    function drawAgeChart(data) {
+      var svg = document.getElementById('age-chart');
+      if (!svg || !data) return;
+      var entries = Object.entries(data);
+      var totalW = Math.max(entries.length * 52 + 30, 400);
+      svg.setAttribute('viewBox', '0 0 '+totalW+' 220'); svg.innerHTML = '';
+      var ns = 'http://www.w3.org/2000/svg';
+      var maxVal = Math.max.apply(null, entries.map(function(e){return e[1]}));
+      var barW=40, gap=12, startX=30, chartH=160, baseY=180;
+      entries.forEach(function(entry, i) {
+        var label=entry[0], val=entry[1], x=startX+i*(barW+gap), h=(val/maxVal)*chartH;
+        var rect = document.createElementNS(ns, 'rect');
+        rect.setAttribute('x',x); rect.setAttribute('y',baseY-h); rect.setAttribute('width',barW); rect.setAttribute('height',h);
+        rect.setAttribute('rx','4'); rect.setAttribute('fill','#B8A33B'); rect.setAttribute('opacity','0.85');
+        svg.appendChild(rect);
+        var vt = document.createElementNS(ns, 'text');
+        vt.setAttribute('x',x+barW/2); vt.setAttribute('y',baseY-h-6); vt.setAttribute('text-anchor','middle');
+        vt.setAttribute('fill','#B8A33B'); vt.setAttribute('font-size','11'); vt.textContent = val+'%';
+        svg.appendChild(vt);
+        var lt = document.createElementNS(ns, 'text');
+        lt.setAttribute('x',x+barW/2); lt.setAttribute('y',baseY+16); lt.setAttribute('text-anchor','middle');
+        lt.setAttribute('fill','#9ca3af'); lt.setAttribute('font-size','10'); lt.textContent = label;
+        svg.appendChild(lt);
+      });
+    }
+
+    function drawGeoList(data, targetId) {
+      var c = document.getElementById(targetId || 'geo-list'); if(!c) return;
+      if(!data) { c.innerHTML = '<div style="color:var(--text-dim);font-size:0.85rem;padding:1rem;text-align:center;">Datos no disponibles para esta plataforma</div>'; return; }
+      var entries = Object.entries(data).slice(0,5);
+      var maxVal = Math.max.apply(null, entries.map(function(e){return e[1]}));
+      var names = {mexico:'México',usa:'USA',spain:'España',colombia:'Colombia',argentina:'Argentina',guatemala:'Guatemala',cdmx:'CDMX',zapopan:'Zapopan',guadalajara:'Guadalajara',puebla:'Puebla',tijuana:'Tijuana'};
+      c.innerHTML = entries.map(function(e){
+        var w = (e[1]/maxVal)*100, name = names[e[0]]||e[0].charAt(0).toUpperCase()+e[0].slice(1);
+        return '<div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.6rem;">'+
+          '<span style="color:#f3ede8;font-size:0.85rem;min-width:90px;">'+name+'</span>'+
+          '<div style="flex:1;background:rgba(184,163,59,0.15);border-radius:4px;height:20px;overflow:hidden;">'+
+          '<div style="width:'+w+'%;height:100%;background:#B8A33B;border-radius:4px;opacity:0.8;transition:width 0.6s ease"></div></div>'+
+          '<span style="color:#B8A33B;font-size:0.85rem;min-width:40px;text-align:right;">'+e[1]+'%</span></div>';
+      }).join('');
+    }
+
+    function initCharts() {
+      var d = metricsData.demographics;
+      if (!d) return;
+      var g = d.global || d.instagram || d;
+      if (g.gender) drawGenderChart(g.gender, true);
+      if (g.age) drawAgeChart(g.age);
+      if (g.countries) drawGeoList(g.countries, 'geo-list');
+      var cities = (d.instagram && d.instagram.cities) || g.cities;
+      if (cities) drawGeoList(cities, 'cities-list');
+    }
+
+    // ===== PLATFORM TAB SWITCHING (event delegation) =====
+    document.addEventListener('click', function(e) {
+      var tab = e.target.closest('.platform-tab');
+      if (!tab) return;
+      var tabGroup = tab.closest('.platform-tabs');
+      if (!tabGroup) return;
+      tabGroup.querySelectorAll('.platform-tab').forEach(function(t){ t.classList.remove('active'); });
+      tab.classList.add('active');
+      var chart = tabGroup.dataset.chart;
+      var platform = tab.dataset.platform;
+      currentPlatform[chart] = platform;
+      var data;
+      if (chart === 'gender') {
+        data = getDemoData(platform, 'gender');
+        if (data) drawGenderChart(data, true);
+      } else if (chart === 'age') {
+        data = getDemoData(platform, 'age');
+        if (data) drawAgeChart(data);
+      } else if (chart === 'geo') {
+        data = getDemoData(platform, 'countries');
+        if (data) drawGeoList(data, 'geo-list');
+      } else if (chart === 'cities') {
+        data = getDemoData(platform, 'cities');
+        if (data) drawGeoList(data, 'cities-list');
+      }
+    });
+
+    // Animate donut on scroll
+    var donutAnimated = false;
+    var donutObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && !donutAnimated) {
+          donutAnimated = true;
+          var g = metricsData.demographics.global || metricsData.demographics.instagram;
+          if (g && g.gender) drawGenderChart(g.gender, true);
+        }
+      });
+    }, { threshold: 0.3 });
+    var genderSvg = document.getElementById('gender-chart');
+    if (genderSvg) donutObserver.observe(genderSvg);
+
+    // Scroll reveal
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) { if (entry.isIntersecting) { entry.target.classList.add('fade-up'); revealObserver.unobserve(entry.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(function(el) { revealObserver.observe(el); });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var id = this.getAttribute('href').slice(1);
+        var el = document.getElementById(id);
+        if (el) { e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'}); history.pushState(null,null,'#'+id); }
+      });
+    });
+    window.addEventListener('load', function() {
+      if (window.location.hash) {
+        setTimeout(function() {
+          var el = document.getElementById(window.location.hash.slice(1));
+          if (el) el.scrollIntoView({behavior:'smooth',block:'start'});
+        }, 600);
+      }
+    });
+
+  </script>
+</body>
+</html>
