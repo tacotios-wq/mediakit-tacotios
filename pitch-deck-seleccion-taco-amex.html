@@ -4,17 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Selección del Taco — Pitch Confidencial AMEX</title>
+    <title>La Selección del Taco x AMEX — Protocolo Omega</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
     <style>
         :root {
             --bg-dark: #000000;
             --text-light: #f5f5f7;
-            --accent-amex: #006fcf;
-            --accent-gold: #d4af37;
-            --text-muted: #86868b;
+            --text-muted: #9698a0;
+            --amex-blue: #006fcf;
+            --warm-gold: #d4af37;
         }
 
         * {
@@ -26,10 +25,32 @@
         }
 
         body {
-            background-color: var(--bg-dark);
+            background: #000;
             color: var(--text-light);
-            overflow-x: hidden;
             width: 100vw;
+            overflow-x: hidden;
+        }
+
+        .logo-mark {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 10;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--amex-blue);
+            z-index: 9999;
         }
 
         .slide-section {
@@ -39,7 +60,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 5rem 10vw;
+            padding: 5rem 8vw;
             overflow: hidden;
         }
 
@@ -50,18 +71,15 @@
             width: 100%;
             height: 140%;
             z-index: 0;
-            opacity: 0.35;
             background-size: cover;
             background-position: center;
-            filter: grayscale(80%) sepia(10%);
+            filter: grayscale(75%) sepia(8%);
+            opacity: 0.3;
         }
 
-        .gradient-overlay {
+        .overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 1) 100%);
             z-index: 1;
         }
@@ -69,225 +87,304 @@
         .content {
             position: relative;
             z-index: 2;
-            max-width: 1120px;
             width: 100%;
-            margin-top: 10vh;
+            max-width: 1180px;
+            margin-top: 8vh;
         }
 
         h1 {
-            font-size: clamp(3.3rem, 7vw, 6.2rem);
-            font-weight: 700;
+            font-size: clamp(3rem, 6.3vw, 6rem);
+            line-height: 1.03;
             letter-spacing: -0.04em;
-            line-height: 1.05;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, #fff, #999);
+            margin-bottom: 1.2rem;
+            background: linear-gradient(90deg, #fff, #a6a8ad);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         h2 {
-            font-size: clamp(1.35rem, 2.8vw, 2.35rem);
-            font-weight: 400;
-            color: var(--text-muted);
-            margin-bottom: 3rem;
-            max-width: 940px;
+            font-size: clamp(1.28rem, 2.45vw, 2.2rem);
             line-height: 1.3;
-        }
-
-        .bullets-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.25rem;
-            margin-top: 2.5rem;
-        }
-
-        .bullet-item {
-            border-top: 1px solid rgba(255, 255, 255, 0.12);
-            padding-top: 1.15rem;
-        }
-
-        .bullet-item h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.6rem;
-            color: #fff;
-        }
-
-        .bullet-item p {
-            font-size: 1.06rem;
-            line-height: 1.55;
             color: var(--text-muted);
             font-weight: 400;
+            max-width: 960px;
         }
 
-        .accent-text {
-            color: var(--accent-amex);
-            font-weight: 600;
+        .accent-blue {
+            color: var(--amex-blue);
+            font-weight: 700;
         }
 
-        .logo-mark {
-            position: fixed;
-            top: 2.5rem;
-            left: 2.5rem;
-            z-index: 10;
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .progress-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            height: 4px;
-            background: var(--accent-amex);
-            width: 0%;
-            z-index: 9999;
+        .accent-gold {
+            color: var(--warm-gold);
+            font-weight: 700;
         }
 
         .panel {
-            margin-top: 1.5rem;
-            margin-bottom: 3rem;
-            padding: 2rem;
+            margin-top: 1.8rem;
             background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transform-style: preserve-3d;
-            transition: transform 0.5s;
+            padding: 1.4rem 1.2rem;
         }
 
-        .pill-row {
-            display: flex;
-            gap: 0.9rem;
-            flex-wrap: wrap;
-            margin-top: 1rem;
+        .panel p {
+            color: #d4d7dd;
+            font-size: 1rem;
+            line-height: 1.5;
         }
 
-        .pill {
-            padding: 0.55rem 0.95rem;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #fff;
-            font-size: 0.9rem;
-            letter-spacing: 0.01em;
-            background: rgba(255, 255, 255, 0.04);
-        }
-
-        .kpi-strip {
-            margin-top: 3rem;
+        .kpi-grid {
+            margin-top: 2rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 1.2rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
         }
 
         .kpi-card {
             border: 1px solid rgba(255, 255, 255, 0.14);
-            border-radius: 14px;
-            padding: 1.15rem 1rem 1.1rem;
+            border-radius: 12px;
             background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
         }
 
         .kpi-value {
             font-size: 2rem;
-            font-weight: 700;
             line-height: 1;
+            font-weight: 700;
             letter-spacing: -0.03em;
-            color: #fff;
         }
 
         .kpi-label {
-            margin-top: 0.45rem;
-            font-size: 0.82rem;
+            margin-top: 0.35rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.11em;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
             color: var(--text-muted);
             font-weight: 600;
         }
 
-        .audit-box {
-            margin-top: 2rem;
-            border-left: 3px solid var(--accent-amex);
-            padding: 1rem 1rem 1rem 1.1rem;
-            background: rgba(0, 111, 207, 0.12);
-            border-radius: 8px;
+        .bullet-grid {
+            margin-top: 1.8rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
         }
 
-        .audit-box p {
-            color: #d9ecff;
+        .bullet {
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 0.95rem;
+        }
+
+        .bullet h3 {
+            font-size: 1.22rem;
+            margin-bottom: 0.45rem;
+        }
+
+        .bullet p {
+            color: var(--text-muted);
+            font-size: 1.02rem;
+            line-height: 1.5;
+        }
+
+        .bracket-layout {
+            margin-top: 1.6rem;
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 1.2rem;
+            align-items: stretch;
+        }
+
+        .left-stack {
+            display: grid;
+            grid-template-rows: auto auto;
+            gap: 1rem;
+        }
+
+        .chef-silhouettes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.6rem;
+        }
+
+        .silhouette {
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.03);
+            min-height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #cfd3da;
+            font-size: 1.45rem;
+            font-weight: 700;
+        }
+
+        .category-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+        }
+
+        .chip {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 999px;
+            padding: 0.36rem 0.64rem;
+            color: #fff;
+            font-size: 0.82rem;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .bracket-box {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 0.9rem;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .bracket-title {
+            font-size: 1rem;
+            color: #dbe9ff;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+
+        .bracket-svg {
+            width: 100%;
+            height: 310px;
+        }
+
+        .legend {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .legend span {
+            font-size: 0.78rem;
+            color: #c5cbd6;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 999px;
+            padding: 0.23rem 0.56rem;
+        }
+
+        .timeline {
+            margin-top: 1.2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .time-card {
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.85rem;
+        }
+
+        .time-card h4 {
+            font-size: 0.86rem;
+            letter-spacing: 0.08em;
+            color: #dbe9ff;
+            text-transform: uppercase;
+            margin-bottom: 0.35rem;
+        }
+
+        .time-card p {
+            color: #fff;
             font-size: 0.95rem;
-            line-height: 1.45;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.95rem;
-            }
-
-            h2 {
-                font-size: 1.2rem;
-                margin-bottom: 1.9rem;
-            }
-
-            .slide-section {
-                padding: 10vh 5vw;
-            }
-
-            .panel {
-                padding: 1.25rem;
-            }
+            line-height: 1.4;
         }
 
         .gs-reveal {
             opacity: 0;
         }
+
+        @media (max-width: 980px) {
+            .bracket-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .bracket-svg {
+                height: 340px;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .slide-section {
+                padding: 10vh 5vw;
+            }
+
+            h1 {
+                font-size: 2.85rem;
+            }
+
+            h2 {
+                font-size: 1.12rem;
+            }
+
+            .chef-silhouettes {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
 
 <body>
-    <div class="logo-mark">Proyecto: La Selección del Taco × AMEX</div>
+    <div class="logo-mark">PROYECTO: LA SELECCIÓN DEL TACO × AMEX</div>
     <div class="progress-bar" id="progressBar"></div>
 
     <section class="slide-section" id="slide1">
         <div class="parallax-bg"
-            style="background-image:url('https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?q=80&w=2200&auto=format&fit=crop');">
+            style="background-image:url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2200&auto=format&fit=crop');">
         </div>
-        <div class="gradient-overlay"></div>
+        <div class="overlay"></div>
         <div class="content">
-            <h1 class="gs-reveal">La Selección del Taco.<br>Autoridad cultural escalable.</h1>
-            <h2 class="gs-reveal">No compramos atención: diseñamos conversación. AMEX entra como dueño del ritual, no
-                como inserción publicitaria.</h2>
+            <h1 class="gs-reveal">México ama dos cosas:<br>tacos y fútbol.</h1>
+            <h2 class="gs-reveal">Juntamos las dos en un torneo en redes. Es fácil de entender: la gente vota, comparte y
+                discute. La marca que lo presenta se queda con la conversación.</h2>
 
-            <div class="panel gs-reveal omega-panel-3d">
-                <h3 style="font-size:1.55rem;margin-bottom:0.65rem;">Fricción detectada en versión anterior</h3>
-                <p style="color:var(--text-muted);font-size:1.08rem;line-height:1.6;">La narrativa era sólida, pero el
-                    bloque de métricas mezclaba alcance proyectado con performance observada. Eso castiga credibilidad
-                    ejecutiva. Esta versión separa claramente <span class="accent-text">dato operativo</span> de <span
-                        class="accent-text">dato de proyección</span>.</p>
-                <div class="audit-box">
-                    <p><strong>Corrección oficial aplicada:</strong> <span class="accent-text">Engagement Rate 7.2%</span>
-                        y <span class="accent-text">30–50M vistas mensuales</span> como rango.
-                        Se elimina el claim de 176% por inconsistencia metodológica.</p>
-                </div>
+            <div class="panel gs-reveal">
+                <p><span class="accent-blue">Qué cambia en esta versión:</span> lenguaje simple, mecánica clara y datos
+                    limpios. Ya está corregido: <span class="accent-gold">ER 7.2%</span> y <span
+                        class="accent-gold">30–50M vistas mensuales</span>.</p>
             </div>
 
-            <div class="kpi-strip">
+            <div class="kpi-grid">
                 <div class="kpi-card gs-reveal">
                     <div class="kpi-value">1.88M</div>
-                    <div class="kpi-label">Seguidores reales</div>
+                    <div class="kpi-label">seguidores reales</div>
                 </div>
                 <div class="kpi-card gs-reveal">
                     <div class="kpi-value">7.2%</div>
-                    <div class="kpi-label">Engagement rate</div>
+                    <div class="kpi-label">engagement rate</div>
                 </div>
                 <div class="kpi-card gs-reveal">
                     <div class="kpi-value">30–50M</div>
-                    <div class="kpi-label">Vistas mensuales</div>
+                    <div class="kpi-label">vistas por mes</div>
                 </div>
                 <div class="kpi-card gs-reveal">
-                    <div class="kpi-value">8 / 16</div>
-                    <div class="kpi-label">Categorías / Episodios</div>
+                    <div class="kpi-value">17</div>
+                    <div class="kpi-label">episodios totales</div>
+                </div>
+            </div>
+
+            <div class="bullet-grid">
+                <div class="bullet gs-reveal">
+                    <h3>Objetivo</h3>
+                    <p>Provocar la conversación más viral de México con un formato que el público ya entiende: el
+                        Mundial.</p>
+                </div>
+                <div class="bullet gs-reveal">
+                    <h3>Gancho emocional</h3>
+                    <p>No es solo comida. Es identidad, barrio, orgullo y debate semanal entre amigos, familia y redes.
+                    </p>
+                </div>
+                <div class="bullet gs-reveal">
+                    <h3>Rol de AMEX</h3>
+                    <p>AMEX no es anuncio. AMEX es quien hace posible el torneo: voto, beneficios y experiencia.</p>
                 </div>
             </div>
         </div>
@@ -295,40 +392,112 @@
 
     <section class="slide-section" id="slide2">
         <div class="parallax-bg"
-            style="background-image:url('https://images.unsplash.com/photo-1562967914-608f82629710?q=80&w=2200&auto=format&fit=crop');opacity:0.2;">
+            style="background-image:url('https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=2200&auto=format&fit=crop');opacity:0.2;">
         </div>
-        <div class="gradient-overlay"></div>
+        <div class="overlay"></div>
         <div class="content">
-            <h1 class="gs-reveal">El torneo que México<br>sí decide ver.</h1>
-            <h2 class="gs-reveal">Formato mundialista: autoridad de chefs + voto de comunidad + cliffhangers seriales.
-                Conversación sostenida, no impacto de un día.</h2>
+            <h1 class="gs-reveal">Así se juega<br>el Mundial del Taco.</h1>
+            <h2 class="gs-reveal">Visual simple: 8 chefs secretos ponen 8 banderas. El pueblo decide en comentarios quién
+                avanza. Cada episodio cierra pidiendo el voto del siguiente.</h2>
 
-            <div class="panel gs-reveal">
-                <h3 style="font-size:1.45rem;margin-bottom:0.7rem;">Arquitectura de consumo</h3>
-                <div class="pill-row">
-                    <span class="pill">Consejo de Chefs (curaduría)</span>
-                    <span class="pill">El Pueblo (votación masiva)</span>
-                    <span class="pill">Bracket competitivo</span>
-                    <span class="pill">Cliffhanger por episodio</span>
-                    <span class="pill">Recorte multicanal diario</span>
+            <div class="bracket-layout">
+                <div class="left-stack">
+                    <div class="bracket-box gs-reveal">
+                        <div class="bracket-title">8 chefs secretos (se revelan por episodio)</div>
+                        <div class="chef-silhouettes">
+                            <div class="silhouette">?</div>
+                            <div class="silhouette">?</div>
+                            <div class="silhouette">?</div>
+                            <div class="silhouette">?</div>
+                            <div class="silhouette">?</div>
+                            <div class="silhouette">?</div>
+                            <div class="silhouette">?</div>
+                            <div class="silhouette">?</div>
+                        </div>
+                    </div>
+                    <div class="bracket-box gs-reveal">
+                        <div class="bracket-title">Tacos/categorías que entran al torneo</div>
+                        <div class="category-list">
+                            <span class="chip">Pastor</span>
+                            <span class="chip">Suadero</span>
+                            <span class="chip">Carnitas</span>
+                            <span class="chip">Cabeza</span>
+                            <span class="chip">Norteño</span>
+                            <span class="chip">Yucateco</span>
+                            <span class="chip">Canasta</span>
+                            <span class="chip">Fine Dining</span>
+                            <span class="chip">Sorpresa (comodín)</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="bullets-grid">
-                <div class="bullet-item gs-reveal">
-                    <h3>Target Premium Real (NSE B+/A)</h3>
-                    <p>Adultos 25–55 en CDMX, GDL y MTY. Audiencia con gasto aspiracional en gastronomía, viajes y
-                        experiencias con estatus cultural.</p>
-                </div>
-                <div class="bullet-item gs-reveal">
-                    <h3>Brand Safety Absoluto</h3>
-                    <p>Selección auditada por criterio culinario y marco editorial. Menos improvisación, más sistema:
-                        riesgo reputacional acotado por diseño.</p>
-                </div>
-                <div class="bullet-item gs-reveal">
-                    <h3>Puente Digital → Consumo Físico</h3>
-                    <p>La narrativa desemboca en visitas reales a taquerías y experiencias activables. El contenido no
-                        termina en views: transforma intención en tránsito.</p>
+                <div class="bracket-box gs-reveal">
+                    <div class="bracket-title">Gráfico del Mundial (entendible en 5 segundos)</div>
+                    <svg class="bracket-svg" viewBox="0 0 1200 360" xmlns="http://www.w3.org/2000/svg" role="img"
+                        aria-label="Bracket del Mundial del Taco">
+                        <rect x="20" y="24" width="170" height="20" rx="7" fill="rgba(255,255,255,0.06)"
+                            stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="64" width="170" height="20" rx="7" fill="rgba(255,255,255,0.06)"
+                            stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="104" width="170" height="20" rx="7" fill="rgba(255,255,255,0.06)"
+                            stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="144" width="170" height="20" rx="7" fill="rgba(255,255,255,0.06)"
+                            stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="184" width="170" height="20" rx="7" fill="rgba(255,255,255,0.06)"
+                            stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="224" width="170" height="20" rx="7" fill="rgba(255,255,255,0.06)"
+                            stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="264" width="170" height="20" rx="7" fill="rgba(255,255,255,0.06)"
+                            stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="304" width="170" height="20" rx="7" fill="rgba(255,255,255,0.06)"
+                            stroke="rgba(255,255,255,0.25)" />
+
+                        <rect x="320" y="44" width="170" height="24" rx="8" fill="rgba(0,111,207,0.16)"
+                            stroke="rgba(0,111,207,0.9)" />
+                        <rect x="320" y="124" width="170" height="24" rx="8" fill="rgba(0,111,207,0.16)"
+                            stroke="rgba(0,111,207,0.9)" />
+                        <rect x="320" y="204" width="170" height="24" rx="8" fill="rgba(0,111,207,0.16)"
+                            stroke="rgba(0,111,207,0.9)" />
+                        <rect x="320" y="284" width="170" height="24" rx="8" fill="rgba(0,111,207,0.16)"
+                            stroke="rgba(0,111,207,0.9)" />
+
+                        <rect x="620" y="84" width="170" height="28" rx="8" fill="rgba(212,175,55,0.15)"
+                            stroke="rgba(212,175,55,0.95)" />
+                        <rect x="620" y="244" width="170" height="28" rx="8" fill="rgba(212,175,55,0.15)"
+                            stroke="rgba(212,175,55,0.95)" />
+
+                        <rect x="920" y="158" width="170" height="40" rx="9" fill="rgba(255,255,255,0.16)"
+                            stroke="rgba(255,255,255,0.95)" />
+
+                        <line x1="190" y1="34" x2="320" y2="56" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="190" y1="74" x2="320" y2="56" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="190" y1="114" x2="320" y2="136" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="190" y1="154" x2="320" y2="136" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="190" y1="194" x2="320" y2="216" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="190" y1="234" x2="320" y2="216" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="190" y1="274" x2="320" y2="296" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="190" y1="314" x2="320" y2="296" stroke="rgba(255,255,255,0.35)" />
+
+                        <line x1="490" y1="56" x2="620" y2="98" stroke="rgba(0,111,207,0.6)" />
+                        <line x1="490" y1="136" x2="620" y2="98" stroke="rgba(0,111,207,0.6)" />
+                        <line x1="490" y1="216" x2="620" y2="258" stroke="rgba(0,111,207,0.6)" />
+                        <line x1="490" y1="296" x2="620" y2="258" stroke="rgba(0,111,207,0.6)" />
+
+                        <line x1="790" y1="98" x2="920" y2="178" stroke="rgba(212,175,55,0.85)" />
+                        <line x1="790" y1="258" x2="920" y2="178" stroke="rgba(212,175,55,0.85)" />
+
+                        <text x="32" y="18" fill="#cfd7e5" font-size="14">Octavos (8)</text>
+                        <text x="332" y="35" fill="#dbe9ff" font-size="14">Cuartos (4)</text>
+                        <text x="632" y="74" fill="#f0de9d" font-size="14">Semifinales (2)</text>
+                        <text x="934" y="148" fill="#ffffff" font-size="14">Final (1)</text>
+
+                        <text x="950" y="182" fill="#fff" font-size="18" font-weight="700">CAMPEÓN</text>
+                    </svg>
+                    <div class="legend">
+                        <span>Episodio 1: Reel inaugural</span>
+                        <span>Episodios 2–16: partidos</span>
+                        <span>Episodio 17: gran cierre</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -336,39 +505,54 @@
 
     <section class="slide-section" id="slide3">
         <div class="parallax-bg"
-            style="background-image:url('https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=2200&auto=format&fit=crop');opacity:0.15;">
+            style="background-image:url('https://images.unsplash.com/photo-1529563021893-cc83c992d75d?q=80&w=2200&auto=format&fit=crop');opacity:0.16;">
         </div>
-        <div class="gradient-overlay"></div>
+        <div class="overlay"></div>
         <div class="content">
-            <h1 class="gs-reveal">AMEX no patrocina.<br>AMEX orquesta.</h1>
-            <h2 class="gs-reveal">Exclusividad financiera total: plataforma de votación, pasaporte de beneficios y
-                propiedad de categoría en el torneo gastronómico con mayor tracción orgánica.</h2>
+            <h1 class="gs-reveal">Plan de salida<br>hasta la final.</h1>
+            <h2 class="gs-reveal">Objetivo: llegar a la final del Mundial 2026 con conversación viva cada semana. Recomendado:
+                publicar miércoles y domingo para mantener ritmo y no cansar.</h2>
 
-            <div class="bullets-grid">
-                <div class="bullet-item gs-reveal">
-                    <h3>Plataforma de Votación AMEX</h3>
-                    <p>La marca administra el acto de decisión. Cada voto convierte presencia en memoria y cada ronda
-                        refuerza asociación AMEX = autoridad cultural.</p>
+            <div class="timeline">
+                <div class="time-card gs-reveal">
+                    <h4>Inicio</h4>
+                    <p>Domingo 24 mayo 2026<br>Reel inaugural + primer gran llamado a votar.</p>
                 </div>
-                <div class="bullet-item gs-reveal">
-                    <h3>Pasaporte AMEX</h3>
-                    <p>Códigos QR en taquerías y capas de beneficio exclusivas. Data de comportamiento y recurrencia en
-                        un ecosistema que vive fuera de la pauta tradicional.</p>
+                <div class="time-card gs-reveal">
+                    <h4>Cadencia</h4>
+                    <p>Miércoles + Domingo (20:00)<br>17 episodios hasta el cierre.</p>
                 </div>
-                <div class="bullet-item gs-reveal">
-                    <h3>Propiedad Absoluta de Categoría</h3>
-                    <p>Primer jugador financiero en entrar se adueña del significado. El segundo ya no compra innovación:
-                        compra persecución.</p>
+                <div class="time-card gs-reveal">
+                    <h4>Hosts invitados</h4>
+                    <p>Chef, actor o creador por episodio para multiplicar alcance orgánico.</p>
+                </div>
+                <div class="time-card gs-reveal">
+                    <h4>Cierre</h4>
+                    <p>Semana final del Mundial 2026<br>Gran final + episodio de cierre.</p>
                 </div>
             </div>
 
-            <div class="panel gs-reveal" style="margin-top:2.4rem;">
-                <h3 style="font-size:1.5rem;margin-bottom:0.75rem;">Protocolo Omega — Cierre de Fricción</h3>
-                <p style="color:var(--text-muted);font-size:1.06rem;line-height:1.6;">
-                    <span class="accent-text">Fase 1:</span> calibración narrativa + claims verificables.<br>
-                    <span class="accent-text">Fase 2:</span> activación de torneo + distribución serial.<br>
-                    <span class="accent-text">Fase 3:</span> operación física + pasaporte + reporte de conversión.
-                </p>
+            <div class="bullet-grid">
+                <div class="bullet gs-reveal">
+                    <h3>Qué gana la gente</h3>
+                    <p>Participar, opinar y sentir que su voto cambia el torneo. Esto crea tribu real y conversación en
+                        la calle.</p>
+                </div>
+                <div class="bullet gs-reveal">
+                    <h3>Qué gana AMEX</h3>
+                    <p>Asociación positiva con cultura mexicana, presencia constante y lugar natural para activar
+                        beneficios y fidelidad.</p>
+                </div>
+                <div class="bullet gs-reveal">
+                    <h3>Qué sigue después</h3>
+                    <p>Landing page viva, mapa de taquerías, merch por taquería y pasaporte AMEX para recompensar visitas.
+                    </p>
+                </div>
+            </div>
+
+            <div class="panel gs-reveal">
+                <p><span class="accent-blue">Protocolo Omega en 3 pasos:</span> 1) claridad del mensaje, 2) calendario y
+                    producción, 3) activación de marca y conversión. Todo conectado en un mismo sistema.</p>
             </div>
         </div>
     </section>
@@ -390,7 +574,7 @@
         gsap.utils.toArray(".slide-section").forEach(section => {
             const bg = section.querySelector(".parallax-bg");
             gsap.to(bg, {
-                yPercent: 25,
+                yPercent: 24,
                 ease: "none",
                 scrollTrigger: {
                     trigger: section,
@@ -403,46 +587,21 @@
 
         gsap.utils.toArray(".slide-section").forEach(section => {
             const elements = section.querySelectorAll(".gs-reveal");
-            gsap.set(elements, { y: 50, opacity: 0 });
+            gsap.set(elements, { y: 42, opacity: 0 });
             ScrollTrigger.create({
                 trigger: section,
-                start: "top 75%",
+                start: "top 76%",
                 onEnter: () => {
                     gsap.to(elements, {
                         y: 0,
                         opacity: 1,
-                        duration: 1,
-                        stagger: 0.12,
+                        duration: 0.95,
+                        stagger: 0.1,
                         ease: "power3.out"
                     });
                 }
             });
         });
-
-        const omegaPanel = document.querySelector(".omega-panel-3d");
-        if (omegaPanel) {
-            omegaPanel.addEventListener("mousemove", e => {
-                const rect = omegaPanel.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const rotateY = ((x / rect.width) - 0.5) * 6;
-                const rotateX = ((y / rect.height) - 0.5) * -6;
-                gsap.to(omegaPanel, {
-                    rotationY: rotateY,
-                    rotationX: rotateX,
-                    duration: 0.5,
-                    ease: "power2.out"
-                });
-            });
-            omegaPanel.addEventListener("mouseleave", () => {
-                gsap.to(omegaPanel, {
-                    rotationY: 0,
-                    rotationX: 0,
-                    duration: 0.8,
-                    ease: "elastic.out(1, 0.3)"
-                });
-            });
-        }
     </script>
 </body>
 
