@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Vuelta a México en 80 Tacos — Pitch Confidencial AMEX</title>
+    <!-- GSAP Core y ScrollTrigger para animaciones -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* Estilos Originales Aprobados - Minimalismo Puro */
+        :root {
+            --bg-dark: #000000;
+            --text-light: #F5F5F7;
+            --accent-amex: #006FCF;
+            /* Azul clásico AMEX */
+            --accent-gold: #D4AF37;
+            --text-muted: #86868B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            width: 100vw;
+        }
+
+        /* Estructura Principal para el Scroll GSAP */
+        .slide-section {
+            position: relative;
+            min-height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 10vw;
+            overflow: hidden;
+        }
+
+        /* Fondos y Efectos Visuales Originales + Parallax (Nuevos) */
+        .parallax-bg {
+            position: absolute;
+            /* Expandimos la altura un 40% más para tener espacio para el efecto parallax */
+            top: -20%;
+            left: 0;
+            width: 100%;
+            height: 140%;
+            z-index: 0;
+            opacity: 0.35;
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(80%) sepia(10%);
+        }
+
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 1) 100%);
+            z-index: 1;
+        }
+
+        /* Contenido de texto */
+        .content {
+            position: relative;
+            z-index: 2;
+            max-width: 1100px;
+            width: 100%;
+            margin-top: 10vh;
+        }
+
+        /* Tipografía Premium Original Gigante */
+        h1 {
+            font-size: clamp(3.5rem, 7vw, 6.5rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #fff, #999);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 400;
+            color: var(--text-muted);
+            margin-bottom: 4rem;
+            max-width: 900px;
+            line-height: 1.3;
+        }
+
+        .bullets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .bullet-item {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+        }
+
+        .bullet-item h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #fff;
+        }
+
+        .bullet-item p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* Acentos Visuales */
+        .accent-text {
+            color: var(--accent-amex);
+            font-weight: 500;
+        }
+
+        /* Distintivos limpios originales */
+        .logo-mark {
+            position: fixed;
+            top: 2.5rem;
+            left: 2.5rem;
+            z-index: 10;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Barra de progreso inferior animada */
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background: var(--accent-amex);
+            width: 0%;
+            z-index: 9999;
+        }
+
+        /* Estilos Específicos Panel Choque de Mundos Original */
+        .split-concept {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 4rem;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            /* Panel 3D hover añadido aquí también porque es sutil */
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .split-side {
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+                margin-bottom: 2rem;
+            }
+
+            .split-concept {
+                flex-direction: column;
+                padding: 1.5rem;
+            }
+
+            .bullet-item {
+                margin-bottom: 1rem;
+            }
+
+            .slide-section {
+                padding: 10vh 5vw;
+            }
+        }
+
+        /* Clase vacia que maneja GSAP */
+        .gs-reveal {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="logo-mark">Proyecto: Tacotios × AMEX</div>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- DIAPOSITIVA 1: La Visión -->
+    <section class="slide-section" id="slide1">
+        <div class="parallax-bg"
+            style="background-image: url('https://images.unsplash.com/photo-1565299585323-38d6b0865b47?q=80&w=2000&auto=format&fit=crop');">
+        </div>
+        <div class="gradient-overlay"></div>
+        <div class="content">
+            <h1 class="gs-reveal">La Vuelta a México<br>en 80 Tacos.</h1>
+            <h2 class="gs-reveal">El lujo de tener tiempo: Un archivo documental sobre el alma del país.</h2>
+
+            <div class="bullets-grid">
+                <div class="bullet-item gs-reveal">
+                    <h3>El Origen</h3>
+                    <p>Hace 4 años, un español pisó Guadalajara y se convirtió en mexicano por devoción. Tras construir
+                        una comunidad de 2 Millones de seguidores, esta serie nace no como un show de comida, sino como
+                        un tributo a la calle que lo adoptó.</p>
+                </div>
+                <div class="bullet-item gs-reveal">
+                    <h3>80 Tacos, 32 Estados</h3>
+                    <p>Un recorrido exhaustivo. Documentando desde el caldo de rata hasta la sopa de piedra. Buscamos
+                        los platillos que representan la esencia cruda de la República, vistos por ojos sedientos de
+                        entender la verdadera identidad del país.</p>
+                </div>
+                <div class="bullet-item gs-reveal">
+                    <h3>La Tribu</h3>
+                    <p>Nuestra audiencia no busca "reviews" rápidos. Busca pertenecer. Han seguido este viaje desde el
+                        primer día y ven en la cocina callejera el último gran igualador social. Quieren acompañar este
+                        descubrimiento final, estado por estado.</p>
+                </div>
+            </div>
+
+            <!-- Nuevo HTML: Métricas Minimalistas y Enlaces Redes Sociales -->
+            <div class="metrics-container gs-reveal"
+                style="margin-top: 5rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+
+                <div style="display: flex; gap: 4rem;">
+                    <div>
+                        <div
+                            style="font-size: 3rem; font-weight: 700; color: #fff; line-height: 1; letter-spacing: -0.05em">
+                            2M+</div>
+                        <div
+                            style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted); margin-top: 0.5rem; font-weight: 500">
+                            Comunidad Leal</div>
+                    </div>
+                    <div>
+                        <div
+                            style="font-size: 3rem; font-weight: 700; color: #fff; line-height: 1; letter-spacing: -0.05em">
+                            4 Años</div>
+                        <div
+                            style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted); margin-top: 0.5rem; font-weight: 500">
+                            Traceabilidad Orgánica</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 1.5rem;">
+                    <a href="https://www.youtube.com/@tacotiosYT" target="_blank"
+                        style="padding: 0.75rem 1.75rem; border: 1px solid rgba(255,255,255,0.15); border-radius: 40px; color: white; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.02)">
+                        <span>▶</span> YouTube / Tacotios
+                    </a>
+                    <a href="https://www.instagram.com/tacotios/" target="_blank"
+                        style="padding: 0.75rem 1.75rem; border: 1px solid rgba(255,255,255,0.15); border-radius: 40px; color: white; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.02)">
+                        <span style="font-size: 1.1em">◎</span> Instagram Oficial
+                    </a>
+                </div>
+
+            </div>
+            <!-- Fin de Métricas -->
+
+        </div>
+    </section>
+
+    <!-- DIAPOSITIVA 2: El Puente (Sinergia) -->
+    <section class="slide-section" id="slide2">
+        <div class="parallax-bg"
+            style="background-image: url('https://images.unsplash.com/photo-1615887023516-9bfa6591ea35?q=80&w=2000&auto=format&fit=crop'); opacity: 0.15">
+        </div>
+        <div class="gradient-overlay"></div>
+        <div class="content">
+            <h1 class="gs-reveal">El pasaporte<br>a lo auténtico.</h1>
+            <h2 class="gs-reveal">Por qué American Express es la única marca que debe comercializar esta historia.</h2>
+
+            <div class="split-concept gs-reveal gold-panel-3d">
+                <div class="split-side">
+                    <h3 style="color: white; margin-bottom: 1rem; font-size: 1.75rem">El Choque de Mundos</h3>
+                    <p style="color: var(--text-muted); line-height: 1.6; font-size: 1.15rem">Llevar la calle al
+                        restaurante premium. Invitaremos a las matriarcas de las taquerías más recónditas a sentarse en
+                        los restaurantes <i>Fine Dining</i> de élite para dar su "Criterio de Doña". Eso es contraste
+                        visual y entretenimiento puro asociado a <span class="accent-text">Premium Access AMEX</span>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bullets-grid">
+                <div class="bullet-item gs-reveal">
+                    <h3>El Acceso Exclusivo</h3>
+                    <p>AMEX es la red del mundo veloz. Su promesa es recompensar el esfuerzo con regalías de tiempo
+                        excepcional. AMEX patrocina el "Acceso", actuando como la llave hacia un México verdadero que el
+                        dinero, por sí solo, no puede comprar.</p>
+                </div>
+                <div class="bullet-item gs-reveal">
+                    <h3>La Integración Estructural</h3>
+                    <p>No somos un comercial incrustado. AMEX compra el vuelo al fin del mundo, financia el hotel
+                        logístico y paga el ecosistema que hace posible el viaje. El mecenas arquitecto del proyecto
+                        moderno.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIAPOSITIVA 3: La Máquina (Mitigación de Riesgo) -->
+    <section class="slide-section" id="slide3">
+        <div class="parallax-bg"
+            style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2000&auto=format&fit=crop'); opacity: 0.12">
+        </div>
+        <div class="gradient-overlay"></div>
+        <div class="content">
+            <h1 class="gs-reveal">Una máquina<br>de retención.</h1>
+            <h2 class="gs-reveal">Riesgo distribuido y control in-house mediante ingeniería de consumo.</h2>
+
+            <div class="bullets-grid">
+                <div class="bullet-item gs-reveal">
+                    <h3>Escalabilidad por Temporadas</h3>
+                    <p>Estructura diseñada para perdurar pacientemente. 8 temporadas, 10 episodios por temporada. Si los
+                        KPIs dictan tracción, aceleramos. Un modelo de riesgo fraccionado seguro para el cliente.</p>
+                </div>
+                <div class="bullet-item gs-reveal">
+                    <h3>La Casa de la Posteridad (La App)</h3>
+                    <p>Diseñaremos internamente nuestra propia Aplicación para la "Vuelta". Aquí vivirán permanentemente
+                        las 8 temporadas completas. Una comunidad gamificada de pertenencia elitista donde descansa la
+                        posteridad digital que AMEX firma bajo su nombre.</p>
+                </div>
+                <div class="bullet-item gs-reveal">
+                    <h3>Red de Hosts Multicanal</h3>
+                    <p>Cada episodio incluye un Host invitado (chef, artista o famoso local). De cada master extraemos
+                        decenas de clips orgánicos para reinyectar esa red paralela hacia los documentales principales.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Script de Animaciones GSAP -->
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Barra de progreso global
+        gsap.to("#progressBar", {
+            width: "100%",
+            ease: "none",
+            scrollTrigger: {
+                trigger: "body",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0.3
+            }
+        });
+
+        // Parallax Real a los fondos fotográficos (El fondo se mueve a ritmo distinto al del texto)
+        gsap.utils.toArray('.slide-section').forEach((section, i) => {
+            const bg = section.querySelector('.parallax-bg');
+            gsap.to(bg, {
+                yPercent: 25, // Profundidad de paralaje
+                ease: "none",
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1
+                }
+            });
+        });
+
+        // Animación fluida "Efecto dominó" para que aparezcan los elementos de texto (FadeUp)
+        gsap.utils.toArray('.slide-section').forEach(section => {
+            const elements = section.querySelectorAll('.gs-reveal');
+
+            // Estado incial: ocultos de nuevo
+            gsap.set(elements, { y: 50, opacity: 0 });
+
+            ScrollTrigger.create({
+                trigger: section,
+                start: "top 75%", // Se activa antes de llegar al centro
+                onEnter: () => {
+                    gsap.to(elements, {
+                        y: 0,
+                        opacity: 1,
+                        duration: 1,
+                        stagger: 0.15, // Delay entre líneas de texto (elegancia)
+                        ease: "power3.out"
+                    });
+                }
+            });
+        });
+
+        // Micro-interacción: Panel Magnético 3D para el "Choque de Mundos" (Porque te gustaron las animaciones)
+        const goldPanel = document.querySelector('.gold-panel-3d');
+        if (goldPanel) {
+            goldPanel.addEventListener('mousemove', (e) => {
+                const rect = goldPanel.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                // Efecto de inclinación súper sutil
+                const rotateY = ((x / rect.width) - 0.5) * 6;
+                const rotateX = ((y / rect.height) - 0.5) * -6;
+
+                gsap.to(goldPanel, {
+                    rotationY: rotateY,
+                    rotationX: rotateX,
+                    duration: 0.5,
+                    ease: "power2.out"
+                });
+            });
+            goldPanel.addEventListener('mouseleave', () => {
+                gsap.to(goldPanel, { rotationY: 0, rotationX: 0, duration: 0.8, ease: "elastic.out(1, 0.3)" });
+            });
+        }
+    </script>
+</body>
+
+</html>
