@@ -23,6 +23,10 @@
     {
       "source": "/pitch-deck-seleccion-taco-amex",
       "destination": "/pitch-deck-seleccion-taco-amex.html"
+    },
+    {
+      "source": "/pitch-deck-seleccion-taco-amex-omega-v3",
+      "destination": "/pitch-deck-seleccion-taco-amex-omega-v3.html"
     }
   ]
 }
