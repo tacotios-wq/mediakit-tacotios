@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tacotios x AMEX — Seleccion del Taco</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --text-light: #f5f5f7;
+            --text-muted: #9698a0;
+            --amex-blue: #006fcf;
+            --warm-gold: #d4af37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background: #000;
+            color: var(--text-light);
+            width: 100vw;
+            overflow-x: hidden;
+        }
+
+        .logo-mark {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 10;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--amex-blue);
+            z-index: 9999;
+        }
+
+        .slide-section {
+            position: relative;
+            min-height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 8vw;
+            overflow: hidden;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: -20%;
+            left: 0;
+            width: 100%;
+            height: 140%;
+            z-index: 0;
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(72%) sepia(8%);
+            opacity: 0.3;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 1) 100%);
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1180px;
+            margin-top: 8vh;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 6vw, 5.6rem);
+            line-height: 1.03;
+            letter-spacing: -0.04em;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #fff, #a6a8ad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: clamp(1.22rem, 2.2vw, 2rem);
+            line-height: 1.34;
+            color: var(--text-muted);
+            font-weight: 400;
+            max-width: 980px;
+        }
+
+        .accent-blue {
+            color: var(--amex-blue);
+            font-weight: 700;
+        }
+
+        .accent-gold {
+            color: var(--warm-gold);
+            font-weight: 700;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 999px;
+            padding: 0.3rem 0.75rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #d9e8ff;
+            background: rgba(255, 255, 255, 0.03);
+            margin-bottom: 1rem;
+        }
+
+        .panel {
+            margin-top: 1.3rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.1rem 1rem;
+        }
+
+        .panel p {
+            color: #d4d7dd;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .kpi-grid {
+            margin-top: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 0.9rem;
+        }
+
+        .kpi-card {
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+        }
+
+        .kpi-value {
+            font-size: 1.8rem;
+            line-height: 1.05;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .kpi-label {
+            margin-top: 0.35rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.11em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .bullet-grid {
+            margin-top: 1.3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+
+        .bullet {
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 0.9rem;
+        }
+
+        .bullet h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .bullet p {
+            color: var(--text-muted);
+            font-size: 0.94rem;
+            line-height: 1.45;
+        }
+
+        .two-col {
+            margin-top: 1.2rem;
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 1rem;
+            align-items: stretch;
+        }
+
+        .bracket-box,
+        .episode-box {
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.9rem;
+        }
+
+        .bracket-title,
+        .episode-title {
+            font-size: 0.9rem;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            margin-bottom: 0.55rem;
+            color: #dbe9ff;
+            font-weight: 700;
+        }
+
+        .bracket-svg {
+            width: 100%;
+            height: 340px;
+        }
+
+        .episode-list {
+            list-style: none;
+            display: grid;
+            gap: 0.4rem;
+        }
+
+        .episode-list li {
+            color: #d4d7dd;
+            font-size: 0.9rem;
+            line-height: 1.35;
+        }
+
+        .table-scroll {
+            margin-top: 1rem;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .omega-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 860px;
+        }
+
+        .omega-table th,
+        .omega-table td {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.62rem 0.68rem;
+            text-align: left;
+            vertical-align: top;
+            font-size: 0.84rem;
+            line-height: 1.35;
+            color: #d4d7dd;
+        }
+
+        .omega-table th {
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #dbe9ff;
+            background: rgba(255, 255, 255, 0.03);
+            position: sticky;
+            top: 0;
+        }
+
+        .omega-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .decision-strip {
+            margin-top: 1rem;
+            border: 1px solid rgba(0, 111, 207, 0.5);
+            background: rgba(0, 111, 207, 0.08);
+            border-radius: 12px;
+            padding: 0.8rem 0.9rem;
+        }
+
+        .decision-strip p {
+            font-size: 0.94rem;
+            color: #d7e8ff;
+            line-height: 1.42;
+        }
+
+        .gs-reveal {
+            opacity: 0;
+        }
+
+        @media (max-width: 980px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+
+            .bracket-svg {
+                height: 380px;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .slide-section {
+                padding: 10vh 5vw;
+            }
+
+            h1 {
+                font-size: 2.7rem;
+            }
+
+            h2 {
+                font-size: 1.05rem;
+            }
+
+            .omega-table {
+                min-width: 760px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo-mark">TACOTIOS × AMEX</div>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <section class="slide-section" id="slide1">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2200&auto=format&fit=crop');">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Slide 1</span>
+            <h1 class="gs-reveal">Tacotios x AMEX</h1>
+            <h2 class="gs-reveal">La Seleccion del Taco puede ser la conversación cultural más fuerte del Mundial: la
+                comunidad vota, discute y vuelve episodio a episodio.</h2>
+
+            <div class="kpi-grid">
+                <div class="kpi-card gs-reveal">
+                    <div class="kpi-value">2.0M</div>
+                    <div class="kpi-label">seguidores reales</div>
+                </div>
+                <div class="kpi-card gs-reveal">
+                    <div class="kpi-value">7.2%</div>
+                    <div class="kpi-label">engagement rate</div>
+                </div>
+                <div class="kpi-card gs-reveal">
+                    <div class="kpi-value">30–50M</div>
+                    <div class="kpi-label">vistas mensuales base</div>
+                </div>
+                <div class="kpi-card gs-reveal">
+                    <div class="kpi-value">x3</div>
+                    <div class="kpi-label">pronóstico mínimo: 90–150M</div>
+                </div>
+            </div>
+
+            <div class="bullet-grid">
+                <div class="bullet gs-reveal">
+                    <h3>Tribu</h3>
+                    <p>La gente no solo ve: toma partido y vuelve para defender su taquería.</p>
+                </div>
+                <div class="bullet gs-reveal">
+                    <h3>Orgullo regional</h3>
+                    <p>Se celebra la cocina local, las matriarcas y la tradición real en cada plaza.</p>
+                </div>
+                <div class="bullet gs-reveal">
+                    <h3>Nivel mundial</h3>
+                    <p>Fine dining y calle comparten cancha y elevan la narrativa gastronómica de México.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide2">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=2200&auto=format&fit=crop');opacity:0.22;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Slide 2</span>
+            <h1 class="gs-reveal">16 partidos. 1 ganador.</h1>
+            <h2 class="gs-reveal">Así se ve el bracket y así se entiende cada reel vertical.</h2>
+
+            <div class="two-col">
+                <div class="bracket-box gs-reveal">
+                    <div class="bracket-title">Bracket visual</div>
+                    <svg class="bracket-svg" viewBox="0 0 1200 420" xmlns="http://www.w3.org/2000/svg" role="img"
+                        aria-label="Bracket Seleccion del Taco">
+                        <rect x="20" y="24" width="190" height="20" rx="7" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="64" width="190" height="20" rx="7" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="104" width="190" height="20" rx="7" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="144" width="190" height="20" rx="7" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="184" width="190" height="20" rx="7" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="224" width="190" height="20" rx="7" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="264" width="190" height="20" rx="7" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="304" width="190" height="20" rx="7" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.25)" />
+
+                        <rect x="340" y="44" width="180" height="24" rx="8" fill="rgba(0,111,207,0.16)" stroke="rgba(0,111,207,0.9)" />
+                        <rect x="340" y="124" width="180" height="24" rx="8" fill="rgba(0,111,207,0.16)" stroke="rgba(0,111,207,0.9)" />
+                        <rect x="340" y="204" width="180" height="24" rx="8" fill="rgba(0,111,207,0.16)" stroke="rgba(0,111,207,0.9)" />
+                        <rect x="340" y="284" width="180" height="24" rx="8" fill="rgba(0,111,207,0.16)" stroke="rgba(0,111,207,0.9)" />
+
+                        <rect x="650" y="84" width="180" height="28" rx="8" fill="rgba(212,175,55,0.15)" stroke="rgba(212,175,55,0.95)" />
+                        <rect x="650" y="244" width="180" height="28" rx="8" fill="rgba(212,175,55,0.15)" stroke="rgba(212,175,55,0.95)" />
+
+                        <rect x="970" y="158" width="180" height="40" rx="9" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.95)" />
+
+                        <text x="32" y="38" fill="#e8edf6" font-size="9">O1 Pastor: Chef vs Comunidad</text>
+                        <text x="32" y="78" fill="#e8edf6" font-size="9">O2 Suadero: Chef vs Comunidad</text>
+                        <text x="32" y="118" fill="#e8edf6" font-size="9">O3 Oaxaqueño: Chef vs La Tía</text>
+                        <text x="32" y="158" fill="#e8edf6" font-size="9">O4 Asada: Doña Humo vs Enrique Olvera</text>
+                        <text x="32" y="198" fill="#e8edf6" font-size="9">O5 Yucateco: Chef vs Comunidad Maya</text>
+                        <text x="32" y="238" fill="#e8edf6" font-size="9">O6 Fish: Chef vs Carlos Valdez</text>
+                        <text x="32" y="278" fill="#e8edf6" font-size="9">O7 Barbacoa: Chef vs Comunidad</text>
+                        <text x="32" y="318" fill="#e8edf6" font-size="9">O8 Fine Dining: Chef vs Chef</text>
+
+                        <text x="352" y="60" fill="#dbe9ff" font-size="10">C1: G O1 vs O2</text>
+                        <text x="352" y="140" fill="#dbe9ff" font-size="10">C2: G O3 vs O4</text>
+                        <text x="352" y="220" fill="#dbe9ff" font-size="10">C3: G O5 vs O6</text>
+                        <text x="352" y="300" fill="#dbe9ff" font-size="10">C4: G O7 vs O8</text>
+
+                        <text x="662" y="102" fill="#f0de9d" font-size="11">S1: G C1 vs C2</text>
+                        <text x="662" y="262" fill="#f0de9d" font-size="11">S2: G C3 vs C4</text>
+
+                        <text x="982" y="182" fill="#fff" font-size="10">FINAL: G S1 vs G S2</text>
+
+                        <line x1="210" y1="34" x2="340" y2="56" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="210" y1="74" x2="340" y2="56" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="210" y1="114" x2="340" y2="136" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="210" y1="154" x2="340" y2="136" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="210" y1="194" x2="340" y2="216" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="210" y1="234" x2="340" y2="216" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="210" y1="274" x2="340" y2="296" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="210" y1="314" x2="340" y2="296" stroke="rgba(255,255,255,0.35)" />
+
+                        <line x1="520" y1="56" x2="650" y2="98" stroke="rgba(0,111,207,0.6)" />
+                        <line x1="520" y1="136" x2="650" y2="98" stroke="rgba(0,111,207,0.6)" />
+                        <line x1="520" y1="216" x2="650" y2="258" stroke="rgba(0,111,207,0.6)" />
+                        <line x1="520" y1="296" x2="650" y2="258" stroke="rgba(0,111,207,0.6)" />
+
+                        <line x1="830" y1="98" x2="970" y2="178" stroke="rgba(212,175,55,0.85)" />
+                        <line x1="830" y1="258" x2="970" y2="178" stroke="rgba(212,175,55,0.85)" />
+
+                        <text x="20" y="348" fill="#dbe9ff" font-size="10">Regla: pasa quien tenga más likes en comentarios.</text>
+                    </svg>
+                </div>
+
+                <div class="episode-box gs-reveal">
+                    <div class="episode-title">Cómo es cada reel vertical</div>
+                    <ul class="episode-list">
+                        <li><span class="accent-blue">Duración:</span> 45 a 60 segundos.</li>
+                        <li><span class="accent-blue">0–3s:</span> apertura con gancho visual del duelo.</li>
+                        <li><span class="accent-blue">3–15s:</span> quién contra quién y qué representa cada lado.</li>
+                        <li><span class="accent-blue">15–45s:</span> prueba real, reacción y contraste.</li>
+                        <li><span class="accent-blue">45–60s:</span> CTA: "comenta y da like para decidir quién pasa".</li>
+                        <li><span class="accent-blue">Quién aparece:</span> Aniol + capitán del duelo + cameo opcional.</li>
+                        <li><span class="accent-blue">Cómo se eligen chefs:</span> curaduría por autoridad y conversación.</li>
+                        <li><span class="accent-blue">Cómo elige comunidad:</span> comentarios con más likes.</li>
+                        <li><span class="accent-blue">Cadencia:</span> miércoles y domingo, misma hora (20:00).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide3">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1529563021893-cc83c992d75d?q=80&w=2200&auto=format&fit=crop');opacity:0.2;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Slide 3</span>
+            <h1 class="gs-reveal">Qué gana AMEX con esto</h1>
+            <h2 class="gs-reveal">AMEX se vuelve el facilitador oficial para saber dónde comer durante el Mundial,
+                para locales y turistas, con una guía física y digital útil en la vida real.</h2>
+
+            <div class="kpi-grid">
+                <div class="kpi-card gs-reveal">
+                    <div class="kpi-value">Utilidad real</div>
+                    <div class="kpi-label">guía física + digital para comer mejor</div>
+                </div>
+                <div class="kpi-card gs-reveal">
+                    <div class="kpi-value">Vinculo emocional</div>
+                    <div class="kpi-label">tacos + futbol + orgullo mexicano</div>
+                </div>
+                <div class="kpi-card gs-reveal">
+                    <div class="kpi-value">Escala</div>
+                    <div class="kpi-label">x3 de engagement proyectado</div>
+                </div>
+            </div>
+
+            <div class="bullet-grid">
+                <div class="bullet gs-reveal">
+                    <h3>Marca que acompaña</h3>
+                    <p>No se siente anuncio. Se siente ayuda real en el momento de mayor conversación.</p>
+                </div>
+                <div class="bullet gs-reveal">
+                    <h3>Conversación que se sostiene</h3>
+                    <p>El formato de torneo obliga a volver: quien entra en cuartos quiere ver semis y final.</p>
+                </div>
+                <div class="bullet gs-reveal">
+                    <h3>Medición clara</h3>
+                    <p>ER, comentarios, likes de voto, tráfico a guía y conversión por episodio.</p>
+                </div>
+            </div>
+
+            <div class="decision-strip gs-reveal">
+                <p><span class="accent-blue">Pedido:</span> aprobar hoy la reunión de cierre con Legal/Comercial para
+                    bloquear Selección del Taco completa (sin duración definida), con fecha objetivo: miércoles 18 de
+                    marzo de 2026.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.to("#progressBar", {
+            width: "100%",
+            ease: "none",
+            scrollTrigger: {
+                trigger: "body",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0.3
+            }
+        });
+
+        gsap.utils.toArray(".slide-section").forEach(section => {
+            const bg = section.querySelector(".parallax-bg");
+            gsap.to(bg, {
+                yPercent: 24,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1
+                }
+            });
+        });
+
+        gsap.utils.toArray(".slide-section").forEach(section => {
+            const elements = section.querySelectorAll(".gs-reveal");
+            gsap.set(elements, { y: 42, opacity: 0 });
+            ScrollTrigger.create({
+                trigger: section,
+                start: "top 76%",
+                onEnter: () => {
+                    gsap.to(elements, {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.95,
+                        stagger: 0.08,
+                        ease: "power3.out"
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
