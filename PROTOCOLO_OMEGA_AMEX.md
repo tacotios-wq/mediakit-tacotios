@@ -2,7 +2,7 @@
 
 Fecha: 2026-03-10
 Owner: Equipo TacoTios + AMEX
-Version: v1.0 (para resolver huecos del deck y ejecutar sin friccion)
+Version: v1.1 (deck + expansion Vuelta en 80 Tacos)
 
 ## 1) Objetivo
 
@@ -208,6 +208,186 @@ Gate de salida (por semana):
 3. Slide de calendario: fechas exactas hasta 19 julio 2026.
 4. Slide Omega: autoridad, pueblo, cameos, app, merch.
 5. Todas las cifras consistentes: ER 7.2 y 30-50M.
+
+## 7) Expansion Omega: Vuelta a Mexico en 80 Tacos (Tour + YouTube)
+
+Objetivo:
+Grabar dos productos al mismo tiempo para multiplicar impacto:
+1) Seleccion del Taco (Mundial en redes)
+2) La Vuelta a Mexico en 80 Tacos (serie YouTube)
+
+Idea central:
+Mientras se graba Tacotios Tour, se graba "La Vuelta" con Mauricio (productor) para aprovechar cada viaje y crear un universo conectado.
+
+### Fase T0 - Relato maestro unico (48h)
+
+Meta:
+Que ambas series se sientan parte de la misma historia.
+
+Acciones:
+1. Definir hilo narrativo comun: "debatimos en redes y luego vamos al territorio real".
+2. Definir puente oficial entre formatos:
+   - En Seleccion se dejan pistas de la Vuelta.
+   - En La Vuelta se recuperan momentos del torneo.
+3. Definir arco emocional de temporada:
+   orgullo local -> descubrimiento -> pertenencia -> recompensa.
+
+Entregable:
+Biblia narrativa de 1 pagina para guionistas/editores.
+
+Gate de salida:
+- [ ] Cualquier episodio se entiende sin contexto previo.
+- [ ] Quien vio una serie quiere ver la otra.
+
+### Fase T1 - Rodaje dual en ruta (durante el Tour)
+
+Meta:
+Sacar 2x contenido con el mismo costo de desplazamiento.
+
+Acciones:
+1. Plan diario de grabacion (bloques AM/PM):
+   - Bloque A: contenido Seleccion (vertical).
+   - Bloque B: contenido Vuelta (horizontal YouTube).
+2. Capturar por ciudad:
+   opening, tasting, calle, reaccion, aprendizaje local.
+3. Guardar archivo maestro de momentos virales (Puebla, Chiapas, Sonora y nuevas plazas).
+
+Entregable:
+Banco de clips etiquetado por ciudad, categoria y tono.
+
+Gate de salida:
+- [ ] Cada ciudad deja minimo 1 clip para Seleccion y 1 clip para YouTube.
+- [ ] Se documentan aprendizajes regionales para el trailer.
+
+### Fase T2 - Trailer + video secreto + landing con contador (7 dias)
+
+Meta:
+Crear expectativa y fecha clara de estreno.
+
+Acciones:
+1. Trailer principal:
+   recap de momentos vividos + aprendizajes + adelanto de la nueva temporada.
+2. Video secreto para insiders:
+   pieza exclusiva que anuncia el dia exacto de arranque.
+3. Landing page de estreno:
+   contador, formulario, boton recordatorio, bloque merch.
+4. Regla de lanzamiento:
+   mismo dia de semana + misma hora en toda la temporada.
+
+Entregable:
+Pack de estreno (trailer + video secreto + landing activa).
+
+Gate de salida:
+- [ ] Fecha y hora visibles en todas las piezas.
+- [ ] El contador funciona en desktop y mobile.
+- [ ] CTA unico: "Activa recordatorio y entra a la guia".
+
+### Fase T3 - Estreno sincronizado + merch (semana de lanzamiento)
+
+Meta:
+Convertir atencion en ventas y comunidad.
+
+Acciones:
+1. Publicar episodio 1 de La Vuelta.
+2. Abrir ventas de merch el mismo dia del estreno.
+3. Activar links unicos por episodio (tracking de trafico y conversion).
+4. Publicar clip puente en Seleccion para enviar audiencia al estreno.
+
+Entregable:
+Dia 1 sincronizado (video + tienda + enlaces + CTA cruzado).
+
+Gate de salida:
+- [ ] Todo episodio tiene URL unica medible.
+- [ ] La tienda abre sin friccion el dia del estreno.
+- [ ] Se puede medir ventas por episodio/fuente.
+
+### Fase T4 - Sistema de atencion y descubrimiento (semanal)
+
+Meta:
+Que la audiencia "juegue" a descubrir pistas y sienta pertenencia.
+
+Acciones:
+1. Disenar pistas por episodio (easter eggs narrativos).
+2. Mecanica de recompensa social:
+   comentar teoria, acertar pista, aparecer en repost.
+3. Copy de enganche por pieza:
+   gancho inicial + conflicto + promesa + CTA.
+4. Integracion de marcas por funcion:
+   AMEX financia experiencia, movilidad, beneficios y acceso.
+
+Entregable:
+Plantilla de guion corto y copy para cada episodio.
+
+Gate de salida:
+- [ ] Cada pieza abre fuerte en primeros 3 segundos.
+- [ ] Cada pieza cierra con accion unica clara.
+- [ ] Marca integrada sin romper historia.
+
+### Fase T5 - Modelo financiero y alianzas (5 dias)
+
+Meta:
+Hacer sostenible la produccion completa.
+
+Acciones:
+1. Matriz de costos:
+   productor, camara, edicion, social media, viaticos de 2 personas.
+2. Matriz de cobertura:
+   - AMEX: vuelos + transporte (base propuesta).
+   - Hoteles y destino: secretarias de turismo/alianzas locales.
+   - Produccion: paquete central financiado por proyecto + marcas asociadas.
+3. Paquetes comerciales:
+   naming, integraciones, episodios patrocinados, eventos, podcast, airdrops.
+
+Entregable:
+Presupuesto maestro + propuesta comercial por nivel.
+
+Gate de salida:
+- [ ] Costos minimos cubiertos antes de rodaje.
+- [ ] Cada marca sabe que recibe y como se mide.
+- [ ] Hay plan de caja para toda la temporada.
+
+### Fase T6 - Operacion del equipo y foco creativo (inmediato)
+
+Meta:
+Liberar al fundador para direccion creativa de alto impacto.
+
+Roles propuestos:
+1. Lider creativo (tu): vision, narrativa, decisiones de formato.
+2. Mauricio (productor): plan de rodaje, continuidad, calidad editorial.
+3. Edicion: cortes largos/cortos y versionado por plataforma.
+4. Social media lead: calendario, community, publicacion y reportes.
+
+Entregable:
+RACI operativo + flujo de aprobacion de 24h.
+
+Gate de salida:
+- [ ] Nadie tiene doble rol critico sin respaldo.
+- [ ] El lider creativo no se bloquea por tareas operativas.
+
+## 8) Arquitectura de enlaces (obligatoria)
+
+Cada episodio debe tener:
+1. Link principal de video.
+2. Link a landing/contador o guia.
+3. Link a merch.
+4. UTM por plataforma (IG, TikTok, YouTube, Shorts, Reels).
+
+Regla:
+No se publica ninguna pieza sin stack de links completo.
+
+## 9) Producto final de Mundial (pico de atencion)
+
+Objetivo:
+Cuando empiece la fase mas intensa del Mundial 2026, lanzar "Guia/Anti-guia CDMX" como producto faro.
+
+Capas de producto:
+1. App/guia de donde comer (mapa + ranking vivo).
+2. Info-productos (rutas, listas, recomendaciones premium).
+3. Producto fisico (merch por ciudad/taqueria).
+4. Eventos presenciales y dinamicas de comunidad.
+
+KPI principal de esta fase:
+Usuarios activos en guia + conversion a compra (merch/info-producto).
 
 ---
 
