@@ -31,6 +31,10 @@
     {
       "source": "/protocolo-omega-ejecucion-paocme",
       "destination": "/protocolo-omega-ejecucion-paocme.html"
+    },
+    {
+      "source": "/plan-maestro-omega-paocme",
+      "destination": "/plan-maestro-omega-paocme.html"
     }
   ]
 }
