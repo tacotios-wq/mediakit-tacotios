@@ -9,6 +9,10 @@
       "destination": "/info-paocme.html"
     },
     {
+      "source": "/info-tacotios",
+      "destination": "/info-tacotios.html"
+    },
+    {
       "source": "/analytics",
       "destination": "/analytics.html"
     },
