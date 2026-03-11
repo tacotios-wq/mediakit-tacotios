@@ -39,6 +39,10 @@
     {
       "source": "/razonamiento-omega-paocme",
       "destination": "/razonamiento-omega-paocme.html"
+    },
+    {
+      "source": "/prompt-omega-final-presentacion-amex",
+      "destination": "/prompt-omega-final-presentacion-amex.html"
     }
   ]
 }
