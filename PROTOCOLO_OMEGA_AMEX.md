@@ -389,6 +389,85 @@ Capas de producto:
 KPI principal de esta fase:
 Usuarios activos en guia + conversion a compra (merch/info-producto).
 
+## 10) Calendario ejecutado (fechas cerradas)
+
+Zona horaria base:
+America/Mexico_City (CST/CDT segun aplique).
+
+Hora fija recomendada:
+20:00 (siempre misma hora para habito de audiencia).
+
+### 10.1 Prelanzamiento (La Vuelta + Seleccion conectadas)
+
+1. Domingo 26 abril 2026:
+   teaser corto "empieza la ruta".
+2. Domingo 3 mayo 2026:
+   trailer oficial (recap Puebla, Chiapas, Sonora + nueva promesa).
+3. Domingo 10 mayo 2026:
+   video secreto para insiders (fecha exacta de salida).
+4. Domingo 17 mayo 2026:
+   landing con contador + pre-view de merch + recordatorio.
+5. Domingo 24 mayo 2026:
+   arranque oficial (episodio inaugural).
+
+### 10.2 Calendario de 17 episodios (Miercoles + Domingo)
+
+1. Ep01 - Domingo 24 mayo 2026 - Inaugural (reglas + primera votacion)
+2. Ep02 - Miercoles 27 mayo 2026 - Partido 1
+3. Ep03 - Domingo 31 mayo 2026 - Partido 2
+4. Ep04 - Miercoles 3 junio 2026 - Partido 3
+5. Ep05 - Domingo 7 junio 2026 - Partido 4
+6. Ep06 - Miercoles 10 junio 2026 - Partido 5
+7. Ep07 - Domingo 14 junio 2026 - Partido 6
+8. Ep08 - Miercoles 17 junio 2026 - Partido 7
+9. Ep09 - Domingo 21 junio 2026 - Partido 8
+10. Ep10 - Miercoles 24 junio 2026 - Cuartos 1
+11. Ep11 - Domingo 28 junio 2026 - Cuartos 2
+12. Ep12 - Miercoles 1 julio 2026 - Cuartos 3
+13. Ep13 - Domingo 5 julio 2026 - Cuartos 4
+14. Ep14 - Miercoles 8 julio 2026 - Semifinal 1
+15. Ep15 - Domingo 12 julio 2026 - Semifinal 2
+16. Ep16 - Miercoles 15 julio 2026 - Antesala gran final + trailer de La Vuelta
+17. Ep17 - Domingo 19 julio 2026 - Gran final + anuncio fuerte de Guia/Anti-guia
+
+Contingencia de calendario:
+Si FIFA ajusta la fecha de la final, mover Ep17 a 48h antes o 24h despues, sin cambiar la regla de hora fija.
+
+### 10.3 Sistema de publicacion por episodio (obligatorio)
+
+Cada episodio sale con:
+1. URL video principal.
+2. URL landing/contador o guia.
+3. URL merch.
+4. UTM por canal (IG, TikTok, YouTube).
+5. CTA de siguiente episodio ("comenta la taqueria de manana").
+
+### 10.4 Operacion minima por ciudad (rodaje dual)
+
+Checklist por ciudad:
+1. 1 pieza vertical para Seleccion.
+2. 1 bloque horizontal para La Vuelta.
+3. 1 microclip con pista narrativa.
+4. 1 toma para trailer (archivo de recap).
+5. 1 llamada comercial (marca/alianza local).
+
+### 10.5 Equipo minimo y foco creativo
+
+1. Lider creativo (tu): guion, idea, decisiones.
+2. Mauricio productor: ruta, continuidad, control de rodaje.
+3. Camara/editor: corte largo + cortes sociales.
+4. Social media lead: publicacion, comunidad, reporte.
+
+Regla de oro:
+El lider creativo no opera publicacion diaria ni carga tecnica.
+
+### 10.6 Monetizacion sincronizada
+
+1. Merch abre en Ep01 y se renueva por rondas (cuartos/semis/final).
+2. Guia/App entra en beta durante torneo y sale fuerte en semana de final.
+3. Info-productos (rutas, anti-guia premium) salen con picos de atencion.
+4. Eventos/podcast/airdrops se activan solo cuando el calendario base este estable.
+
 ---
 
 Este protocolo esta pensado para ejecutar por fases, con puertas de salida claras.

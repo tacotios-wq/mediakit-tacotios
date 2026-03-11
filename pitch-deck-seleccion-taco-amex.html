@@ -350,6 +350,56 @@
             line-height: 1.42;
         }
 
+        .execution-grid {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1rem;
+        }
+
+        .exec-card {
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+        }
+
+        .exec-card h3 {
+            font-size: 1.03rem;
+            margin-bottom: 0.55rem;
+            color: #e7f1ff;
+        }
+
+        .exec-list {
+            list-style: none;
+            display: grid;
+            gap: 0.35rem;
+        }
+
+        .exec-list li {
+            color: #d4d7dd;
+            font-size: 0.9rem;
+            line-height: 1.34;
+        }
+
+        .episode-columns {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.7rem;
+        }
+
+        .episode-columns ul {
+            list-style: none;
+            display: grid;
+            gap: 0.35rem;
+        }
+
+        .episode-columns li {
+            color: #d4d7dd;
+            font-size: 0.8rem;
+            line-height: 1.3;
+        }
+
         .gs-reveal {
             opacity: 0;
         }
@@ -361,6 +411,10 @@
 
             .bracket-svg {
                 height: 340px;
+            }
+
+            .episode-columns {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
         }
 
@@ -379,6 +433,10 @@
 
             .chef-silhouettes {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .episode-columns {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -474,11 +532,11 @@
                             <span class="chip">Suadero</span>
                             <span class="chip">Carnitas</span>
                             <span class="chip">Cabeza</span>
+                            <span class="chip">Asada</span>
                             <span class="chip">Norteño</span>
                             <span class="chip">Yucateco</span>
                             <span class="chip">Canasta</span>
                             <span class="chip">Fine Dining</span>
-                            <span class="chip">Sorpresa (comodín)</span>
                         </div>
                     </div>
                 </div>
@@ -626,10 +684,10 @@
                         <li>Enrique Olvera (Pujol, 2 estrellas Michelin)</li>
                         <li>Jorge Vallejo (Quintonil, 2 estrellas Michelin)</li>
                         <li>Elena Reygadas (Rosetta, 1 estrella Michelin)</li>
-                        <li>Lucho Martinez (Em, 1 estrella Michelin)</li>
-                        <li>Edgar Nunez (Sud 777, 1 estrella Michelin)</li>
-                        <li>Ana Dolores Gonzalez (Esquina Comun, 1 estrella Michelin)</li>
-                        <li>Arturo Rivera (El Califa de Leon, 1 estrella Michelin)</li>
+                        <li>Arturo Rivera (El Califa de Leon: asada/gaonera)</li>
+                        <li>Voceria El Vilsito (pastor)</li>
+                        <li>Voceria Los Cocuyos o Tacos Charly (suadero/cabeza)</li>
+                        <li>Voceria de taqueria norteña/yucateca (por cerrar)</li>
                         <li>Alonso Ruvalcaba (critica/periodismo gastronomico)</li>
                     </ul>
                     <p class="omega-note">Objetivo: que cada episodio tenga una voz con autoridad real y arrastre
@@ -667,6 +725,89 @@
                 <p><span class="accent-blue">Fase 4: producto de marca.</span> Camisetas estilo futbol por categoria,
                     app "Guia de la Seleccion del Taco" (mapa, QR, votos, recompensas AMEX) y cierre en semana de la
                     final del Mundial 2026 (19 julio 2026).</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide5">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=2200&auto=format&fit=crop');opacity:0.15;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <h1 class="gs-reveal">Ejecucion real:<br>Tour + Vuelta + Mundial.</h1>
+            <h2 class="gs-reveal">Se graban dos series en el mismo viaje: contenido vertical para Seleccion y episodio
+                largo para YouTube. Todo conecta al mismo calendario, mismo dia y misma hora.</h2>
+
+            <div class="execution-grid">
+                <div class="exec-card gs-reveal">
+                    <h3>Prelanzamiento (4 domingos)</h3>
+                    <ul class="exec-list">
+                        <li>26 abril 2026: teaser "empieza la ruta".</li>
+                        <li>3 mayo 2026: trailer recap (Puebla, Chiapas, Sonora).</li>
+                        <li>10 mayo 2026: video secreto para insiders con fecha oficial.</li>
+                        <li>17 mayo 2026: landing con contador + preview de merch.</li>
+                        <li>24 mayo 2026: episodio inaugural.</li>
+                    </ul>
+                </div>
+
+                <div class="exec-card gs-reveal">
+                    <h3>17 episodios cerrados (20:00)</h3>
+                    <div class="episode-columns">
+                        <ul>
+                            <li>Ep01 Dom 24 may</li>
+                            <li>Ep02 Mie 27 may</li>
+                            <li>Ep03 Dom 31 may</li>
+                            <li>Ep04 Mie 3 jun</li>
+                            <li>Ep05 Dom 7 jun</li>
+                            <li>Ep06 Mie 10 jun</li>
+                        </ul>
+                        <ul>
+                            <li>Ep07 Dom 14 jun</li>
+                            <li>Ep08 Mie 17 jun</li>
+                            <li>Ep09 Dom 21 jun</li>
+                            <li>Ep10 Mie 24 jun</li>
+                            <li>Ep11 Dom 28 jun</li>
+                            <li>Ep12 Mie 1 jul</li>
+                        </ul>
+                        <ul>
+                            <li>Ep13 Dom 5 jul</li>
+                            <li>Ep14 Mie 8 jul</li>
+                            <li>Ep15 Dom 12 jul</li>
+                            <li>Ep16 Mie 15 jul</li>
+                            <li>Ep17 Dom 19 jul (gran final)</li>
+                        </ul>
+                    </div>
+                    <p class="omega-note">Cadencia fija: miercoles + domingo, siempre 20:00. Si cambia FIFA, mover solo
+                        48h sin romper el habito.</p>
+                </div>
+            </div>
+
+            <div class="execution-grid">
+                <div class="exec-card gs-reveal">
+                    <h3>Rodaje dual por ciudad</h3>
+                    <ul class="exec-list">
+                        <li>1 reel Seleccion (voto/partido/CTA).</li>
+                        <li>1 bloque YouTube para "La Vuelta en 80 Tacos".</li>
+                        <li>1 microclip de pista narrativa (easter egg).</li>
+                        <li>1 toma al banco oficial del trailer.</li>
+                    </ul>
+                </div>
+
+                <div class="exec-card gs-reveal">
+                    <h3>Monetizacion desde Ep01</h3>
+                    <ul class="exec-list">
+                        <li>Merch futbolera abre el dia del estreno.</li>
+                        <li>Cada episodio sale con link unico medible.</li>
+                        <li>AMEX como companero de viaje (vuelo/transporte/beneficios).</li>
+                        <li>App/Guia en beta durante torneo y salida fuerte en final.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="engagement-strip gs-reveal">
+                <p><span class="accent-blue">Regla de oro de publicacion:</span> ningun episodio sale sin stack de links
+                    completo (video + landing/guia + merch + UTM) y sin CTA del episodio siguiente.</p>
             </div>
         </div>
     </section>
