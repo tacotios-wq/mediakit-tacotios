@@ -2723,7 +2723,7 @@
       var ns = 'http://www.w3.org/2000/svg';
       var cx = 100, cy = 100, r = 80, inner = 50;
       var entries = Object.entries(data);
-      var colors = ['#4a0404', '#7a0808'];
+      var colorMap = { male: '#FFFFFF', female: '#7a0808' };
       var labels = { male: 'Hombres', female: 'Mujeres' };
       var startAngle = -90;
       var targetAngles = [];
@@ -2744,7 +2744,9 @@
           var large = angle > 180 ? 1 : 0;
           var d = 'M ' + x1 + ' ' + y1 + ' A ' + r + ' ' + r + ' 0 ' + large + ' 1 ' + x2 + ' ' + y2 + ' L ' + ix1 + ' ' + iy1 + ' A ' + inner + ' ' + inner + ' 0 ' + large + ' 0 ' + ix2 + ' ' + iy2 + ' Z';
           var path = document.createElementNS(ns, 'path');
-          path.setAttribute('d', d); path.setAttribute('fill', colors[i % colors.length]); path.setAttribute('opacity', '0.9');
+          var key = entry[0];
+          var color = colorMap[key] || '#4a0404';
+          path.setAttribute('d', d); path.setAttribute('fill', color); path.setAttribute('opacity', key === 'male' ? '0.98' : '0.9');
           svg.appendChild(path);
           sa = endAngle;
         });
@@ -2763,7 +2765,11 @@
       var legend = svg.parentElement.querySelector('.chart-legend') || document.createElement('div');
       legend.className = 'chart-legend';
       legend.style.cssText = 'display:flex;justify-content:center;gap:1.5rem;margin-top:1rem;';
-      legend.innerHTML = entries.map(function (e, i) { return '<span style="color:' + colors[i] + ';font-size:0.85rem;font-weight:600;">' + (labels[e[0]] || e[0]) + ' ' + e[1] + '%</span>'; }).join('');
+      legend.innerHTML = entries.map(function (e) {
+        var key = e[0];
+        var color = colorMap[key] || '#FFFFFF';
+        return '<span style="color:' + color + ';font-size:0.85rem;font-weight:600;">' + (labels[key] || key) + ' ' + e[1] + '%</span>';
+      }).join('');
       if (!svg.parentElement.querySelector('.chart-legend')) svg.parentElement.appendChild(legend);
     }
 
