@@ -1,0 +1,2928 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Selección del Taco x AMEX — Protocolo Omega (NUEVA DEBATE)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --text-light: #f5f5f7;
+            --text-muted: #9698a0;
+            --amex-blue: #006fcf;
+            --warm-gold: #d4af37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background: #000;
+            color: var(--text-light);
+            width: 100vw;
+            overflow-x: hidden;
+        }
+
+        .logo-mark {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 10;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--amex-blue);
+            z-index: 9999;
+        }
+
+        .slide-section {
+            position: relative;
+            min-height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 8vw;
+            overflow: hidden;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: -20%;
+            left: 0;
+            width: 100%;
+            height: 140%;
+            z-index: 0;
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(75%) sepia(8%);
+            opacity: 0.3;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 1) 100%);
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1180px;
+            margin-top: 8vh;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 6.3vw, 6rem);
+            line-height: 1.03;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(90deg, #fff, #a6a8ad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: clamp(1.28rem, 2.45vw, 2.2rem);
+            line-height: 1.3;
+            color: var(--text-muted);
+            font-weight: 400;
+            max-width: 960px;
+        }
+
+        .accent-blue {
+            color: var(--amex-blue);
+            font-weight: 700;
+        }
+
+        .accent-gold {
+            color: var(--warm-gold);
+            font-weight: 700;
+        }
+
+        .panel {
+            margin-top: 1.8rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.4rem 1.2rem;
+        }
+
+        .panel p {
+            color: #d4d7dd;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .kpi-grid {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .kpi-card {
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+        }
+
+        .kpi-value {
+            font-size: 2rem;
+            line-height: 1;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .kpi-label {
+            margin-top: 0.35rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.11em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .bullet-grid {
+            margin-top: 1.8rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .bullet {
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 0.95rem;
+        }
+
+        .bullet h3 {
+            font-size: 1.22rem;
+            margin-bottom: 0.45rem;
+        }
+
+        .bullet p {
+            color: var(--text-muted);
+            font-size: 1.02rem;
+            line-height: 1.5;
+        }
+
+        .bracket-layout {
+            margin-top: 1.6rem;
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 1.2rem;
+            align-items: stretch;
+        }
+
+        .left-stack {
+            display: grid;
+            grid-template-rows: auto auto;
+            gap: 1rem;
+        }
+
+        .chef-silhouettes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.6rem;
+        }
+
+        .silhouette {
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.03);
+            min-height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #cfd3da;
+            font-size: 1.45rem;
+            font-weight: 700;
+        }
+
+        .category-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+        }
+
+        .chip {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 999px;
+            padding: 0.36rem 0.64rem;
+            color: #fff;
+            font-size: 0.82rem;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .bracket-box {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 0.9rem;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .bracket-title {
+            font-size: 1rem;
+            color: #dbe9ff;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+
+        .bracket-svg {
+            width: 100%;
+            height: 340px;
+        }
+
+        .legend {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .legend span {
+            font-size: 0.78rem;
+            color: #c5cbd6;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 999px;
+            padding: 0.23rem 0.56rem;
+        }
+
+        .timeline {
+            margin-top: 1.2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .time-card {
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.85rem;
+        }
+
+        .time-card h4 {
+            font-size: 0.86rem;
+            letter-spacing: 0.08em;
+            color: #dbe9ff;
+            text-transform: uppercase;
+            margin-bottom: 0.35rem;
+        }
+
+        .time-card p {
+            color: #fff;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .omega-grid {
+            margin-top: 1.4rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 1rem;
+        }
+
+        .omega-card {
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+        }
+
+        .omega-card h3 {
+            font-size: 1.08rem;
+            margin-bottom: 0.55rem;
+            color: #e7f1ff;
+        }
+
+        .omega-list {
+            list-style: none;
+            display: grid;
+            gap: 0.42rem;
+        }
+
+        .omega-list li {
+            color: #d4d7dd;
+            font-size: 0.93rem;
+            line-height: 1.35;
+        }
+
+        .omega-note {
+            margin-top: 0.5rem;
+            color: #aeb5c1;
+            font-size: 0.8rem;
+        }
+
+        .engagement-strip {
+            margin-top: 1rem;
+            border: 1px solid rgba(0, 111, 207, 0.5);
+            background: rgba(0, 111, 207, 0.08);
+            border-radius: 12px;
+            padding: 0.8rem 0.9rem;
+        }
+
+        .engagement-strip p {
+            font-size: 0.94rem;
+            color: #d7e8ff;
+            line-height: 1.42;
+        }
+
+        .execution-grid {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1rem;
+        }
+
+        .exec-card {
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+        }
+
+        .exec-card h3 {
+            font-size: 1.03rem;
+            margin-bottom: 0.55rem;
+            color: #e7f1ff;
+        }
+
+        .exec-list {
+            list-style: none;
+            display: grid;
+            gap: 0.35rem;
+        }
+
+        .exec-list li {
+            color: #d4d7dd;
+            font-size: 0.9rem;
+            line-height: 1.34;
+        }
+
+        .episode-columns {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.7rem;
+        }
+
+        .episode-columns ul {
+            list-style: none;
+            display: grid;
+            gap: 0.35rem;
+        }
+
+        .episode-columns li {
+            color: #d4d7dd;
+            font-size: 0.8rem;
+            line-height: 1.3;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 999px;
+            padding: 0.3rem 0.75rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #d9e8ff;
+            background: rgba(255, 255, 255, 0.03);
+            margin-bottom: 1rem;
+        }
+
+        .table-scroll {
+            margin-top: 1rem;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .omega-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 980px;
+        }
+
+        .omega-table th,
+        .omega-table td {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.64rem 0.7rem;
+            text-align: left;
+            vertical-align: top;
+            font-size: 0.84rem;
+            line-height: 1.35;
+            color: #d4d7dd;
+        }
+
+        .omega-table th {
+            font-size: 0.76rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #dbe9ff;
+            background: rgba(255, 255, 255, 0.03);
+            position: sticky;
+            top: 0;
+        }
+
+        .omega-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .phase-title {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .mega-grid {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 0.9rem;
+        }
+
+        .mega-card {
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+        }
+
+        .mega-card h3 {
+            font-size: 1.03rem;
+            margin-bottom: 0.48rem;
+            color: #e7f1ff;
+        }
+
+        .mega-card p {
+            font-size: 0.9rem;
+            color: #cdd2db;
+            line-height: 1.4;
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.6rem;
+        }
+
+        .badge {
+            font-size: 0.74rem;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 999px;
+            padding: 0.18rem 0.52rem;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .matchup-grid {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .matchup-card {
+            border: 1px solid rgba(0, 111, 207, 0.45);
+            border-radius: 12px;
+            background: rgba(0, 111, 207, 0.08);
+            padding: 0.8rem;
+        }
+
+        .matchup-card h4 {
+            color: #dbe9ff;
+            font-size: 0.86rem;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            margin-bottom: 0.3rem;
+        }
+
+        .matchup-card p {
+            color: #fff;
+            font-size: 0.9rem;
+            line-height: 1.35;
+        }
+
+        .flow-grid {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .flow-step {
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.8rem;
+        }
+
+        .flow-step strong {
+            display: inline-block;
+            color: #fff;
+            font-size: 0.88rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .flow-step p {
+            color: #ccd2dc;
+            font-size: 0.85rem;
+            line-height: 1.35;
+        }
+
+        .score-grid {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .score-card {
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            border-radius: 12px;
+            background: rgba(212, 175, 55, 0.08);
+            padding: 0.9rem;
+        }
+
+        .score-card h4 {
+            color: #f0de9d;
+            font-size: 0.84rem;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            margin-bottom: 0.3rem;
+        }
+
+        .score-card p {
+            color: #fff;
+            font-size: 0.87rem;
+            line-height: 1.35;
+        }
+
+        .mini-note {
+            margin-top: 0.65rem;
+            font-size: 0.76rem;
+            color: #aeb6c2;
+            line-height: 1.3;
+        }
+
+        .funnel-row {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .funnel-step {
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.85rem;
+            position: relative;
+            min-height: 138px;
+        }
+
+        .funnel-step h4 {
+            font-size: 0.82rem;
+            color: #dbe9ff;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.3rem;
+        }
+
+        .funnel-step p {
+            color: #cfd5df;
+            font-size: 0.85rem;
+            line-height: 1.35;
+        }
+
+        .funnel-kpi {
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: #9fb5d9;
+        }
+
+        .check-grid {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 0.9rem;
+        }
+
+        .check-card {
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.9rem;
+        }
+
+        .check-card h4 {
+            color: #fff;
+            font-size: 0.95rem;
+            margin-bottom: 0.45rem;
+        }
+
+        .check-card ul {
+            list-style: none;
+            display: grid;
+            gap: 0.32rem;
+        }
+
+        .check-card li {
+            color: #cdd3dc;
+            font-size: 0.83rem;
+            line-height: 1.32;
+        }
+
+        .gs-reveal {
+            opacity: 0;
+        }
+
+        @media (max-width: 980px) {
+            .bracket-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .bracket-svg {
+                height: 390px;
+            }
+
+            .episode-columns {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .omega-table {
+                min-width: 860px;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .slide-section {
+                padding: 10vh 5vw;
+            }
+
+            h1 {
+                font-size: 2.85rem;
+            }
+
+            h2 {
+                font-size: 1.12rem;
+            }
+
+            .chef-silhouettes {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .episode-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo-mark">PROYECTO NUEVO: LA SELECCIÓN DEL TACO × AMEX (DEBATE)</div>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <section class="slide-section" id="slide1">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2200&auto=format&fit=crop');">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <h1 class="gs-reveal">México ama dos cosas:<br>tacos y fútbol.</h1>
+            <h2 class="gs-reveal">Las juntamos en un torneo social que vive en redes. Es simple: la gente vota, comparte
+                y decide. La marca que lo presenta se queda con la conversación más viva del país.</h2>
+
+            <div class="panel gs-reveal">
+                <p><span class="accent-blue">Versión final:</span> lenguaje simple, narrativa clara y ejecución
+                    cerrada. Base validada: <span class="accent-gold">ER 7.2%</span> y <span class="accent-gold">30–50M
+                        vistas mensuales</span>.</p>
+            </div>
+
+            <div class="kpi-grid">
+                <div class="kpi-card gs-reveal">
+                    <div class="kpi-value">2.0M</div>
+                    <div class="kpi-label">seguidores reales</div>
+                </div>
+                <div class="kpi-card gs-reveal">
+                    <div class="kpi-value">7.2%</div>
+                    <div class="kpi-label">engagement rate</div>
+                </div>
+                <div class="kpi-card gs-reveal">
+                    <div class="kpi-value">30–50M</div>
+                    <div class="kpi-label">vistas por mes</div>
+                </div>
+                <div class="kpi-card gs-reveal">
+                    <div class="kpi-value">17</div>
+                    <div class="kpi-label">episodios (16 partidos + inaugural)</div>
+                </div>
+            </div>
+
+            <div class="bullet-grid">
+                <div class="bullet gs-reveal">
+                    <h3>Objetivo</h3>
+                    <p>Provocar la conversación más viral de México con un formato que todo el mundo entiende: el
+                        Mundial.</p>
+                </div>
+                <div class="bullet gs-reveal">
+                    <h3>Gancho emocional</h3>
+                    <p>No es solo comida. Es identidad, orgullo y debate semanal entre amigos, familia y redes.
+                    </p>
+                </div>
+                <div class="bullet gs-reveal">
+                    <h3>Rol de AMEX</h3>
+                    <p>AMEX no entra como anuncio. AMEX hace posible el torneo con beneficios, guía y experiencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide2">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=2200&auto=format&fit=crop');opacity:0.2;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <h1 class="gs-reveal">Así se juega<br>el Mundial del Taco.</h1>
+            <h2 class="gs-reveal">Formato claro: 1 inaugural + 16 partidos. El torneo va con 8 octavos, 4 cuartos, 2
+                semifinales y gran final. Cada llave es Selección Chef vs Selección Comunidad.</h2>
+
+            <div class="bracket-layout">
+                <div class="left-stack">
+                    <div class="bracket-box gs-reveal">
+                        <div class="bracket-title">8 chefs secretos (se revelan por episodio)</div>
+                        <div class="chef-silhouettes">
+                            <div class="silhouette">?</div>
+                            <div class="silhouette">?</div>
+                            <div class="silhouette">?</div>
+                            <div class="silhouette">?</div>
+                            <div class="silhouette">?</div>
+                            <div class="silhouette">?</div>
+                            <div class="silhouette">?</div>
+                            <div class="silhouette">?</div>
+                        </div>
+                    </div>
+                    <div class="bracket-box gs-reveal">
+                        <div class="bracket-title">8 categorías que entran al torneo</div>
+                        <div class="category-list">
+                            <span class="chip">Oaxaqueño/Mole</span>
+                            <span class="chip">Asada/Norteño</span>
+                            <span class="chip">Yucateco/Cochinita</span>
+                            <span class="chip">Fish/Mariscos</span>
+                            <span class="chip">Barbacoa</span>
+                            <span class="chip">Fine Dining</span>
+                            <span class="chip">Pastor</span>
+                            <span class="chip">Suadero</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bracket-box gs-reveal">
+                    <div class="bracket-title">Gráfico del Mundial (con predicción de hoy)</div>
+                    <svg class="bracket-svg" viewBox="0 0 1200 420" xmlns="http://www.w3.org/2000/svg" role="img"
+                        aria-label="Bracket del Mundial del Taco">
+                        <!-- Octavos (8) -->
+                        <rect x="20" y="24" width="170" height="20" rx="7" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="64" width="170" height="20" rx="7" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="104" width="170" height="20" rx="7" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="144" width="170" height="20" rx="7" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="184" width="170" height="20" rx="7" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="224" width="170" height="20" rx="7" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="264" width="170" height="20" rx="7" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.25)" />
+                        <rect x="20" y="304" width="170" height="20" rx="7" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.25)" />
+
+                        <!-- Cuartos (4) -->
+                        <rect x="320" y="44" width="170" height="24" rx="8" fill="rgba(0,111,207,0.16)" stroke="rgba(0,111,207,0.9)" />
+                        <rect x="320" y="124" width="170" height="24" rx="8" fill="rgba(0,111,207,0.16)" stroke="rgba(0,111,207,0.9)" />
+                        <rect x="320" y="204" width="170" height="24" rx="8" fill="rgba(0,111,207,0.16)" stroke="rgba(0,111,207,0.9)" />
+                        <rect x="320" y="284" width="170" height="24" rx="8" fill="rgba(0,111,207,0.16)" stroke="rgba(0,111,207,0.9)" />
+
+                        <!-- Semifinales (2) -->
+                        <rect x="620" y="84" width="170" height="28" rx="8" fill="rgba(212,175,55,0.15)" stroke="rgba(212,175,55,0.95)" />
+                        <rect x="620" y="244" width="170" height="28" rx="8" fill="rgba(212,175,55,0.15)" stroke="rgba(212,175,55,0.95)" />
+
+                        <!-- Final (1) -->
+                        <rect x="920" y="158" width="170" height="40" rx="9" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.95)" />
+
+                        <!-- Etiquetas de partidos -->
+                        <text x="30" y="38" fill="#e8edf6" font-size="9">O1 Pastor: Chef vs Comunidad</text>
+                        <text x="30" y="78" fill="#e8edf6" font-size="9">O2 Suadero: Chef vs Comunidad</text>
+                        <text x="30" y="118" fill="#e8edf6" font-size="9">O3 Oaxaqueño: Chef vs La Tía</text>
+                        <text x="30" y="158" fill="#e8edf6" font-size="9">O4 Asada: Chef vs Doña Humo</text>
+                        <text x="30" y="198" fill="#e8edf6" font-size="9">O5 Yucateco: Chef vs Comunidad</text>
+                        <text x="30" y="238" fill="#e8edf6" font-size="9">O6 Fish: Chef vs Carlos Valdez</text>
+                        <text x="30" y="278" fill="#e8edf6" font-size="9">O7 Barbacoa: Chef vs Comunidad</text>
+                        <text x="30" y="318" fill="#e8edf6" font-size="9">O8 Fine Dining: Chef vs Chef</text>
+
+                        <text x="332" y="60" fill="#dbe9ff" font-size="10">C1: G O1 vs O2</text>
+                        <text x="332" y="140" fill="#dbe9ff" font-size="10">C2: G O3 vs O4</text>
+                        <text x="332" y="220" fill="#dbe9ff" font-size="10">C3: G O5 vs O6</text>
+                        <text x="332" y="300" fill="#dbe9ff" font-size="10">C4: G O7 vs O8</text>
+
+                        <text x="632" y="102" fill="#f0de9d" font-size="11">S1: G C1 vs C2</text>
+                        <text x="632" y="262" fill="#f0de9d" font-size="11">S2: G C3 vs C4</text>
+
+                        <!-- Conexiones -->
+                        <line x1="190" y1="34" x2="320" y2="56" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="190" y1="74" x2="320" y2="56" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="190" y1="114" x2="320" y2="136" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="190" y1="154" x2="320" y2="136" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="190" y1="194" x2="320" y2="216" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="190" y1="234" x2="320" y2="216" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="190" y1="274" x2="320" y2="296" stroke="rgba(255,255,255,0.35)" />
+                        <line x1="190" y1="314" x2="320" y2="296" stroke="rgba(255,255,255,0.35)" />
+
+                        <line x1="490" y1="56" x2="620" y2="98" stroke="rgba(0,111,207,0.6)" />
+                        <line x1="490" y1="136" x2="620" y2="98" stroke="rgba(0,111,207,0.6)" />
+                        <line x1="490" y1="216" x2="620" y2="258" stroke="rgba(0,111,207,0.6)" />
+                        <line x1="490" y1="296" x2="620" y2="258" stroke="rgba(0,111,207,0.6)" />
+
+                        <line x1="790" y1="98" x2="920" y2="178" stroke="rgba(212,175,55,0.85)" />
+                        <line x1="790" y1="258" x2="920" y2="178" stroke="rgba(212,175,55,0.85)" />
+
+                        <!-- Titulos -->
+                        <text x="32" y="18" fill="#cfd7e5" font-size="14">Octavos (8)</text>
+                        <text x="332" y="35" fill="#dbe9ff" font-size="14">Cuartos (4)</text>
+                        <text x="632" y="74" fill="#f0de9d" font-size="14">Semifinales (2)</text>
+                        <text x="934" y="148" fill="#ffffff" font-size="14">Final (1)</text>
+
+                        <text x="932" y="174" fill="#ffffff" font-size="10">Final: G S1 vs G S2</text>
+                        <text x="928" y="190" fill="#fff" font-size="11" font-weight="700">CAMPEÓN (pred): La Tía</text>
+
+                        <text x="20" y="350" fill="#dbe9ff" font-size="10">Regla de voto: gana quien tenga más likes en comentarios.</text>
+                        <text x="20" y="364" fill="#dbe9ff" font-size="10">La comunidad decide quién pasa a la siguiente fase en redes sociales.</text>
+                    </svg>
+                    <div class="legend">
+                        <span>Cada llave: Selección Chef vs Selección Comunidad</span>
+                        <span>Clasifica quien tenga más likes en comentarios</span>
+                        <span>16 partidos: 8 octavos + 4 cuartos + 2 semis + gran final</span>
+                    </div>
+                    <p class="omega-note">Predicción editorial para visualizar el formato. El resultado real lo decide
+                        la comunidad episodio a episodio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide3">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1529563021893-cc83c992d75d?q=80&w=2200&auto=format&fit=crop');opacity:0.16;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <h1 class="gs-reveal">Calendario oficial<br>hasta la final.</h1>
+            <h2 class="gs-reveal">Ritmo fijo para crear hábito: miércoles y domingo a las 20:00. Arranque: 24 de mayo de
+                2026. Cierre: 19 de julio de 2026.</h2>
+
+            <div class="timeline">
+                <div class="time-card gs-reveal">
+                    <h4>Inicio</h4>
+                    <p>Domingo 24 mayo 2026<br>Inaugural + reglas + apertura de voto.</p>
+                </div>
+                <div class="time-card gs-reveal">
+                    <h4>Cadencia</h4>
+                    <p>Miércoles + Domingo (20:00)<br>17 episodios: 16 partidos + inaugural.</p>
+                </div>
+                <div class="time-card gs-reveal">
+                    <h4>Regla por episodio</h4>
+                    <p>Cada episodio sale con stack completo: video + guía + merch + UTM + CTA.</p>
+                </div>
+                <div class="time-card gs-reveal">
+                    <h4>Cierre</h4>
+                    <p>Domingo 19 julio 2026<br>Gran final + activación fuerte de la guía/app.</p>
+                </div>
+            </div>
+
+            <div class="bullet-grid">
+                <div class="bullet gs-reveal">
+                    <h3>Qué gana la gente</h3>
+                    <p>Participar, opinar y sentir que su voto cambia el torneo. Esto crea tribu real y conversación en
+                        la calle.</p>
+                </div>
+                <div class="bullet gs-reveal">
+                    <h3>Qué gana AMEX</h3>
+                    <p>Asociación positiva con cultura mexicana y un espacio natural para activar beneficios y
+                        fidelidad.</p>
+                </div>
+                <div class="bullet gs-reveal">
+                    <h3>Qué se mide</h3>
+                    <p>Engagement por episodio, votos válidos, tráfico a guía/app y conversión a beneficios.</p>
+                </div>
+            </div>
+
+            <div class="panel gs-reveal">
+                <p><span class="accent-blue">Regla de trabajo:</span> una sola verdad, una sola mecánica, una sola
+                    cadencia y un solo sistema de conversión.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide4">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=2200&auto=format&fit=crop');opacity:0.16;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <h1 class="gs-reveal">Cómo lo vamos a ganar:<br>chef + comunidad + invitados.</h1>
+            <h2 class="gs-reveal">Plan claro: 8 plazas activas, 2 por voto de comunidad y cameos por engagement real.
+                Todo termina en guía/app + merch en el pico de conversación del Mundial 2026.</h2>
+
+            <div class="omega-grid">
+                <div class="omega-card gs-reveal">
+                    <h3>Fase 1: 8 plazas base (food-first)</h3>
+                    <ul class="omega-list">
+                        <li>Oaxaca: La Tía y su mejor mole oaxaqueño.</li>
+                        <li>Sonora: Doña Humo + Tacos Armando (Asada/Norteño).</li>
+                        <li>Yucatán: Comunidad Maya (Yucateco/Cochinita).</li>
+                        <li>La Paz: Carlos Valdez (Fish/Mariscos).</li>
+                        <li>Hidalgo: plaza Barbacoa (en cierre final).</li>
+                        <li>CDMX: Fine Dining (Chef vs Chef).</li>
+                        <li>CDMX: Pastor (comunidad vs chef).</li>
+                        <li>CDMX: Suadero (comunidad vs chef).</li>
+                    </ul>
+                    <p class="omega-note">Regla madre: manda el platillo, no el estado.</p>
+                </div>
+
+                <div class="omega-card gs-reveal">
+                    <h3>Fase 2: cancha de la comunidad</h3>
+                    <ul class="omega-list">
+                        <li>Sistema oficial: 6 plazas curadas + 2 plazas por voto de comunidad.</li>
+                        <li>Pastor y Suadero se definen en comentarios de comunidad.</li>
+                        <li>Cada episodio cierra con CTA del duelo siguiente.</li>
+                        <li>Cada llave muestra quién representa a quién y qué camiseta lleva.</li>
+                    </ul>
+                    <p class="omega-note">Regla simple: comentar, votar, volver el siguiente episodio.</p>
+                </div>
+
+                <div class="omega-card gs-reveal">
+                    <h3>Fase 3: cameos por engagement</h3>
+                    <ul class="omega-list">
+                        <li>Filtro único: entra quien trae conversación real.</li>
+                        <li>Perfiles objetivo: fútbol, cultura y entretenimiento.</li>
+                        <li>Base actual: Alejandro Nones, Brekel, Mijangos y futbolistas.</li>
+                        <li>Meta: sumar audiencias para superar la base de 2M seguidores.</li>
+                        <li>Cada cameo sale con clip propio + CTA de episodio.</li>
+                    </ul>
+                    <p class="omega-note">Métrica reina: engagement. No fama vacía.</p>
+                </div>
+            </div>
+
+            <div class="engagement-strip gs-reveal">
+                <p><span class="accent-blue">Fase 4: producto final.</span> Camisetas por llave, guía/app con mapa y
+                    recompensas AMEX, y cierre en semana de final del Mundial (19 julio 2026).</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide5">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=2200&auto=format&fit=crop');opacity:0.15;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <h1 class="gs-reveal">Ejecución final:<br>Tour + Vuelta + AMEX.</h1>
+            <h2 class="gs-reveal">Un viaje produce dos series: Selección del Taco (vertical) y Vuelta en 80 Tacos
+                (YouTube). Cada episodio se conecta con el siguiente y todo empata con la conversación del Mundial.</h2>
+
+            <div class="execution-grid">
+                <div class="exec-card gs-reveal">
+                    <h3>Prelanzamiento (4 domingos)</h3>
+                    <ul class="exec-list">
+                        <li>26 abril 2026: teaser "empieza la ruta".</li>
+                        <li>3 mayo 2026: trailer recap (Puebla, Chiapas, Sonora).</li>
+                        <li>10 mayo 2026: video secreto para insiders con fecha oficial.</li>
+                        <li>17 mayo 2026: landing con contador + preview de merch.</li>
+                        <li>24 mayo 2026: episodio inaugural.</li>
+                    </ul>
+                </div>
+
+                <div class="exec-card gs-reveal">
+                    <h3>17 episodios cerrados (16 partidos + inaugural)</h3>
+                    <div class="episode-columns">
+                        <ul>
+                            <li>Ep01 Dom 24 may</li>
+                            <li>Ep02 Mie 27 may</li>
+                            <li>Ep03 Dom 31 may</li>
+                            <li>Ep04 Mie 3 jun</li>
+                            <li>Ep05 Dom 7 jun</li>
+                            <li>Ep06 Mie 10 jun</li>
+                        </ul>
+                        <ul>
+                            <li>Ep07 Dom 14 jun</li>
+                            <li>Ep08 Mie 17 jun</li>
+                            <li>Ep09 Dom 21 jun</li>
+                            <li>Ep10 Mie 24 jun</li>
+                            <li>Ep11 Dom 28 jun</li>
+                            <li>Ep12 Mie 1 jul</li>
+                        </ul>
+                        <ul>
+                            <li>Ep13 Dom 5 jul</li>
+                            <li>Ep14 Mie 8 jul</li>
+                            <li>Ep15 Dom 12 jul</li>
+                            <li>Ep16 Mie 15 jul</li>
+                            <li>Ep17 Dom 19 jul (gran final)</li>
+                        </ul>
+                    </div>
+                    <p class="omega-note">Cadencia fija: miercoles + domingo, siempre 20:00. Si cambia FIFA, mover solo
+                        48h sin romper el habito.</p>
+                </div>
+            </div>
+
+            <div class="execution-grid">
+                <div class="exec-card gs-reveal">
+                    <h3>Rodaje dual por parada</h3>
+                    <ul class="exec-list">
+                        <li>1 reel Seleccion (voto/partido/CTA).</li>
+                        <li>1 bloque YouTube para "La Vuelta en 80 Tacos".</li>
+                        <li>1 microclip de pista narrativa (easter egg).</li>
+                        <li>1 toma al banco oficial del trailer.</li>
+                        <li>1 corte personal para cada chef invitado.</li>
+                    </ul>
+                </div>
+
+                <div class="exec-card gs-reveal">
+                    <h3>Monetización desde EP01</h3>
+                    <ul class="exec-list">
+                        <li>Merch abre el día del estreno.</li>
+                        <li>Cada episodio sale con link único medible.</li>
+                        <li>AMEX como compañero funcional de viaje.</li>
+                        <li>Guía/App en beta durante torneo y salida fuerte en final.</li>
+                        <li>La comunidad ve la final y regresa a ver los episodios anteriores.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="engagement-strip gs-reveal">
+                <p><span class="accent-blue">Regla de oro:</span> ningún episodio sale sin stack de links completo
+                    (video + landing/guía + merch + UTM) y sin CTA del episodio siguiente. Así se conectan Selección,
+                    Vuelta y Mundial en un mismo sistema.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide6">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2200&auto=format&fit=crop');opacity:0.15;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Fase 1 · Llaves completas</span>
+            <h1 class="gs-reveal">Quién contra quién,<br>qué representa y qué camiseta lleva.</h1>
+            <h2 class="gs-reveal">Esta tabla cierra el punto más importante: duelos previstos, rol de cada bando y
+                sistema de camisetas para grabar y vender sin riesgos.</h2>
+
+            <div class="table-scroll gs-reveal">
+                <table class="omega-table" aria-label="Mapa completo de octavos">
+                    <thead>
+                        <tr>
+                            <th>Llave</th>
+                            <th>Duelo previsto</th>
+                            <th>Qué representa cada lado</th>
+                            <th>Camiseta rodaje</th>
+                            <th>Camiseta venta</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="phase-title">O1</span> Pastor</td>
+                            <td>Chef Pastor vs Selección Comunidad Pastor</td>
+                            <td>Autoridad técnica vs voto de comunidad en CDMX</td>
+                            <td>Rojo #9 vs Negro #10</td>
+                            <td>Pastor Chefs / Pastor Comunidad (diseño propio)</td>
+                            <td>Comunidad define rival exacto en comentarios</td>
+                        </tr>
+                        <tr>
+                            <td><span class="phase-title">O2</span> Suadero</td>
+                            <td>Chef Suadero vs Selección Comunidad Suadero</td>
+                            <td>Interpretación chef vs suadero callejero elegido por comunidad</td>
+                            <td>Azul #5 vs Plata #6</td>
+                            <td>Suadero Chefs / Suadero Comunidad</td>
+                            <td>Comunidad define rival exacto en comentarios</td>
+                        </tr>
+                        <tr>
+                            <td><span class="phase-title">O3</span> Oaxaqueño</td>
+                            <td>Chef Oaxaqueño vs La Tía</td>
+                            <td>Cocina de autor vs la referencia del mejor mole oaxaqueño</td>
+                            <td>Verde #8 vs Blanco #8</td>
+                            <td>Oaxaca Autoridad / Equipo La Tía</td>
+                            <td>Fijo: La Tía ya está dentro</td>
+                        </tr>
+                        <tr>
+                            <td><span class="phase-title">O4</span> Asada/Norteño</td>
+                            <td>Chef Asada (duelo propuesto: Enrique Olvera) vs Doña Humo + Tacos Armando</td>
+                            <td>Fine craft de chef vs fuego real de Sonora</td>
+                            <td>Naranja #4 vs Carbón #4</td>
+                            <td>Asada Chefs / Asada Comunidad Sonora</td>
+                            <td>Confirmar chef final y grabación en Sonora</td>
+                        </tr>
+                        <tr>
+                            <td><span class="phase-title">O5</span> Yucateco</td>
+                            <td>Chef Yucateco vs Comunidad Maya</td>
+                            <td>Versión restaurante vs raíz regional en cochinita pibil</td>
+                            <td>Turquesa #11 vs Arena #11</td>
+                            <td>Yucateco Chefs / Comunidad Maya</td>
+                            <td>Fijo: Comunidad Maya integrada</td>
+                        </tr>
+                        <tr>
+                            <td><span class="phase-title">O6</span> Fish/Mariscos</td>
+                            <td>Chef Fish vs Carlos Valdez (La Paz)</td>
+                            <td>Plato de carta vs mar y oficio local</td>
+                            <td>Azul Marino #7 vs Coral #7</td>
+                            <td>Fish Chefs / Fish La Paz</td>
+                            <td>Fijo: La Paz con Carlos Valdez</td>
+                        </tr>
+                        <tr>
+                            <td><span class="phase-title">O7</span> Barbacoa</td>
+                            <td>Chef Barbacoa vs Selección Comunidad Hidalgo</td>
+                            <td>Técnica chef vs barbacoa tradicional de Hidalgo</td>
+                            <td>Granate #3 vs Dorado #3</td>
+                            <td>Barbacoa Chefs / Barbacoa Comunidad</td>
+                            <td>Ruta Hidalgo cerrada en scouting</td>
+                        </tr>
+                        <tr>
+                            <td><span class="phase-title">O8</span> Fine Dining</td>
+                            <td>Chef Fine Dining A vs Chef Fine Dining B</td>
+                            <td>Duelo de autoridad total para encender conversación</td>
+                            <td>Negro #1 vs Blanco #1</td>
+                            <td>Fine Dining A / Fine Dining B</td>
+                            <td>Ambos perfiles se revelan en episodio</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="matchup-grid">
+                <div class="matchup-card gs-reveal">
+                    <h4>Cuartos C1</h4>
+                    <p>Ganador O1 vs Ganador O2<br>Predicción editorial: Pastor Comunidad vs Suadero Chef.</p>
+                </div>
+                <div class="matchup-card gs-reveal">
+                    <h4>Cuartos C2</h4>
+                    <p>Ganador O3 vs Ganador O4<br>Predicción editorial: La Tía vs Doña Humo.</p>
+                </div>
+                <div class="matchup-card gs-reveal">
+                    <h4>Cuartos C3</h4>
+                    <p>Ganador O5 vs Ganador O6<br>Predicción editorial: Comunidad Maya vs Carlos Valdez.</p>
+                </div>
+                <div class="matchup-card gs-reveal">
+                    <h4>Cuartos C4</h4>
+                    <p>Ganador O7 vs Ganador O8<br>Predicción editorial: Barbacoa Hidalgo vs Fine Dining.</p>
+                </div>
+                <div class="matchup-card gs-reveal">
+                    <h4>Semifinal S1</h4>
+                    <p>Ganador C1 vs Ganador C2<br>Predicción editorial: Pastor Comunidad vs La Tía.</p>
+                </div>
+                <div class="matchup-card gs-reveal">
+                    <h4>Semifinal S2</h4>
+                    <p>Ganador C3 vs Ganador C4<br>Predicción editorial: Carlos Valdez vs Barbacoa Hidalgo.</p>
+                </div>
+                <div class="matchup-card gs-reveal">
+                    <h4>Partido 16 Especial</h4>
+                    <p>Selección Chefs XI vs Selección Comunidad XI<br>Partido show para cerrar tensión antes de la
+                        final.</p>
+                </div>
+                <div class="matchup-card gs-reveal">
+                    <h4>Gran Final</h4>
+                    <p>Ganador S1 vs Ganador S2<br>Predicción editorial actual: La Tía vs Carlos Valdez.</p>
+                </div>
+            </div>
+
+            <p class="mini-note gs-reveal">La predicción solo se usa para contar la historia. El resultado real siempre
+                lo decide la comunidad con likes en comentarios.</p>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide7">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1565299585323-38174c4a6471?q=80&w=2200&auto=format&fit=crop');opacity:0.16;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Fase 2 · Mapa nacional</span>
+            <h1 class="gs-reveal">No es solo CDMX:<br>es ruta real por México.</h1>
+            <h2 class="gs-reveal">Escalamos el proyecto a 7 estados más CDMX, conectado a La Vuelta a México en 80
+                Tacos. La regla madre se mantiene: el platillo decide la ruta.</h2>
+
+            <div class="mega-grid">
+                <div class="mega-card gs-reveal">
+                    <h3>Oaxaca · Mole oaxaqueño</h3>
+                    <p>La Tía entra como referencia directa del mejor mole. No se cuenta en abstracto: se ve, se prueba
+                        y se compara en cámara.</p>
+                    <div class="badge-row">
+                        <span class="badge">Fijo</span>
+                        <span class="badge">Equipo La Tía</span>
+                        <span class="badge">Duelo chef vs La Tía</span>
+                    </div>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>Sonora · Asada/Norteño</h3>
+                    <p>Doña Humo + Tacos Armando representan la cancha de comunidad. Se cuenta fuego, oficio y ritmo de
+                        trabajo real.</p>
+                    <div class="badge-row">
+                        <span class="badge">Fijo</span>
+                        <span class="badge">Doña Humo</span>
+                        <span class="badge">Tacos Armando</span>
+                    </div>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>Yucatán · Cochinita</h3>
+                    <p>La Comunidad Maya entra como raíz del taco yucateco. Se busca lo remoto y auténtico, no solo lo
+                        más cómodo.</p>
+                    <div class="badge-row">
+                        <span class="badge">Fijo</span>
+                        <span class="badge">Comunidad Maya</span>
+                        <span class="badge">Cochinita pibil</span>
+                    </div>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>La Paz · Fish/Mariscos</h3>
+                    <p>Carlos Valdez lidera la plaza fish con relato de origen marino y técnica local.</p>
+                    <div class="badge-row">
+                        <span class="badge">Fijo</span>
+                        <span class="badge">Carlos Valdez</span>
+                        <span class="badge">Baja California Sur</span>
+                    </div>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>Hidalgo · Barbacoa</h3>
+                    <p>Ruta dedicada para encontrar la referencia más fuerte de barbacoa y enfrentarla contra selección
+                        chef.</p>
+                    <div class="badge-row">
+                        <span class="badge">Scouting final</span>
+                        <span class="badge">Comunidad Hidalgo</span>
+                    </div>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>CDMX · Pastor y Suadero</h3>
+                    <p>La comunidad decide los rivales finales en comentarios. Esto enciende la conversación desde el
+                        episodio inaugural.</p>
+                    <div class="badge-row">
+                        <span class="badge">Voto abierto</span>
+                        <span class="badge">Comentario + like</span>
+                    </div>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>CDMX · Fine Dining</h3>
+                    <p>Duelo Chef vs Chef para subir el techo mediático del torneo y atraer prensa gastronómica.</p>
+                    <div class="badge-row">
+                        <span class="badge">Autoridad alta</span>
+                        <span class="badge">Conversación premium</span>
+                    </div>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>Wildcard de comunidad</h3>
+                    <p>Una plaza de reemplazo para reaccionar rápido si la comunidad dispara una taquería inesperada.</p>
+                    <div class="badge-row">
+                        <span class="badge">Flexibilidad</span>
+                        <span class="badge">Sin romper calendario</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel gs-reveal">
+                <p><span class="accent-blue">Nota de producción:</span> si falta cerrar chefs, se graba un video
+                    individual para cada uno, más un corte personalizado donde Aniol les habla directo y distinto para
+                    facilitar cierre rápido.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide8">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2200&auto=format&fit=crop');opacity:0.16;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Fase 3 · Documento operativo</span>
+            <h1 class="gs-reveal">Calendario maestro:<br>17 episodios, campo por campo.</h1>
+            <h2 class="gs-reveal">Cadencia bloqueada: miércoles y domingo a las 20:00. Cada episodio ya contempla
+                contenido, CTA y stack completo de links medibles.</h2>
+
+            <div class="table-scroll gs-reveal">
+                <table class="omega-table" aria-label="Calendario maestro de episodios">
+                    <thead>
+                        <tr>
+                            <th>ep_id</th>
+                            <th>fecha</th>
+                            <th>categoria</th>
+                            <th>plaza_tipo</th>
+                            <th>autoridad</th>
+                            <th>comunidad</th>
+                            <th>quien_vs_quien</th>
+                            <th>camiseta_rodaje</th>
+                            <th>camiseta_venta</th>
+                            <th>cta</th>
+                            <th>link_video</th>
+                            <th>link_landing_guia</th>
+                            <th>link_merch</th>
+                            <th>utm</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>EP01</td>
+                            <td>Dom 24 mayo 2026</td>
+                            <td>Inaugural</td>
+                            <td>Nacional</td>
+                            <td>8 chefs secretos</td>
+                            <td>8 plazas comunidad</td>
+                            <td>Presentación de torneo + apertura de voto</td>
+                            <td>Kit Selección Taco</td>
+                            <td>Drop 00</td>
+                            <td>Comenta rival de Pastor y Suadero</td>
+                            <td>/ep01</td>
+                            <td>/guia?ep=01</td>
+                            <td>/merch/drop00</td>
+                            <td>utm_ep01</td>
+                        </tr>
+                        <tr>
+                            <td>EP02</td>
+                            <td>Mie 27 mayo 2026</td>
+                            <td>Octavos O1</td>
+                            <td>CDMX</td>
+                            <td>Chef Pastor</td>
+                            <td>Comunidad Pastor</td>
+                            <td>Pastor Chef vs Pastor Comunidad</td>
+                            <td>Rojo #9 vs Negro #10</td>
+                            <td>Pastor A/B</td>
+                            <td>Vota O2 en comentarios</td>
+                            <td>/ep02</td>
+                            <td>/guia?ep=02</td>
+                            <td>/merch/pastor</td>
+                            <td>utm_ep02</td>
+                        </tr>
+                        <tr>
+                            <td>EP03</td>
+                            <td>Dom 31 mayo 2026</td>
+                            <td>Octavos O2</td>
+                            <td>CDMX</td>
+                            <td>Chef Suadero</td>
+                            <td>Comunidad Suadero</td>
+                            <td>Suadero Chef vs Suadero Comunidad</td>
+                            <td>Azul #5 vs Plata #6</td>
+                            <td>Suadero A/B</td>
+                            <td>Vota O3 en comentarios</td>
+                            <td>/ep03</td>
+                            <td>/guia?ep=03</td>
+                            <td>/merch/suadero</td>
+                            <td>utm_ep03</td>
+                        </tr>
+                        <tr>
+                            <td>EP04</td>
+                            <td>Mie 3 junio 2026</td>
+                            <td>Octavos O3</td>
+                            <td>Oaxaca</td>
+                            <td>Chef Oaxaqueño</td>
+                            <td>La Tía</td>
+                            <td>Chef Oaxaqueño vs La Tía</td>
+                            <td>Verde #8 vs Blanco #8</td>
+                            <td>Oaxaca A/B</td>
+                            <td>Vota O4 en comentarios</td>
+                            <td>/ep04</td>
+                            <td>/guia?ep=04</td>
+                            <td>/merch/oaxaca</td>
+                            <td>utm_ep04</td>
+                        </tr>
+                        <tr>
+                            <td>EP05</td>
+                            <td>Dom 7 junio 2026</td>
+                            <td>Octavos O4</td>
+                            <td>Sonora</td>
+                            <td>Chef Asada</td>
+                            <td>Doña Humo + Armando</td>
+                            <td>Asada Chef vs Asada Comunidad</td>
+                            <td>Naranja #4 vs Carbón #4</td>
+                            <td>Asada A/B</td>
+                            <td>Vota O5 en comentarios</td>
+                            <td>/ep05</td>
+                            <td>/guia?ep=05</td>
+                            <td>/merch/asada</td>
+                            <td>utm_ep05</td>
+                        </tr>
+                        <tr>
+                            <td>EP06</td>
+                            <td>Mie 10 junio 2026</td>
+                            <td>Octavos O5</td>
+                            <td>Yucatán</td>
+                            <td>Chef Yucateco</td>
+                            <td>Comunidad Maya</td>
+                            <td>Yucateco Chef vs Comunidad Maya</td>
+                            <td>Turquesa #11 vs Arena #11</td>
+                            <td>Yucateco A/B</td>
+                            <td>Vota O6 en comentarios</td>
+                            <td>/ep06</td>
+                            <td>/guia?ep=06</td>
+                            <td>/merch/yucateco</td>
+                            <td>utm_ep06</td>
+                        </tr>
+                        <tr>
+                            <td>EP07</td>
+                            <td>Dom 14 junio 2026</td>
+                            <td>Octavos O6</td>
+                            <td>La Paz</td>
+                            <td>Chef Fish</td>
+                            <td>Carlos Valdez</td>
+                            <td>Fish Chef vs Fish Comunidad</td>
+                            <td>Marino #7 vs Coral #7</td>
+                            <td>Fish A/B</td>
+                            <td>Vota O7 en comentarios</td>
+                            <td>/ep07</td>
+                            <td>/guia?ep=07</td>
+                            <td>/merch/fish</td>
+                            <td>utm_ep07</td>
+                        </tr>
+                        <tr>
+                            <td>EP08</td>
+                            <td>Mie 17 junio 2026</td>
+                            <td>Octavos O7</td>
+                            <td>Hidalgo</td>
+                            <td>Chef Barbacoa</td>
+                            <td>Comunidad Barbacoa</td>
+                            <td>Barbacoa Chef vs Barbacoa Comunidad</td>
+                            <td>Granate #3 vs Dorado #3</td>
+                            <td>Barbacoa A/B</td>
+                            <td>Vota O8 en comentarios</td>
+                            <td>/ep08</td>
+                            <td>/guia?ep=08</td>
+                            <td>/merch/barbacoa</td>
+                            <td>utm_ep08</td>
+                        </tr>
+                        <tr>
+                            <td>EP09</td>
+                            <td>Dom 21 junio 2026</td>
+                            <td>Octavos O8</td>
+                            <td>CDMX</td>
+                            <td>Chef Fine A</td>
+                            <td>Chef Fine B</td>
+                            <td>Fine Dining Chef vs Chef</td>
+                            <td>Negro #1 vs Blanco #1</td>
+                            <td>Fine A/B</td>
+                            <td>Vota C1 en comentarios</td>
+                            <td>/ep09</td>
+                            <td>/guia?ep=09</td>
+                            <td>/merch/finedining</td>
+                            <td>utm_ep09</td>
+                        </tr>
+                        <tr>
+                            <td>EP10</td>
+                            <td>Mie 24 junio 2026</td>
+                            <td>Cuartos C1</td>
+                            <td>Nacional</td>
+                            <td>Ganador O1</td>
+                            <td>Ganador O2</td>
+                            <td>G O1 vs G O2</td>
+                            <td>Combo O1/O2</td>
+                            <td>Drop C1</td>
+                            <td>Vota C2 en comentarios</td>
+                            <td>/ep10</td>
+                            <td>/guia?ep=10</td>
+                            <td>/merch/c1</td>
+                            <td>utm_ep10</td>
+                        </tr>
+                        <tr>
+                            <td>EP11</td>
+                            <td>Dom 28 junio 2026</td>
+                            <td>Cuartos C2</td>
+                            <td>Nacional</td>
+                            <td>Ganador O3</td>
+                            <td>Ganador O4</td>
+                            <td>G O3 vs G O4</td>
+                            <td>Combo O3/O4</td>
+                            <td>Drop C2</td>
+                            <td>Vota C3 en comentarios</td>
+                            <td>/ep11</td>
+                            <td>/guia?ep=11</td>
+                            <td>/merch/c2</td>
+                            <td>utm_ep11</td>
+                        </tr>
+                        <tr>
+                            <td>EP12</td>
+                            <td>Mie 1 julio 2026</td>
+                            <td>Cuartos C3</td>
+                            <td>Nacional</td>
+                            <td>Ganador O5</td>
+                            <td>Ganador O6</td>
+                            <td>G O5 vs G O6</td>
+                            <td>Combo O5/O6</td>
+                            <td>Drop C3</td>
+                            <td>Vota C4 en comentarios</td>
+                            <td>/ep12</td>
+                            <td>/guia?ep=12</td>
+                            <td>/merch/c3</td>
+                            <td>utm_ep12</td>
+                        </tr>
+                        <tr>
+                            <td>EP13</td>
+                            <td>Dom 5 julio 2026</td>
+                            <td>Cuartos C4</td>
+                            <td>Nacional</td>
+                            <td>Ganador O7</td>
+                            <td>Ganador O8</td>
+                            <td>G O7 vs G O8</td>
+                            <td>Combo O7/O8</td>
+                            <td>Drop C4</td>
+                            <td>Vota S1 en comentarios</td>
+                            <td>/ep13</td>
+                            <td>/guia?ep=13</td>
+                            <td>/merch/c4</td>
+                            <td>utm_ep13</td>
+                        </tr>
+                        <tr>
+                            <td>EP14</td>
+                            <td>Mie 8 julio 2026</td>
+                            <td>Semifinal S1</td>
+                            <td>Nacional</td>
+                            <td>Ganador C1</td>
+                            <td>Ganador C2</td>
+                            <td>G C1 vs G C2</td>
+                            <td>Combo S1</td>
+                            <td>Drop S1</td>
+                            <td>Vota S2 en comentarios</td>
+                            <td>/ep14</td>
+                            <td>/guia?ep=14</td>
+                            <td>/merch/s1</td>
+                            <td>utm_ep14</td>
+                        </tr>
+                        <tr>
+                            <td>EP15</td>
+                            <td>Dom 12 julio 2026</td>
+                            <td>Semifinal S2</td>
+                            <td>Nacional</td>
+                            <td>Ganador C3</td>
+                            <td>Ganador C4</td>
+                            <td>G C3 vs G C4</td>
+                            <td>Combo S2</td>
+                            <td>Drop S2</td>
+                            <td>Activa recordatorio final</td>
+                            <td>/ep15</td>
+                            <td>/guia?ep=15</td>
+                            <td>/merch/s2</td>
+                            <td>utm_ep15</td>
+                        </tr>
+                        <tr>
+                            <td>EP16</td>
+                            <td>Mie 15 julio 2026</td>
+                            <td>Partido 16 Especial</td>
+                            <td>Nacional</td>
+                            <td>Selección Chefs XI</td>
+                            <td>Selección Comunidad XI</td>
+                            <td>Chefs XI vs Comunidad XI</td>
+                            <td>Kit All-Star</td>
+                            <td>Drop All-Star</td>
+                            <td>Último empuje hacia la final</td>
+                            <td>/ep16</td>
+                            <td>/guia?ep=16</td>
+                            <td>/merch/allstar</td>
+                            <td>utm_ep16</td>
+                        </tr>
+                        <tr>
+                            <td>EP17</td>
+                            <td>Dom 19 julio 2026</td>
+                            <td>Gran Final</td>
+                            <td>Nacional</td>
+                            <td>Ganador S1</td>
+                            <td>Ganador S2</td>
+                            <td>G S1 vs G S2</td>
+                            <td>Final Gold</td>
+                            <td>Drop Final</td>
+                            <td>Descarga guía/app + compra merch final</td>
+                            <td>/ep17</td>
+                            <td>/guia?ep=17</td>
+                            <td>/merch/final</td>
+                            <td>utm_ep17</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="mini-note gs-reveal">Regla de gobernanza: lunes se deciden ajustes, martes se actualiza
+                Documento Madre, miércoles se valida con deck, domingo se registran aprendizajes.</p>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide9">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2200&auto=format&fit=crop');opacity:0.15;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Fase 4 · Sistema dual</span>
+            <h1 class="gs-reveal">Cómo se retroalimentan<br>Selección y Vuelta en 80 Tacos.</h1>
+            <h2 class="gs-reveal">Mientras grabamos el Tacotios Tour, se graba La Vuelta con Mauricio. Un mismo viaje
+                produce piezas verticales, episodios de YouTube, pistas narrativas y material para trailer.</h2>
+
+            <div class="flow-grid">
+                <div class="flow-step gs-reveal">
+                    <strong>1) Se lanza el episodio de Selección</strong>
+                    <p>Abre un duelo, se vota en comentarios y se anuncia el siguiente partido.</p>
+                </div>
+                <div class="flow-step gs-reveal">
+                    <strong>2) Se publica el bloque de La Vuelta</strong>
+                    <p>El mismo viaje muestra historia larga, oficio, territorio y personaje.</p>
+                </div>
+                <div class="flow-step gs-reveal">
+                    <strong>3) Se deja una pista</strong>
+                    <p>Un clip conecta ambas series: “yo vi ese momento en el Mundial del Taco”.</p>
+                </div>
+                <div class="flow-step gs-reveal">
+                    <strong>4) Todo va a la landing</strong>
+                    <p>Video + guía + merch + links medibles, en una sola ruta clara para la comunidad.</p>
+                </div>
+                <div class="flow-step gs-reveal">
+                    <strong>5) Trailer de temporada</strong>
+                    <p>Recap de Puebla, Chiapas, Sonora y aprendizajes regionales con fecha exacta de estreno.</p>
+                </div>
+                <div class="flow-step gs-reveal">
+                    <strong>6) Contador y día fijo</strong>
+                    <p>Landing con contador; publicación siempre el mismo día y hora para crear hábito.</p>
+                </div>
+                <div class="flow-step gs-reveal">
+                    <strong>7) Merch activa en el estreno</strong>
+                    <p>Cuando empieza la temporada, también abren ventas y beneficios.</p>
+                </div>
+                <div class="flow-step gs-reveal">
+                    <strong>8) Efecto rebote</strong>
+                    <p>Quien llega a la final vuelve a ver lo anterior; quien descubre La Vuelta entra al torneo.</p>
+                </div>
+            </div>
+
+            <div class="panel gs-reveal">
+                <p><span class="accent-blue">Tono narrativo:</span> orgánico, relajado y humano. Parece effortless,
+                    pero cada pieza está diseñada para conversación, retención y retorno.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide10">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2200&auto=format&fit=crop');opacity:0.15;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Fase 5 · Audiencias y casting</span>
+            <h1 class="gs-reveal">Cameos y autoridades:<br>solo entra quien mueve conversación.</h1>
+            <h2 class="gs-reveal">Métrica principal: engagement real. Queremos multiplicar la base de 2.0M seguidores
+                y juntar audiencia de tacos + fútbol en cada corte.</h2>
+
+            <div class="score-grid">
+                <div class="score-card gs-reveal">
+                    <h4>Cameos fútbol/cultura</h4>
+                    <p>Base objetivo: Alejandro Nones, Mijangos, Brekel Milagros, futbolistas y creadores ligados al
+                        Mundial.</p>
+                    <p class="mini-note">Entrada mínima recomendada: ER competitivo y capacidad de activar comentarios.</p>
+                </div>
+                <div class="score-card gs-reveal">
+                    <h4>Regla de score</h4>
+                    <p>Score cameo = ER + comentarios por mil views + CTR a landing + retención de audiencia.</p>
+                    <p class="mini-note">Si baja score, se activa reemplazo del pipeline sin mover fecha de episodio.</p>
+                </div>
+                <div class="score-card gs-reveal">
+                    <h4>Video de invitación a chefs</h4>
+                    <p>Se prepara un video base del proyecto + un corte personalizado para cada chef, con mensaje
+                        directo de Aniol.</p>
+                    <p class="mini-note">Objetivo: cerrar sí/no rápido y evitar semanas de espera.</p>
+                </div>
+            </div>
+
+            <div class="table-scroll gs-reveal">
+                <table class="omega-table" aria-label="Casting autoridad secreto">
+                    <thead>
+                        <tr>
+                            <th>Categoría</th>
+                            <th>Autoridad titular (objetivo)</th>
+                            <th>Suplente</th>
+                            <th>Racional conversacional</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fine Dining</td>
+                            <td>Chef referente CDMX A</td>
+                            <td>Chef referente CDMX B</td>
+                            <td>Trae prensa, debate y credibilidad alta</td>
+                            <td>Por cerrar</td>
+                        </tr>
+                        <tr>
+                            <td>Pastor</td>
+                            <td>Chef atrevido Pastor</td>
+                            <td>Chef técnico Pastor</td>
+                            <td>La comunidad empuja fuerte esta conversación</td>
+                            <td>Comunidad define rival</td>
+                        </tr>
+                        <tr>
+                            <td>Suadero</td>
+                            <td>Chef Suadero</td>
+                            <td>Chef calle/técnica</td>
+                            <td>Duelo clásico de CDMX con alto volumen social</td>
+                            <td>Comunidad define rival</td>
+                        </tr>
+                        <tr>
+                            <td>Asada/Norteño</td>
+                            <td>Duelo propuesto: Enrique Olvera</td>
+                            <td>Chef norteño de alto impacto</td>
+                            <td>Cruce mediático fuerte contra Doña Humo</td>
+                            <td>En propuesta</td>
+                        </tr>
+                        <tr>
+                            <td>Oaxaqueño</td>
+                            <td>Chef Oaxaqueño contemporáneo</td>
+                            <td>Chef tradicional Oaxaqueño</td>
+                            <td>Contraste directo con La Tía (mole)</td>
+                            <td>Por cerrar</td>
+                        </tr>
+                        <tr>
+                            <td>Yucateco</td>
+                            <td>Chef Yucateco</td>
+                            <td>Chef sureste</td>
+                            <td>Cochinita pibil + Comunidad Maya = narrativa potente</td>
+                            <td>Por cerrar</td>
+                        </tr>
+                        <tr>
+                            <td>Fish/Mariscos</td>
+                            <td>Chef mariscos</td>
+                            <td>Chef costa</td>
+                            <td>La Paz + Carlos Valdez + mar real en cámara</td>
+                            <td>Por cerrar</td>
+                        </tr>
+                        <tr>
+                            <td>Barbacoa</td>
+                            <td>Chef Barbacoa</td>
+                            <td>Chef tradición humo</td>
+                            <td>Hidalgo da territorio fuerte para narrativa</td>
+                            <td>Scouting final</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide11">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2200&auto=format&fit=crop');opacity:0.14;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Fase 6 · Producto y conversión</span>
+            <h1 class="gs-reveal">App/Guía + Landing + Merch:<br>todo conectado por episodio.</h1>
+            <h2 class="gs-reveal">La app/guía sale cuando la conversación del Mundial está más alta. Objetivo: ser el
+                epicentro para decidir dónde comer y convertir atención en valor real.</h2>
+
+            <div class="mega-grid">
+                <div class="mega-card gs-reveal">
+                    <h3>Guía/App de la Selección del Taco</h3>
+                    <p>Mapa vivo de taquerías, ranking por categoría, votos de comunidad, links directos y beneficios
+                        activables.</p>
+                    <div class="badge-row">
+                        <span class="badge">Mapa</span>
+                        <span class="badge">Ranking</span>
+                        <span class="badge">Votos</span>
+                        <span class="badge">Beneficios</span>
+                        <span class="badge">Pago/Recompensas</span>
+                    </div>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>Landing con contador</h3>
+                    <p>Una sola URL para trailer, episodios, guía y merch. Contador activo hasta el día de estreno de
+                        temporada.</p>
+                    <div class="badge-row">
+                        <span class="badge">CTR medible</span>
+                        <span class="badge">Retargeting</span>
+                        <span class="badge">Pixel/UTM</span>
+                    </div>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>Merch por ronda</h3>
+                    <p>Camisetas por categoría y por bando. Rondas especiales: cuartos, semis y final. Ediciones
+                        exclusivas por taquería participante.</p>
+                    <div class="badge-row">
+                        <span class="badge">Drop por episodio</span>
+                        <span class="badge">Firma de capitanes</span>
+                        <span class="badge">Stock limitado</span>
+                    </div>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>Regla legal de camisetas</h3>
+                    <p>Rodaje con estética club para narrativa. Venta solo con diseño propio, sin escudos reales sin
+                        licencia.</p>
+                    <div class="badge-row">
+                        <span class="badge">Cumplimiento legal</span>
+                        <span class="badge">Protección de marca</span>
+                    </div>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>Stack obligatorio por episodio</h3>
+                    <p>Ningún video sale sin estos 4 enlaces: video, landing/guía, merch, UTM + CTA del siguiente
+                        partido.</p>
+                    <div class="badge-row">
+                        <span class="badge">video</span>
+                        <span class="badge">guía</span>
+                        <span class="badge">merch</span>
+                        <span class="badge">utm</span>
+                        <span class="badge">cta</span>
+                    </div>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>Productos paralelos</h3>
+                    <p>Infoproductos, podcast, eventos y dinámicas con airdrops para mantener conversación más allá del
+                        torneo.</p>
+                    <div class="badge-row">
+                        <span class="badge">Info</span>
+                        <span class="badge">Eventos</span>
+                        <span class="badge">Podcast</span>
+                        <span class="badge">Airdrops</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide12">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2200&auto=format&fit=crop');opacity:0.14;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Fase 7 · Operación y negocio</span>
+            <h1 class="gs-reveal">Quién hace qué,<br>cuánto cuesta y cómo se financia.</h1>
+            <h2 class="gs-reveal">Objetivo operativo: liberar a Aniol para foco creativo. El equipo ejecuta, mide,
+                itera y sostiene el ritmo miércoles+domingo.</h2>
+
+            <div class="table-scroll gs-reveal">
+                <table class="omega-table" aria-label="RACI operativo">
+                    <thead>
+                        <tr>
+                            <th>Bloque</th>
+                            <th>Responsable (R)</th>
+                            <th>Aprobador (A)</th>
+                            <th>Consultado (C)</th>
+                            <th>Informado (I)</th>
+                            <th>Meta simple</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dirección creativa</td>
+                            <td>Aniol</td>
+                            <td>Aniol</td>
+                            <td>AMEX / PAOCME</td>
+                            <td>Equipo completo</td>
+                            <td>Una narrativa clara por episodio</td>
+                        </tr>
+                        <tr>
+                            <td>Producción de viaje</td>
+                            <td>Mauricio</td>
+                            <td>Aniol</td>
+                            <td>Operaciones</td>
+                            <td>Marcas aliadas</td>
+                            <td>Rodaje dual completo por parada</td>
+                        </tr>
+                        <tr>
+                            <td>Edición y post</td>
+                            <td>Cámara/Editor</td>
+                            <td>Mauricio</td>
+                            <td>Aniol</td>
+                            <td>Social lead</td>
+                            <td>Entrega puntual de cortes y clips</td>
+                        </tr>
+                        <tr>
+                            <td>Distribución social</td>
+                            <td>Social Media Expert</td>
+                            <td>Aniol</td>
+                            <td>Editor</td>
+                            <td>AMEX</td>
+                            <td>Publicación exacta a las 20:00</td>
+                        </tr>
+                        <tr>
+                            <td>Comercial y alianzas</td>
+                            <td>Business Lead</td>
+                            <td>Aniol + AMEX</td>
+                            <td>Secretarías/Hoteles</td>
+                            <td>Equipo completo</td>
+                            <td>Cubrir costos y ampliar distribución</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mega-grid">
+                <div class="mega-card gs-reveal">
+                    <h3>Costos clave</h3>
+                    <p>Producción, edición, viáticos, hospedaje, traslados, equipo técnico, social media y soporte
+                        operativo.</p>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>Financiamiento base</h3>
+                    <p>AMEX cubre vuelos y transporte. Se negocia hospedaje y apoyos regionales con secretarías de
+                        turismo y aliados.</p>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>Marcas objetivo para alianzas</h3>
+                    <p>Hoteles, aerolíneas, restaurantes, marcas de bebida, seguros de viaje y marcas de ropa.</p>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>Plan de contingencia</h3>
+                    <p>Si falla invitado o locación, entra suplente en menos de 48h, sin romper fecha de publicación.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide13">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?q=80&w=2200&auto=format&fit=crop');opacity:0.13;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Fase 8 · Cierre Omega</span>
+            <h1 class="gs-reveal">Cierre de AMEX,<br>y luego PAOCME.</h1>
+            <h2 class="gs-reveal">Esta versión deja todo ordenado para ejecutar AMEX ya. En cuanto se apruebe, abrimos
+                la segunda presentación con PAOCME usando el mismo Documento Madre.</h2>
+
+            <div class="omega-grid">
+                <div class="omega-card gs-reveal">
+                    <h3>Gates para no improvisar</h3>
+                    <ul class="omega-list">
+                        <li>Gate 1: llaves validadas (quién vs quién + camiseta).</li>
+                        <li>Gate 2: calendario cerrado (miércoles y domingo 20:00).</li>
+                        <li>Gate 3: casting mínimo asegurado (autoridad + comunidad + cameos).</li>
+                        <li>Gate 4: stack de links probado (video, guía, merch, UTM).</li>
+                        <li>Gate 5: costos y apoyos confirmados.</li>
+                    </ul>
+                </div>
+                <div class="omega-card gs-reveal">
+                    <h3>Decisiones abiertas críticas</h3>
+                    <ul class="omega-list">
+                        <li>Confirmación final de los 8 chefs titulares y suplentes.</li>
+                        <li>Selección exacta de plazas de Pastor y Suadero por comunidad.</li>
+                        <li>Lista final de cameos por score de engagement.</li>
+                        <li>Preset final de diseño de camisetas de venta.</li>
+                        <li>Roadmap técnico de app/guía (MVP y versión Mundial).</li>
+                    </ul>
+                </div>
+                <div class="omega-card gs-reveal">
+                    <h3>Mensaje de venta final</h3>
+                    <ul class="omega-list">
+                        <li>Este proyecto no interrumpe la conversación: la crea.</li>
+                        <li>AMEX entra como facilitador real de cultura, viaje y beneficios.</li>
+                        <li>Selección y Vuelta se empujan entre sí en cada episodio.</li>
+                        <li>La comunidad decide los resultados y vuelve cada semana.</li>
+                        <li>El cierre coincide con la conversación más fuerte del Mundial 2026.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="engagement-strip gs-reveal">
+                <p><span class="accent-blue">Mantra de ejecución:</span> solo hay una forma de hacer las cosas bien:
+                    claridad total, ritmo fijo, comunidad al centro y medición en cada episodio.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide14">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1488998527040-85054a85150e?q=80&w=2200&auto=format&fit=crop');opacity:0.14;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Hallazgos del debate</span>
+            <h1 class="gs-reveal">Lo más relevante<br>que debemos sumar.</h1>
+            <h2 class="gs-reveal">Este bloque incorpora lo mejor del debate de Notebook LM y lo traduce a decisiones
+                claras para la versión final del proyecto.</h2>
+
+            <div class="mega-grid">
+                <div class="mega-card gs-reveal">
+                    <h3>1) Meta exacta de impacto</h3>
+                    <p>No buscamos solo views. Buscamos que México hable del torneo en la calle y en redes, con pico
+                        máximo en la final del Mundial.</p>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>2) Lenguaje extremo de simplicidad</h3>
+                    <p>Todo se explica en lenguaje que entienda un niño de 12 años o una abuelita. Cero tecnicismos,
+                        cero palabras confusas.</p>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>3) Formato universal</h3>
+                    <p>Las llaves del Mundial son el mejor formato para que toda la audiencia entienda qué pasa, quién
+                        avanza y por qué.</p>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>4) Participación real de comunidad</h3>
+                    <p>La comunidad no solo mira: decide. Su comentario y sus likes definen qué taquería entra y quién
+                        pasa de fase.</p>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>5) Efecto maratón retrospectivo</h3>
+                    <p>Quien ve la final vuelve a ver cuartos, octavos e inaugural. Ese “ir para atrás” sube views y
+                        tiempo de consumo de toda la serie.</p>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>6) Inaugural con contraste visual fuerte</h3>
+                    <p>Pantalla dividida: siluetas de chefs secretos contra taqueros reales cocinando. Misterio +
+                        calle = arranque muy potente.</p>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>7) Escala nacional obligatoria</h3>
+                    <p>Si se queda en CDMX, pierde fuerza nacional. Por eso se ata a la ruta de 7 estados con La Vuelta
+                        a México en 80 Tacos.</p>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>8) Estilo de grabación</h3>
+                    <p>Orgánico y humano, no comercial rígido. Debe sentirse real, cercano y effortless, aunque detrás
+                        haya alta estrategia.</p>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>9) Criterio duro de invitados</h3>
+                    <p>Para cameos, la métrica principal es engagement y capacidad de mover conversación. No entra “fama
+                        vacía”.</p>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>10) Capa transaccional</h3>
+                    <p>La guía/app no solo informa: convierte. Mapa + pago + fidelización + recompensas + links
+                        medibles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide15">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2200&auto=format&fit=crop');opacity:0.13;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Problema cero</span>
+            <h1 class="gs-reveal">El riesgo principal<br>y cómo lo resolvemos.</h1>
+            <h2 class="gs-reveal">El debate deja claro el mayor riesgo: que el proyecto se perciba solo de CDMX. La
+                solución es operativa y narrativa al mismo tiempo.</h2>
+
+            <div class="execution-grid">
+                <div class="exec-card gs-reveal">
+                    <h3>Riesgo central</h3>
+                    <ul class="exec-list">
+                        <li>Si solo ocurre en CDMX, no escala como conversación nacional.</li>
+                        <li>Sin ruta regional, baja credibilidad para marcas nacionales.</li>
+                        <li>Sin diversidad territorial, el torneo se vuelve repetitivo.</li>
+                    </ul>
+                </div>
+                <div class="exec-card gs-reveal">
+                    <h3>Solución aplicada</h3>
+                    <ul class="exec-list">
+                        <li>La Vuelta en 80 Tacos como columna de expansión nacional.</li>
+                        <li>7 estados + CDMX conectados por categoría, no por capricho.</li>
+                        <li>Cada territorio aporta una historia humana fuerte y un contraste claro.</li>
+                    </ul>
+                </div>
+                <div class="exec-card gs-reveal">
+                    <h3>Resultado esperado</h3>
+                    <ul class="exec-list">
+                        <li>Más autoridad cultural para la campaña y para AMEX.</li>
+                        <li>Más distribución orgánica por diversidad de audiencias regionales.</li>
+                        <li>Más inventario comercial para aliados de viaje, consumo y estilo de vida.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="table-scroll gs-reveal">
+                <table class="omega-table" aria-label="Matriz de patrocinios por necesidad real del tour">
+                    <thead>
+                        <tr>
+                            <th>Necesidad del tour</th>
+                            <th>Categoría de aliado</th>
+                            <th>Integración natural</th>
+                            <th>Valor para marca</th>
+                            <th>Valor para proyecto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Vuelos y traslados</td>
+                            <td>Aerolíneas / movilidad</td>
+                            <td>Compañero oficial de ruta por episodio</td>
+                            <td>Visibilidad nacional contextual</td>
+                            <td>Reduce costo logístico alto</td>
+                        </tr>
+                        <tr>
+                            <td>Hospedaje</td>
+                            <td>Hoteles</td>
+                            <td>Paradas de producción + historias de viaje</td>
+                            <td>Asociación con cultura y turismo</td>
+                            <td>Cobertura de noches críticas</td>
+                        </tr>
+                        <tr>
+                            <td>Hidratación/acompañamiento</td>
+                            <td>Bebidas</td>
+                            <td>Consumo natural en taquerías y backstage</td>
+                            <td>Integración no invasiva</td>
+                            <td>Apoyo económico y distribución</td>
+                        </tr>
+                        <tr>
+                            <td>Exceso gastronómico</td>
+                            <td>Bienestar digestivo</td>
+                            <td>Guiño cultural post-taco</td>
+                            <td>Memorabilidad alta</td>
+                            <td>Patrocinio con fit perfecto</td>
+                        </tr>
+                        <tr>
+                            <td>Uniformidad visual</td>
+                            <td>Ropa / streetwear</td>
+                            <td>Camisetas de rodaje y drops de merch</td>
+                            <td>Ventas y branding compartido</td>
+                            <td>Co-financia producción y drops</td>
+                        </tr>
+                        <tr>
+                            <td>Seguridad de ruta</td>
+                            <td>Seguros de viaje</td>
+                            <td>Cobertura explícita del tour</td>
+                            <td>Confianza de marca</td>
+                            <td>Disminuye riesgo operativo</td>
+                        </tr>
+                        <tr>
+                            <td>Pagos y fidelización</td>
+                            <td>AMEX + capa de pagos</td>
+                            <td>Pago en guía/app + beneficios + recompensas</td>
+                            <td>Conversión medible</td>
+                            <td>Monetización directa del tráfico</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide16">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1489515217757-5fd1be406fef?q=80&w=2200&auto=format&fit=crop');opacity:0.12;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Guion maestro de contenido</span>
+            <h1 class="gs-reveal">Cómo se cuenta para que funcione<br>cada semana.</h1>
+            <h2 class="gs-reveal">Este guion operativo viene directo de lo aprendido en el debate y se aplica a cada
+                episodio para mantener ritmo, claridad y conversación.</h2>
+
+            <div class="flow-grid">
+                <div class="flow-step gs-reveal">
+                    <strong>Apertura (0-3s)</strong>
+                    <p>Gancho visual fuerte: contraste, tensión y promesa clara del duelo.</p>
+                </div>
+                <div class="flow-step gs-reveal">
+                    <strong>Contexto simple (3-12s)</strong>
+                    <p>“Hoy juega X vs Y”. Se entiende en una frase, sin palabras complejas.</p>
+                </div>
+                <div class="flow-step gs-reveal">
+                    <strong>Historia humana (12-35s)</strong>
+                    <p>Por qué ese taco importa, quién lo representa y qué lo vuelve único.</p>
+                </div>
+                <div class="flow-step gs-reveal">
+                    <strong>Momento de verdad (35-50s)</strong>
+                    <p>Prueba en cámara, reacción real y punto de comparación directo.</p>
+                </div>
+                <div class="flow-step gs-reveal">
+                    <strong>Llamado de comunidad (50-60s)</strong>
+                    <p>“Comenta y dale like a tu opción. Tú decides quién pasa.”</p>
+                </div>
+                <div class="flow-step gs-reveal">
+                    <strong>Puente al siguiente episodio</strong>
+                    <p>Se anuncia próximo duelo y se deja pista de La Vuelta para efecto continuidad.</p>
+                </div>
+                <div class="flow-step gs-reveal">
+                    <strong>Stack de salida</strong>
+                    <p>Video + guía/app + merch + UTM + CTA. Sin stack completo, no se publica.</p>
+                </div>
+                <div class="flow-step gs-reveal">
+                    <strong>Post-publicación</strong>
+                    <p>Se mide ER, comentarios, CTR y se ajusta casting/invitados para la siguiente fecha.</p>
+                </div>
+            </div>
+
+            <div class="panel gs-reveal">
+                <p><span class="accent-blue">Resumen ejecutivo:</span> el debate confirma que el proyecto gana cuando
+                    junta emoción cultural + estructura simple + operación rigurosa + capa comercial medible. Esa es la
+                    fórmula que convierte conversación en negocio sin perder autenticidad.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide17">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1497032205916-ac775f0649ae?q=80&w=2200&auto=format&fit=crop');opacity:0.13;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Dirección creativa inaugural</span>
+            <h1 class="gs-reveal">El video de apertura<br>que prende toda la temporada.</h1>
+            <h2 class="gs-reveal">Este guion recoge el punto más fuerte del debate: abrir con una imagen que todo mundo
+                entienda al instante y quiera comentar en los primeros segundos.</h2>
+
+            <div class="execution-grid">
+                <div class="exec-card gs-reveal">
+                    <h3>Plano 1 · Tensión visual</h3>
+                    <ul class="exec-list">
+                        <li>Pantalla dividida: izquierda chefs en silueta (secretos), derecha taqueros en acción real.</li>
+                        <li>Cebolla, trompo, fuego, vapor, cuchillo, manos y ritmo de calle.</li>
+                        <li>Voz simple: “Hoy empieza el Mundial del Taco”.</li>
+                    </ul>
+                </div>
+                <div class="exec-card gs-reveal">
+                    <h3>Plano 2 · Reglas en 10 segundos</h3>
+                    <ul class="exec-list">
+                        <li>“Son 16 partidos y una apertura.”</li>
+                        <li>“Chef vs comunidad en cada llave.”</li>
+                        <li>“Tú decides en comentarios. Gana quien tenga más likes.”</li>
+                    </ul>
+                </div>
+                <div class="exec-card gs-reveal">
+                    <h3>Plano 3 · Intriga que retiene</h3>
+                    <ul class="exec-list">
+                        <li>No revelar todos los chefs el día 1.</li>
+                        <li>Dejar siluetas y pistas para el siguiente episodio.</li>
+                        <li>Mostrar una jugada teaser de La Vuelta para puente narrativo.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel gs-reveal">
+                <p><span class="accent-blue">Call to action exacto del inaugural:</span> “Comenta ahora la taquería que
+                    debe entrar en Pastor y Suadero. Dale like al comentario que quieres ver competir. Mañana arrancamos
+                    el primer duelo.”</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide18">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=2200&auto=format&fit=crop');opacity:0.14;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Embudo completo</span>
+            <h1 class="gs-reveal">De conversación a pago:<br>el sistema económico real.</h1>
+            <h2 class="gs-reveal">El debate confirma algo clave: la campaña no se queda en likes. Todo desemboca en una
+                capa de transacción medible y repetible.</h2>
+
+            <div class="funnel-row">
+                <div class="funnel-step gs-reveal">
+                    <h4>Paso 1 · Descubrimiento</h4>
+                    <p>Episodio en redes con duelo + historia + cameo que empuja alcance.</p>
+                    <div class="funnel-kpi">KPI: alcance, retención 3s, ER</div>
+                </div>
+                <div class="funnel-step gs-reveal">
+                    <h4>Paso 2 · Participación</h4>
+                    <p>Comentarios y likes para decidir quién avanza.</p>
+                    <div class="funnel-kpi">KPI: comentarios útiles, likes por comentario, voto válido</div>
+                </div>
+                <div class="funnel-step gs-reveal">
+                    <h4>Paso 3 · Tráfico</h4>
+                    <p>Click al stack: landing + guía/app + merch + siguiente episodio.</p>
+                    <div class="funnel-kpi">KPI: CTR por enlace, sesión, profundidad</div>
+                </div>
+                <div class="funnel-step gs-reveal">
+                    <h4>Paso 4 · Conversión</h4>
+                    <p>Compra de merch, uso de beneficios, visita a taquería y pago integrado.</p>
+                    <div class="funnel-kpi">KPI: CVR, ticket promedio, frecuencia</div>
+                </div>
+                <div class="funnel-step gs-reveal">
+                    <h4>Paso 5 · Fidelización</h4>
+                    <p>Puntos, recompensas, historial de favoritos y retorno semanal.</p>
+                    <div class="funnel-kpi">KPI: repetición, cohortes, LTV</div>
+                </div>
+            </div>
+
+            <div class="engagement-strip gs-reveal">
+                <p><span class="accent-blue">Traducción simple:</span> contenido mueve conversación, conversación mueve
+                    clics, clics mueven consumo, consumo crea comunidad fiel. Ese ciclo se repite episodio a episodio.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide19">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2200&auto=format&fit=crop');opacity:0.14;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Manual anti-fricción</span>
+            <h1 class="gs-reveal">Cómo evitamos que la gente<br>se pierda o se canse.</h1>
+            <h2 class="gs-reveal">Si se vuelve complejo, se rompe. Esta tabla deja las reglas para mantener claridad
+                total durante 17 episodios.</h2>
+
+            <div class="check-grid">
+                <div class="check-card gs-reveal">
+                    <h4>Reglas de lenguaje</h4>
+                    <ul>
+                        <li>Una idea principal por bloque.</li>
+                        <li>Frases cortas y verbo directo.</li>
+                        <li>Sin tecnicismos de marketing en cámara.</li>
+                        <li>Siempre decir “comunidad”, no “pueblo”.</li>
+                        <li>Siempre repetir: “Tú decides quién pasa”.</li>
+                    </ul>
+                </div>
+                <div class="check-card gs-reveal">
+                    <h4>Reglas de narrativa</h4>
+                    <ul>
+                        <li>Todo episodio abre con el duelo primero.</li>
+                        <li>Mostrar rostro humano y contexto de vida real.</li>
+                        <li>Dejar una pista del siguiente capítulo.</li>
+                        <li>Cerrar con CTA concreto y fecha exacta.</li>
+                        <li>Conectar siempre con la ruta de La Vuelta.</li>
+                    </ul>
+                </div>
+                <div class="check-card gs-reveal">
+                    <h4>Reglas visuales</h4>
+                    <ul>
+                        <li>Siempre enseñar bracket actualizado.</li>
+                        <li>Color por fase: octavos, cuartos, semis, final.</li>
+                        <li>Camiseta visible por bando en cada duelo.</li>
+                        <li>Rótulos simples: quién, dónde, contra quién.</li>
+                        <li>No saturar pantalla de texto.</li>
+                    </ul>
+                </div>
+                <div class="check-card gs-reveal">
+                    <h4>Reglas de operación</h4>
+                    <ul>
+                        <li>Lunes: cierre de decisiones.</li>
+                        <li>Martes: actualización del Documento Madre.</li>
+                        <li>Miércoles y domingo: publicación exacta 20:00.</li>
+                        <li>Post 24h: lectura de métricas y ajustes.</li>
+                        <li>Sin stack completo, no sale episodio.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide20">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2200&auto=format&fit=crop');opacity:0.13;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Control de calidad semanal</span>
+            <h1 class="gs-reveal">Tablero de mando:<br>qué medimos y cómo decidimos.</h1>
+            <h2 class="gs-reveal">Para sostener el sistema, medimos pocas cosas pero bien. Esta tabla convierte el
+                debate en control real de ejecución.</h2>
+
+            <div class="table-scroll gs-reveal">
+                <table class="omega-table" aria-label="KPI semanal de control">
+                    <thead>
+                        <tr>
+                            <th>Bloque</th>
+                            <th>Métrica principal</th>
+                            <th>Meta mínima</th>
+                            <th>Umbral rojo</th>
+                            <th>Acción correctiva en 48h</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Hook inicial</td>
+                            <td>Retención primeros 3s</td>
+                            <td>&gt; 70%</td>
+                            <td>&lt; 55%</td>
+                            <td>Cambiar apertura visual y primer fraseo</td>
+                        </tr>
+                        <tr>
+                            <td>Conversación</td>
+                            <td>Comentarios por 1,000 views</td>
+                            <td>&gt; 25</td>
+                            <td>&lt; 12</td>
+                            <td>CTA más específico + cameo más fuerte</td>
+                        </tr>
+                        <tr>
+                            <td>Votación</td>
+                            <td>Likes en comentarios válidos</td>
+                            <td>Crecimiento semanal</td>
+                            <td>Estancado 2 episodios</td>
+                            <td>Simplificar regla de voto en copy y video</td>
+                        </tr>
+                        <tr>
+                            <td>Tráfico a guía/app</td>
+                            <td>CTR del enlace principal</td>
+                            <td>&gt; 2.5%</td>
+                            <td>&lt; 1.2%</td>
+                            <td>Reordenar link stack y promesa de valor</td>
+                        </tr>
+                        <tr>
+                            <td>Merch</td>
+                            <td>Conversión por drop</td>
+                            <td>&gt; 1.5%</td>
+                            <td>&lt; 0.7%</td>
+                            <td>Mejorar diseño, escasez y prueba social</td>
+                        </tr>
+                        <tr>
+                            <td>Cameos</td>
+                            <td>ER incremental por invitado</td>
+                            <td>Positivo</td>
+                            <td>Negativo 2 veces</td>
+                            <td>Reemplazo por pipeline de mayor score</td>
+                        </tr>
+                        <tr>
+                            <td>Ritmo editorial</td>
+                            <td>Entrega a tiempo</td>
+                            <td>100%</td>
+                            <td>1 atraso</td>
+                            <td>Activar episodio backup y edición ligera</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="panel gs-reveal">
+                <p><span class="accent-blue">Cierre:</span> si mantenemos claridad, cadencia y medición, el proyecto no
+                    depende de suerte. Depende de ejecución semanal disciplinada y de comunidad activa.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide21">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2200&auto=format&fit=crop');opacity:0.13;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Plan maestro de ejecución</span>
+            <h1 class="gs-reveal">Cómo ejecutamos las 2 instrucciones<br>sin perder nada.</h1>
+            <h2 class="gs-reveal">Instrucción 1: asegurar contexto completo. Instrucción 2: cerrar últimas slides con
+                to-do, workflow, responsables, deadlines y preguntas abiertas.</h2>
+
+            <div class="table-scroll gs-reveal">
+                <table class="omega-table" aria-label="Plan maestro por fases para ejecutar sin alucinar">
+                    <thead>
+                        <tr>
+                            <th>Fase</th>
+                            <th>Objetivo</th>
+                            <th>Qué se hace</th>
+                            <th>Gate de salida</th>
+                            <th>Responsable</th>
+                            <th>Deadline</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>F0 · Verdad única</td>
+                            <td>Congelar reglas base</td>
+                            <td>Formato, categorías, lenguaje, calendario, narrativa madre</td>
+                            <td>Documento Madre actualizado y sin contradicciones</td>
+                            <td>Aniol (A) + Productor (R)</td>
+                            <td>Jue 12 marzo 2026</td>
+                        </tr>
+                        <tr>
+                            <td>F1 · Auditoría de cobertura</td>
+                            <td>Ver que no falte nada hablado</td>
+                            <td>Checklist de temas: llaves, lugares, cameos, app, merch, Vuelta, AMEX</td>
+                            <td>Cobertura 100% validada</td>
+                            <td>Content lead (R)</td>
+                            <td>Vie 13 marzo 2026</td>
+                        </tr>
+                        <tr>
+                            <td>F2 · Cierre de slides finales</td>
+                            <td>Operativizar la idea</td>
+                            <td>Agregar To-Do, Workflow, RACI, Deadlines, Preguntas abiertas</td>
+                            <td>Presentación lista para ejecución</td>
+                            <td>Dirección creativa (A) + Ops (R)</td>
+                            <td>Vie 13 marzo 2026</td>
+                        </tr>
+                        <tr>
+                            <td>F3 · Cierre de cast y plazas</td>
+                            <td>Quitar incertidumbre crítica</td>
+                            <td>8 chefs titular/suplente + plazas de comunidad Pastor/Suadero</td>
+                            <td>80% de cast firmado</td>
+                            <td>Partnerships (R)</td>
+                            <td>Mar 17 marzo 2026</td>
+                        </tr>
+                        <tr>
+                            <td>F4 · Preparación de producción</td>
+                            <td>Listos para rodar</td>
+                            <td>Rutas, permisos, logística, piezas de invitación individual</td>
+                            <td>Call sheets cerrados</td>
+                            <td>Mauricio (R)</td>
+                            <td>Vie 20 marzo 2026</td>
+                        </tr>
+                        <tr>
+                            <td>F5 · Sistema de publicación</td>
+                            <td>Cadencia sin fallas</td>
+                            <td>Stack de links, UTMs, plantilla de copy, QA previo publicación</td>
+                            <td>Prueba de publicación completa aprobada</td>
+                            <td>Social lead (R)</td>
+                            <td>Mie 25 marzo 2026</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide22">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=2200&auto=format&fit=crop');opacity:0.13;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">To-do crítico</span>
+            <h1 class="gs-reveal">Lista de tareas finales<br>con dueño y fecha.</h1>
+            <h2 class="gs-reveal">Este es el tablero de ejecución inmediata para las próximas 3 semanas.</h2>
+
+            <div class="table-scroll gs-reveal">
+                <table class="omega-table" aria-label="To-do de ejecución final">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tarea</th>
+                            <th>Owner</th>
+                            <th>Fecha límite</th>
+                            <th>Prioridad</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>T01</td>
+                            <td>Confirmar 8 categorías finales sin cambios</td>
+                            <td>Aniol</td>
+                            <td>Jue 12 marzo 2026</td>
+                            <td>Alta</td>
+                            <td>Abierto</td>
+                        </tr>
+                        <tr>
+                            <td>T02</td>
+                            <td>Cerrar 8 chefs (titular + suplente)</td>
+                            <td>Partnerships</td>
+                            <td>Mar 17 marzo 2026</td>
+                            <td>Alta</td>
+                            <td>Abierto</td>
+                        </tr>
+                        <tr>
+                            <td>T03</td>
+                            <td>Grabar video base de invitación + 8 cortes personalizados para chefs</td>
+                            <td>Aniol + Mauricio</td>
+                            <td>Mie 18 marzo 2026</td>
+                            <td>Alta</td>
+                            <td>Abierto</td>
+                        </tr>
+                        <tr>
+                            <td>T04</td>
+                            <td>Cerrar plazas de comunidad para Pastor y Suadero</td>
+                            <td>Social lead</td>
+                            <td>Dom 22 marzo 2026</td>
+                            <td>Alta</td>
+                            <td>Abierto</td>
+                        </tr>
+                        <tr>
+                            <td>T05</td>
+                            <td>Validar rutas: Oaxaca, Sonora, Yucatán, La Paz, Hidalgo, CDMX</td>
+                            <td>Mauricio</td>
+                            <td>Vie 20 marzo 2026</td>
+                            <td>Alta</td>
+                            <td>Abierto</td>
+                        </tr>
+                        <tr>
+                            <td>T06</td>
+                            <td>Definir 12 cameos priorizados por score de engagement</td>
+                            <td>Growth</td>
+                            <td>Lun 23 marzo 2026</td>
+                            <td>Alta</td>
+                            <td>Abierto</td>
+                        </tr>
+                        <tr>
+                            <td>T07</td>
+                            <td>Cerrar diseño legal de camisetas de venta (sin escudos reales)</td>
+                            <td>Legal + Merch</td>
+                            <td>Mar 24 marzo 2026</td>
+                            <td>Alta</td>
+                            <td>Abierto</td>
+                        </tr>
+                        <tr>
+                            <td>T08</td>
+                            <td>Montar landing con contador + stack de links + UTM naming</td>
+                            <td>Web lead</td>
+                            <td>Jue 26 marzo 2026</td>
+                            <td>Alta</td>
+                            <td>Abierto</td>
+                        </tr>
+                        <tr>
+                            <td>T09</td>
+                            <td>Definir MVP de guía/app (mapa, ranking, votos, beneficios, tracking)</td>
+                            <td>Producto</td>
+                            <td>Vie 27 marzo 2026</td>
+                            <td>Media</td>
+                            <td>Abierto</td>
+                        </tr>
+                        <tr>
+                            <td>T10</td>
+                            <td>Bloque comercial AMEX + aliados (hoteles, aerolíneas, bebidas, seguros)</td>
+                            <td>Comercial</td>
+                            <td>Mar 31 marzo 2026</td>
+                            <td>Alta</td>
+                            <td>Abierto</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide23">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1432889490240-84df33d47091?q=80&w=2200&auto=format&fit=crop');opacity:0.13;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Workflow semanal oficial</span>
+            <h1 class="gs-reveal">Ritmo de ejecución fijo<br>para no improvisar.</h1>
+            <h2 class="gs-reveal">Un ritmo estable evita ruido, retrabajo y decisiones tardías.</h2>
+
+            <div class="mega-grid">
+                <div class="mega-card gs-reveal">
+                    <h3>Lunes · Decisión</h3>
+                    <p>Reunión corta de 45 minutos para cerrar decisiones de fase, revisar bloqueos y definir cambios de
+                        contenido.</p>
+                    <div class="badge-row">
+                        <span class="badge">Output: decisiones cerradas</span>
+                    </div>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>Martes · Documentación</h3>
+                    <p>Se actualiza Documento Madre y deck de operación. Cualquier cambio entra con dueño, fecha y
+                        motivo.</p>
+                    <div class="badge-row">
+                        <span class="badge">Output: versión semanal</span>
+                    </div>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>Miércoles · Publicación 20:00</h3>
+                    <p>Sale episodio con QA final (copy, links, UTM, CTA). Se activa monitoreo de métricas 0-24h.</p>
+                    <div class="badge-row">
+                        <span class="badge">Output: episodio en vivo</span>
+                    </div>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>Jueves · Aprendizaje</h3>
+                    <p>Lectura de resultados del miércoles: retención, comentarios, CTR, ventas y ajuste de guion.</p>
+                    <div class="badge-row">
+                        <span class="badge">Output: ajustes aplicados</span>
+                    </div>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>Viernes · Producción</h3>
+                    <p>Rodaje, edición y cierres comerciales para la siguiente entrega. Se preparan backups.</p>
+                    <div class="badge-row">
+                        <span class="badge">Output: piezas listas</span>
+                    </div>
+                </div>
+                <div class="mega-card gs-reveal">
+                    <h3>Domingo · Publicación 20:00</h3>
+                    <p>Segundo episodio semanal y cierre del ciclo. Se registra aprendizaje para abrir lunes siguiente.</p>
+                    <div class="badge-row">
+                        <span class="badge">Output: ciclo completo</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel gs-reveal">
+                <p><span class="accent-blue">Regla operativa:</span> si algo no está en Documento Madre, no existe.
+                    Si no tiene owner y fecha, no se ejecuta.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide24">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2200&auto=format&fit=crop');opacity:0.13;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Preguntas críticas abiertas</span>
+            <h1 class="gs-reveal">Lo que falta resolver<br>para entrar a producción plena.</h1>
+            <h2 class="gs-reveal">Estas preguntas son trascendentales. Cada una ya tiene dueño y fecha para evitar
+                bloqueos ocultos.</h2>
+
+            <div class="table-scroll gs-reveal">
+                <table class="omega-table" aria-label="Preguntas abiertas con owner y deadline">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Pregunta</th>
+                            <th>Impacto si no se resuelve</th>
+                            <th>Owner</th>
+                            <th>Fecha límite</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Q01</td>
+                            <td>¿Confirmamos oficialmente “Partido 16 Especial” antes de la final?</td>
+                            <td>Riesgo de confusión en narrativa y conteo</td>
+                            <td>Aniol</td>
+                            <td>Jue 12 marzo 2026</td>
+                            <td>Abierta</td>
+                        </tr>
+                        <tr>
+                            <td>Q02</td>
+                            <td>¿Quiénes son los 8 chefs definitivos y sus suplentes?</td>
+                            <td>No se puede cerrar calendario de rodaje</td>
+                            <td>Partnerships</td>
+                            <td>Mar 17 marzo 2026</td>
+                            <td>Abierta</td>
+                        </tr>
+                        <tr>
+                            <td>Q03</td>
+                            <td>¿Cómo cerramos legalmente la estética de camisetas para venta?</td>
+                            <td>Riesgo legal y freno a monetización</td>
+                            <td>Legal</td>
+                            <td>Mar 24 marzo 2026</td>
+                            <td>Abierta</td>
+                        </tr>
+                        <tr>
+                            <td>Q04</td>
+                            <td>¿Qué aliados entran en cada categoría de gasto (vuelo, hotel, viáticos)?</td>
+                            <td>Presupuesto inestable y retrasos de viaje</td>
+                            <td>Comercial</td>
+                            <td>Mar 31 marzo 2026</td>
+                            <td>Abierta</td>
+                        </tr>
+                        <tr>
+                            <td>Q05</td>
+                            <td>¿Qué incluye el MVP exacto de guía/app para salir en final de Mundial?</td>
+                            <td>Riesgo de producto incompleto en pico de atención</td>
+                            <td>Producto</td>
+                            <td>Vie 27 marzo 2026</td>
+                            <td>Abierta</td>
+                        </tr>
+                        <tr>
+                            <td>Q06</td>
+                            <td>¿Qué 12 cameos tienen mejor score real para priorizar?</td>
+                            <td>Baja de alcance y conversación</td>
+                            <td>Growth</td>
+                            <td>Lun 23 marzo 2026</td>
+                            <td>Abierta</td>
+                        </tr>
+                        <tr>
+                            <td>Q07</td>
+                            <td>¿Qué criterios cierran Pastor y Suadero por comunidad?</td>
+                            <td>Disputa de legitimidad en votación</td>
+                            <td>Social lead</td>
+                            <td>Dom 22 marzo 2026</td>
+                            <td>Abierta</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide-section" id="slide25">
+        <div class="parallax-bg"
+            style="background-image:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2200&auto=format&fit=crop');opacity:0.13;">
+        </div>
+        <div class="overlay"></div>
+        <div class="content">
+            <span class="section-tag gs-reveal">Checklist de cobertura 100%</span>
+            <h1 class="gs-reveal">Control final:<br>no se pierde ningún tema hablado.</h1>
+            <h2 class="gs-reveal">Este checklist prueba que el plan incluye idea, narrativa, operación y comercial de
+                punta a punta.</h2>
+
+            <div class="check-grid">
+                <div class="check-card gs-reveal">
+                    <h4>Arquitectura de torneo</h4>
+                    <ul>
+                        <li>1 inaugural + 16 partidos.</li>
+                        <li>8 octavos, 4 cuartos, 2 semis y final.</li>
+                        <li>Selección Chef vs Selección Comunidad.</li>
+                        <li>Voto por likes en comentarios.</li>
+                    </ul>
+                </div>
+                <div class="check-card gs-reveal">
+                    <h4>Territorio y protagonistas</h4>
+                    <ul>
+                        <li>Oaxaca: La Tía (mole).</li>
+                        <li>Sonora: Doña Humo + Tacos Armando.</li>
+                        <li>Yucatán: Comunidad Maya.</li>
+                        <li>La Paz: Carlos Valdez.</li>
+                        <li>Hidalgo, CDMX Pastor, CDMX Suadero, Fine Dining.</li>
+                    </ul>
+                </div>
+                <div class="check-card gs-reveal">
+                    <h4>Sistema dual y timing</h4>
+                    <ul>
+                        <li>Selección y Vuelta se retroalimentan.</li>
+                        <li>Rodaje dual por parada (reel + YouTube + teaser).</li>
+                        <li>Miércoles y domingo 20:00.</li>
+                        <li>Cierre en final del Mundial: domingo 19 julio 2026.</li>
+                    </ul>
+                </div>
+                <div class="check-card gs-reveal">
+                    <h4>Monetización y stack</h4>
+                    <ul>
+                        <li>App/guía con mapa, ranking, votos y beneficios.</li>
+                        <li>Merch por categoría y por ronda.</li>
+                        <li>Stack obligatorio: video + guía + merch + UTM + CTA.</li>
+                        <li>AMEX como habilitador funcional de viaje y beneficios.</li>
+                    </ul>
+                </div>
+                <div class="check-card gs-reveal">
+                    <h4>Operación y control</h4>
+                    <ul>
+                        <li>RACI definido.</li>
+                        <li>To-do con owner y fecha.</li>
+                        <li>Workflow semanal fijo.</li>
+                        <li>Preguntas críticas con responsable y deadline.</li>
+                    </ul>
+                </div>
+                <div class="check-card gs-reveal">
+                    <h4>Regla de calidad</h4>
+                    <ul>
+                        <li>Lenguaje simple para todo público.</li>
+                        <li>Cero contradicciones entre slides y operación.</li>
+                        <li>Decisiones con fecha absoluta, no relativa.</li>
+                        <li>Sin gate aprobado, no se avanza de fase.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="engagement-strip gs-reveal">
+                <p><span class="accent-blue">Resultado:</span> con este cierre, la presentación deja de ser solo idea y
+                    se convierte en sistema ejecutable con control real de calidad, tiempos y responsabilidades.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.to("#progressBar", {
+            width: "100%",
+            ease: "none",
+            scrollTrigger: {
+                trigger: "body",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0.3
+            }
+        });
+
+        gsap.utils.toArray(".slide-section").forEach(section => {
+            const bg = section.querySelector(".parallax-bg");
+            gsap.to(bg, {
+                yPercent: 24,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1
+                }
+            });
+        });
+
+        gsap.utils.toArray(".slide-section").forEach(section => {
+            const elements = section.querySelectorAll(".gs-reveal");
+            gsap.set(elements, { y: 42, opacity: 0 });
+            ScrollTrigger.create({
+                trigger: section,
+                start: "top 76%",
+                onEnter: () => {
+                    gsap.to(elements, {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.95,
+                        stagger: 0.1,
+                        ease: "power3.out"
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
