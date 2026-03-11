@@ -19,6 +19,10 @@
     {
       "source": "/pitch-deck-amex",
       "destination": "/pitch_deck_amex.html"
+    },
+    {
+      "source": "/pitch-deck-seleccion-taco-amex",
+      "destination": "/pitch-deck-seleccion-taco-amex.html"
     }
   ]
 }
