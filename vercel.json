@@ -15,6 +15,10 @@
     {
       "source": "/pitch-amex",
       "destination": "/pitch-amex.html"
+    },
+    {
+      "source": "/pitch-deck-amex",
+      "destination": "/pitch_deck_amex.html"
     }
   ]
 }
