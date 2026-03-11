@@ -31,6 +31,7 @@
       --text-muted: #9ca3af;
       --border: #364153;
       --white: #ffffff;
+      --hover-outline: 2.5px;
       --radius: 8px;
       --green: #22c55e;
     }
@@ -625,7 +626,8 @@
 
     .metric-card:hover {
       background: var(--olive-light);
-      border-color: var(--white);
+      border-color: transparent;
+      box-shadow: inset 0 0 0 var(--hover-outline) var(--white);
     }
 
     .metric-card:hover .metric-value,
@@ -785,7 +787,7 @@
     .acc-panel,
     .video-wrapper {
       position: relative;
-      transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.35s ease;
+      transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.35s ease, box-shadow 0.35s ease;
     }
 
     /* Bio-stat cards have a PERMANENT elegant glow */
@@ -825,7 +827,8 @@
     .metric-card:hover,
     .bio-stat-card:hover,
     .chart-card:hover {
-      border-color: var(--white);
+      border-color: transparent;
+      box-shadow: inset 0 0 0 var(--hover-outline) var(--white);
       transform: translateY(-4px);
     }
 
@@ -882,7 +885,8 @@
     }
 
     .acc-panel:hover {
-      border-color: var(--white);
+      border-color: transparent;
+      box-shadow: inset 0 0 0 var(--hover-outline) var(--white);
       transform: translateY(-4px);
     }
 
@@ -981,7 +985,7 @@
       border: 1px solid var(--olive);
       border-radius: 6px;
       overflow: hidden;
-      transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.35s ease;
+      transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.35s ease, box-shadow 0.35s ease;
     }
 
     .acc-card::before {
@@ -1002,7 +1006,8 @@
     }
 
     .acc-card:hover {
-      border-color: var(--white);
+      border-color: transparent;
+      box-shadow: inset 0 0 0 var(--hover-outline) var(--white);
       transform: translateY(-4px);
     }
 
