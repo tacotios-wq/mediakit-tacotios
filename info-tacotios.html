@@ -1670,6 +1670,184 @@
     .video-wrapper {
       border: 1px solid var(--border);
       box-shadow: none;
+      height: auto;
+      min-height: 0;
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
+    }
+
+    .video-poster-shell {
+      position: relative;
+      width: 100%;
+      padding: 0;
+      background: #000;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      cursor: pointer;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .video-poster-shell:hover {
+      transform: translateY(-2px);
+      border-color: var(--olive);
+      box-shadow: 0 0 0 1px rgba(233, 155, 42, 0.24) inset;
+    }
+
+    .video-poster-shell:focus-visible {
+      outline: 2px solid var(--olive);
+      outline-offset: 3px;
+    }
+
+    .video-poster-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-poster-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(3, 3, 7, 0.55) 0%, rgba(3, 3, 7, 0.10) 45%, rgba(3, 3, 7, 0.18) 100%),
+        radial-gradient(circle at 50% 50%, rgba(233, 155, 42, 0.12) 0%, transparent 55%);
+      backdrop-filter: blur(1.6px);
+      pointer-events: none;
+    }
+
+    .video-play-button {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 90px;
+      height: 90px;
+      display: grid;
+      place-items: center;
+      pointer-events: none;
+    }
+
+    .video-play-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      border: 2px solid rgba(233, 155, 42, 0.92);
+      background: rgba(3, 3, 7, 0.36);
+      box-shadow: 0 0 34px rgba(233, 155, 42, 0.36), 0 0 14px rgba(233, 155, 42, 0.25) inset;
+      backdrop-filter: blur(4px);
+    }
+
+    .video-play-icon {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      fill: #F59E0B;
+      filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.45));
+      margin-left: 4px;
+    }
+
+    .video-poster-caption {
+      position: absolute;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      background: rgba(3, 3, 7, 0.62);
+      color: #F3EDE8;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .video-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2200;
+      display: none;
+    }
+
+    .video-modal.is-open {
+      display: block;
+    }
+
+    .video-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(8px);
+    }
+
+    .video-modal-dialog {
+      position: relative;
+      width: min(92vw, 560px);
+      margin: 4.5vh auto 0;
+      padding: 14px;
+      border-radius: 16px;
+      background: #111118;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .video-modal-player {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .video-modal-player iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-modal-close {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(233, 155, 42, 0.7);
+      background: #101015;
+      color: #F3EDE8;
+      font-size: 1.25rem;
+      line-height: 1;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+
+    .video-modal-close:hover {
+      color: #111;
+      background: var(--olive);
+      border-color: var(--olive);
+    }
+
+    @media (max-width: 600px) {
+      .video-play-button {
+        width: 78px;
+        height: 78px;
+      }
+
+      .video-play-icon {
+        width: 26px;
+        height: 26px;
+      }
+
+      .video-modal-dialog {
+        width: min(95vw, 520px);
+        margin-top: 6vh;
+        padding: 10px;
+      }
     }
 
     .video-label,
@@ -1899,11 +2077,28 @@
   <!-- VIDEO SECTION -->
   <section id="video" class="video-section">
     <div class="video-label">Conoce a Aniol</div>
-    <div class="video-wrapper">
-      <iframe src="https://drive.google.com/file/d/1uI0GPAKezLE2xlZW8JVDyeM8CSTB3s3Y/preview"
-        allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
+    <button class="video-wrapper video-poster-shell" id="openVideoBtn" type="button"
+      aria-label="Reproducir video de presentación de Aniol">
+      <img class="video-poster-image" src="screenshots/video-poster-context.jpg"
+        alt="Aniol conversando con una cocinera en taquería durante la grabación" loading="lazy">
+      <span class="video-poster-overlay"></span>
+      <span class="video-play-button" aria-hidden="true">
+        <span class="video-play-ring"></span>
+        <svg class="video-play-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 5v14l11-7z"></path>
+        </svg>
+      </span>
+      <span class="video-poster-caption">Play</span>
+    </button>
   </section>
+
+  <div class="video-modal" id="videoModal" aria-hidden="true">
+    <div class="video-modal-backdrop" data-close-video></div>
+    <div class="video-modal-dialog" role="dialog" aria-modal="true" aria-label="Video de presentación">
+      <button class="video-modal-close" type="button" id="closeVideoBtn" aria-label="Cerrar video">&times;</button>
+      <div class="video-modal-player" id="videoModalPlayer"></div>
+    </div>
+  </div>
 
   <!-- BIO SECTION (from PDF page 2) -->
   <section id="bio" class="bio-section">
@@ -2901,6 +3096,43 @@
           if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 600);
       }
+    });
+
+    // Video poster -> modal player
+    var openVideoBtn = document.getElementById('openVideoBtn');
+    var closeVideoBtn = document.getElementById('closeVideoBtn');
+    var videoModal = document.getElementById('videoModal');
+    var videoModalPlayer = document.getElementById('videoModalPlayer');
+    var videoEmbedUrl = 'https://drive.google.com/file/d/1uI0GPAKezLE2xlZW8JVDyeM8CSTB3s3Y/preview';
+
+    function closeVideoModal() {
+      if (!videoModal) return;
+      videoModal.classList.remove('is-open');
+      videoModal.setAttribute('aria-hidden', 'true');
+      if (videoModalPlayer) videoModalPlayer.innerHTML = '';
+      document.body.style.overflow = '';
+    }
+
+    function openVideoModal() {
+      if (!videoModal || !videoModalPlayer) return;
+      if (!videoModalPlayer.querySelector('iframe')) {
+        var iframe = document.createElement('iframe');
+        iframe.src = videoEmbedUrl + '?autoplay=1';
+        iframe.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.setAttribute('title', 'Video de presentación de Aniol');
+        videoModalPlayer.appendChild(iframe);
+      }
+      videoModal.classList.add('is-open');
+      videoModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    if (openVideoBtn) openVideoBtn.addEventListener('click', openVideoModal);
+    if (closeVideoBtn) closeVideoBtn.addEventListener('click', closeVideoModal);
+    document.querySelectorAll('[data-close-video]').forEach(function (el) { el.addEventListener('click', closeVideoModal); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && videoModal && videoModal.classList.contains('is-open')) closeVideoModal();
     });
 
     // --- Interactive 3D Effect for "TACOTÍOS" ---
