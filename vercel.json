@@ -47,6 +47,14 @@
     {
       "source": "/prompt-omega-final-presentacion-amex",
       "destination": "/prompt-omega-final-presentacion-amex.html"
+    },
+    {
+      "source": "/laseleccióndeltaco",
+      "destination": "/pitch-tacotios-3slides-estandar-multimarca-v2.html"
+    },
+    {
+      "source": "/laselecciondeltaco",
+      "destination": "/pitch-tacotios-3slides-estandar-multimarca-v2.html"
     }
   ]
 }
