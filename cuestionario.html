@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TACOTIOS — Paquetes & Cuestionario</title>
+<meta name="description" content="Elige tu paquete de colaboración con Tacotíos y completa el cuestionario para iniciar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #030307;
+  --bg-nav: rgba(13, 10, 11, 0.95);
+  --bg-card: #15151a;
+  --orange: #e99b2a;
+  --orange-cta: #f97316;
+  --orange-cta-hover: #ea6a0e;
+  --orange-soft: rgba(233, 155, 42, 0.15);
+  --orange-border: rgba(233, 155, 42, 0.4);
+  --text: #f3ede8;
+  --text-dim: #9ca3af;
+  --text-muted: #6b7280;
+  --border: #364153;
+  --white: #ffffff;
+  --radius: 8px;
+  --green: #22c55e;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--orange); text-decoration: none; }
+a:hover { color: var(--orange-cta); }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--bg-nav);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-size: 20px; font-weight: 900;
+  letter-spacing: 2px; color: var(--text);
+}
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  color: var(--text-dim); font-size: 13px; font-weight: 500;
+  letter-spacing: 0.5px; text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--text-dim); font-size: 13px; font-weight: 500;
+  letter-spacing: 0.5px; text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-back:hover { color: var(--text); }
+
+/* SECTIONS */
+section { padding: 128px 32px 64px; max-width: 1200px; margin: 0 auto; }
+.section-label {
+  color: var(--orange); font-size: 13px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px;
+}
+.section-title {
+  font-size: clamp(28px, 4vw, 42px); font-weight: 800;
+  line-height: 1.15; margin-bottom: 24px;
+}
+.section-subtitle {
+  color: var(--text-dim); font-size: 18px; max-width: 640px;
+  margin-bottom: 48px;
+}
+
+/* HERO */
+.hero {
+  min-height: 70vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  padding-top: 120px;
+}
+.hero .section-title { font-size: clamp(36px, 5vw, 56px); margin-bottom: 16px; }
+.hero .section-subtitle { margin: 0 auto 32px; }
+
+/* PAQUETES */
+.packages-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  margin-top: 48px;
+}
+.package-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 40px 32px; position: relative;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.package-card:hover {
+  border-color: var(--orange-border); transform: translateY(-4px);
+}
+.package-card.featured {
+  border-color: var(--orange);
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(233, 155, 42, 0.08) 100%);
+}
+.package-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--orange); color: var(--bg); padding: 4px 16px;
+  border-radius: 20px; font-size: 11px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.package-name {
+  font-size: 24px; font-weight: 800; margin-bottom: 8px;
+}
+.package-price {
+  font-size: 14px; color: var(--text-dim); margin-bottom: 24px;
+}
+.package-features { list-style: none; margin-bottom: 32px; }
+.package-features li {
+  padding: 8px 0; font-size: 14px; color: var(--text-dim);
+  border-bottom: 1px solid rgba(54, 65, 83, 0.3);
+  display: flex; align-items: center; gap: 10px;
+}
+.package-features li::before {
+  content: "✓"; color: var(--green); font-weight: 700; font-size: 14px;
+}
+.package-cta {
+  display: block; width: 100%; padding: 14px; text-align: center;
+  background: transparent; border: 1px solid var(--orange-border);
+  color: var(--orange); border-radius: var(--radius);
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  transition: all 0.3s; text-decoration: none;
+}
+.package-cta:hover {
+  background: var(--orange-soft); color: var(--orange);
+}
+.package-card.featured .package-cta {
+  background: var(--orange-cta); border-color: var(--orange-cta);
+  color: var(--white);
+}
+.package-card.featured .package-cta:hover {
+  background: var(--orange-cta-hover);
+}
+
+/* CUESTIONARIO */
+.cuestionario-section {
+  background: linear-gradient(180deg, transparent 0%, rgba(233, 155, 42, 0.03) 100%);
+}
+.form-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  max-width: 800px;
+}
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group.full-width { grid-column: 1 / -1; }
+.form-group label {
+  font-size: 13px; font-weight: 600; color: var(--text-dim);
+  letter-spacing: 0.5px; text-transform: uppercase;
+}
+.form-group label .required { color: var(--orange); }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 16px;
+  color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px;
+  transition: border-color 0.3s;
+  -webkit-appearance: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none; border-color: var(--orange);
+}
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-group select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239ca3af' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+.form-group select option { background: var(--bg-card); color: var(--text); }
+
+.btn-submit {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--orange-cta); color: var(--white);
+  border: none; border-radius: var(--radius); padding: 16px 48px;
+  font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700;
+  cursor: pointer; transition: all 0.3s; margin-top: 24px;
+}
+.btn-submit:hover { background: var(--orange-cta-hover); transform: translateY(-2px); }
+.btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.form-success {
+  display: none; text-align: center; padding: 48px;
+  background: var(--bg-card); border: 1px solid var(--green);
+  border-radius: 16px; margin-top: 32px;
+}
+.form-success.active { display: block; }
+.form-success h3 {
+  font-size: 28px; font-weight: 800; margin-bottom: 8px;
+  color: var(--green);
+}
+.form-success p { color: var(--text-dim); font-size: 16px; }
+
+.form-error {
+  display: none; color: #ef4444; font-size: 14px;
+  margin-top: 12px; padding: 12px;
+  background: rgba(239, 68, 68, 0.1); border-radius: var(--radius);
+}
+.form-error.active { display: block; }
+
+/* OPEN TIO */
+.opentio-section {
+  text-align: center; padding: 96px 32px;
+  background: linear-gradient(180deg, rgba(233, 155, 42, 0.05) 0%, transparent 100%);
+}
+.opentio-card {
+  max-width: 640px; margin: 0 auto;
+  background: var(--bg-card); border: 2px solid var(--orange);
+  border-radius: 24px; padding: 56px 48px;
+  position: relative; overflow: hidden;
+}
+.opentio-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 4px; background: linear-gradient(90deg, var(--orange), var(--orange-cta));
+}
+.opentio-icon { font-size: 48px; margin-bottom: 16px; }
+.opentio-title { font-size: 32px; font-weight: 900; margin-bottom: 12px; }
+.opentio-desc {
+  color: var(--text-dim); font-size: 16px; margin-bottom: 32px;
+  line-height: 1.7;
+}
+.opentio-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--orange-cta); color: var(--white);
+  border: none; border-radius: 50px; padding: 18px 48px;
+  font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 700;
+  cursor: pointer; transition: all 0.3s; text-decoration: none;
+}
+.opentio-btn:hover {
+  background: var(--orange-cta-hover); transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(249, 115, 22, 0.3);
+  color: var(--white);
+}
+.opentio-note {
+  margin-top: 20px; font-size: 13px; color: var(--text-muted);
+}
+
+/* FOOTER */
+footer {
+  text-align: center; padding: 32px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted); font-size: 13px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 0 16px; }
+  .nav-links { display: none; }
+  section { padding: 96px 16px 48px; }
+  .packages-grid { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+  .opentio-card { padding: 40px 24px; }
+}
+@media (max-width: 480px) {
+  .hero .section-title { font-size: 28px; }
+}
+
+/* STEP INDICATOR */
+.steps {
+  display: flex; justify-content: center; gap: 0; margin-bottom: 48px;
+  max-width: 600px; margin-left: auto; margin-right: auto;
+}
+.step {
+  flex: 1; text-align: center; position: relative;
+  padding: 12px 0;
+}
+.step-number {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--bg-card); border: 2px solid var(--border);
+  color: var(--text-muted); font-size: 14px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 8px; transition: all 0.3s;
+}
+.step.active .step-number {
+  border-color: var(--orange); color: var(--orange);
+  background: var(--orange-soft);
+}
+.step.completed .step-number {
+  border-color: var(--green); background: var(--green); color: var(--white);
+}
+.step-label {
+  font-size: 12px; color: var(--text-muted); font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.step.active .step-label { color: var(--orange); }
+.step.completed .step-label { color: var(--green); }
+.step::after {
+  content: ''; position: absolute; top: 30px; left: 55%;
+  width: 90%; height: 2px; background: var(--border);
+}
+.step:last-child::after { display: none; }
+.step.completed::after { background: var(--green); }
+
+/* FORM STEPS */
+.form-step { display: none; }
+.form-step.active { display: block; }
+
+/* PACKAGE SELECTOR IN FORM */
+.package-select-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+  margin-top: 8px;
+}
+.package-option {
+  background: var(--bg-card); border: 2px solid var(--border);
+  border-radius: 12px; padding: 20px 16px; text-align: center;
+  cursor: pointer; transition: all 0.3s;
+}
+.package-option:hover { border-color: var(--orange-border); }
+.package-option.selected { border-color: var(--orange); background: var(--orange-soft); }
+.package-option input { display: none; }
+.package-option .pkg-name {
+  font-size: 16px; font-weight: 700; margin-bottom: 4px;
+}
+.package-option .pkg-desc {
+  font-size: 12px; color: var(--text-muted);
+}
+@media (max-width: 768px) {
+  .package-select-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="info.html" class="nav-back">&larr; Media Kit</a>
+  <div class="nav-logo">TACOTIOS</div>
+  <ul class="nav-links">
+    <li><a href="#paquetes">Paquetes</a></li>
+    <li><a href="#cuestionario">Cuestionario</a></li>
+    <li><a href="#opentio">Open Tio</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="section-label">Colaboraciones</div>
+  <h1 class="section-title">Trabajemos juntos</h1>
+  <p class="section-subtitle">Elige tu paquete, completa el cuestionario y agenda tu visita. Cada colaboracion es una historia que merece ser contada.</p>
+  <a href="#paquetes" style="color: var(--orange-cta); font-weight: 600; font-size: 16px;">Ver paquetes &darr;</a>
+</section>
+
+<!-- PAQUETES -->
+<section id="paquetes">
+  <div class="section-label">Nuestros Paquetes</div>
+  <h2 class="section-title">Elige el formato perfecto para tu marca</h2>
+  <p class="section-subtitle">Cada paquete incluye storytelling autentico, produccion cinematografica y distribucion multiplataforma a 2M+ seguidores.</p>
+
+  <div class="packages-grid">
+
+    <!-- BASICO -->
+    <div class="package-card">
+      <h3 class="package-name">Basico</h3>
+      <p class="package-price">Contenido esencial</p>
+      <ul class="package-features">
+        <li>1 Reel/TikTok dedicado</li>
+        <li>Storytelling gastronomico</li>
+        <li>1 plataforma principal</li>
+        <li>Entrega en 7 dias</li>
+        <li>1 ronda de revision</li>
+        <li>Repost en Stories (24h)</li>
+      </ul>
+      <a href="#cuestionario" class="package-cta" onclick="selectPackage('Basico')">Empezar</a>
+    </div>
+
+    <!-- ESTANDAR -->
+    <div class="package-card featured">
+      <span class="package-badge">Mas Popular</span>
+      <h3 class="package-name">Estandar</h3>
+      <p class="package-price">Impacto multiplataforma</p>
+      <ul class="package-features">
+        <li>2-3 Reels/TikToks</li>
+        <li>Narrativa cinematografica</li>
+        <li>Instagram + TikTok + YouTube</li>
+        <li>Entrega en 10 dias</li>
+        <li>2 rondas de revision</li>
+        <li>Stories destacadas permanentes</li>
+        <li>Behind-the-scenes content</li>
+      </ul>
+      <a href="#cuestionario" class="package-cta" onclick="selectPackage('Estandar')">Empezar</a>
+    </div>
+
+    <!-- PREMIUM -->
+    <div class="package-card">
+      <h3 class="package-name">Premium</h3>
+      <p class="package-price">Experiencia completa</p>
+      <ul class="package-features">
+        <li>4-5 piezas de contenido</li>
+        <li>Mini-documental (3-5 min)</li>
+        <li>Todas las plataformas</li>
+        <li>Entrega en 14 dias</li>
+        <li>Revisiones ilimitadas</li>
+        <li>Stories + Highlights permanentes</li>
+        <li>Post en feed (permanente)</li>
+        <li>Mencion en newsletter</li>
+        <li>Derechos de uso del contenido</li>
+      </ul>
+      <a href="#cuestionario" class="package-cta" onclick="selectPackage('Premium')">Empezar</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CUESTIONARIO -->
+<section id="cuestionario" class="cuestionario-section">
+  <div class="section-label">Cuestionario</div>
+  <h2 class="section-title">Cuentanos sobre tu marca</h2>
+  <p class="section-subtitle">Mientras mas sepamos de ti, mejor sera la historia que contemos juntos. Este formulario nos ayuda a evaluar la colaboracion.</p>
+
+  <!-- Steps indicator -->
+  <div class="steps">
+    <div class="step active" id="step-ind-1">
+      <div class="step-number">1</div>
+      <div class="step-label">Tu Marca</div>
+    </div>
+    <div class="step" id="step-ind-2">
+      <div class="step-number">2</div>
+      <div class="step-label">Detalles</div>
+    </div>
+    <div class="step" id="step-ind-3">
+      <div class="step-number">3</div>
+      <div class="step-label">El Brief</div>
+    </div>
+  </div>
+
+  <form id="cuestionarioForm" onsubmit="submitCuestionario(event)">
+
+    <!-- STEP 1: Tu Marca -->
+    <div class="form-step active" id="step-1">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Restaurante / Marca <span class="required">*</span></label>
+          <input type="text" id="q-restaurante" placeholder="Nombre de tu restaurante o marca" required>
+        </div>
+        <div class="form-group">
+          <label>Email <span class="required">*</span></label>
+          <input type="email" id="q-email" placeholder="correo@tumarca.com" required>
+        </div>
+        <div class="form-group">
+          <label>WhatsApp</label>
+          <input type="tel" id="q-whatsapp" placeholder="+52 55 1234 5678">
+        </div>
+        <div class="form-group">
+          <label>Instagram</label>
+          <input type="url" id="q-instagram" placeholder="https://instagram.com/tumarca">
+        </div>
+        <div class="form-group">
+          <label>Google Maps</label>
+          <input type="url" id="q-googlemaps" placeholder="Link de Google Maps de tu local">
+        </div>
+        <div class="form-group">
+          <label>Ubicacion <span class="required">*</span></label>
+          <select id="q-ubicacion" required>
+            <option value="">Selecciona tu ciudad</option>
+            <option value="GDL">Guadalajara (GDL)</option>
+            <option value="CDMX">Ciudad de Mexico (CDMX)</option>
+            <option value="Otra">Otra ciudad</option>
+          </select>
+        </div>
+      </div>
+      <button type="button" class="btn-submit" onclick="nextStep(2)">Siguiente &rarr;</button>
+    </div>
+
+    <!-- STEP 2: Detalles -->
+    <div class="form-step" id="step-2">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Como nos encontraste <span class="required">*</span></label>
+          <select id="q-canal" required>
+            <option value="">Selecciona</option>
+            <option value="Media Kit">Media Kit</option>
+            <option value="Referido">Referido</option>
+            <option value="DM">DM / Redes Sociales</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Que tan listo estas para empezar</label>
+          <select id="q-temperatura">
+            <option value="">Selecciona</option>
+            <option value="Caliente">Listo para empezar ya</option>
+            <option value="Tibio">Explorando opciones</option>
+            <option value="Frio">Solo cotizando por ahora</option>
+          </select>
+        </div>
+        <div class="form-group full-width">
+          <label>Paquete de interes</label>
+          <div class="package-select-grid">
+            <label class="package-option" onclick="selectPkgOption(this)">
+              <input type="radio" name="q-paquete" value="Basico">
+              <div class="pkg-name">Basico</div>
+              <div class="pkg-desc">1 pieza, 1 plataforma</div>
+            </label>
+            <label class="package-option" onclick="selectPkgOption(this)">
+              <input type="radio" name="q-paquete" value="Estandar">
+              <div class="pkg-name">Estandar</div>
+              <div class="pkg-desc">2-3 piezas, multi-plataforma</div>
+            </label>
+            <label class="package-option" onclick="selectPkgOption(this)">
+              <input type="radio" name="q-paquete" value="Premium">
+              <div class="pkg-name">Premium</div>
+              <div class="pkg-desc">4-5 piezas + documental</div>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 12px; margin-top: 24px;">
+        <button type="button" class="btn-submit" style="background: transparent; border: 1px solid var(--border); color: var(--text-dim);" onclick="prevStep(1)">&larr; Atras</button>
+        <button type="button" class="btn-submit" onclick="nextStep(3)">Siguiente &rarr;</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: El Brief -->
+    <div class="form-step" id="step-3">
+      <div class="form-grid">
+        <div class="form-group full-width">
+          <label>Cuentanos tu historia <span class="required">*</span></label>
+          <textarea id="q-brief" rows="5" placeholder="Que hace unica a tu marca? Que historia quieres contar? Que tipo de contenido imaginas? Cuentanos todo lo que creas relevante..." required></textarea>
+        </div>
+        <div class="form-group full-width">
+          <label>Notas adicionales</label>
+          <textarea id="q-notas" rows="3" placeholder="Fechas especiales, restricciones, preferencias de horario, etc."></textarea>
+        </div>
+      </div>
+      <div style="display: flex; gap: 12px; margin-top: 24px;">
+        <button type="button" class="btn-submit" style="background: transparent; border: 1px solid var(--border); color: var(--text-dim);" onclick="prevStep(2)">&larr; Atras</button>
+        <button type="submit" class="btn-submit" id="submitCuestionarioBtn">Enviar Cuestionario &check;</button>
+      </div>
+    </div>
+
+  </form>
+
+  <div class="form-error" id="cuestionarioError">Error al enviar. Intenta de nuevo o escribenos a tacotios@gmail.com</div>
+  <div class="form-success" id="cuestionarioSuccess">
+    <h3>Recibido!</h3>
+    <p>Tu cuestionario ha sido enviado correctamente. Te contactaremos en menos de 48 horas para los siguientes pasos.</p>
+  </div>
+</section>
+
+<!-- OPEN TIO -->
+<section id="opentio" class="opentio-section">
+  <div class="section-label">Reservaciones</div>
+  <h2 class="section-title">Open Tio</h2>
+  <div class="opentio-card">
+    <div class="opentio-icon">🌮</div>
+    <h3 class="opentio-title">Agenda tu visita</h3>
+    <p class="opentio-desc">
+      Ya completaste el cuestionario? El siguiente paso es agendar la visita a tu restaurante.
+      Nosotros nos encargamos de todo: produccion, storytelling y distribucion a 2M+ personas.
+    </p>
+    <a href="https://tacotios.app.n8n.cloud/webhook/opentio-booking" class="opentio-btn" id="opentioBtn" onclick="handleOpenTio(event)">
+      Agendar visita &rarr;
+    </a>
+    <p class="opentio-note">Disponible solo para marcas que han completado el cuestionario</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 TACOTIOS. Espanol de nacimiento. Mexicano por devocion.</p>
+</footer>
+
+<script>
+let currentStep = 1;
+let selectedPackage = '';
+
+function selectPackage(pkg) {
+  selectedPackage = pkg;
+  // Pre-select the package in the form
+  setTimeout(() => {
+    const radios = document.querySelectorAll('input[name="q-paquete"]');
+    radios.forEach(r => {
+      const parent = r.closest('.package-option');
+      if (r.value === pkg) {
+        r.checked = true;
+        parent.classList.add('selected');
+      } else {
+        r.checked = false;
+        parent.classList.remove('selected');
+      }
+    });
+  }, 100);
+}
+
+function selectPkgOption(el) {
+  document.querySelectorAll('.package-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  el.querySelector('input').checked = true;
+}
+
+function nextStep(step) {
+  // Validate current step
+  const currentFields = document.querySelectorAll('#step-' + currentStep + ' [required]');
+  let valid = true;
+  currentFields.forEach(f => {
+    if (!f.value) {
+      f.style.borderColor = '#ef4444';
+      valid = false;
+    } else {
+      f.style.borderColor = '';
+    }
+  });
+  if (!valid) return;
+
+  document.getElementById('step-' + currentStep).classList.remove('active');
+  document.getElementById('step-' + step).classList.add('active');
+
+  // Update step indicators
+  document.getElementById('step-ind-' + currentStep).classList.remove('active');
+  document.getElementById('step-ind-' + currentStep).classList.add('completed');
+  document.getElementById('step-ind-' + step).classList.add('active');
+
+  currentStep = step;
+  window.scrollTo({ top: document.getElementById('cuestionario').offsetTop - 80, behavior: 'smooth' });
+}
+
+function prevStep(step) {
+  document.getElementById('step-' + currentStep).classList.remove('active');
+  document.getElementById('step-' + step).classList.add('active');
+
+  document.getElementById('step-ind-' + currentStep).classList.remove('active');
+  document.getElementById('step-ind-' + step).classList.remove('completed');
+  document.getElementById('step-ind-' + step).classList.add('active');
+
+  currentStep = step;
+  window.scrollTo({ top: document.getElementById('cuestionario').offsetTop - 80, behavior: 'smooth' });
+}
+
+async function submitCuestionario(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitCuestionarioBtn');
+  const errorEl = document.getElementById('cuestionarioError');
+  const successEl = document.getElementById('cuestionarioSuccess');
+
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  errorEl.classList.remove('active');
+
+  const paqueteRadio = document.querySelector('input[name="q-paquete"]:checked');
+
+  const data = {
+    restaurante: document.getElementById('q-restaurante').value,
+    email: document.getElementById('q-email').value,
+    whatsapp: document.getElementById('q-whatsapp').value,
+    instagram: document.getElementById('q-instagram').value,
+    googlemaps: document.getElementById('q-googlemaps').value,
+    ubicacion: document.getElementById('q-ubicacion').value,
+    canal: document.getElementById('q-canal').value,
+    temperatura: document.getElementById('q-temperatura').value,
+    paquete: paqueteRadio ? paqueteRadio.value : '',
+    brief: document.getElementById('q-brief').value,
+    notas: document.getElementById('q-notas').value,
+    source: 'cuestionario',
+    timestamp: new Date().toISOString()
+  };
+
+  try {
+    const response = await fetch('https://tacotios.app.n8n.cloud/webhook/opentio-booking', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    if (response.ok) {
+      document.getElementById('cuestionarioForm').style.display = 'none';
+      document.querySelector('.steps').style.display = 'none';
+      successEl.classList.add('active');
+    } else {
+      throw new Error('Response not OK');
+    }
+  } catch (err) {
+    errorEl.classList.add('active');
+    btn.disabled = false;
+    btn.textContent = 'Enviar Cuestionario ✓';
+  }
+}
+
+function handleOpenTio(e) {
+  e.preventDefault();
+  // Scroll to cuestionario if not filled yet
+  const restaurante = document.getElementById('q-restaurante').value;
+  if (!restaurante) {
+    alert('Primero completa el cuestionario para poder agendar tu visita.');
+    document.getElementById('cuestionario').scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+  // If cuestionario was filled, show confirmation
+  alert('Tu solicitud de visita ha sido registrada! Te contactaremos en menos de 48h para confirmar fecha y detalles.');
+}
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
+
