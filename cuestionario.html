@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TACOTIOS ÃÂ¢ÃÂÃÂ Paquetes & Cuestionario</title>
-<meta name="description" content="Elige tu paquete de colaboraciÃÂÃÂ³n con TacotÃÂÃÂ­os y completa el cuestionario para iniciar.">
+<title>TACOTIOS | Paquetes & Cuestionario</title>
+<meta name="description" content="Elige tu paquete de colaboracion con Tacotios y completa el cuestionario para iniciar.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -131,7 +131,7 @@ section { padding: 128px 32px 64px; max-width: 1200px; margin: 0 auto; }
   display: flex; align-items: center; gap: 10px;
 }
 .package-features li::before {
-  content: "ÃÂ¢ÃÂÃÂ"; color: var(--green); font-weight: 700; font-size: 14px;
+  content: "\2713"; color: var(--green); font-weight: 700; font-size: 14px;
 }
 .package-cta {
   display: block; width: 100%; padding: 14px; text-align: center;
@@ -501,17 +501,17 @@ footer {
             <label class="package-option" onclick="selectPkgOption(this)">
               <input type="radio" name="q-paquete" value="Menu Especial">
               <div class="pkg-name">Menu Especial</div>
-              <div class="pkg-desc">1 reel en Instagram Ã¢ÂÂ $25,000 MXN</div>
+              <div class="pkg-desc">1 reel en Instagram - $25,000 MXN</div>
             </label>
             <label class="package-option" onclick="selectPkgOption(this)">
               <input type="radio" name="q-paquete" value="Menu Degustacion">
               <div class="pkg-name">Menu Degustacion</div>
-              <div class="pkg-desc">1 reel + stories IG/TT/FB Ã¢ÂÂ $30,000 MXN</div>
+              <div class="pkg-desc">1 reel + stories IG/TT/FB - $30,000 MXN</div>
             </label>
             <label class="package-option" onclick="selectPkgOption(this)">
               <input type="radio" name="q-paquete" value="Menu del Dia">
               <div class="pkg-name">Menu del Dia</div>
-              <div class="pkg-desc">2 reels + stories + carrusel Ã¢ÂÂ $50,000 MXN</div>
+              <div class="pkg-desc">2 reels + stories + carrusel - $50,000 MXN</div>
             </label>
           </div>
         </div>
@@ -536,45 +536,7 @@ footer {
       </div>
       <div style="display: flex; gap: 12px; margin-top: 24px;">
         <button type="button" class="btn-submit" style="background: transparent; border: 1px solid var(--border); color: var(--text-dim);" onclick="prevStep(2)">&larr; Atras</button>
-        <button type="submit" class="btn-submit" id="submitCuestionarioBtn">Enviar Cuestionario &check;</button>
-      </div>
-    </div>
-
-  </form>
-
-  <div class="form-error" id="cuestionarioError">Error al enviar. Intenta de nuevo o escribenos a tacotios@gmail.com</div>
-  <div class="form-success" id="cuestionarioSuccess">
-    <h3>Recibido!</h3>
-    <p>Tu cuestionario ha sido enviado correctamente. Te contactaremos en menos de 48 horas para los siguientes pasos.</p>
-  </div>
-</section>
-
-<!-- OPEN TIO -->
-<section id="opentio" class="opentio-section">
-  <div class="section-label">Reservaciones</div>
-  <h2 class="section-title">Open Tio</h2>
-  <div class="opentio-card">
-    <div class="opentio-icon">ÃÂ°ÃÂÃÂÃÂ®</div>
-    <h3 class="opentio-title">Agenda tu visita</h3>
-    <p class="opentio-desc">
-      Ya completaste el cuestionario? El siguiente paso es agendar la visita a tu restaurante.
-      Nosotros nos encargamos de todo: produccion, storytelling y distribucion a 2M+ personas.
-    </p>
-    <a href="https://tacotios.app.n8n.cloud/webhook/opentio-booking" class="opentio-btn" id="opentioBtn" onclick="handleOpenTio(event)">
-      Agendar visita &rarr;
-    </a>
-    <p class="opentio-note">Disponible solo para marcas que han completado el cuestionario</p>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <p>&copy; 2026 TACOTIOS. Espanol de nacimiento. Mexicano por devocion.</p>
-</footer>
-
-<script>
-let currentStep = 1;
-let selectedPackage = '';
+        <button type="submit" class="btn-submit" id="submitCuestionarioBtn">Enviar Cuestionario \u2713'';
 
 function selectPackage(pkg) {
   selectedPackage = pkg;
@@ -683,7 +645,7 @@ async function submitCuestionario(e) {
   } catch (err) {
     errorEl.classList.add('active');
     btn.disabled = false;
-    btn.textContent = 'Enviar Cuestionario ÃÂ¢ÃÂÃÂ';
+    btn.textContent = 'Enviar Cuestionario';
   }
 }
 
