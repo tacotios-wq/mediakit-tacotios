@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TACOTIOS Ã¢ÂÂ Paquetes & Cuestionario</title>
-<meta name="description" content="Elige tu paquete de colaboraciÃÂ³n con TacotÃÂ­os y completa el cuestionario para iniciar.">
+<title>TACOTIOS ÃÂ¢ÃÂÃÂ Paquetes & Cuestionario</title>
+<meta name="description" content="Elige tu paquete de colaboraciÃÂÃÂ³n con TacotÃÂÃÂ­os y completa el cuestionario para iniciar.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -115,6 +115,7 @@ section { padding: 128px 32px 64px; max-width: 1200px; margin: 0 auto; }
 }
 .package-name {
   font-size: 24px; font-weight: 800; margin-bottom: 8px;
+  min-height: 77px; display: flex; align-items: center; justify-content: center;
 }
 .package-price {
   font-size: 20px; font-weight: 700; color: var(--text-dim); margin-bottom: 24px;
@@ -130,7 +131,7 @@ section { padding: 128px 32px 64px; max-width: 1200px; margin: 0 auto; }
   display: flex; align-items: center; gap: 10px;
 }
 .package-features li::before {
-  content: "Ã¢ÂÂ"; color: var(--green); font-weight: 700; font-size: 14px;
+  content: "ÃÂ¢ÃÂÃÂ"; color: var(--green); font-weight: 700; font-size: 14px;
 }
 .package-cta {
   display: block; width: 100%; padding: 14px; text-align: center;
@@ -500,17 +501,17 @@ footer {
             <label class="package-option" onclick="selectPkgOption(this)">
               <input type="radio" name="q-paquete" value="Menu Especial">
               <div class="pkg-name">Menu Especial</div>
-              <div class="pkg-desc">1 reel en Instagram â $25,000 MXN</div>
+              <div class="pkg-desc">1 reel en Instagram Ã¢ÂÂ $25,000 MXN</div>
             </label>
             <label class="package-option" onclick="selectPkgOption(this)">
               <input type="radio" name="q-paquete" value="Menu Degustacion">
               <div class="pkg-name">Menu Degustacion</div>
-              <div class="pkg-desc">1 reel + stories IG/TT/FB â $30,000 MXN</div>
+              <div class="pkg-desc">1 reel + stories IG/TT/FB Ã¢ÂÂ $30,000 MXN</div>
             </label>
             <label class="package-option" onclick="selectPkgOption(this)">
               <input type="radio" name="q-paquete" value="Menu del Dia">
               <div class="pkg-name">Menu del Dia</div>
-              <div class="pkg-desc">2 reels + stories + carrusel â $50,000 MXN</div>
+              <div class="pkg-desc">2 reels + stories + carrusel Ã¢ÂÂ $50,000 MXN</div>
             </label>
           </div>
         </div>
@@ -553,7 +554,7 @@ footer {
   <div class="section-label">Reservaciones</div>
   <h2 class="section-title">Open Tio</h2>
   <div class="opentio-card">
-    <div class="opentio-icon">Ã°ÂÂÂ®</div>
+    <div class="opentio-icon">ÃÂ°ÃÂÃÂÃÂ®</div>
     <h3 class="opentio-title">Agenda tu visita</h3>
     <p class="opentio-desc">
       Ya completaste el cuestionario? El siguiente paso es agendar la visita a tu restaurante.
@@ -682,7 +683,7 @@ async function submitCuestionario(e) {
   } catch (err) {
     errorEl.classList.add('active');
     btn.disabled = false;
-    btn.textContent = 'Enviar Cuestionario Ã¢ÂÂ';
+    btn.textContent = 'Enviar Cuestionario ÃÂ¢ÃÂÃÂ';
   }
 }
 
