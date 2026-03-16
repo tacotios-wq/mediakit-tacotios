@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TACOTIOS â Paquetes & Cuestionario</title>
-<meta name="description" content="Elige tu paquete de colaboraciÃ³n con TacotÃ­os y completa el cuestionario para iniciar.">
+<title>TACOTIOS Ã¢ÂÂ Paquetes & Cuestionario</title>
+<meta name="description" content="Elige tu paquete de colaboraciÃÂ³n con TacotÃÂ­os y completa el cuestionario para iniciar.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -98,6 +98,7 @@ section { padding: 128px 32px 64px; max-width: 1200px; margin: 0 auto; }
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: 16px; padding: 40px 32px; position: relative;
   transition: border-color 0.3s, transform 0.3s;
+  display: flex; flex-direction: column; text-align: center;
 }
 .package-card:hover {
   border-color: var(--orange-border); transform: translateY(-4px);
@@ -116,16 +117,20 @@ section { padding: 128px 32px 64px; max-width: 1200px; margin: 0 auto; }
   font-size: 24px; font-weight: 800; margin-bottom: 8px;
 }
 .package-price {
-  font-size: 14px; color: var(--text-dim); margin-bottom: 24px;
+  font-size: 20px; font-weight: 700; color: var(--text-dim); margin-bottom: 24px;
+  transition: color 0.3s ease;
 }
-.package-features { list-style: none; margin-bottom: 32px; }
+.package-price:hover {
+  color: var(--orange);
+}
+.package-features { list-style: none; margin-bottom: 32px; flex-grow: 1; }
 .package-features li {
   padding: 8px 0; font-size: 14px; color: var(--text-dim);
   border-bottom: 1px solid rgba(54, 65, 83, 0.3);
   display: flex; align-items: center; gap: 10px;
 }
 .package-features li::before {
-  content: "â"; color: var(--green); font-weight: 700; font-size: 14px;
+  content: "Ã¢ÂÂ"; color: var(--green); font-weight: 700; font-size: 14px;
 }
 .package-cta {
   display: block; width: 100%; padding: 14px; text-align: center;
@@ -133,6 +138,7 @@ section { padding: 128px 32px 64px; max-width: 1200px; margin: 0 auto; }
   color: var(--orange); border-radius: var(--radius);
   font-size: 14px; font-weight: 600; cursor: pointer;
   transition: all 0.3s; text-decoration: none;
+  margin-top: auto;
 }
 .package-cta:hover {
   background: var(--orange-soft); color: var(--orange);
@@ -494,17 +500,17 @@ footer {
             <label class="package-option" onclick="selectPkgOption(this)">
               <input type="radio" name="q-paquete" value="Menu Especial">
               <div class="pkg-name">Menu Especial</div>
-              <div class="pkg-desc">1 reel en Instagram — $25,000 MXN</div>
+              <div class="pkg-desc">1 reel en Instagram â $25,000 MXN</div>
             </label>
             <label class="package-option" onclick="selectPkgOption(this)">
               <input type="radio" name="q-paquete" value="Menu Degustacion">
               <div class="pkg-name">Menu Degustacion</div>
-              <div class="pkg-desc">1 reel + stories IG/TT/FB — $30,000 MXN</div>
+              <div class="pkg-desc">1 reel + stories IG/TT/FB â $30,000 MXN</div>
             </label>
             <label class="package-option" onclick="selectPkgOption(this)">
               <input type="radio" name="q-paquete" value="Menu del Dia">
               <div class="pkg-name">Menu del Dia</div>
-              <div class="pkg-desc">2 reels + stories + carrusel — $50,000 MXN</div>
+              <div class="pkg-desc">2 reels + stories + carrusel â $50,000 MXN</div>
             </label>
           </div>
         </div>
@@ -547,7 +553,7 @@ footer {
   <div class="section-label">Reservaciones</div>
   <h2 class="section-title">Open Tio</h2>
   <div class="opentio-card">
-    <div class="opentio-icon">ð®</div>
+    <div class="opentio-icon">Ã°ÂÂÂ®</div>
     <h3 class="opentio-title">Agenda tu visita</h3>
     <p class="opentio-desc">
       Ya completaste el cuestionario? El siguiente paso es agendar la visita a tu restaurante.
@@ -676,7 +682,7 @@ async function submitCuestionario(e) {
   } catch (err) {
     errorEl.classList.add('active');
     btn.disabled = false;
-    btn.textContent = 'Enviar Cuestionario â';
+    btn.textContent = 'Enviar Cuestionario Ã¢ÂÂ';
   }
 }
 
