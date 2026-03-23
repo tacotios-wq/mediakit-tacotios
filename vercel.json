@@ -63,6 +63,14 @@
     {
       "source": "/pitch-seleccion-taco-telcel",
       "destination": "/pitch-seleccion-taco-telcel.html"
+    },
+    {
+      "source": "/pitch-slim-3p",
+      "destination": "/pitch-slim-3p.html"
+    },
+    {
+      "source": "/pitch-slim-1p",
+      "destination": "/pitch-slim-1p.html"
     }
   ]
 }
