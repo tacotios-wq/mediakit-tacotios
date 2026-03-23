@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Selección del Taco × Telcel — Pitch para Carlos Slim</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --bg-dark: #030307;
+            --text-light: #f3ede8;
+            --text-muted: #9698a0;
+            --amber: #E99B2A;
+            --orange: #F97316;
+            --amber-glow: rgba(233, 155, 42, 0.15);
+            --orange-glow: rgba(249, 115, 22, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            width: 100vw;
+            overflow-x: hidden;
+        }
+
+        .logo-mark {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 10;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--amber), var(--orange));
+            z-index: 9999;
+        }
+
+        .slide-section {
+            position: relative;
+            min-height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 8vw;
+            overflow: hidden;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(3,3,7,0.3) 0%, rgba(3,3,7,1) 100%);
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1180px;
+            margin-top: 8vh;
+        }
+
+        h1 {
+            font-size: clamp(2.8rem, 6vw, 5.5rem);
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(90deg, #fff, #a6a8ad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: clamp(1.2rem, 2.3vw, 2rem);
+            line-height: 1.35;
+            color: var(--text-muted);
+            font-weight: 400;
+            max-width: 960px;
+        }
+
+        .accent-amber {
+            color: var(--amber);
+            font-weight: 700;
+            -webkit-text-fill-color: var(--amber);
+        }
+
+        .accent-orange {
+            color: var(--orange);
+            font-weight: 700;
+            -webkit-text-fill-color: var(--orange);
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            border: 1px solid rgba(233, 155, 42, 0.3);
+            border-radius: 999px;
+            padding: 0.3rem 0.75rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--amber);
+            background: rgba(233, 155, 42, 0.06);
+            margin-bottom: 1rem;
+        }
+
+        .panel {
+            margin-top: 1.8rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.4rem 1.2rem;
+        }
+
+        .panel p {
+            color: #d4d7dd;
+            font-size: 1rem;
+            line-height: 1.55;
+        }
+
+        .kpi-grid {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .kpi-card {
+            border: 1px solid rgba(233, 155, 42, 0.25);
+            border-radius: 12px;
+            background: rgba(233, 155, 42, 0.04);
+            padding: 1.1rem;
+        }
+
+        .kpi-value {
+            font-size: 2.2rem;
+            line-height: 1;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--amber);
+        }
+
+        .kpi-label {
+            margin-top: 0.4rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.11em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .bullet-grid {
+            margin-top: 1.8rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .bullet {
+            border-top: 2px solid rgba(233, 155, 42, 0.3);
+            padding-top: 1rem;
+        }
+
+        .bullet h3 {
+            font-size: 1.22rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .bullet .number {
+            color: var(--amber);
+            font-weight: 800;
+            font-size: 1.4rem;
+            margin-right: 0.3rem;
+        }
+
+        .bullet p {
+            color: var(--text-muted);
+            font-size: 1.02rem;
+            line-height: 1.55;
+        }
+
+        .city-grid {
+            margin-top: 1.6rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .city-card {
+            border: 1px solid rgba(233, 155, 42, 0.3);
+            border-radius: 14px;
+            background: rgba(233, 155, 42, 0.04);
+            padding: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .city-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--amber), var(--orange));
+        }
+
+        .city-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            color: var(--amber);
+            margin-bottom: 0.3rem;
+        }
+
+        .city-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.7rem;
+            letter-spacing: 0.04em;
+        }
+
+        .city-dishes {
+            font-size: 0.95rem;
+            color: #d4d7dd;
+            line-height: 1.5;
+        }
+
+        .timeline-grid {
+            margin-top: 1.4rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .time-card {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.1rem;
+            position: relative;
+        }
+
+        .time-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: 14px 14px 0 0;
+        }
+
+        .time-card:nth-child(1)::before { background: var(--amber); }
+        .time-card:nth-child(2)::before { background: var(--orange); }
+        .time-card:nth-child(3)::before { background: linear-gradient(90deg, var(--amber), var(--orange)); }
+
+        .time-card h4 {
+            font-size: 0.84rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+
+        .time-card:nth-child(1) h4 { color: var(--amber); }
+        .time-card:nth-child(2) h4 { color: var(--orange); }
+        .time-card:nth-child(3) h4 { color: var(--amber); }
+
+        .time-card h3 {
+            font-size: 1.15rem;
+            color: #fff;
+            margin-bottom: 0.55rem;
+        }
+
+        .time-card p {
+            color: #cdd2db;
+            font-size: 0.92rem;
+            line-height: 1.45;
+        }
+
+        .time-card .footer-note {
+            margin-top: 0.7rem;
+            padding-top: 0.6rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .team-grid {
+            margin-top: 1.6rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .team-card {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.3rem;
+            position: relative;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            border-radius: 14px 0 0 14px;
+            background: var(--amber);
+        }
+
+        .team-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--amber);
+            margin-bottom: 0.25rem;
+        }
+
+        .team-role {
+            font-size: 0.82rem;
+            color: var(--orange);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 0.7rem;
+        }
+
+        .team-desc {
+            font-size: 0.95rem;
+            color: #d4d7dd;
+            line-height: 1.5;
+        }
+
+        .close-lines {
+            margin-top: 1.5rem;
+        }
+
+        .close-line {
+            font-size: clamp(1.6rem, 3.2vw, 2.8rem);
+            font-weight: 700;
+            color: var(--amber);
+            line-height: 1.25;
+            margin-bottom: 0.5rem;
+        }
+
+        .close-subtitle {
+            margin-top: 1.5rem;
+            font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+            color: var(--text-muted);
+            line-height: 1.5;
+            max-width: 800px;
+        }
+
+        .close-bar {
+            margin-top: 3rem;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(90deg, var(--amber), var(--orange));
+            border-radius: 12px;
+            display: inline-block;
+        }
+
+        .close-bar span {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--bg-dark);
+            letter-spacing: 0.04em;
+        }
+
+        .comparison-grid {
+            margin-top: 1.6rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        .compare-card {
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 14px;
+            background: rgba(255,255,255,0.03);
+            padding: 1.3rem;
+        }
+
+        .compare-card h3 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 0.6rem;
+            line-height: 1;
+        }
+
+        .compare-card ul {
+            list-style: none;
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .compare-card li {
+            color: #d4d7dd;
+            font-size: 1.02rem;
+            line-height: 1.45;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .compare-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+        }
+
+        .bracket-flow {
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .bracket-step {
+            border: 1px solid rgba(233,155,42,0.3);
+            border-radius: 10px;
+            background: rgba(233,155,42,0.05);
+            padding: 0.7rem 1.1rem;
+            text-align: center;
+        }
+
+        .bracket-step .step-number {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--amber);
+        }
+
+        .bracket-step .step-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .bracket-arrow {
+            color: var(--amber);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .gs-reveal {
+            opacity: 0;
+        }
+
+        @media (max-width: 980px) {
+            .city-grid, .timeline-grid, .team-grid {
+                grid-template-columns: 1fr;
+            }
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .slide-section {
+                padding: 10vh 5vw;
+            }
+            h1 { font-size: 2.6rem; }
+            h2 { font-size: 1.1rem; }
+            .bracket-flow { gap: 0.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="logo-mark">La Selección del Taco × Telcel</div>
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- ============================================================ -->
+<!-- SECTION 1: HERO / TITLE -->
+<!-- ============================================================ -->
+<section class="slide-section">
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="section-tag">Marzo 2026 · Confidencial</div>
+        <h1>La Selección<br>del Taco.</h1>
+        <h2>Un proyecto de país. Para toda la vida.<br>
+        <span class="accent-amber">Taquerías × Fondas × Calle.</span></h2>
+
+        <div class="kpi-grid gs-reveal">
+            <div class="kpi-card">
+                <div class="kpi-value">16</div>
+                <div class="kpi-label">Taquerías y fondas</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">3</div>
+                <div class="kpi-label">Ciudades mundialistas</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">38</div>
+                <div class="kpi-label">Días de contenido</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">∞</div>
+                <div class="kpi-label">Votos desde tu red</div>
+            </div>
+        </div>
+
+        <div class="panel gs-reveal" style="margin-top:1.5rem">
+            <p><strong style="color:var(--amber)">Presentado a Carlos Slim</strong> por Mijangos × Tacotíos × Mauricio "El Punk"</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: ROCKAMPEONATO → 2026 -->
+<!-- ============================================================ -->
+<section class="slide-section">
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="section-tag">La Conexión</div>
+        <h1>Hace 20 años<br>cambiamos la música.</h1>
+        <h2>Rockampeonato descubrió bandas, llenó ciudades, se nos cayó el servidor el primer día. Hoy hay algo más grande en la mesa.</h2>
+
+        <div class="comparison-grid gs-reveal">
+            <div class="compare-card">
+                <h3 style="color: var(--amber)">2006</h3>
+                <ul>
+                    <li>Se cayó el servidor el primer día</li>
+                    <li>Descubrimos bandas en toda la República</li>
+                    <li>Llenamos ciudades donde nadie iba</li>
+                    <li>Cambiamos la industria de la música</li>
+                </ul>
+                <div style="margin-top:1rem; padding-top:0.8rem; border-top: 1px solid rgba(255,255,255,0.08)">
+                    <p style="color:var(--text-muted); font-size:0.9rem">Pero no existían las redes sociales.<br>No existía el smartphone.<br>No podías hacer que millones participen desde un teléfono.</p>
+                </div>
+            </div>
+            <div class="compare-card" style="border-color: rgba(249,115,22,0.3)">
+                <h3 style="color: var(--orange)">2026</h3>
+                <ul>
+                    <li>El Mundial llega a México</li>
+                    <li>3 ciudades. 13 partidos</li>
+                    <li>800,000 turistas. $3B de derrama</li>
+                    <li>La mayor vitrina de México al mundo</li>
+                </ul>
+                <div style="margin-top:1rem; padding-top:0.8rem; border-top: 1px solid rgba(255,255,255,0.08)">
+                    <p style="color:var(--amber); font-weight:600; font-size:0.95rem">Hoy SÍ existen las redes sociales.<br>Hoy SÍ existe el smartphone.<br>Hoy SÍ podemos hacer que millones<br>participen desde tu red.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: THE OPPORTUNITY -->
+<!-- ============================================================ -->
+<section class="slide-section">
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="section-tag">La Oportunidad</div>
+        <h1>Verizon firmó.<br><span class="accent-orange">¿Dónde va a estar Telcel?</span></h1>
+        <h2>Verizon es el partner telecom oficial del Mundial 2026. Ellos van a estar en los estadios. Pero hay un espacio que nadie está tocando.</h2>
+
+        <div class="bullet-grid gs-reveal">
+            <div class="bullet">
+                <h3>El reto</h3>
+                <p>Los jóvenes atacan a Telcel en redes. Las MVNOs erosionan la base. La publicidad tradicional ya no funciona. Verizon acaba de firmar con FIFA.</p>
+            </div>
+            <div class="bullet">
+                <h3>El espacio vacío</h3>
+                <p>Nadie está conectando: <strong style="color:#fff">Mundial + Gastronomía + Redes.</strong> La comida es la identidad de México. El fútbol es la pasión. El teléfono es donde vive México.</p>
+            </div>
+            <div class="bullet">
+                <h3>La solución</h3>
+                <p>Telcel puede ser la marca que <span class="accent-amber">conecta las tres cosas.</span> Sin pagarle a FIFA. Desde las calles, desde las taquerías, desde los teléfonos.</p>
+            </div>
+        </div>
+
+        <div class="kpi-grid gs-reveal" style="margin-top:1.5rem">
+            <div class="kpi-card">
+                <div class="kpi-value">84M+</div>
+                <div class="kpi-label">Usuarios Telcel</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">61%</div>
+                <div class="kpi-label">Mexicanos en TikTok</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">70%</div>
+                <div class="kpi-label">Usan redes viendo fútbol</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">$3B</div>
+                <div class="kpi-label">Derrama económica Mundial</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: THE CONCEPT — 3 CITIES -->
+<!-- ============================================================ -->
+<section class="slide-section">
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="section-tag">El Concepto</div>
+        <h1>16 taquerías.<br>3 ciudades.<br><span class="accent-amber">Pura calle.</span></h1>
+        <h2>Un torneo de eliminación directa durante el Mundial. La gente vota, discute y defiende a su taquería como defiende a su equipo de fútbol.</h2>
+
+        <div class="city-grid gs-reveal">
+            <div class="city-card">
+                <div class="city-name">Ciudad de México</div>
+                <div class="city-meta">6 taquerías/fondas · Estadio Azteca</div>
+                <div class="city-dishes">Tacos al pastor, suadero, huaraches, quesadillas, tlacoyos, carnitas</div>
+            </div>
+            <div class="city-card">
+                <div class="city-name">Guadalajara</div>
+                <div class="city-meta">5 taquerías/fondas · Estadio Akron</div>
+                <div class="city-dishes">Birria, tortas ahogadas, tacos de barbacoa, carne en su jugo, lonches</div>
+            </div>
+            <div class="city-card">
+                <div class="city-name">Monterrey</div>
+                <div class="city-meta">5 taquerías/fondas · Estadio BBVA</div>
+                <div class="city-dishes">Cabrito, discada, carne asada, machacado, cortadillo, frijoles charros</div>
+            </div>
+        </div>
+
+        <div class="bracket-flow gs-reveal">
+            <div class="bracket-step">
+                <div class="step-number">16</div>
+                <div class="step-label">Taquerías</div>
+            </div>
+            <div class="bracket-arrow">→</div>
+            <div class="bracket-step">
+                <div class="step-number">8</div>
+                <div class="step-label">Octavos</div>
+            </div>
+            <div class="bracket-arrow">→</div>
+            <div class="bracket-step">
+                <div class="step-number">4</div>
+                <div class="step-label">Cuartos</div>
+            </div>
+            <div class="bracket-arrow">→</div>
+            <div class="bracket-step">
+                <div class="step-number">2</div>
+                <div class="step-label">Semifinal</div>
+            </div>
+            <div class="bracket-arrow">→</div>
+            <div class="bracket-step" style="border-color: var(--orange); background: rgba(249,115,22,0.08)">
+                <div class="step-number" style="color:var(--orange)">1</div>
+                <div class="step-label">Campeón</div>
+            </div>
+        </div>
+
+        <div class="panel gs-reveal" style="margin-top:1.5rem; border-color: rgba(233,155,42,0.2); text-align:center">
+            <p style="font-size:1.1rem"><strong style="color:var(--amber)">Millones de votos. Desde tu red.</strong><br>
+            Cada voto es un dato. Cada debate es engagement. Cada share es publicidad orgánica que no se puede comprar.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 5: WHAT TELCEL GETS -->
+<!-- ============================================================ -->
+<section class="slide-section">
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="section-tag">Qué gana Telcel</div>
+        <h1>No es publicidad.<br><span class="accent-amber">Es posicionamiento cultural.</span></h1>
+        <h2>Cinco cosas que Telcel no puede comprar con publicidad tradicional.</h2>
+
+        <div class="bullet-grid gs-reveal">
+            <div class="bullet">
+                <h3><span class="number">1</span> Asociación Cultural</h3>
+                <p>Telcel deja de ser "la empresa de teléfonos" y se convierte en la marca que conecta a México con lo que lo hace México. La comida ES la identidad de este país.</p>
+            </div>
+            <div class="bullet">
+                <h3><span class="number">2</span> Jóvenes en Redes</h3>
+                <p>Los chavos no ven televisión. Están en TikTok, Instagram, YouTube. El torneo vive donde ellos viven. No publicidad: contenido que quieren ver.</p>
+            </div>
+            <div class="bullet">
+                <h3><span class="number">3</span> Data</h3>
+                <p>Cada persona que vota, comparte, comenta, genera información. De qué estado es, qué le gusta, a qué hora consume. Esos datos son de Telcel.</p>
+            </div>
+            <div class="bullet">
+                <h3><span class="number">4</span> Pertenencia</h3>
+                <p>La gente defiende a su taquería como defiende a su equipo. Eso genera comunidad. La comunidad genera lealtad. Lo único que las MVNOs no pueden quitar.</p>
+            </div>
+            <div class="bullet">
+                <h3><span class="number">5</span> Mundial sin FIFA</h3>
+                <p>Mientras Verizon paga cientos de millones por un logo en un estadio, Telcel está en las calles, en las taquerías, en los teléfonos, en las sobremesas. Eso vale más.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 6: ECOSYSTEM — 10 YEAR PLATFORM -->
+<!-- ============================================================ -->
+<section class="slide-section">
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="section-tag">Plataforma</div>
+        <h1>No es una campaña.<br><span class="accent-amber">Es una plataforma de 10 años.</span></h1>
+        <h2>Lo mismo que hicimos con Rockampeonato, pero más grande. Porque ahora sí existen las redes, el smartphone, y tu red.</h2>
+
+        <div class="timeline-grid gs-reveal">
+            <div class="time-card">
+                <h4>Año 1 — 2026</h4>
+                <h3>La Selección del Taco</h3>
+                <p>Torneo en las 3 ciudades mundialistas. 16 taquerías y fondas de barrio. Millones votan. Se genera la guía gastronómica callejera más vista de México.</p>
+                <div class="footer-note">Serie documental + Torneo interactivo + App/web de votación</div>
+            </div>
+            <div class="time-card">
+                <h4>Año 2-3</h4>
+                <h3>Expansión Nacional</h3>
+                <p>La Vuelta a México en 80 Tacos. Más estados. Más categorías: mejor birria, mejor torta, mejor puesto de quesadillas.</p>
+                <div class="footer-note">App permanente. Guía digital. Tacos ganadores en menú de Sams.</div>
+            </div>
+            <div class="time-card">
+                <h4>Año 5-10</h4>
+                <h3>Tradición Nacional</h3>
+                <p>"La Selección del Taco presentado por Telcel" es una tradición anual. Como Rockampeonato fue para la música.</p>
+                <div class="footer-note">Formato exportable: Japón, España, Brasil...</div>
+            </div>
+        </div>
+
+        <div class="panel gs-reveal" style="margin-top:1.5rem; border-color: rgba(249,115,22,0.25); background: rgba(249,115,22,0.03)">
+            <p style="font-size:1.05rem; text-align:center"><strong style="color:var(--orange)">Ecosistema Slim:</strong> Los tacos ganadores podrían estar en el menú de Sams. Es un ecosistema completo dentro del grupo.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 7: THE TEAM -->
+<!-- ============================================================ -->
+<section class="slide-section">
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="section-tag">El Equipo</div>
+        <h1>No necesitamos<br>a nadie más.</h1>
+        <h2>Solo necesitamos que Telcel esté.</h2>
+
+        <div class="team-grid gs-reveal">
+            <div class="team-card">
+                <div class="team-name">Mijangos</div>
+                <div class="team-role">Productor & Estratega</div>
+                <div class="team-desc">Creador de Rockampeonato. 20 años en la industria. La persona que ya demostró que esto funciona con Telcel.</div>
+            </div>
+            <div class="team-card">
+                <div class="team-name">Tacotíos</div>
+                <div class="team-role">Documentalista Gastronómico</div>
+                <div class="team-desc">2M+ seguidores. El creador de comida más visto de México. Un español que muestra México con ojos que enamoran al mundo.</div>
+            </div>
+            <div class="team-card">
+                <div class="team-name">Mauricio<br>"El Punk"</div>
+                <div class="team-role">Productor Audiovisual</div>
+                <div class="team-desc">Ganador de Emmy. 20+ documentales producidos. Equipo completo: cámaras, editores, postproducción. Todo listo para rodar.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 8: THE CLOSE -->
+<!-- ============================================================ -->
+<section class="slide-section" style="min-height:100vh">
+    <div class="overlay"></div>
+    <div class="content" style="margin-top:0; display:flex; flex-direction:column; justify-content:center; min-height:80vh">
+        <h2 style="color:var(--text-muted); font-size: clamp(1.2rem, 2vw, 1.6rem); margin-bottom:1.5rem">En tu teléfono es donde la gente hace todo hoy.</h2>
+        <div class="close-lines">
+            <div class="close-line">Los teléfonos los vendes tú.</div>
+            <div class="close-line">Los datos los vendes tú.</div>
+            <div class="close-line">La red la pones tú.</div>
+        </div>
+        <div class="close-subtitle">
+            No hay nada mejor que ser la marca que conecta a México con su propia identidad.<br><br>
+            <em style="color:var(--text-light)">Esto se puede hacer con o sin el Mundial. Pero con el Mundial, es histórico.</em>
+        </div>
+        <div class="close-bar gs-reveal">
+            <span>LA SELECCIÓN DEL TACO  ×  TELCEL  ×  MUNDIAL 2026</span>
+        </div>
+    </div>
+</section>
+
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Progress bar
+    gsap.to("#progressBar", {
+        width: "100%",
+        ease: "none",
+        scrollTrigger: {
+            trigger: "body",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.3
+        }
+    });
+
+    // Reveal animations
+    gsap.utils.toArray(".gs-reveal").forEach(el => {
+        gsap.fromTo(el,
+            { opacity: 0, y: 40 },
+            {
+                opacity: 1, y: 0, duration: 0.9, ease: "power2.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                }
+            }
+        );
+    });
+
+    // Parallax-like subtle movement on content
+    gsap.utils.toArray(".content").forEach(content => {
+        gsap.fromTo(content,
+            { y: 30 },
+            {
+                y: -20,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: content.closest(".slide-section"),
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                }
+            }
+        );
+    });
+</script>
+
+</body>
+</html>
