@@ -6,39 +6,38 @@
     <title>La Selección del Taco × Telcel × Mundial 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg-dark: #030307;
-            --text-light: #f3ede8;
-            --text-muted: #9698a0;
-            --amber: #E99B2A;
-            --orange: #F97316;
-            --border: rgba(243, 237, 232, 0.1);
+            --bg: #000000;
+            --bg-subtle: #0a0a0a;
+            --text: #FAFAFA;
+            --text-secondary: #8E8E93;
+            --telcel-blue: #00A0DF;
+            --telcel-blue-dim: rgba(0, 160, 223, 0.12);
+            --telcel-blue-border: rgba(0, 160, 223, 0.25);
+            --telcel-blue-glow: rgba(0, 160, 223, 0.06);
+            --border: rgba(255, 255, 255, 0.08);
+            --card-bg: rgba(255, 255, 255, 0.03);
         }
 
         html, body {
             height: 100%;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-light);
-            scroll-behavior: smooth;
+            font-family: -apple-system, 'SF Pro Display', 'Inter', 'Helvetica Neue', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             scroll-snap-type: y mandatory;
             overflow-y: scroll;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        body {
-            overscroll-behavior: none;
-        }
+        body { overscroll-behavior: none; }
 
-        .container {
+        /* — PAGES — */
+        .page {
             width: 100%;
             height: 100vh;
             scroll-snap-align: start;
@@ -46,688 +45,756 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 60px 40px;
+            padding: 80px 60px;
             position: relative;
             overflow: hidden;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 40px 24px;
-            }
+        .inner {
+            width: 100%;
+            max-width: 1120px;
         }
 
-        /* PAGE 1 */
-        .page-1 {
-            background: linear-gradient(135deg, #030307 0%, #0a0a0f 100%);
-        }
-
-        .section-tag {
-            font-size: 12px;
-            letter-spacing: 2px;
+        /* — TYPOGRAPHY — */
+        .tag {
+            font-size: 11px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            color: var(--amber);
-            margin-bottom: 32px;
+            color: var(--telcel-blue);
             font-weight: 600;
+            margin-bottom: 28px;
         }
 
-        .headline {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            line-height: 1.15;
-            margin-bottom: 16px;
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
-
-        .headline-orange {
-            background: linear-gradient(135deg, var(--orange) 0%, var(--amber) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .subtitle {
-            font-size: 18px;
-            color: var(--text-muted);
-            line-height: 1.6;
-            max-width: 600px;
-            margin-bottom: 48px;
-            font-weight: 400;
-        }
-
-        .three-columns {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 28px;
-            margin-bottom: 48px;
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        .column-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .column-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(233, 155, 42, 0.3);
-            transform: translateY(-4px);
-        }
-
-        .column-card h3 {
-            font-size: 14px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--amber);
-            margin-bottom: 12px;
+        .hero-title {
+            font-size: clamp(2.4rem, 5.5vw, 3.8rem);
             font-weight: 700;
+            line-height: 1.12;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
         }
 
-        .column-card p {
-            font-size: 15px;
-            line-height: 1.7;
-            color: var(--text-light);
+        .hero-title .blue {
+            color: var(--telcel-blue);
         }
 
-        .kpi-grid {
+        .lead {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            max-width: 560px;
+            font-weight: 400;
+            margin-bottom: 52px;
+        }
+
+        /* — PAGE 1: VISION — */
+        .stat-row {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            width: 100%;
-            max-width: 1200px;
-            margin-bottom: 48px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 52px;
         }
 
-        .kpi-card {
-            background: rgba(233, 155, 42, 0.08);
-            border: 1px solid rgba(233, 155, 42, 0.2);
-            border-radius: 12px;
-            padding: 24px;
+        .stat-cell {
+            background: var(--bg);
+            padding: 32px 28px;
             text-align: center;
-            backdrop-filter: blur(10px);
         }
 
-        .kpi-number {
-            font-size: clamp(1.8rem, 5vw, 2.8rem);
-            font-weight: 800;
-            color: var(--amber);
-            margin-bottom: 8px;
+        .stat-number {
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 6px;
             font-variant-numeric: tabular-nums;
         }
 
-        .kpi-label {
-            font-size: 12px;
-            color: var(--text-muted);
-            letter-spacing: 1px;
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            font-weight: 600;
+            font-weight: 500;
         }
 
-        .footer-line {
-            font-size: 12px;
-            color: var(--text-muted);
-            text-align: center;
-            margin-top: auto;
+        .vision-statement {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-weight: 500;
+            line-height: 1.55;
+            color: var(--text);
+            max-width: 720px;
+            margin-bottom: 40px;
+        }
+
+        .vision-statement em {
+            font-style: normal;
+            color: var(--telcel-blue);
+        }
+
+        .media-kit-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--telcel-blue);
+            text-decoration: none;
+            font-weight: 500;
             letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--telcel-blue-border);
+            padding-bottom: 2px;
+            transition: opacity 0.2s;
         }
 
-        /* PAGE 2 */
-        .page-2 {
-            background: linear-gradient(135deg, #030307 0%, #0f0a15 100%);
+        .media-kit-link:hover { opacity: 0.7; }
+
+        /* — PAGE 2: FORMAT — */
+        .format-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 48px;
         }
 
-        .headline-two-part {
+        .format-left h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .format-left h2 .blue { color: var(--telcel-blue); }
+
+        .format-left p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            max-width: 440px;
+        }
+
+        /* Bracket */
+        .bracket-visual {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            margin-bottom: 16px;
+            justify-content: center;
         }
 
-        .city-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-            width: 100%;
-            max-width: 1200px;
-            margin-bottom: 48px;
-        }
-
-        .city-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px;
-            backdrop-filter: blur(10px);
-        }
-
-        .city-card h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: var(--text-light);
-        }
-
-        .city-card .city-meta {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-            line-height: 1.6;
-        }
-
-        .city-card .city-food {
-            font-size: 13px;
-            color: var(--amber);
-            line-height: 1.7;
-            font-weight: 500;
-        }
-
-        .bracket {
-            background: rgba(233, 155, 42, 0.05);
-            border: 1px solid rgba(233, 155, 42, 0.15);
-            border-radius: 16px;
-            padding: 32px;
-            margin: 0 auto 48px;
-            max-width: 600px;
-            text-align: center;
-            width: 100%;
-        }
-
-        .bracket h4 {
-            font-size: 14px;
-            letter-spacing: 1px;
+        .bracket-title {
+            font-size: 11px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            color: var(--amber);
-            margin-bottom: 16px;
-            font-weight: 700;
+            color: var(--telcel-blue);
+            font-weight: 600;
+            margin-bottom: 24px;
         }
 
-        .bracket-flow {
+        .bracket-stages {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .bracket-stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .bracket-num {
+            font-size: clamp(1.4rem, 3vw, 2rem);
             font-weight: 700;
-            font-size: 18px;
+            color: var(--text);
         }
 
-        .bracket-flow span {
-            color: var(--text-light);
-        }
+        .bracket-num.champion { color: var(--telcel-blue); }
 
-        .bracket-flow .arrow {
-            color: var(--amber);
-            font-size: 20px;
-        }
-
-        .callout-box {
-            background: rgba(249, 115, 22, 0.1);
-            border: 2px solid var(--orange);
-            border-radius: 16px;
-            padding: 40px;
-            text-align: center;
-            max-width: 700px;
-            width: 100%;
-        }
-
-        .callout-box h3 {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--orange);
-            margin-bottom: 12px;
-        }
-
-        .callout-box p {
-            font-size: 14px;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        /* PAGE 3 */
-        .page-3 {
-            background: linear-gradient(135deg, #030307 0%, #0a0510 100%);
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            width: 100%;
-            max-width: 1200px;
-            margin-bottom: 48px;
-        }
-
-        .benefit-item {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 24px;
-            backdrop-filter: blur(10px);
-        }
-
-        .benefit-item h4 {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--amber);
-            margin-bottom: 8px;
-            letter-spacing: 0.5px;
-        }
-
-        .benefit-item p {
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        .timeline {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            width: 100%;
-            max-width: 1200px;
-            margin-bottom: 48px;
-        }
-
-        .timeline-card {
-            background: rgba(233, 155, 42, 0.08);
-            border: 1px solid rgba(233, 155, 42, 0.25);
-            border-radius: 12px;
-            padding: 28px;
-        }
-
-        .timeline-card h4 {
-            font-size: 13px;
+        .bracket-label {
+            font-size: 10px;
+            color: var(--text-secondary);
             letter-spacing: 1px;
             text-transform: uppercase;
-            color: var(--amber);
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-
-        .timeline-card p {
-            font-size: 13px;
-            color: var(--text-light);
-            line-height: 1.7;
             font-weight: 500;
         }
 
-        .ecosystem-callout {
-            background: rgba(233, 155, 42, 0.1);
-            border: 1px solid rgba(233, 155, 42, 0.2);
-            border-radius: 14px;
-            padding: 28px;
-            margin-bottom: 48px;
-            max-width: 800px;
-            width: 100%;
+        .bracket-arrow {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.15);
+            margin-top: -18px;
         }
 
-        .ecosystem-callout p {
-            font-size: 14px;
-            color: var(--text-light);
-            line-height: 1.7;
-            font-weight: 500;
+        /* Episodes */
+        .episodes-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 40px;
         }
 
-        .close-lines {
-            margin-bottom: 48px;
-            max-width: 700px;
+        .episode-cell {
+            background: var(--bg);
+            padding: 20px 16px;
             text-align: center;
         }
 
-        .close-line {
-            font-size: clamp(1.5rem, 4vw, 2.2rem);
-            font-weight: 800;
+        .episode-num {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .episode-num .unit {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .episode-label {
+            font-size: 10px;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
             line-height: 1.4;
-            background: linear-gradient(135deg, var(--amber) 0%, var(--orange) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        }
+
+        /* Calendar */
+        .calendar-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 32px;
+        }
+
+        .calendar-title {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--telcel-blue);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .calendar-timeline {
+            display: flex;
+            align-items: stretch;
+            gap: 0;
+            position: relative;
+        }
+
+        .calendar-phase {
+            flex: 1;
+            padding: 16px 12px;
+            text-align: center;
+            position: relative;
+            border-right: 1px solid var(--border);
+        }
+
+        .calendar-phase:last-child { border-right: none; }
+
+        .phase-date {
+            font-size: 10px;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .phase-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .phase-detail {
+            font-size: 11px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .phase-highlight {
+            background: var(--telcel-blue-glow);
+            border-radius: 8px;
+        }
+
+        .phase-highlight .phase-name { color: var(--telcel-blue); }
+
+        /* — PAGE 3: PLATFORM — */
+        .benefits-section {
+            margin-bottom: 48px;
+        }
+
+        .benefit-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
             margin-bottom: 16px;
         }
 
-        .close-subtitle {
-            font-size: 16px;
-            color: var(--text-muted);
-            font-weight: 400;
-            margin-bottom: 32px;
+        .benefit-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px 28px;
         }
 
-        .cta-bar {
-            background: linear-gradient(135deg, var(--amber) 0%, var(--orange) 100%);
-            border-radius: 12px;
-            padding: 24px 32px;
+        .benefit-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .benefit-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.55;
+        }
+
+        /* Ecosystem */
+        .ecosystem-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--telcel-blue-border);
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 48px;
+        }
+
+        .eco-cell {
+            background: var(--bg);
+            padding: 24px 20px;
             text-align: center;
-            width: 100%;
-            max-width: 800px;
-            font-size: 16px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: var(--bg-dark);
-            text-transform: uppercase;
         }
 
-        /* PAGE INDICATOR */
-        .page-indicator {
+        .eco-label {
+            font-size: 10px;
+            color: var(--telcel-blue);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .eco-text {
+            font-size: 13px;
+            color: var(--text);
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        /* Close */
+        .close-statement {
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            font-weight: 600;
+            line-height: 1.45;
+            max-width: 640px;
+            margin-bottom: 40px;
+        }
+
+        .close-statement .blue { color: var(--telcel-blue); }
+
+        .brand-bar {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Team collapsible */
+        .team-toggle {
             position: fixed;
-            bottom: 32px;
-            right: 32px;
+            bottom: 28px;
+            left: 28px;
+            z-index: 100;
+        }
+
+        .team-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 11px;
+            letter-spacing: 1px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            backdrop-filter: blur(10px);
+            transition: all 0.2s;
+        }
+
+        .team-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+        }
+
+        .team-panel {
+            position: fixed;
+            bottom: 64px;
+            left: 28px;
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            backdrop-filter: blur(20px);
+            z-index: 100;
+            max-width: 320px;
+            display: none;
+        }
+
+        .team-panel.open { display: block; }
+
+        .team-member {
+            margin-bottom: 12px;
+        }
+
+        .team-member:last-child { margin-bottom: 0; }
+
+        .team-name {
             font-size: 13px;
             font-weight: 600;
-            color: var(--amber);
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+
+        .team-role {
+            font-size: 11px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* Page indicator */
+        .page-indicator {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
             letter-spacing: 1px;
             z-index: 100;
-            background: rgba(233, 155, 42, 0.1);
-            border: 1px solid rgba(233, 155, 42, 0.2);
-            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            padding: 8px 12px;
             border-radius: 8px;
             backdrop-filter: blur(10px);
         }
 
-        @media (max-width: 768px) {
-            .page-indicator {
-                bottom: 24px;
-                right: 24px;
-                font-size: 12px;
-                padding: 8px 12px;
-            }
-
-            .headline {
-                font-size: clamp(1.8rem, 5vw, 2.8rem);
-            }
-
-            .three-columns {
-                grid-template-columns: 1fr;
-            }
-
-            .kpi-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .city-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .close-line {
-                font-size: clamp(1.2rem, 3vw, 1.8rem);
-            }
-        }
-
-        /* ANIMATIONS */
-        .fade-in-up {
+        /* Animations */
+        .reveal {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
         }
 
-        .fade-in-up.visible {
-            animation: fadeInUp 0.8s ease-out forwards;
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .counter {
-            font-variant-numeric: tabular-nums;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page { padding: 48px 24px; }
+            .format-grid { grid-template-columns: 1fr; gap: 24px; }
+            .stat-row { grid-template-columns: 1fr; }
+            .benefit-row { grid-template-columns: 1fr; }
+            .episodes-bar { grid-template-columns: repeat(2, 1fr); }
+            .ecosystem-row { grid-template-columns: 1fr; }
+            .calendar-timeline { flex-direction: column; }
+            .calendar-phase { border-right: none; border-bottom: 1px solid var(--border); }
+            .calendar-phase:last-child { border-bottom: none; }
+            .bracket-stages { flex-wrap: wrap; justify-content: center; gap: 12px; }
         }
     </style>
 </head>
 <body>
-    <!-- PAGE 1: EL PUÑETAZO -->
-    <div class="container page-1">
-        <div style="width: 100%; max-width: 1200px;">
-            <div class="section-tag fade-in-up">La Oportunidad</div>
 
-            <div class="headline fade-in-up" style="animation-delay: 0.1s">
-                <span style="color: var(--text-light)">Verizon firmó.</span>
-                <span class="headline-orange">¿Dónde va a estar Telcel?</span>
+<!-- ═══════════════ PAGE 1: LA VISIÓN ═══════════════ -->
+<div class="page" id="p1">
+    <div class="inner">
+        <div class="tag reveal">La Selección del Taco</div>
+
+        <h1 class="hero-title reveal" style="transition-delay:0.08s">
+            El Mundial llega a México.<br>
+            <span class="blue">La comida ya estaba aquí.</span>
+        </h1>
+
+        <p class="lead reveal" style="transition-delay:0.16s">
+            5.5 millones de turistas van a buscar lo mismo: dónde comer.
+            Telcel puede ser quien les responda.
+        </p>
+
+        <div class="stat-row reveal" style="transition-delay:0.24s">
+            <div class="stat-cell">
+                <div class="stat-number">84M</div>
+                <div class="stat-label">Usuarios Telcel</div>
             </div>
-
-            <p class="subtitle fade-in-up" style="animation-delay: 0.2s">
-                Verizon es el partner telecom oficial del Mundial 2026. Ellos están en los estadios. Pero hay un espacio que nadie está tocando: donde México vive de verdad.
-            </p>
-
-            <div class="three-columns fade-in-up" style="animation-delay: 0.3s">
-                <div class="column-card">
-                    <h3>El Reto</h3>
-                    <p>Los jóvenes atacan a Telcel en redes. 821K usuarios perdidos en un trimestre. Las MVNOs crecen 30%. La publicidad tradicional ya no funciona.</p>
-                </div>
-                <div class="column-card">
-                    <h3>El Espacio Vacío</h3>
-                    <p>Nadie conecta: Mundial + Gastronomía + Redes. La comida es la identidad. El fútbol es la pasión. El teléfono es donde vive México.</p>
-                </div>
-                <div class="column-card">
-                    <h3>La Solución</h3>
-                    <p>Telcel puede ser la marca que conecta las tres cosas. Sin pagarle a FIFA. Desde las calles, las taquerías, los teléfonos.</p>
-                </div>
+            <div class="stat-cell">
+                <div class="stat-number">5.5M</div>
+                <div class="stat-label">Turistas esperados</div>
             </div>
-
-            <div class="kpi-grid fade-in-up" style="animation-delay: 0.4s">
-                <div class="kpi-card">
-                    <div class="kpi-number counter" data-target="84000000">0</div>
-                    <div class="kpi-label">Usuarios Telcel</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-number counter" data-target="5500000">0</div>
-                    <div class="kpi-label">Turistas Esperados</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-number counter" data-target="70">0<span style="font-size: 0.6em;">%</span></div>
-                    <div class="kpi-label">Usan Redes Viendo Fútbol</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-number counter" data-target="4000000000">0</div>
-                    <div class="kpi-label">Derrama Económica</div>
-                </div>
-            </div>
-
-            <p class="footer-line fade-in-up" style="animation-delay: 0.5s">
-                Presentado a Carlos Slim por Héctor Mijangos × Aniol Güell (Tacotíos) × Mauricio Productor
-            </p>
-        </div>
-    </div>
-
-    <!-- PAGE 2: EL CONCEPTO -->
-    <div class="container page-2">
-        <div style="width: 100%; max-width: 1200px;">
-            <div class="section-tag fade-in-up">El Concepto</div>
-
-            <div class="headline-two-part fade-in-up" style="animation-delay: 0.1s">
-                <div class="headline">
-                    <span style="color: var(--text-light)">16 taquerías.</span>
-                    <span style="color: var(--text-light)">3 ciudades.</span>
-                    <span class="headline-orange">Pura calle.</span>
-                </div>
-            </div>
-
-            <p class="subtitle fade-in-up" style="animation-delay: 0.2s">
-                Un torneo de eliminación directa durante el Mundial. La gente vota, discute y defiende a su taquería como defiende a su equipo de fútbol.
-            </p>
-
-            <div class="city-cards fade-in-up" style="animation-delay: 0.3s">
-                <div class="city-card">
-                    <h3>Ciudad de México</h3>
-                    <div class="city-meta">6 taquerías/fondas · Estadio Azteca</div>
-                    <div class="city-food">Tacos al pastor, suadero, huaraches, quesadillas, tlacoyos, carnitas</div>
-                </div>
-                <div class="city-card">
-                    <h3>Guadalajara</h3>
-                    <div class="city-meta">5 taquerías/fondas · Estadio Akron</div>
-                    <div class="city-food">Birria, tortas ahogadas, tacos de barbacoa, carne en su jugo, lonches</div>
-                </div>
-                <div class="city-card">
-                    <h3>Monterrey</h3>
-                    <div class="city-meta">5 taquerías/fondas · Estadio BBVA</div>
-                    <div class="city-food">Cabrito, discada, carne asada, machacado, cortadillo, frijoles charros</div>
-                </div>
-            </div>
-
-            <div class="bracket fade-in-up" style="animation-delay: 0.4s">
-                <h4>Formato de Eliminación Directa</h4>
-                <div class="bracket-flow">
-                    <span>16</span>
-                    <span class="arrow">→</span>
-                    <span>8</span>
-                    <span class="arrow">→</span>
-                    <span>4</span>
-                    <span class="arrow">→</span>
-                    <span>2</span>
-                    <span class="arrow">→</span>
-                    <span style="color: var(--amber);">1 CAMPEÓN</span>
-                </div>
-            </div>
-
-            <div class="callout-box fade-in-up" style="animation-delay: 0.5s">
-                <h3>Millones de votos. Desde tu red.</h3>
-                <p>Cada voto es un dato. Cada debate es engagement. Cada share es publicidad orgánica que no se puede comprar.</p>
+            <div class="stat-cell">
+                <div class="stat-number">20</div>
+                <div class="stat-label">Episodios · 500K+ vistas c/u</div>
             </div>
         </div>
+
+        <p class="vision-statement reveal" style="transition-delay:0.32s">
+            Un torneo de <em>16 taquerías icónicas</em> en las 3 ciudades sede.
+            La gente vota, debate y defiende a su taquería como defiende a su selección.
+            Todo desde su teléfono. Todo en <em>la red de Telcel</em>.
+        </p>
+
+        <a href="https://mediakit-tacotios.vercel.app" target="_blank" class="media-kit-link reveal" style="transition-delay:0.4s">
+            Ver media kit completo →
+        </a>
     </div>
+</div>
 
-    <!-- PAGE 3: EL CIERRE -->
-    <div class="container page-3">
-        <div style="width: 100%; max-width: 1200px;">
-            <div class="section-tag fade-in-up">La Plataforma</div>
+<!-- ═══════════════ PAGE 2: EL FORMATO ═══════════════ -->
+<div class="page" id="p2">
+    <div class="inner">
+        <div class="tag reveal">El Formato</div>
 
-            <div class="headline fade-in-up" style="animation-delay: 0.1s">
-                <span style="color: var(--text-light)">No es una campaña.</span>
-                <span class="headline-orange">Es una plataforma de 10 años.</span>
+        <div class="format-grid reveal" style="transition-delay:0.08s">
+            <div class="format-left">
+                <h2>
+                    16 taquerías.<br>
+                    3 ciudades sede.<br>
+                    <span class="blue">Un campeón.</span>
+                </h2>
+                <p>
+                    Eliminación directa, igual que el Mundial.
+                    CDMX, Guadalajara, Monterrey.
+                    La audiencia vota en una app exclusiva de Telcel.
+                    El ganador se corona en la final.
+                </p>
             </div>
-
-            <div class="benefits-grid fade-in-up" style="animation-delay: 0.2s">
-                <div class="benefit-item">
-                    <h4>Asociación Cultural</h4>
-                    <p>La marca que conecta México con su identidad.</p>
-                </div>
-                <div class="benefit-item">
-                    <h4>Jóvenes en Redes</h4>
-                    <p>El torneo vive donde ellos viven: TikTok, IG, YouTube.</p>
-                </div>
-                <div class="benefit-item">
-                    <h4>First-Party Data</h4>
-                    <p>Cada voto genera datos: estado, gustos, horarios. Tuyos.</p>
-                </div>
-                <div class="benefit-item">
-                    <h4>Pertenencia</h4>
-                    <p>La gente defiende su taquería como su equipo. Eso es lealtad.</p>
-                </div>
-                <div class="benefit-item">
-                    <h4>Mundial sin FIFA</h4>
-                    <p>Mientras Verizon paga millones por un logo, tú estás en las calles.</p>
-                </div>
-            </div>
-
-            <div class="timeline fade-in-up" style="animation-delay: 0.3s">
-                <div class="timeline-card">
-                    <h4>Año 1 (2026)</h4>
-                    <p>La Selección del Taco — 16 taquerías, 3 ciudades, millones votan</p>
-                </div>
-                <div class="timeline-card">
-                    <h4>Años 2-3</h4>
-                    <p>Expansión Nacional — 80 tacos, más estados, app permanente, guía digital</p>
-                </div>
-                <div class="timeline-card">
-                    <h4>Años 5-10</h4>
-                    <p>Tradición Nacional — Formato exportable: Japón, España, Brasil...</p>
+            <div class="bracket-visual">
+                <div class="bracket-title">Bracket de eliminación</div>
+                <div class="bracket-stages">
+                    <div class="bracket-stage">
+                        <div class="bracket-num">16</div>
+                        <div class="bracket-label">Taquerías</div>
+                    </div>
+                    <div class="bracket-arrow">›</div>
+                    <div class="bracket-stage">
+                        <div class="bracket-num">8</div>
+                        <div class="bracket-label">Cuartos</div>
+                    </div>
+                    <div class="bracket-arrow">›</div>
+                    <div class="bracket-stage">
+                        <div class="bracket-num">4</div>
+                        <div class="bracket-label">Semis</div>
+                    </div>
+                    <div class="bracket-arrow">›</div>
+                    <div class="bracket-stage">
+                        <div class="bracket-num">2</div>
+                        <div class="bracket-label">Final</div>
+                    </div>
+                    <div class="bracket-arrow">›</div>
+                    <div class="bracket-stage">
+                        <div class="bracket-num champion">1</div>
+                        <div class="bracket-label">Campeón</div>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="ecosystem-callout fade-in-up" style="animation-delay: 0.4s">
-                <p>Los tacos ganadores podrían estar en el menú de Sams. La votación exclusiva desde Mi Telcel. El ecosistema completo dentro del grupo.</p>
+        <div class="episodes-bar reveal" style="transition-delay:0.16s">
+            <div class="episode-cell">
+                <div class="episode-num">1 <span class="unit">ep</span></div>
+                <div class="episode-label">Presentación</div>
             </div>
-
-            <div class="close-lines fade-in-up" style="animation-delay: 0.5s">
-                <div class="close-line">Los teléfonos los vendes tú.</div>
-                <div class="close-line">Los datos los vendes tú.</div>
-                <div class="close-line">La red la pones tú.</div>
-                <p class="close-subtitle">Esto se puede hacer con o sin el Mundial. Pero con el Mundial, es histórico.</p>
+            <div class="episode-cell">
+                <div class="episode-num">16 <span class="unit">eps</span></div>
+                <div class="episode-label">Partidos</div>
             </div>
+            <div class="episode-cell">
+                <div class="episode-num">1 <span class="unit">ep</span></div>
+                <div class="episode-label">Mejores momentos</div>
+            </div>
+            <div class="episode-cell">
+                <div class="episode-num">2 <span class="unit">eps</span></div>
+                <div class="episode-label">Cierre + Recap filosófico</div>
+            </div>
+        </div>
 
-            <div class="cta-bar fade-in-up" style="animation-delay: 0.6s">
-                LA SELECCIÓN DEL TACO × TELCEL × MUNDIAL 2026
+        <div class="calendar-section reveal" style="transition-delay:0.24s">
+            <div class="calendar-title">Calendario del torneo</div>
+            <div class="calendar-timeline">
+                <div class="calendar-phase">
+                    <div class="phase-date">May 2026</div>
+                    <div class="phase-name">Pre-torneo</div>
+                    <div class="phase-detail">Presentación + hype</div>
+                </div>
+                <div class="calendar-phase phase-highlight">
+                    <div class="phase-date">Jun 11 – Jul 4</div>
+                    <div class="phase-name">Fase de grupos</div>
+                    <div class="phase-detail">16 → 8 taquerías</div>
+                </div>
+                <div class="calendar-phase phase-highlight">
+                    <div class="phase-date">Jul 5 – Jul 15</div>
+                    <div class="phase-name">Eliminatorias</div>
+                    <div class="phase-detail">Cuartos + semis</div>
+                </div>
+                <div class="calendar-phase phase-highlight">
+                    <div class="phase-date">Jul 16 – Jul 19</div>
+                    <div class="phase-name">La Gran Final</div>
+                    <div class="phase-detail">1 campeón nacional</div>
+                </div>
+                <div class="calendar-phase">
+                    <div class="phase-date">Jul 20+</div>
+                    <div class="phase-name">Post-torneo</div>
+                    <div class="phase-detail">Recap + lanzamiento APP</div>
+                </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- PAGE INDICATOR -->
-    <div class="page-indicator">
-        <span id="page-count">1/3</span>
+<!-- ═══════════════ PAGE 3: LA PLATAFORMA ═══════════════ -->
+<div class="page" id="p3">
+    <div class="inner">
+        <div class="tag reveal">La Plataforma</div>
+
+        <h2 class="hero-title reveal" style="font-size:clamp(1.8rem,4vw,2.8rem); transition-delay:0.08s">
+            No es una campaña.<br>
+            <span class="blue">Es infraestructura cultural.</span>
+        </h2>
+
+        <div class="benefits-section">
+            <div class="benefit-row reveal" style="transition-delay:0.16s">
+                <div class="benefit-card">
+                    <div class="benefit-title">Identidad, no publicidad</div>
+                    <div class="benefit-desc">Telcel deja de interrumpir y empieza a representar. La marca que celebra lo que México ya ama.</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-title">Datos de primera mano</div>
+                    <div class="benefit-desc">Cada voto es un dato real: ubicación, preferencias, horarios. Millones de interacciones voluntarias.</div>
+                </div>
+            </div>
+            <div class="benefit-row reveal" style="transition-delay:0.22s">
+                <div class="benefit-card">
+                    <div class="benefit-title">La generación que se fue</div>
+                    <div class="benefit-desc">El contenido vive donde viven los jóvenes: TikTok, Instagram, YouTube. Ellos llegan solos.</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-title">APP permanente</div>
+                    <div class="benefit-desc">Lo que empieza como votación se convierte en la guía gastronómica digital de México. Dentro del ecosistema Telcel.</div>
+                </div>
+            </div>
+            <div class="benefit-row reveal" style="transition-delay:0.28s">
+                <div class="benefit-card">
+                    <div class="benefit-title">Mundial sin cuota FIFA</div>
+                    <div class="benefit-desc">Mientras otros pagan millones por un logo en un estadio, Telcel está en la calle, donde pasa la vida real.</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-title">Formato escalable</div>
+                    <div class="benefit-desc">Año 1: tres ciudades. Año 2: nacional. Año 5: el formato se exporta. Una propiedad intelectual que crece.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ecosystem-row reveal" style="transition-delay:0.34s">
+            <div class="eco-cell">
+                <div class="eco-label">Año 1</div>
+                <div class="eco-text">16 taquerías · 3 ciudades<br>20 episodios · APP de votación</div>
+            </div>
+            <div class="eco-cell">
+                <div class="eco-label">Año 2–3</div>
+                <div class="eco-text">Expansión nacional · 80+ tacos<br>Guía gastronómica permanente</div>
+            </div>
+            <div class="eco-cell">
+                <div class="eco-label">Año 5+</div>
+                <div class="eco-text">Formato internacional<br>Japón · España · Brasil</div>
+            </div>
+        </div>
+
+        <div class="close-statement reveal" style="transition-delay:0.4s">
+            Los teléfonos los vende Telcel.<br>
+            Los datos los tiene Telcel.<br>
+            La red la pone Telcel.<br>
+            <span class="blue">La historia la contamos juntos.</span>
+        </div>
+
+        <div class="brand-bar reveal" style="transition-delay:0.48s">
+            La Selección del Taco × Telcel × Mundial 2026
+        </div>
     </div>
+</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
+<!-- Team collapsible -->
+<div class="team-toggle">
+    <button class="team-btn" onclick="toggleTeam()">Equipo ↑</button>
+</div>
+<div class="team-panel" id="teamPanel">
+    <div class="team-member">
+        <div class="team-name">Héctor Mijangos</div>
+        <div class="team-role">Creador de Rockampeonato. 20 años con Telcel.</div>
+    </div>
+    <div class="team-member">
+        <div class="team-name">Aniol Güell (Tacotíos)</div>
+        <div class="team-role">2M+ seguidores. El creador de comida más visto de México.</div>
+    </div>
+    <div class="team-member">
+        <div class="team-name">Mauricio Productor</div>
+        <div class="team-role">Ganador de Emmy. 20+ documentales.</div>
+    </div>
+</div>
 
-        // Initialize animations on page load
-        function initAnimations() {
-            const fadeElements = document.querySelectorAll('.fade-in-up');
-            fadeElements.forEach((el) => {
-                el.classList.add('visible');
-            });
-        }
+<!-- Page indicator -->
+<div class="page-indicator">
+    <span id="pageNum">1 / 3</span>
+</div>
 
-        // Counter animation for KPI numbers
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const duration = 2;
-
-                gsap.to(counter, {
-                    textContent: target,
-                    duration: duration,
-                    ease: 'power2.out',
-                    snap: { textContent: 1 },
-                    onUpdate: function() {
-                        const value = Math.floor(parseInt(counter.textContent));
-                        if (target === 70) {
-                            counter.textContent = value + '%';
-                        } else if (target === 4000000000) {
-                            counter.textContent = '$' + (value / 1000000000).toFixed(1) + 'B';
-                        } else if (target === 5500000) {
-                            counter.textContent = (value / 1000000).toFixed(1) + 'M';
-                        } else {
-                            counter.textContent = (value / 1000000).toFixed(0) + 'M';
-                        }
-                    }
-                });
-            });
-        }
-
-        // Page indicator update
-        function updatePageIndicator() {
-            const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-            const pageCount = document.getElementById('page-count');
-
-            if (scrollPercentage < 33) {
-                pageCount.textContent = '1/3';
-            } else if (scrollPercentage < 66) {
-                pageCount.textContent = '2/3';
-            } else {
-                pageCount.textContent = '3/3';
-            }
-        }
-
-        // Initialize on load
-        window.addEventListener('load', () => {
-            initAnimations();
-            animateCounters();
-            updatePageIndicator();
+<script>
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) e.target.classList.add('visible');
         });
+    }, { threshold: 0.15 });
 
-        // Update page indicator on scroll
-        window.addEventListener('scroll', updatePageIndicator);
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Smooth scroll snap behavior
-        document.documentElement.style.scrollBehavior = 'smooth';
-    </script>
+    // Page indicator
+    function updatePage() {
+        const y = window.scrollY;
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = h > 0 ? (y / h) * 100 : 0;
+        const num = pct < 33 ? '1 / 3' : pct < 66 ? '2 / 3' : '3 / 3';
+        document.getElementById('pageNum').textContent = num;
+    }
+    window.addEventListener('scroll', updatePage);
+
+    // Team toggle
+    function toggleTeam() {
+        const panel = document.getElementById('teamPanel');
+        panel.classList.toggle('open');
+    }
+
+    // Close team panel on page click (not on panel/button)
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.team-toggle') && !e.target.closest('.team-panel')) {
+            document.getElementById('teamPanel').classList.remove('open');
+        }
+    });
+</script>
 </body>
 </html>
