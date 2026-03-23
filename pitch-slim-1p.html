@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La SelecciÃ³n del Taco Ã Telcel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #030307;
+            color: #f3ede8;
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+
+        /* Desktop: lock to 100vh, no scroll */
+        @media (min-width: 1024px) {
+            body {
+                height: 100vh;
+                overflow: hidden;
+            }
+            main {
+                height: 100vh;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        /* Mobile: allow scroll */
+        @media (max-width: 1023px) {
+            body {
+                overflow-y: auto;
+            }
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            height: 100%;
+        }
+
+        /* ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+        /* TOP BAR */
+        /* ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 32px;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(233, 155, 42, 0.1);
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #9698a0;
+            flex-shrink: 0;
+        }
+
+        .top-bar-left {
+            font-weight: 500;
+        }
+
+        .top-bar-right {
+            font-weight: 500;
+        }
+
+        /* ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+        /* CONTENT WRAPPER */
+        /* ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 24px 32px;
+            gap: 20px;
+        }
+
+        /* ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+        /* HERO SECTION */
+        /* ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+        .hero {
+            flex-shrink: 0;
+        }
+
+        .hero-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #f3ede8 0%, #E99B2A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 14px;
+            color: #9698a0;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        /* ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+        /* KPI PILLS */
+        /* ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+        .kpi-container {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+            flex-shrink: 0;
+        }
+
+        .kpi-pill {
+            background: rgba(233, 155, 42, 0.08);
+            border: 1px solid rgba(233, 155, 42, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #E99B2A;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        /* ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+        /* 3-COLUMN GRID */
+        /* ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+        .grid-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            flex: 1;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        @media (max-width: 1023px) {
+            .grid-columns {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                flex: auto;
+                overflow: auto;
+            }
+        }
+
+        .glass-card {
+            background: rgba(243, 237, 232, 0.03);
+            border: 1px solid rgba(233, 155, 42, 0.15);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow-y: auto;
+            min-height: 0;
+        }
+
+        .glass-card h3 {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #E99B2A;
+            margin-bottom: 4px;
+        }
+
+        .glass-card p {
+            font-size: 12px;
+            line-height: 1.5;
+            color: #f3ede8;
+        }
+
+        .glass-card ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .glass-card li {
+            font-size: 12px;
+            line-height: 1.6;
+            color: #f3ede8;
+            margin-bottom: 8px;
+        }
+
+        .glass-card li:last-child {
+            margin-bottom: 0;
+        }
+
+        .glass-card strong {
+            color: #E99B2A;
+            font-weight: 600;
+        }
+
+        /* ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+        /* BOTTOM BENEFITS SECTION */
+        /* ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+        .benefits-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 1023px) {
+            .benefits-section {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        .benefits-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .benefit-item {
+            font-size: 12px;
+            line-height: 1.5;
+            color: #f3ede8;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .benefit-item:before {
+            content: "â";
+            position: absolute;
+            left: 0;
+            color: #E99B2A;
+            font-weight: 600;
+        }
+
+        .benefits-cta {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .cta-line {
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.6;
+            color: #E99B2A;
+        }
+
+        /* ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+        /* FOOTER BAR */
+        /* ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+        .footer-bar {
+            background: linear-gradient(90deg, #E99B2A 0%, #F97316 100%);
+            padding: 14px 32px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-main {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #030307;
+        }
+
+        .footer-credits {
+            font-size: 9px;
+            color: rgba(3, 3, 7, 0.7);
+            text-align: right;
+            line-height: 1.4;
+        }
+
+        .footer-credits div {
+            margin-bottom: 2px;
+        }
+
+        .footer-credits div:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 1023px) {
+            .footer-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+                padding: 12px 24px;
+            }
+
+            .footer-main {
+                font-size: 10px;
+            }
+
+            .footer-credits {
+                text-align: left;
+                width: 100%;
+            }
+        }
+
+        /* ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+        /* SCROLLBAR (subtle on desktop) */
+        /* ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+        .glass-card::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .glass-card::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .glass-card::-webkit-scrollbar-thumb {
+            background: rgba(233, 155, 42, 0.3);
+            border-radius: 2px;
+        }
+
+        .glass-card::-webkit-scrollbar-thumb:hover {
+            background: rgba(233, 155, 42, 0.5);
+        }
+
+        /* ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+        /* MOBILE ADJUSTMENTS */
+        /* ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+        @media (max-width: 768px) {
+            .top-bar {
+                padding: 12px 20px;
+                font-size: 10px;
+            }
+
+            .content {
+                padding: 16px 20px;
+                gap: 16px;
+            }
+
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .kpi-pill {
+                font-size: 11px;
+                padding: 6px 12px;
+            }
+
+            .glass-card {
+                padding: 16px;
+                gap: 10px;
+            }
+
+            .glass-card h3 {
+                font-size: 12px;
+            }
+
+            .glass-card p,
+            .glass-card li {
+                font-size: 11px;
+            }
+
+            .benefit-item {
+                font-size: 11px;
+                padding-left: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <!-- TOP BAR -->
+        <div class="top-bar">
+            <div class="top-bar-left">La SelecciÃ³n del Taco Ã Telcel</div>
+            <div class="top-bar-right">Marzo 2026 Â· Confidencial</div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content">
+            <!-- HERO -->
+            <div class="hero">
+                <h1 class="hero-title">La SelecciÃ³n del Taco.</h1>
+                <p class="hero-subtitle">Un proyecto de paÃ­s. Para toda la vida.</p>
+            </div>
+
+            <!-- KPI PILLS -->
+            <div class="kpi-container">
+                <div class="kpi-pill">16 TaquerÃ­as</div>
+                <div class="kpi-pill">3 Ciudades</div>
+                <div class="kpi-pill">38 DÃ­as</div>
+                <div class="kpi-pill">â Votos</div>
+            </div>
+
+            <!-- 3-COLUMN GRID -->
+            <div class="grid-columns">
+                <!-- Column 1: LA OPORTUNIDAD -->
+                <div class="glass-card">
+                    <h3>La Oportunidad</h3>
+                    <ul>
+                        <li><strong>Verizon</strong> firmÃ³ con FIFA. <strong>Telcel</strong> no estÃ¡ en los estadios.</li>
+                        <li>821K usuarios perdidos en Q1. MVNOs <strong>+30%</strong>.</li>
+                        <li>Nadie conecta: Mundial + GastronomÃ­a + Redes.</li>
+                        <li><strong>84M</strong> usuarios Telcel. <strong>5.5M</strong> turistas. <strong>$4B</strong> derrama.</li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: EL CONCEPTO -->
+                <div class="glass-card">
+                    <h3>El Concepto</h3>
+                    <ul>
+                        <li><strong>16 taquerÃ­as</strong> y fondas de barrio en eliminaciÃ³n directa</li>
+                        <li><strong>CDMX</strong> (6) Â· <strong>GDL</strong> (5) Â· <strong>MTY</strong> (5)</li>
+                        <li>La gente <strong>vota desde su Telcel</strong></li>
+                        <li>Bracket mini: <strong>16â8â4â2â1</strong></li>
+                        <li>Cada voto = dato + engagement + publicidad orgÃ¡nica</li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: LA PLATAFORMA -->
+                <div class="glass-card">
+                    <h3>La Plataforma</h3>
+                    <ul>
+                        <li><strong>AÃ±o 1:</strong> Torneo durante el Mundial</li>
+                        <li><strong>AÃ±os 2-3:</strong> ExpansiÃ³n a 80+ tacos, app, guÃ­a digital</li>
+                        <li><strong>AÃ±os 5-10:</strong> TradiciÃ³n nacional. Formato exportable.</li>
+                        <li><strong>Ecosistema Slim:</strong> Sams, Mi Telcel, Inbursa</li>
+                        <li><em>No es campaÃ±a. Es plataforma de 10 aÃ±os.</em></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- BENEFITS + CTA -->
+            <div class="benefits-section">
+                <div class="benefits-list">
+                    <div class="benefit-item">AsociaciÃ³n cultural con la identidad de MÃ©xico</div>
+                    <div class="benefit-item">Contenido nativo donde viven los jÃ³venes</div>
+                    <div class="benefit-item">First-party data: estado, gustos, horarios</div>
+                    <div class="benefit-item">Pertenencia y lealtad que MVNOs no pueden tocar</div>
+                    <div class="benefit-item">Presencia mundialista sin pagarle a FIFA</div>
+                </div>
+                <div class="benefits-cta">
+                    <div class="cta-line">Los telÃ©fonos los vendes tÃº.</div>
+                    <div class="cta-line">Los datos los vendes tÃº.</div>
+                    <div class="cta-line">La red la pones tÃº.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER BAR -->
+        <div class="footer-bar">
+            <div class="footer-main">
+                Presentado por Mijangos Ã TacotÃ­os Ã Mauricio "El Punk" â La SelecciÃ³n del Taco Ã Telcel Ã Mundial 2026
+            </div>
+            <div class="footer-credits">
+                <div><strong>Mijangos:</strong> Creador de Rockampeonato. 20 aÃ±os con Telcel.</div>
+                <div><strong>TacotÃ­os:</strong> 2M+ seguidores. El creador de comida mÃ¡s visto de MÃ©xico.</div>
+                <div><strong>Mauricio "El Punk":</strong> Ganador de Emmy. 20+ documentales.</div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
