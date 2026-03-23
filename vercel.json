@@ -59,6 +59,10 @@
     {
       "source": "/laselecciondeltaco",
       "destination": "/pitch-tacotios-3slides-estandar-multimarca-v2.html"
+    },
+    {
+      "source": "/pitch-seleccion-taco-telcel",
+      "destination": "/pitch-seleccion-taco-telcel.html"
     }
   ]
 }
